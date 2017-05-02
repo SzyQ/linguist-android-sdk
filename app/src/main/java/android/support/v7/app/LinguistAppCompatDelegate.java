@@ -7,20 +7,24 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Window;
 
+import mobi.klimaszewski.linguist.Linguist;
 import mobi.klimaszewski.linguist.LinguistFactory;
 
 public class LinguistAppCompatDelegate extends AppCompatDelegateImplV9 {
 
 
-    public LinguistAppCompatDelegate(Context context, Window window, AppCompatCallback callback) {
+    private Linguist linguist;
+
+    public LinguistAppCompatDelegate(Context context, Window window, AppCompatCallback callback, Linguist linguist) {
         super(context, window, callback);
+        this.linguist = linguist;
     }
 
     @Override
     public void installViewFactory() {
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         if (layoutInflater.getFactory() == null) {
-            LayoutInflaterCompat.setFactory(layoutInflater, new LinguistFactory(this));
+            LayoutInflaterCompat.setFactory(layoutInflater, new LinguistFactory(this, linguist));
         } else {
             if (!(LayoutInflaterCompat.getFactory(layoutInflater)
                     instanceof AppCompatDelegateImplV9)) {

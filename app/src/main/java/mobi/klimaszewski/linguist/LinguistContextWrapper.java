@@ -3,16 +3,17 @@ package mobi.klimaszewski.linguist;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Resources;
+import android.view.LayoutInflater;
 
 public class LinguistContextWrapper extends ContextWrapper {
 
     private LinguistResources resources;
-    private LinguistLayoutInflater inflater;
-    private Context originalContext;
+    private LayoutInflater inflater;
+    private Linguist linguist;
 
-    public LinguistContextWrapper(Context base) {
+    public LinguistContextWrapper(Context base, Linguist linguist) {
         super(base);
-        originalContext = base;
+        this.linguist = linguist;
     }
 
     @Override
@@ -27,7 +28,7 @@ public class LinguistContextWrapper extends ContextWrapper {
     public Object getSystemService(String name) {
 //        if (LAYOUT_INFLATER_SERVICE.equals(name)) {
 //            if (inflater == null) {
-//                inflater = new LinguistLayoutInflater(this,originalContext);
+//                inflater = new LinguistLayoutInflater((LayoutInflater) super.getSystemService(name), getBaseContext(), linguist).cloneInContext(this);
 //            }
 //            return inflater;
 //        }
