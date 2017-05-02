@@ -7,6 +7,7 @@ public class LinguistApp extends Application {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(new LinguistContextWrapper(base, new Linguist()));
+        Linguist linguist = new Linguist();
+        super.attachBaseContext(new LinguistContextWrapper(base, new LinguistViewTranslator(linguist),linguist));
     }
 }

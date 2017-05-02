@@ -1,30 +1,43 @@
 package android.support.v7.app;
 
 
+import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Window;
 
-import mobi.klimaszewski.linguist.Linguist;
 import mobi.klimaszewski.linguist.LinguistFactory;
+import mobi.klimaszewski.linguist.LinguistViewTranslator;
 
-public class LinguistAppCompatDelegate extends AppCompatDelegateImplV9 {
+public class LinguistAppCompatDelegate extends LinguistDelegateWrapper {
 
 
-    private Linguist linguist;
+    public static AppCompatDelegate wrap(Activity activity, AppCompatCallback callback, LinguistViewTranslator linguistViewTranslator) {
+        return new LinguistAppCompatDelegate(AppCompatDelegate.create(activity, callback), activity, linguistViewTranslator);
+    }
 
-    public LinguistAppCompatDelegate(Context context, Window window, AppCompatCallback callback, Linguist linguist) {
-        super(context, window, callback);
-        this.linguist = linguist;
+    public static AppCompatDelegate wrap(Dialog dialog, AppCompatCallback callback, LinguistViewTranslator linguistViewTranslator) {
+        return new LinguistAppCompatDelegate(AppCompatDelegate.create(dialog, callback), dialog.getContext(), linguistViewTranslator);
+    }
+
+    private AppCompatDelegateImplV9 delegate;
+    private Context context;
+    private LinguistViewTranslator viewTranslator;
+
+    public LinguistAppCompatDelegate(AppCompatDelegate delegate, Context context, LinguistViewTranslator linguistViewTranslator) {
+        super(delegate);
+        this.delegate = (AppCompatDelegateImplV9) delegate;
+        this.context = context;
+        this.viewTranslator = linguistViewTranslator;
     }
 
     @Override
     public void installViewFactory() {
-        LayoutInflater layoutInflater = LayoutInflater.from(mContext);
+        LayoutInflater layoutInflater = LayoutInflater.from(context);
         if (layoutInflater.getFactory() == null) {
-            LayoutInflaterCompat.setFactory(layoutInflater, new LinguistFactory(this, linguist));
+            LayoutInflaterCompat.setFactory(layoutInflater, new LinguistFactory(delegate, viewTranslator));
         } else {
             if (!(LayoutInflaterCompat.getFactory(layoutInflater)
                     instanceof AppCompatDelegateImplV9)) {

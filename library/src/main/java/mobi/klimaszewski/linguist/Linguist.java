@@ -16,4 +16,23 @@ public class Linguist {
         return result;
     }
 
+    public CharSequence translate(CharSequence text) {
+        return new StringBuffer(translate(text.toString()));
+    }
+
+    public CharSequence[] translate(CharSequence[] textArray) {
+        CharSequence[] charSequences = new CharSequence[textArray.length];
+        for(int i= 0; i < textArray.length; i++){
+            charSequences[i]=translate(textArray[i]);
+        }
+        return charSequences;
+    }
+
+    public String[] translate(String[] textArray) {
+        String[] charSequences = new String[textArray.length];
+        for(int i= 0; i < textArray.length; i++){
+            charSequences[i]=translate(textArray[i]);
+        }
+        return charSequences;
+    }
 }
