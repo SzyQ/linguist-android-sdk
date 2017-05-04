@@ -10,12 +10,10 @@ import android.view.MenuInflater;
 public class LinguistActivity extends AppCompatActivity {
 
     private AppCompatDelegate mDelegate;
-    private LinguistViewTranslator viewTranslator;
 
     @Override
     protected void attachBaseContext(Context base) {
-        viewTranslator = LinguistApp.getViewTranslator(base);
-        super.attachBaseContext(new LinguistContextWrapper(base, viewTranslator, LinguistApp.getLinguist(base)));
+        super.attachBaseContext(LinguistContextWrapper.wrap(base));
     }
 
     /**
@@ -24,13 +22,13 @@ public class LinguistActivity extends AppCompatActivity {
     @NonNull
     public AppCompatDelegate getDelegate() {
         if (mDelegate == null) {
-            mDelegate = LinguistAppCompatDelegate.wrap(this, this, viewTranslator);
+            mDelegate = LinguistAppCompatDelegate.wrap(this, this);
         }
         return mDelegate;
     }
 
     @Override
     public MenuInflater getMenuInflater() {
-        return new LinguistMenuInflater(this, super.getMenuInflater());
+        return LinguistMenuInflater.wrap(this, super.getMenuInflater());
     }
 }

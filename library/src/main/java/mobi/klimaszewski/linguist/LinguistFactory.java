@@ -9,15 +9,15 @@ import android.view.View;
 public class LinguistFactory implements LayoutInflaterFactory {
 
     private LayoutInflaterFactory factory;
-    private LinguistViewTranslator linguist;
+    private Linguist linguist;
 
-    public LinguistFactory(LayoutInflaterFactory factory, LinguistViewTranslator viewTranslator) {
+    public LinguistFactory(LayoutInflaterFactory factory, Linguist linguist) {
         this.factory = factory;
-        this.linguist = viewTranslator;
+        this.linguist = linguist;
     }
 
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-        return linguist.translateView(factory.onCreateView(parent, name, context, attrs));
+        return linguist.translate(factory.onCreateView(parent, name, context, attrs));
     }
 }

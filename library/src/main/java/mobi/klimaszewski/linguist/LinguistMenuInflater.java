@@ -1,30 +1,31 @@
 package mobi.klimaszewski.linguist;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.MenuRes;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 
 public class LinguistMenuInflater extends MenuInflater {
 
-    private MenuInflater inflater;
+    public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
+        return new LinguistMenuInflater(activity,menuInflater);
+    }
+
     private final Linguist linguist;
+
+    private MenuInflater inflater;
 
     public LinguistMenuInflater(Context context, MenuInflater inflater) {
         super(context);
         this.inflater = inflater;
-        linguist = LinguistApp.getLinguist(context);
+        linguist = Linguist.from(context);
     }
 
     @Override
     public void inflate(@MenuRes int menuRes, Menu menu) {
         inflater.inflate(menuRes, menu);
-        for (int i = 0; i < menu.size(); i++) {
-            MenuItem item = menu.getItem(i);
-            item.setTitle(linguist.translate(item.getTitle()));
-            item.setTitleCondensed(linguist.translate(item.getTitleCondensed()));
-        }
+        linguist.translate(menu);
     }
 }

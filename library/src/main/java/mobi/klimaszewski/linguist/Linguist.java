@@ -1,21 +1,22 @@
 package mobi.klimaszewski.linguist;
 
 import android.content.Context;
-
-import java.util.Set;
+import android.preference.Preference;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.SubMenu;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class Linguist {
     private static final String LINGUIST = "Linguist ";
-    private Set<Integer> resources;
 
-    public Linguist(Set<Integer> resources){
-        this.resources = resources;
+    public static Linguist from(Context context){
+        Translatable linguistApp = (Translatable) context.getApplicationContext();
+        return linguistApp.getLinguist();
     }
-
-    public Linguist(Set<Integer> appStringResources, Set<String> stringsToTranslate) {
-
-    }
-
     public String translate(String string) {
         int length = string.length();
         int linguistLength = LINGUIST.length();
@@ -26,6 +27,48 @@ public class Linguist {
         }
         result += LINGUIST.substring(0, length % linguistLength);
         return result;
+    }
+
+    public View translate(View view) {
+        if (view != null) {
+            if ((view instanceof Toolbar)) {
+                Toolbar toolbar = (Toolbar) view;
+                toolbar.setTitle(translate(toolbar.getTitle().toString()));
+                return view;
+            } else if ((view instanceof EditText)) {
+                EditText toolbar = (EditText) view;
+                CharSequence hint = toolbar.getHint();
+                if(hint != null) {
+                    toolbar.setHint(translate(hint.toString()));
+                }
+                return view;
+            } else if (view instanceof TextView) {
+                ((TextView) view).setText(translate(((TextView) view).getText().toString()));
+            } else {
+                LL.v("Unsupported view: "+view.getClass().getName());
+            }
+        }
+        return view;
+    }
+
+    public Preference translate(Preference preference) {
+        if(preference != null){
+            preference.setTitle(translate(preference.getTitle()));
+            preference.setSummary(translate(preference.getSummary()));
+        }
+        return preference;
+    }
+
+    public void translate(Menu menu) {
+        for (int i = 0; i < menu.size(); i++) {
+            MenuItem item = menu.getItem(i);
+            item.setTitle(translate(item.getTitle()));
+            item.setTitleCondensed(translate(item.getTitleCondensed()));
+            SubMenu subMenu = item.getSubMenu();
+            if(subMenu != null){
+                translate(subMenu);
+            }
+        }
     }
 
     public CharSequence translate(CharSequence text) {
@@ -48,56 +91,13 @@ public class Linguist {
         return charSequences;
     }
 
-    public CharSequence translate(int id, CharSequence text) {
-        if(resources.contains(id)){
-            return translate(text);
-        }
-        return text;
-    }
-
-    public String translate(int id, String text) {
-        if(resources.contains(id)){
-            return translate(text);
-        }
-        return text;
-    }
-
-    public CharSequence[] translate(int id, CharSequence[] textArray) {
-        if(resources.contains(id)){
-            return translate(textArray);
-        }
-        return textArray;
-    }
-
-    public String[] translate(int id, String[] textArray) {
-        if(resources.contains(id)){
-            return translate(textArray);
-        }
-        return textArray;
-    }
-
     public static class Builder {
 
-        private Context context;
-        private Class[] stringClasses;
-        private boolean isPrefetched;
-
-        public Builder(Context context, Class... stringClasses){
-            this.context = context;
-            this.stringClasses = stringClasses;
-        }
-
-        public Builder setPrefetch(boolean isPrefetched){
-            this.isPrefetched = isPrefetched;
-            return this;
+        public Builder(){
         }
 
         public Linguist build(){
-            Set<Integer> appStringResources = Utils.getAppStringResources(context, stringClasses);
-            if(isPrefetched){
-                return new Linguist(appStringResources,Utils.getAppStrings(context,appStringResources));
-            }
-            return new Linguist(appStringResources);
+            return new Linguist();
         }
     }
 }
