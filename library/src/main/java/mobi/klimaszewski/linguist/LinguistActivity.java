@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.app.LinguistAppCompatDelegate;
+import android.view.MenuInflater;
 
 public class LinguistActivity extends AppCompatActivity {
 
@@ -12,10 +13,9 @@ public class LinguistActivity extends AppCompatActivity {
     private LinguistViewTranslator viewTranslator;
 
     @Override
-    protected void attachBaseContext(Context newBase) {
-        Linguist linguist = new Linguist();
-        viewTranslator = new LinguistViewTranslator(linguist);
-        super.attachBaseContext(new LinguistContextWrapper(newBase, viewTranslator,linguist));
+    protected void attachBaseContext(Context base) {
+        viewTranslator = LinguistApp.getViewTranslator(base);
+        super.attachBaseContext(new LinguistContextWrapper(base, viewTranslator, LinguistApp.getLinguist(base)));
     }
 
     /**
@@ -24,9 +24,13 @@ public class LinguistActivity extends AppCompatActivity {
     @NonNull
     public AppCompatDelegate getDelegate() {
         if (mDelegate == null) {
-            mDelegate = LinguistAppCompatDelegate.wrap(this,this,viewTranslator);
+            mDelegate = LinguistAppCompatDelegate.wrap(this, this, viewTranslator);
         }
         return mDelegate;
     }
 
+    @Override
+    public MenuInflater getMenuInflater() {
+        return new LinguistMenuInflater(this, super.getMenuInflater());
+    }
 }

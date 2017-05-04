@@ -18,6 +18,20 @@ public class LinguistContextWrapper extends ContextWrapper {
         this.linguist = linguist;
     }
 
+    static void wrap(LinguistApp linguistApp) {
+        Linguist build = new Linguist.Builder(linguistApp.getBaseContext(), R.string.class)
+                .setPrefetch(false)
+                .build();
+        linguistApp.attachBaseContext(new LinguistContextWrapper(linguistApp.getBaseContext(), new LinguistViewTranslator(build),build));
+    }
+
+    static void wrap(LinguistActivity linguistApp, Context base) {
+        Linguist build = new Linguist.Builder(base, R.string.class)
+                .setPrefetch(false)
+                .build();
+        linguistApp.attachBaseContext(new LinguistContextWrapper(base, new LinguistViewTranslator(build),build));
+    }
+
     @Override
     public Resources getResources() {
         if (resources == null) {
@@ -26,16 +40,16 @@ public class LinguistContextWrapper extends ContextWrapper {
         return resources;
     }
 
-    @Override
-    public Object getSystemService(String name) {
-        if (LAYOUT_INFLATER_SERVICE.equals(name)) {
-            if (inflater == null) {
-                inflater = new LinguistLayoutInflater((LayoutInflater) super.getSystemService(name), getBaseContext(), viewTranslator).cloneInContext(this);
-            }
-            return inflater;
-        }
-        return super.getSystemService(name);
-    }
+//    @Override
+//    public Object getSystemService(String name) {
+//        if (LAYOUT_INFLATER_SERVICE.equals(name)) {
+//            if (inflater == null) {
+//                inflater = new LinguistLayoutInflater((LayoutInflater) super.getSystemService(name), getBaseContext(), viewTranslator).cloneInContext(this);
+//            }
+//            return inflater;
+//        }
+//        return super.getSystemService(name);
+//    }
 
 
 }
