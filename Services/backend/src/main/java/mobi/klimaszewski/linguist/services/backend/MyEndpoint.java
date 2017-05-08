@@ -9,12 +9,8 @@ package mobi.klimaszewski.linguist.services.backend;
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
 import com.google.api.server.spi.config.ApiNamespace;
-import com.google.appengine.api.datastore.Text;
-import com.google.cloud.datastore.Datastore;
-import com.google.cloud.datastore.DatastoreOptions;
-import com.google.cloud.datastore.Entity;
-import com.google.cloud.datastore.Key;
-import com.google.cloud.datastore.Value;
+import com.google.cloud.translate.Translate;
+import com.google.cloud.translate.TranslateOptions;
 
 import javax.inject.Named;
 
@@ -22,7 +18,7 @@ import javax.inject.Named;
  * An endpoint class we are exposing
  */
 @Api(
-        name = "myApi",
+        name = "api",
         version = "v1",
         namespace = @ApiNamespace(
                 ownerDomain = "backend.services.linguist.klimaszewski.mobi",
@@ -35,15 +31,19 @@ public class MyEndpoint {
     /**
      * A simple endpoint method that takes a name and says Hi back
      */
-    @ApiMethod(name = "sayHi")
-    public MyBean sayHi(@Named("name") String name) {
-        MyBean response = new MyBean();
-        response.setData("Hi, " + name);
-        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
-        Key key = datastore.newKeyFactory().setKind("Translation").newKey(name);
-        Entity entity = datastore.get(key);
-        Value<Text> original = entity.getValue("original");
-        response.setData(original.get().getValue());
+    @ApiMethod(name = "translate")
+    public Translation translate(@Named("text") String text) {
+        Translation response = new Translation();
+        response.setOriginalText(text);
+//        Translate translate = TranslateOptions
+//                .getDefaultInstance()
+//                .getService();
+//        response.setTranslatedText(translate.translate(text, Translate.TranslateOption.sourceLanguage("en"), Translate.TranslateOption.targetLanguage("pl")).getTranslatedText());
+//        Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
+//        Key key = datastore.newKeyFactory().setKind("Translation").newKey(name);
+//        Entity entity = datastore.get(key);
+//        Value<Text> original = entity.getValue("original");
+//        response.setData(original.get().getValue());
         return response;
     }
 
