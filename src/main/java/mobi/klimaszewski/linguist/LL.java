@@ -13,4 +13,8 @@ public class LL {
         Log.v(TAG, string);
     }
 
+    public static void e(String error, Throwable e) {
+        Log.e(TAG, error, e);
+    }
+
 }

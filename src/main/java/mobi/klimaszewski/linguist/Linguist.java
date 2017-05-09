@@ -3,6 +3,8 @@ package mobi.klimaszewski.linguist;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.preference.Preference;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -41,9 +43,9 @@ public class Linguist {
     }
 
     public void fetch() {
-        Set<Integer> stringResources = Utils.getAppStringResources(context, stringClass);
-        Set<String> appStrings = Utils.getAppStrings(context, stringResources);
-        translationFactory.translate(new ArrayList<>(appStrings),defaultLanguage,Locale.getDefault().getCountry());
+//        Set<Integer> stringResources = Utils.getAppStringResources(context, stringClass);
+//        Set<String> appStrings = Utils.getAppStrings(context, stringResources);
+//        translationFactory.translate(new ArrayList<>(appStrings), defaultLanguage, Locale.getDefault().getCountry());
     }
 
     public String translate(String string) {
@@ -115,21 +117,38 @@ public class Linguist {
 
     public void onResume(Activity activity) {
         String countryCode = Locale.getDefault().getCountry();
-        if(supportedLanguages.contains(countryCode)){
+        if (supportedLanguages.contains(countryCode)) {
             return;
         }
-        if(cache.isNeverTranslateEnabled(countryCode)){
+        if (cache.isNeverTranslateEnabled(countryCode)) {
             return;
         }
-        if(isTranslationChecked){
+        if (isTranslationChecked) {
             return;
         }
         isTranslationChecked = true;
         Intent intent = new Intent(activity, LinguistOverlayActivity.class);
-        activity.startActivityForResult(intent,LinguistOverlayActivity.REQUEST_CODE);
+        activity.startActivityForResult(intent, LinguistOverlayActivity.REQUEST_CODE);
     }
 
     public void setNeverTranslate(boolean isEnabled) {
-        cache.setNeverTranslateEnabled(Locale.getDefault().getCountry(),isEnabled);
+        cache.setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
+    }
+
+    public void replyToService() {
+        List<String> appStrings = Utils.getAppStrings(context, Utils.getAppStringResources(context, stringClass));
+        int charactersCount = 0;
+        for (String string : appStrings) {
+            charactersCount += string.length();
+        }
+
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            Drawable icon = packageManager.getApplicationIcon(context.getPackageName());
+            CharSequence appName = context.getApplicationInfo().loadLabel(packageManager);
+            translationFactory.reply(context.getPackageName(), charactersCount, appName.toString());
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

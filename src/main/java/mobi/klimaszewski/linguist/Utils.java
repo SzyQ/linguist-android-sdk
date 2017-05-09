@@ -4,13 +4,15 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import java.lang.reflect.Field;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Utils {
 
-    public static Set<String> getAppStrings(Context context, Set<Integer> resources) {
-        HashSet<String> strings = new HashSet<>();
+    public static List<String> getAppStrings(Context context, List<Integer> resources) {
+        List<String> strings = new ArrayList<>();
         for (Integer resource : resources) {
             try {
                 String string = context.getResources().getString(resource);
@@ -21,8 +23,8 @@ public class Utils {
         return strings;
     }
 
-    public static Set<Integer> getAppStringResources(Context context, Class... stringClasses) {
-        HashSet<Integer> resources = new HashSet<>();
+    public static List<Integer> getAppStringResources(Context context, Class... stringClasses) {
+        List<Integer> resources = new ArrayList<>();
         for (Class stringClass : stringClasses) {
             Field[] fields = stringClass.getDeclaredFields(); // or Field[] fields = R.string.class.getFields();
             for (int i = 0; i < fields.length; i++) {

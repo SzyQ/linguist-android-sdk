@@ -46,6 +46,16 @@ public class ServiceTranslationFactory implements TranslationsFactory {
 
     @Override
     public List<String> translate(List<String> text, String fromCode, String toCode) {
+        ensureConnected();
+        try {
+            return remoteInterface.translate(context.getPackageName(), fromCode, toCode, text);
+        } catch (RemoteException e) {
+            LL.d("Fuck " + e.getLocalizedMessage());
+            return text;
+        }
+    }
+
+    private void ensureConnected() {
         synchronized (lock) {
             if (!isConnected) {
                 try {
@@ -55,11 +65,15 @@ public class ServiceTranslationFactory implements TranslationsFactory {
                 }
             }
         }
+    }
+
+    @Override
+    public void reply(String packageName, int charactersCount, String name) {
+        ensureConnected();
         try {
-            return remoteInterface.translate(context.getPackageName(), fromCode, toCode, text);
+            remoteInterface.hello(packageName, charactersCount, name);
         } catch (RemoteException e) {
-            LL.d("Fuck " + e.getLocalizedMessage());
-            return text;
+            LL.v(e.getLocalizedMessage());
         }
     }
 }
