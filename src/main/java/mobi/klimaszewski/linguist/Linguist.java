@@ -17,6 +17,7 @@ public class Linguist {
         Translatable linguistApp = (Translatable) context.getApplicationContext();
         return linguistApp.getLinguist();
     }
+
     public String translate(String string) {
         int length = string.length();
         int linguistLength = LINGUIST.length();
