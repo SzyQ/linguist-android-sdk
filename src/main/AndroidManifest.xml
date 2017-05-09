@@ -6,5 +6,12 @@
         <activity
             android:name=".LinguistOverlayActivity"
             android:theme="@style/Transparent" />
+        <receiver
+            android:exported="true"
+            android:name=".LinguistDiscovery">
+            <intent-filter>
+                <action android:name="mobi.klimaszewski.services.DISCOVER" />
+            </intent-filter>
+        </receiver>
     </application>
 </manifest>
