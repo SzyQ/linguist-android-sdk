@@ -28,6 +28,12 @@ public class LinguistActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        Linguist.from(this).onResume(this);
+    }
+
+    @Override
     public MenuInflater getMenuInflater() {
         return LinguistMenuInflater.wrap(this, super.getMenuInflater());
     }

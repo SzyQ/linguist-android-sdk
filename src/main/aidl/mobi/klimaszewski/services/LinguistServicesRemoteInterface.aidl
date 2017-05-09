@@ -1,6 +1,7 @@
 package mobi.klimaszewski.services;
 
+import java.util.List;
 
 interface LinguistServicesRemoteInterface {
-    String translate(String packageName, String originalCode, String desiredCode, String text);
+    List<String> translate(String packageName, String originalCode, String desiredCode,in List<String> text);
 }

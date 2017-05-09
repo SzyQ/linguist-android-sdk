@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="mobi.klimaszewski.linguist" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mobi.klimaszewski.linguist">
+
+    <application>
+        <activity
+            android:name=".LinguistOverlayActivity"
+            android:theme="@style/Transparent" />
+    </application>
+</manifest>
