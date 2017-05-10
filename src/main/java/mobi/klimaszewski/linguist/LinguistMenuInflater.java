@@ -20,7 +20,7 @@ public class LinguistMenuInflater extends MenuInflater {
     public LinguistMenuInflater(Context context, MenuInflater inflater) {
         super(context);
         this.inflater = inflater;
-        linguist = Linguist.from(context);
+        linguist = Linguist.getInstance();
     }
 
     @Override

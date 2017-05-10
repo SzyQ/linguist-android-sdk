@@ -30,7 +30,7 @@ public class LinguistAppCompatDelegate extends LinguistDelegateWrapper {
         super(delegate);
         this.delegate = (AppCompatDelegateImplV9) delegate;
         this.context = context;
-        this.linguist = Linguist.from(context);
+        this.linguist = Linguist.getInstance();
     }
 
     @Override

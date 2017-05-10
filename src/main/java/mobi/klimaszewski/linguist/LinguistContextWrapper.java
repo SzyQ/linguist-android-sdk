@@ -15,7 +15,7 @@ public class LinguistContextWrapper extends ContextWrapper {
     }
 
     public static Context wrap(Context context) {
-        return new LinguistContextWrapper(context,Linguist.from(context));
+        return new LinguistContextWrapper(context, Linguist.getInstance());
     }
 
     @Override

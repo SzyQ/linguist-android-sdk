@@ -46,7 +46,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
         neverTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Linguist.from(LinguistOverlayActivity.this).setNeverTranslate(true);
+                Linguist.getInstance().setNeverTranslate(true);
                 setResult(RESULT_OK);
                 finish();
             }

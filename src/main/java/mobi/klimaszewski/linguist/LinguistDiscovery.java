@@ -8,6 +8,7 @@ import android.content.Intent;
 public class LinguistDiscovery extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Linguist.from(context).replyToService();
+        //TODO do in Intent service
+        Linguist.getInstance().replyToService();
     }
 }

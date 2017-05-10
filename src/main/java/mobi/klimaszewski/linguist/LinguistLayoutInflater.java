@@ -18,7 +18,7 @@ public class LinguistLayoutInflater extends LayoutInflater {
 
     public LinguistLayoutInflater(LayoutInflater layoutInflater, Context context) {
         super(layoutInflater, context);
-        this.viewTranslator = Linguist.from(context);
+        this.viewTranslator = Linguist.getInstance();
     }
 
     @Override

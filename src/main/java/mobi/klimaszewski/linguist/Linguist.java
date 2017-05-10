@@ -14,13 +14,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 public class Linguist {
-    private final Context context;
+    private static Linguist instance;
+    private Context context;
     private TranslationsFactory translationFactory;
     private Cache cache;
     private Class stringClass;
@@ -28,18 +27,20 @@ public class Linguist {
     private List<String> supportedLanguages;
     private boolean isTranslationChecked;
 
-    public static Linguist from(Context context) {
-        Translatable linguistApp = (Translatable) context.getApplicationContext();
-        return linguistApp.getLinguist();
+    public synchronized static Linguist getInstance(){
+        if(instance == null){
+            instance = new Linguist();
+        }
+        return instance;
     }
 
-    public Linguist(Context context, TranslationsFactory factory, Cache cache, Class stringClass, String defaultLanguage, List<String> supportedLanguages) {
-        this.context = context;
-        translationFactory = factory;
-        this.cache = cache;
-        this.stringClass = stringClass;
-        this.defaultLanguage = defaultLanguage;
-        this.supportedLanguages = supportedLanguages;
+    public static void init(Context context, TranslationsFactory factory, Cache cache, Class stringClass, String defaultLanguage, List<String> supportedLanguages) {
+        getInstance().context = context;
+        getInstance().translationFactory = factory;
+        getInstance().cache = cache;
+        getInstance().stringClass = stringClass;
+        getInstance().defaultLanguage = defaultLanguage;
+        getInstance().supportedLanguages = supportedLanguages;
     }
 
     public void fetch() {

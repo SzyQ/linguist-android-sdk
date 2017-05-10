@@ -30,7 +30,7 @@ public class LinguistActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Linguist.from(this).onResume(this);
+        Linguist.getInstance().onResume(this);
     }
 
     @Override
