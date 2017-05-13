@@ -150,9 +150,10 @@ public class Linguist {
             PackageManager packageManager = context.getPackageManager();
             Drawable icon = packageManager.getApplicationIcon(context.getPackageName());
             CharSequence appName = context.getApplicationInfo().loadLabel(packageManager);
+            LL.d("Replying("+charactersCount+")");
             translationFactory.reply(context.getPackageName(), charactersCount, appName.toString());
         } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+            LL.e("Failed to reply",e);
         }
     }
 

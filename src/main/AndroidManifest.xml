@@ -13,5 +13,7 @@
                 <action android:name="mobi.klimaszewski.services.DISCOVER" />
             </intent-filter>
         </receiver>
+
+        <service android:name=".DiscoveryIntentService" android:exported="false"/>
     </application>
 </manifest>
