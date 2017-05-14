@@ -19,13 +19,14 @@ import android.widget.TextView;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 public class Linguist {
     private static Linguist instance;
     private Context context;
     private TranslationsFactory translationFactory;
     private Cache cache;
-    private Class stringClass;
+    private Class[] stringClass;
     private String defaultLanguage;
     private List<String> supportedLanguages;
     private boolean isTranslationChecked;
@@ -37,19 +38,19 @@ public class Linguist {
         return instance;
     }
 
-    public static void init(Context context, TranslationsFactory factory, Cache cache, Class stringClass, String defaultLanguage, List<String> supportedLanguages) {
+    public static void init(Context context, TranslationsFactory factory, Cache cache, String defaultLanguage, List<String> supportedLanguages, Class... stringClasses) {
         getInstance().context = context;
         getInstance().translationFactory = factory;
         getInstance().cache = cache;
-        getInstance().stringClass = stringClass;
+        getInstance().stringClass = stringClasses;
         getInstance().defaultLanguage = defaultLanguage;
         getInstance().supportedLanguages = supportedLanguages;
     }
 
-    public void fetch() {
-//        Set<Integer> stringResources = Utils.getAppStringResources(context, stringClass);
-//        Set<String> appStrings = Utils.getAppStrings(context, stringResources);
-//        translationFactory.translate(new ArrayList<>(appStrings), defaultLanguage, Locale.getDefault().getCountry());
+    public List<String> fetch() {
+        List<Integer> stringResources = Utils.getAppStringResources(context, stringClass);
+        List<String> appStrings = Utils.getAppStrings(context, stringResources);
+        return appStrings;
     }
 
     public String translate(String string) {
@@ -151,9 +152,9 @@ public class Linguist {
             Drawable icon = packageManager.getApplicationIcon(context.getPackageName());
             CharSequence appName = context.getApplicationInfo().loadLabel(packageManager);
             LL.d("Replying("+charactersCount+")");
-            translationFactory.reply(context.getPackageName(), charactersCount, appName.toString());
+            translationFactory.hello(context.getPackageName(), charactersCount, appName.toString());
         } catch (PackageManager.NameNotFoundException e) {
-            LL.e("Failed to reply",e);
+            LL.e("Failed to hello",e);
         }
     }
 
@@ -177,5 +178,12 @@ public class Linguist {
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bitmap;
+    }
+
+    public void applyTranslation(Map<String, String> translation) {
+        for (String text : translation.keySet()) {
+            String translated = translation.get(text);
+            cache.put(text,translated);
+        }
     }
 }

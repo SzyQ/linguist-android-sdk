@@ -11,4 +11,6 @@ public interface Cache {
     boolean isNeverTranslateEnabled(String countryCode);
 
     void setNeverTranslateEnabled(String countryCode, boolean isEnabled);
+
+    void put(String text, String translated);
 }

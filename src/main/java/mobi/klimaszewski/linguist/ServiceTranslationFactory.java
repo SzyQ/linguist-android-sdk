@@ -8,9 +8,7 @@ import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 
-import java.util.List;
-
-import mobi.klimaszewski.services.LinguistServicesRemoteInterface;
+import mobi.klimaszewski.services.DiscoveryInterface;
 
 public class ServiceTranslationFactory implements TranslationsFactory {
 
@@ -21,7 +19,7 @@ public class ServiceTranslationFactory implements TranslationsFactory {
         public void onServiceConnected(ComponentName name, IBinder service) {
             synchronized (lock) {
                 LL.d("Connected to remote service");
-                remoteInterface = LinguistServicesRemoteInterface.Stub.asInterface(service);
+                remoteInterface = DiscoveryInterface.Stub.asInterface(service);
                 isConnected = true;
                 lock.notify();
             }
@@ -36,7 +34,7 @@ public class ServiceTranslationFactory implements TranslationsFactory {
             }
         }
     };
-    private LinguistServicesRemoteInterface remoteInterface;
+    private DiscoveryInterface remoteInterface;
     private Context context;
 
     public ServiceTranslationFactory(Context context) {
@@ -44,25 +42,12 @@ public class ServiceTranslationFactory implements TranslationsFactory {
     }
 
     @Override
-    public List<String> translate(List<String> text, String fromCode, String toCode) {
-        try {
-            connect();
-            return remoteInterface.translate(context.getPackageName(), fromCode, toCode, text);
-        } catch (RemoteException e) {
-            LL.d("Fuck " + e.getLocalizedMessage());
-            return text;
-        } finally {
-            disconnect();
-        }
-    }
-
-    @Override
-    public void reply(String packageName, int charactersCount, String name) {
+    public void hello(String packageName, int charactersCount, String name) {
         try {
             connect();
             remoteInterface.hello(packageName, charactersCount, name);
         } catch (RemoteException e) {
-            LL.e("Failed to reply to service", e);
+            LL.e("Failed to hello to service", e);
         } finally {
             disconnect();
         }
@@ -70,14 +55,19 @@ public class ServiceTranslationFactory implements TranslationsFactory {
 
     private synchronized void connect() {
         synchronized (lock) {
+            LL.d("Connecting to service");
             Intent service = new Intent("mobi.klimaszewski.action.TRANSLATE");
             service.setPackage("mobi.klimaszewski.linguist.services");
             context.bindService(service, connection, Context.BIND_AUTO_CREATE);
             if (!isConnected) {
                 try {
                     lock.wait();
+                    LL.d("Connected to service");
                 } catch (InterruptedException ignored) {
+                    LL.e("Error connecting", ignored);
                 }
+            } else {
+                LL.d("IS already connected: " + remoteInterface);
             }
         }
     }

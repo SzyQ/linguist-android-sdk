@@ -15,5 +15,7 @@
         </receiver>
 
         <service android:name=".DiscoveryIntentService" android:exported="false"/>
+
+        <service android:name=".TranslationService" android:exported="true"/>
     </application>
 </manifest>

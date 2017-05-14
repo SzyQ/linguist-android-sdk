@@ -28,4 +28,12 @@ public class PreferencesCache implements Cache {
     public void setNeverTranslateEnabled(String countryCode, boolean isEnabled) {
         preferences.edit().putBoolean(countryCode, isEnabled).apply();
     }
+
+    @Override
+    public void put(String text, String translated) {
+        preferences
+                .edit()
+                .putString(text,translated)
+                .apply();
+    }
 }
