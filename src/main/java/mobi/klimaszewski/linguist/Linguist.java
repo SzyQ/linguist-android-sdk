@@ -30,9 +30,10 @@ public class Linguist {
     private String defaultLanguage;
     private List<String> supportedLanguages;
     private boolean isTranslationChecked;
+    private String targetLanguage = "en";
 
-    public synchronized static Linguist getInstance(){
-        if(instance == null){
+    public synchronized static Linguist getInstance() {
+        if (instance == null) {
             instance = new Linguist();
         }
         return instance;
@@ -45,6 +46,28 @@ public class Linguist {
         getInstance().stringClass = stringClasses;
         getInstance().defaultLanguage = defaultLanguage;
         getInstance().supportedLanguages = supportedLanguages;
+    }
+
+    public static Bitmap drawableToBitmap(Drawable drawable) {
+        Bitmap bitmap = null;
+
+        if (drawable instanceof BitmapDrawable) {
+            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
+            if (bitmapDrawable.getBitmap() != null) {
+                return bitmapDrawable.getBitmap();
+            }
+        }
+
+        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
+            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
+        } else {
+            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
+        }
+
+        Canvas canvas = new Canvas(bitmap);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        return bitmap;
     }
 
     public List<String> fetch() {
@@ -121,7 +144,11 @@ public class Linguist {
     }
 
     public void onResume(Activity activity) {
+
         String countryCode = Locale.getDefault().getCountry();
+        if (cache.isTranslationEnabled(countryCode)) {
+            return;
+        }
         if (supportedLanguages.contains(countryCode)) {
             return;
         }
@@ -151,39 +178,18 @@ public class Linguist {
             PackageManager packageManager = context.getPackageManager();
             Drawable icon = packageManager.getApplicationIcon(context.getPackageName());
             CharSequence appName = context.getApplicationInfo().loadLabel(packageManager);
-            LL.d("Replying("+charactersCount+")");
+            LL.d("Replying(" + charactersCount + ")");
             translationFactory.hello(context.getPackageName(), charactersCount, appName.toString());
         } catch (PackageManager.NameNotFoundException e) {
-            LL.e("Failed to hello",e);
+            LL.e("Failed to hello", e);
         }
-    }
-
-    public static Bitmap drawableToBitmap (Drawable drawable) {
-        Bitmap bitmap = null;
-
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if(bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
-            }
-        }
-
-        if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
     }
 
     public void applyTranslation(Map<String, String> translation) {
         for (String text : translation.keySet()) {
             String translated = translation.get(text);
-            cache.put(text,translated);
+            cache.put(text, translated);
         }
+        cache.setTranslationEnabled(targetLanguage, true);
     }
 }

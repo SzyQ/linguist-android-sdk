@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Toast;
 
 public class LinguistOverlayActivity extends AppCompatActivity {
 
@@ -27,9 +28,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
         translate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent("mobi.klimaszewski.action.VIEW");
                 String appPackageName = "mobi.klimaszewski.linguist.services";
-//                intent.setPackage(appPackageName);
                 Intent intent = getPackageManager().getLaunchIntentForPackage(appPackageName);
                 intent.putExtra("TEST","Dupa");
                 try {
@@ -58,5 +57,20 @@ public class LinguistOverlayActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_CODE_TRANSLATE){
+            if(resultCode == RESULT_OK){
+                setResult(RESULT_OK);
+                finish();
+            }else{
+                setResult(RESULT_CANCELED);
+                finish();
+                Toast.makeText(this,"Failed to translate",Toast.LENGTH_SHORT).show();
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

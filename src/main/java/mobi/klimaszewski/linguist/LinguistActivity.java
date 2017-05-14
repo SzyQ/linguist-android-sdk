@@ -1,6 +1,7 @@
 package mobi.klimaszewski.linguist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
@@ -36,5 +37,16 @@ public class LinguistActivity extends AppCompatActivity {
     @Override
     public MenuInflater getMenuInflater() {
         return LinguistMenuInflater.wrap(this, super.getMenuInflater());
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == LinguistOverlayActivity.REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                finish();
+                startActivity(new Intent(this, this.getClass()));
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }
