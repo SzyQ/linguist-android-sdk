@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="translate_message">This app is in %s\nWould you like to translate it?</string>
+    <string name="never_translate">Never translate %s</string>
+</resources>

@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.preference.Preference;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +27,6 @@ public class Linguist {
     private String defaultLanguage;
     private List<String> supportedLanguages;
     private boolean isTranslationChecked;
-    private String targetLanguage = "en";
 
     public synchronized static Linguist getInstance() {
         if (instance == null) {
@@ -48,26 +44,21 @@ public class Linguist {
         getInstance().supportedLanguages = supportedLanguages;
     }
 
-    public static Bitmap drawableToBitmap(Drawable drawable) {
-        Bitmap bitmap = null;
-
-        if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            if (bitmapDrawable.getBitmap() != null) {
-                return bitmapDrawable.getBitmap();
+    public static Locale getAppDefaultLocale() {
+        Locale[] availableLocales = Locale.getAvailableLocales();
+        Locale defaultLocale = null;
+        String defaultLanguageCode = Linguist.getInstance().getDefaultLanguageCode();
+        for (Locale locale : availableLocales) {
+            if (locale.getLanguage().equals(defaultLanguageCode)) {
+                defaultLocale = locale;
+                break;
             }
         }
+        return defaultLocale;
+    }
 
-        if (drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
-        } else {
-            bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
-        }
-
-        Canvas canvas = new Canvas(bitmap);
-        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        drawable.draw(canvas);
-        return bitmap;
+    public static Locale getDeviceDefaultLocale() {
+        return Locale.getDefault();
     }
 
     public List<String> fetch() {
@@ -145,7 +136,7 @@ public class Linguist {
 
     public void onResume(Activity activity) {
 
-        String countryCode = Locale.getDefault().getCountry();
+        String countryCode = Locale.getDefault().getLanguage();
         if (cache.isTranslationEnabled(countryCode)) {
             return;
         }
@@ -190,6 +181,14 @@ public class Linguist {
             String translated = translation.get(text);
             cache.put(text, translated);
         }
-        cache.setTranslationEnabled(targetLanguage, true);
+        cache.setTranslationEnabled(getDeviceLanguageCode(), true);
+    }
+
+    private String getDeviceLanguageCode() {
+        return Locale.getDefault().getLanguage();
+    }
+
+    public String getDefaultLanguageCode() {
+        return defaultLanguage;
     }
 }

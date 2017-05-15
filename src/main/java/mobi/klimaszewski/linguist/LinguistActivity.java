@@ -34,6 +34,7 @@ public class LinguistActivity extends AppCompatActivity {
         Linguist.getInstance().onResume(this);
     }
 
+    @NonNull
     @Override
     public MenuInflater getMenuInflater() {
         return LinguistMenuInflater.wrap(this, super.getMenuInflater());
