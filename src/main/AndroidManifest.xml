@@ -2,20 +2,27 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mobi.klimaszewski.linguist">
 
+    <uses-permission android:name="linguist.services.DISCOVERY" />
+    <permission android:name="linguist.services.DISCOVERY"/>
     <application>
         <activity
             android:name=".LinguistOverlayActivity"
             android:theme="@style/Transparent" />
         <receiver
-            android:exported="true"
-            android:name=".LinguistDiscovery">
+            android:name=".LinguistDiscovery"
+            android:exported="true">
             <intent-filter>
                 <action android:name="mobi.klimaszewski.services.DISCOVER" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".DiscoveryIntentService" android:exported="false"/>
+        <service
+            android:name=".DiscoveryIntentService"
+            android:exported="false" />
 
-        <service android:name=".TranslationService" android:exported="true"/>
+        <service
+            android:permission="linguist.services.TRANSLATION"
+            android:name=".TranslationService"
+            android:exported="true" />
     </application>
 </manifest>
