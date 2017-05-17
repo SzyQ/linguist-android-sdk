@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.preference.Preference;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -20,6 +19,7 @@ import java.util.Map;
 
 public class Linguist {
     private static Linguist instance;
+    private static boolean isInitialised;
     private Context context;
     private TranslationsFactory translationFactory;
     private Cache cache;
@@ -42,6 +42,7 @@ public class Linguist {
         getInstance().stringClass = stringClasses;
         getInstance().defaultLanguage = defaultLanguage;
         getInstance().supportedLanguages = supportedLanguages;
+        isInitialised = true;
     }
 
     public static Locale getAppDefaultLocale() {
@@ -135,7 +136,9 @@ public class Linguist {
     }
 
     public void onResume(Activity activity) {
-
+        if (!isInitialised) {
+            return;
+        }
         String countryCode = Locale.getDefault().getLanguage();
         if (cache.isTranslationEnabled(countryCode)) {
             return;
@@ -159,21 +162,19 @@ public class Linguist {
     }
 
     public void replyToService() {
+        if (!isInitialised) {
+            return;
+        }
         List<String> appStrings = Utils.getAppStrings(context, Utils.getAppStringResources(context, stringClass));
         int charactersCount = 0;
         for (String string : appStrings) {
             charactersCount += string.length();
         }
 
-        try {
-            PackageManager packageManager = context.getPackageManager();
-            Drawable icon = packageManager.getApplicationIcon(context.getPackageName());
-            CharSequence appName = context.getApplicationInfo().loadLabel(packageManager);
-            LL.d("Replying(" + charactersCount + ")");
-            translationFactory.hello(context.getPackageName(), charactersCount, appName.toString());
-        } catch (PackageManager.NameNotFoundException e) {
-            LL.e("Failed to hello", e);
-        }
+        PackageManager packageManager = context.getPackageManager();
+        CharSequence appName = context.getApplicationInfo().loadLabel(packageManager);
+        LL.d("Replying(" + charactersCount + ")");
+        translationFactory.hello(context.getPackageName(), charactersCount, appName.toString());
     }
 
     public void applyTranslation(Map<String, String> translation) {
