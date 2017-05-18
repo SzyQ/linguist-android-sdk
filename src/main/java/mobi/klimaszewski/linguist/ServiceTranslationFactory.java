@@ -30,6 +30,7 @@ public class ServiceTranslationFactory implements TranslationsFactory {
             synchronized (lock) {
                 LL.d("Failed to connect to remote service!");
                 isConnected = false;
+                remoteInterface = null;
                 lock.notify();
             }
         }
@@ -72,12 +73,13 @@ public class ServiceTranslationFactory implements TranslationsFactory {
         }
     }
 
-    private synchronized void disconnect() {
+    private void disconnect() {
         synchronized (lock) {
             if (isConnected) {
                 context.unbindService(connection);
             }
             remoteInterface = null;
+            isConnected = false;
         }
     }
 }
