@@ -80,7 +80,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 String packageName = "mobi.klimaszewski.linguist.services";
-                intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.AppsActivity"));
+                intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.apps.AppsActivity"));
                 intent.putExtra("PACKAGE_NAME", getPackageName());
                 try {
                     startActivityForResult(intent, REQUEST_CODE_TRANSLATE);
