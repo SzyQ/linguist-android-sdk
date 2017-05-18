@@ -44,7 +44,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
 
     private void setupMessage() {
         TextView message = (TextView) findViewById(R.id.message);
-        String defaultLanguage = Linguist.getDeviceDefaultLocale().getDisplayLanguage();
+        String defaultLanguage = Linguist.getAppDefaultLocale().getDisplayLanguage();
         message.setText(getString(R.string.translate_message, defaultLanguage));
     }
 
@@ -80,7 +80,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 String packageName = "mobi.klimaszewski.linguist.services";
-                intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.MainActivity"));
+                intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.AppsActivity"));
                 intent.putExtra("PACKAGE_NAME", getPackageName());
                 try {
                     startActivityForResult(intent, REQUEST_CODE_TRANSLATE);

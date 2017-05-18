@@ -18,7 +18,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
-            android:src="@drawable/ic_close" />
+            android:src="@drawable/ic_close"
+            android:tint="@color/blue" />
 
         <TextView
             android:id="@+id/message"

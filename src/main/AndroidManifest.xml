@@ -3,7 +3,7 @@
     package="mobi.klimaszewski.linguist">
 
     <uses-permission android:name="linguist.services.DISCOVERY" />
-    <permission android:name="linguist.services.DISCOVERY"/>
+
     <application>
         <activity
             android:name=".LinguistOverlayActivity"
@@ -21,8 +21,8 @@
             android:exported="false" />
 
         <service
-            android:permission="linguist.services.TRANSLATION"
             android:name=".TranslationService"
-            android:exported="true" />
+            android:exported="true"
+            android:permission="linguist.services.TRANSLATION" />
     </application>
 </manifest>
