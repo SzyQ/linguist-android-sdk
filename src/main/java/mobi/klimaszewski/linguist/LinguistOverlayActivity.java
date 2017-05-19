@@ -4,7 +4,6 @@ package mobi.klimaszewski.linguist;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -85,11 +84,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
                 try {
                     startActivityForResult(intent, REQUEST_CODE_TRANSLATE);
                 } catch (ActivityNotFoundException e) {
-                    try {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName)));
-                    } catch (ActivityNotFoundException anfe) {
-                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName)));
-                    }
+                    Utils.openStore(getApplicationContext(), packageName);
                 }
             }
         });
