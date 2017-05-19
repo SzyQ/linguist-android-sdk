@@ -23,12 +23,12 @@ public class Utils {
         return strings;
     }
 
-    public static List<Integer> getAppStringResources(Context context, Class... stringClasses) {
+    public static List<Integer> getAppStringResources(Context context, List<Class> stringClasses) {
         List<Integer> resources = new ArrayList<>();
         for (Class stringClass : stringClasses) {
             Field[] fields = stringClass.getDeclaredFields(); // or Field[] fields = R.string.class.getFields();
-            for (int i = 0; i < fields.length; i++) {
-                int resId = context.getResources().getIdentifier(fields[i].getName(), "string", context.getPackageName());
+            for (Field field : fields) {
+                int resId = context.getResources().getIdentifier(field.getName(), "string", context.getPackageName());
                 if (resId != 0) {
                     resources.add(resId);
                 }

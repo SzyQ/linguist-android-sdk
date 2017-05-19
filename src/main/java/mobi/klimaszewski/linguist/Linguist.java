@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.preference.Preference;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,6 +14,8 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -23,7 +26,8 @@ public class Linguist {
     private Context context;
     private TranslationsFactory translationFactory;
     private Cache cache;
-    private Class[] stringClass;
+    private List<Class> stringClasses;
+    private List<Class> excludedClasses;
     private String defaultLanguage;
     private List<String> supportedLanguages;
     private boolean isTranslationChecked;
@@ -35,14 +39,54 @@ public class Linguist {
         return instance;
     }
 
-    public static void init(Context context, TranslationsFactory factory, Cache cache, String defaultLanguage, List<String> supportedLanguages, Class... stringClasses) {
-        getInstance().context = context;
-        getInstance().translationFactory = factory;
-        getInstance().cache = cache;
-        getInstance().stringClass = stringClasses;
-        getInstance().defaultLanguage = defaultLanguage;
-        getInstance().supportedLanguages = supportedLanguages;
-        isInitialised = true;
+    public void refresh() {
+        isTranslationChecked = false;
+    }
+
+    public static class Builder {
+        private Context context;
+        private String defaultLanguage;
+        private List<String> supportedLanguages;
+        private TranslationsFactory factory;
+        private Cache cache;
+        private List<Class> supportedStrings;
+        private List<Class> excludedStrings;
+
+        public Builder(Context context, String defaultLanguage, List<String> supportedLanguages){
+            this.context = context;
+            this.defaultLanguage = defaultLanguage;
+            this.supportedLanguages = supportedLanguages;
+            supportedStrings = new ArrayList<>();
+            excludedStrings = new ArrayList<>();
+        }
+
+        public Builder addStrings(Class clazz){
+            supportedStrings.add(clazz);
+            return this;
+        }
+
+        public Builder excludeStrings(Class clazz){
+            excludedStrings.add(clazz);
+            return this;
+        }
+
+        public Linguist build(){
+            getInstance().context = context;
+            if(factory == null){
+                factory = new ServiceTranslationFactory(context);
+            }
+            getInstance().translationFactory = factory;
+            if(cache == null){
+                cache = new PreferencesCache(context);
+            }
+            getInstance().cache = cache;
+            getInstance().stringClasses = supportedStrings;
+            getInstance().excludedClasses = excludedStrings;
+            getInstance().defaultLanguage = defaultLanguage;
+            getInstance().supportedLanguages = supportedLanguages;
+            isInitialised = true;
+            return getInstance();
+        }
     }
 
     public static Locale getAppDefaultLocale() {
@@ -62,10 +106,23 @@ public class Linguist {
         return Locale.getDefault();
     }
 
-    public List<String> fetch() {
-        List<Integer> stringResources = Utils.getAppStringResources(context, stringClass);
-        List<String> appStrings = Utils.getAppStrings(context, stringResources);
-        return appStrings;
+    List<String> fetch() {
+        List<Integer> supportedResources = getResourcesIds();
+        return Utils.getAppStrings(context, supportedResources);
+    }
+
+    @NonNull
+    private List<Integer> getResourcesIds() {
+        List<Integer> supportedResources = Utils.getAppStringResources(context, stringClasses);
+        List<Integer> excludedResources = Utils.getAppStringResources(context, excludedClasses);
+        Iterator<Integer> iterator = supportedResources.iterator();
+        while (iterator.hasNext()){
+            Integer resourceId = iterator.next();
+            if(excludedResources.contains(resourceId)){
+                iterator.remove();
+            }
+        }
+        return supportedResources;
     }
 
     public String translate(String string) {
@@ -116,7 +173,7 @@ public class Linguist {
     }
 
     public CharSequence translate(CharSequence text) {
-        return text != null ? new StringBuffer(translate(text.toString())) : text;
+        return text != null ? new StringBuffer(translate(text.toString())) : null;
     }
 
     public CharSequence[] translate(CharSequence[] textArray) {
@@ -139,6 +196,9 @@ public class Linguist {
         if (!isInitialised) {
             return;
         }
+        if (isTranslationChecked) {
+            return;
+        }
         String countryCode = Locale.getDefault().getLanguage();
         if (cache.isTranslationEnabled(countryCode)) {
             return;
@@ -149,23 +209,20 @@ public class Linguist {
         if (cache.isNeverTranslateEnabled(countryCode)) {
             return;
         }
-        if (isTranslationChecked) {
-            return;
-        }
         isTranslationChecked = true;
         Intent intent = new Intent(activity, LinguistOverlayActivity.class);
         activity.startActivityForResult(intent, LinguistOverlayActivity.REQUEST_CODE);
     }
 
-    public void setNeverTranslate(boolean isEnabled) {
+    void setNeverTranslate(boolean isEnabled) {
         cache.setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
     }
 
-    public void replyToService() {
+    void replyToService() {
         if (!isInitialised) {
             return;
         }
-        List<String> appStrings = Utils.getAppStrings(context, Utils.getAppStringResources(context, stringClass));
+        List<String> appStrings = Utils.getAppStrings(context, getResourcesIds());
         int charactersCount = 0;
         for (String string : appStrings) {
             charactersCount += string.length();
@@ -177,7 +234,7 @@ public class Linguist {
         translationFactory.hello(context.getPackageName(), charactersCount, appName.toString());
     }
 
-    public void applyTranslation(Map<String, String> translation) {
+    void applyTranslation(Map<String, String> translation) {
         for (String text : translation.keySet()) {
             String translated = translation.get(text);
             cache.put(text, translated);
@@ -189,7 +246,7 @@ public class Linguist {
         return Locale.getDefault().getLanguage();
     }
 
-    public String getDefaultLanguageCode() {
+    private String getDefaultLanguageCode() {
         return defaultLanguage;
     }
 }
