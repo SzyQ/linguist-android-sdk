@@ -3,7 +3,6 @@ package mobi.klimaszewski.linguist;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.Toolbar;
@@ -222,16 +221,9 @@ public class Linguist {
         if (!isInitialised) {
             return;
         }
-        List<String> appStrings = Utils.getAppStrings(context, getResourcesIds());
-        int charactersCount = 0;
-        for (String string : appStrings) {
-            charactersCount += string.length();
-        }
 
-        PackageManager packageManager = context.getPackageManager();
-        CharSequence appName = context.getApplicationInfo().loadLabel(packageManager);
-        LL.d("Replying(" + charactersCount + ")");
-        translationFactory.hello(context.getPackageName(), charactersCount, appName.toString());
+        LL.d("Replying ");
+        translationFactory.hello(context.getPackageName());
     }
 
     void applyTranslation(Map<String, String> translation) {

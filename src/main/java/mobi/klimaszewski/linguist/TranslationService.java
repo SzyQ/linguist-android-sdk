@@ -6,9 +6,9 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
-import java.util.List;
 import java.util.Map;
 
+import mobi.klimaszewski.services.TranslationConfig;
 import mobi.klimaszewski.services.TranslationInterface;
 
 public class TranslationService extends Service {
@@ -16,9 +16,12 @@ public class TranslationService extends Service {
     private final IBinder binder = new TranslationInterface.Stub() {
 
         @Override
-        public List<String> onStringsRequested() throws RemoteException {
-            LL.d("Requested strings");
-            return Linguist.getInstance().fetch();
+        public TranslationConfig getConfig() throws RemoteException {
+            TranslationConfig translationConfig = new TranslationConfig();
+            translationConfig.strings = Linguist.getInstance().fetch();
+            translationConfig.originalCode = Linguist.getAppDefaultLocale().getLanguage();
+            translationConfig.desiredCode = Linguist.getDeviceDefaultLocale().getLanguage();
+            return translationConfig;
         }
 
         @Override

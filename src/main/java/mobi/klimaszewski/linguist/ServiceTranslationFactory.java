@@ -45,11 +45,11 @@ public class ServiceTranslationFactory implements TranslationsFactory {
     }
 
     @Override
-    public void hello(String packageName, int charactersCount, String name) {
+    public void hello(String packageName) {
         try {
             connect();
             if (remoteInterface != null) {
-                remoteInterface.hello(packageName, charactersCount, name);
+                remoteInterface.hello(packageName);
             }
         } catch (RemoteException e) {
             LL.e("Failed to hello to service", e);
