@@ -17,10 +17,12 @@ public class TranslationService extends Service {
 
         @Override
         public TranslationConfig getConfig() throws RemoteException {
+            LL.d("Retrieving config");
             TranslationConfig translationConfig = new TranslationConfig();
             translationConfig.strings = Linguist.getInstance().fetch();
             translationConfig.originalCode = Linguist.getAppDefaultLocale().getLanguage();
             translationConfig.desiredCode = Linguist.getDeviceDefaultLocale().getLanguage();
+            LL.d("Got "+translationConfig.strings.size()+": "+translationConfig.originalCode+"="+translationConfig.desiredCode);
             return translationConfig;
         }
 
