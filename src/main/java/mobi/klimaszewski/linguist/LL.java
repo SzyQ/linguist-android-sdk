@@ -17,4 +17,7 @@ public class LL {
         Log.e(TAG, error, e);
     }
 
+    public static void d(String s, Exception exception) {
+        Log.d(TAG, s, exception);
+    }
 }
