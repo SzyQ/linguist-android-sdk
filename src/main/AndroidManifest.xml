@@ -3,6 +3,7 @@
     package="mobi.klimaszewski.linguist">
 
     <uses-permission android:name="linguist.services.DISCOVERY" />
+    <uses-permission android:name="linguist.services.HELLO" />
 
     <application>
         <activity
@@ -10,10 +11,10 @@
             android:theme="@style/Transparent" />
         <receiver
             android:name=".LinguistDiscovery"
-            android:exported="true">
+            android:exported="true"
+            android:permission="linguist.services.HELLO">
             <intent-filter>
                 <action android:name="mobi.klimaszewski.services.DISCOVER" />
-                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 
