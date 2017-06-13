@@ -13,6 +13,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="mobi.klimaszewski.services.DISCOVER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
 

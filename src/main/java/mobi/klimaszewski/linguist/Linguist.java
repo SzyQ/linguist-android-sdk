@@ -182,7 +182,7 @@ public class Linguist {
 
     private boolean isInitialised() {
         if (!isInitialised) {
-            LL.v("Not initialised");
+            LL.v("Not initialised here!");
         }
         return isInitialised;
     }
