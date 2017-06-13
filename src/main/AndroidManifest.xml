@@ -3,7 +3,6 @@
     package="mobi.klimaszewski.linguist">
 
     <uses-permission android:name="linguist.services.DISCOVERY" />
-    <uses-permission android:name="linguist.services.HELLO" />
 
     <application>
         <activity
