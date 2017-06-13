@@ -8,7 +8,7 @@ import android.content.Intent;
 public class LinguistDiscovery extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        LL.d("Discovery requested");
+        LL.d("Discovery requested: " + context.getPackageName());
         context.startService(new Intent(context, DiscoveryIntentService.class));
     }
 }

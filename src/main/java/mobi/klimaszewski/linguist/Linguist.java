@@ -38,56 +38,6 @@ public class Linguist {
         return instance;
     }
 
-    public void refresh() {
-        isTranslationChecked = false;
-    }
-
-    public static class Builder {
-        private Context context;
-        private String defaultLanguage;
-        private List<String> supportedLanguages;
-        private TranslationsFactory factory;
-        private Cache cache;
-        private List<Class> supportedStrings;
-        private List<Class> excludedStrings;
-
-        public Builder(Context context, String defaultLanguage, List<String> supportedLanguages){
-            this.context = context;
-            this.defaultLanguage = defaultLanguage;
-            this.supportedLanguages = supportedLanguages;
-            supportedStrings = new ArrayList<>();
-            excludedStrings = new ArrayList<>();
-        }
-
-        public Builder addStrings(Class clazz){
-            supportedStrings.add(clazz);
-            return this;
-        }
-
-        public Builder excludeStrings(Class clazz){
-            excludedStrings.add(clazz);
-            return this;
-        }
-
-        public Linguist build(){
-            getInstance().context = context;
-            if(factory == null){
-                factory = new ServiceTranslationFactory(context);
-            }
-            getInstance().translationFactory = factory;
-            if(cache == null){
-                cache = new PreferencesCache(context);
-            }
-            getInstance().cache = cache;
-            getInstance().stringClasses = supportedStrings;
-            getInstance().excludedClasses = excludedStrings;
-            getInstance().defaultLanguage = defaultLanguage;
-            getInstance().supportedLanguages = supportedLanguages;
-            isInitialised = true;
-            return getInstance();
-        }
-    }
-
     public static Locale getAppDefaultLocale() {
         Locale[] availableLocales = Locale.getAvailableLocales();
         Locale defaultLocale = null;
@@ -105,6 +55,10 @@ public class Linguist {
         return Locale.getDefault();
     }
 
+    public void refresh() {
+        isTranslationChecked = false;
+    }
+
     List<String> fetch() {
         List<Integer> supportedResources = getResourcesIds();
         return Utils.getAppStrings(context, supportedResources);
@@ -115,9 +69,9 @@ public class Linguist {
         List<Integer> supportedResources = Utils.getAppStringResources(context, stringClasses);
         List<Integer> excludedResources = Utils.getAppStringResources(context, excludedClasses);
         Iterator<Integer> iterator = supportedResources.iterator();
-        while (iterator.hasNext()){
+        while (iterator.hasNext()) {
             Integer resourceId = iterator.next();
-            if(excludedResources.contains(resourceId)){
+            if (excludedResources.contains(resourceId)) {
                 iterator.remove();
             }
         }
@@ -192,7 +146,7 @@ public class Linguist {
     }
 
     public void onResume(Activity activity) {
-        if (!isInitialised) {
+        if (!isInitialised()) {
             return;
         }
         if (isTranslationChecked) {
@@ -218,12 +172,19 @@ public class Linguist {
     }
 
     void replyToService() {
-        if (!isInitialised) {
+        if (!isInitialised()) {
             return;
         }
 
-        LL.d("Replying ");
+        LL.d("Replying: " + context.getPackageName());
         translationFactory.hello(context.getPackageName());
+    }
+
+    private boolean isInitialised() {
+        if (!isInitialised) {
+            LL.v("Not initialised");
+        }
+        return isInitialised;
     }
 
     void applyTranslation(Map<String, String> translation) {
@@ -240,5 +201,51 @@ public class Linguist {
 
     private String getDefaultLanguageCode() {
         return defaultLanguage;
+    }
+
+    public static class Builder {
+        private Context context;
+        private String defaultLanguage;
+        private List<String> supportedLanguages;
+        private TranslationsFactory factory;
+        private Cache cache;
+        private List<Class> supportedStrings;
+        private List<Class> excludedStrings;
+
+        public Builder(Context context, String defaultLanguage, List<String> supportedLanguages) {
+            this.context = context;
+            this.defaultLanguage = defaultLanguage;
+            this.supportedLanguages = supportedLanguages;
+            supportedStrings = new ArrayList<>();
+            excludedStrings = new ArrayList<>();
+        }
+
+        public Builder addStrings(Class clazz) {
+            supportedStrings.add(clazz);
+            return this;
+        }
+
+        public Builder excludeStrings(Class clazz) {
+            excludedStrings.add(clazz);
+            return this;
+        }
+
+        public Linguist build() {
+            getInstance().context = context;
+            if (factory == null) {
+                factory = new ServiceTranslationFactory(context);
+            }
+            getInstance().translationFactory = factory;
+            if (cache == null) {
+                cache = new PreferencesCache(context);
+            }
+            getInstance().cache = cache;
+            getInstance().stringClasses = supportedStrings;
+            getInstance().excludedClasses = excludedStrings;
+            getInstance().defaultLanguage = defaultLanguage;
+            getInstance().supportedLanguages = supportedLanguages;
+            isInitialised = true;
+            return getInstance();
+        }
     }
 }

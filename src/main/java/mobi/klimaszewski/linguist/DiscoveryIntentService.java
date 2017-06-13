@@ -12,8 +12,8 @@ public class DiscoveryIntentService extends IntentService {
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
-        LL.d("Discovery fetch");
+        LL.d("Discovery fetch: " + getApplicationContext().getPackageName());
         Linguist.getInstance().replyToService();
-        LL.d("Discovery replied");
+        LL.d("Discovery replied: " + getApplicationContext().getPackageName());
     }
 }

@@ -61,8 +61,8 @@ public class ServiceTranslationFactory implements TranslationsFactory {
     private synchronized void connect() {
         synchronized (lock) {
             LL.d("Connecting to service");
-            Intent service = new Intent("mobi.klimaszewski.action.TRANSLATE");
-            service.setPackage("mobi.klimaszewski.linguist.services");
+            Intent service = new Intent();
+            service.setComponent(new ComponentName("mobi.klimaszewski.linguist.services", "mobi.klimaszewski.services.DiscoveryService"));
             try {
                 context.bindService(service, connection, Context.BIND_AUTO_CREATE);
                 if (!isConnected) {
