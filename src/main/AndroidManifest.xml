@@ -8,18 +8,11 @@
         <activity
             android:name=".LinguistOverlayActivity"
             android:theme="@style/Transparent" />
-        <receiver
-            android:name=".LinguistDiscovery"
-            android:exported="true"
-            android:permission="linguist.services.HELLO">
-            <intent-filter>
-                <action android:name="mobi.klimaszewski.services.DISCOVER" />
-            </intent-filter>
-        </receiver>
-
         <service
-            android:name=".DiscoveryIntentService"
-            android:exported="false" />
+            android:name="mobi.klimaszewski.linguist.DiscoveryService"
+            android:exported="true"
+            android:permission="linguist.services.DISCOVERY">
+        </service>
 
         <service
             android:name=".TranslationService"

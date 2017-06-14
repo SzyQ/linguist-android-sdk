@@ -23,7 +23,6 @@ public class Linguist {
     private static Linguist instance;
     private static boolean isInitialised;
     private Context context;
-    private TranslationsFactory translationFactory;
     private Cache cache;
     private List<Class> stringClasses;
     private List<Class> excludedClasses;
@@ -171,15 +170,6 @@ public class Linguist {
         cache.setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
     }
 
-    void replyToService() {
-        if (!isInitialised()) {
-            return;
-        }
-
-        LL.d("Replying: " + context.getPackageName());
-        translationFactory.hello(context.getPackageName());
-    }
-
     private boolean isInitialised() {
         if (!isInitialised) {
             LL.v("Not initialised here!");
@@ -232,10 +222,6 @@ public class Linguist {
 
         public Linguist build() {
             getInstance().context = context;
-            if (factory == null) {
-                factory = new ServiceTranslationFactory(context);
-            }
-            getInstance().translationFactory = factory;
             if (cache == null) {
                 cache = new PreferencesCache(context);
             }
