@@ -72,7 +72,7 @@ public class LinguistDelegateWrapper extends AppCompatDelegate {
 
     @Override
     @Nullable
-    public View findViewById(@IdRes int id) {
+    public <T extends View> T findViewById(@IdRes int id) {
         return delegate.findViewById(id);
     }
 
@@ -144,13 +144,13 @@ public class LinguistDelegateWrapper extends AppCompatDelegate {
     }
 
     @Override
-    public void setHandleNativeActionModesEnabled(boolean enabled) {
-        delegate.setHandleNativeActionModesEnabled(enabled);
+    public boolean isHandleNativeActionModesEnabled() {
+        return delegate.isHandleNativeActionModesEnabled();
     }
 
     @Override
-    public boolean isHandleNativeActionModesEnabled() {
-        return delegate.isHandleNativeActionModesEnabled();
+    public void setHandleNativeActionModesEnabled(boolean enabled) {
+        delegate.setHandleNativeActionModesEnabled(enabled);
     }
 
     @Override
@@ -167,4 +167,5 @@ public class LinguistDelegateWrapper extends AppCompatDelegate {
     public void setLocalNightMode(int mode) {
         delegate.setLocalNightMode(mode);
     }
+
 }

@@ -2,16 +2,16 @@ package mobi.klimaszewski.linguist;
 
 
 import android.content.Context;
-import android.support.v4.view.LayoutInflaterFactory;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 
-public class LinguistFactory implements LayoutInflaterFactory {
+public class LinguistFactory implements LayoutInflater.Factory2 {
 
-    private LayoutInflaterFactory factory;
+    private LayoutInflater.Factory2 factory;
     private Linguist linguist;
 
-    public LinguistFactory(LayoutInflaterFactory factory, Linguist linguist) {
+    public LinguistFactory(LayoutInflater.Factory2 factory, Linguist linguist) {
         this.factory = factory;
         this.linguist = linguist;
     }
@@ -19,5 +19,10 @@ public class LinguistFactory implements LayoutInflaterFactory {
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
         return linguist.translate(factory.onCreateView(parent, name, context, attrs));
+    }
+
+    @Override
+    public View onCreateView(String s, Context context, AttributeSet attributeSet) {
+        return linguist.translate(factory.onCreateView(s, context, attributeSet));
     }
 }
