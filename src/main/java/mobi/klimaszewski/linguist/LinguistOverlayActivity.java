@@ -35,7 +35,6 @@ public class LinguistOverlayActivity extends AppCompatActivity {
             } else {
                 setResult(RESULT_CANCELED);
                 finish();
-                Toast.makeText(this, "Failed to translate", Toast.LENGTH_SHORT).show();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
@@ -79,7 +78,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 String packageName = "mobi.klimaszewski.linguist.services";
-                intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.apps.AppsActivity"));
+                intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.MainActivity"));
                 try {
                     startActivityForResult(intent, REQUEST_CODE_TRANSLATE);
                 } catch (ActivityNotFoundException e) {
