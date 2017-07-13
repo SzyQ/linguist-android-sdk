@@ -8,12 +8,14 @@ import android.net.Uri;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Utils {
 
     public static List<String> getAppStrings(Context context, List<Integer> resources) {
-        List<String> strings = new ArrayList<>();
+        Set<String> strings = new HashSet<>();
         for (Integer resource : resources) {
             try {
                 String string = context.getResources().getString(resource);
@@ -21,7 +23,7 @@ public class Utils {
             } catch (Resources.NotFoundException ignore) {
             }
         }
-        return strings;
+        return new ArrayList<>(strings);
     }
 
     public static List<Integer> getAppStringResources(Context context, List<Class> stringClasses) {
