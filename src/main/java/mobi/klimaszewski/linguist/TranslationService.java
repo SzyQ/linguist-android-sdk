@@ -21,9 +21,9 @@ public class TranslationService extends Service {
             TranslationConfig translationConfig = new TranslationConfig();
             translationConfig.packageName = getPackageName();
             translationConfig.strings = Linguist.getInstance().fetch();
-            translationConfig.originalCode = Linguist.getAppDefaultLocale().getLanguage();
-            translationConfig.desiredCode = Linguist.getDeviceDefaultLocale().getLanguage();
-            LL.d("Got "+translationConfig.strings.size()+": "+translationConfig.originalCode+"="+translationConfig.desiredCode);
+            translationConfig.original = Language.fromLocale(Linguist.getAppDefaultLocale());
+            translationConfig.desired = Language.fromLocale(Linguist.getDeviceDefaultLocale());
+            LL.d("Got " + translationConfig.strings.size() + ": " + translationConfig.original + "=" + translationConfig.desired);
             return translationConfig;
         }
 
