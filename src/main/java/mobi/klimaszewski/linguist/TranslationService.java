@@ -19,6 +19,7 @@ public class TranslationService extends Service {
         public TranslationConfig getConfig() throws RemoteException {
             LL.d("Retrieving config");
             TranslationConfig translationConfig = new TranslationConfig();
+            translationConfig.packageName = getPackageName();
             translationConfig.strings = Linguist.getInstance().fetch();
             translationConfig.originalCode = Linguist.getAppDefaultLocale().getLanguage();
             translationConfig.desiredCode = Linguist.getDeviceDefaultLocale().getLanguage();
