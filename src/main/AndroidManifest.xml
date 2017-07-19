@@ -15,7 +15,7 @@
         </service>
 
         <service
-            android:name=".TranslationService"
+            android:name=".RemoteAppService"
             android:exported="true"
             android:permission="linguist.services.TRANSLATION" />
     </application>

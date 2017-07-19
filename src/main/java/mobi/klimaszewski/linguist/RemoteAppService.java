@@ -11,7 +11,7 @@ import java.util.Map;
 import mobi.klimaszewski.services.TranslationConfig;
 import mobi.klimaszewski.services.TranslationInterface;
 
-public class TranslationService extends Service {
+public class RemoteAppService extends Service {
 
     private final IBinder binder = new TranslationInterface.Stub() {
 
