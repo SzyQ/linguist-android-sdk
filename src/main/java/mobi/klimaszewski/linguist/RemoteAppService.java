@@ -21,7 +21,7 @@ public class RemoteAppService extends Service {
             TranslationConfig translationConfig = new TranslationConfig();
             translationConfig.packageName = getPackageName();
             translationConfig.strings = Linguist.getInstance().fetch();
-            translationConfig.original = Language.fromLocale(Linguist.getAppDefaultLocale());
+            translationConfig.original = Language.fromLocale(Linguist.getAppLocale());
             translationConfig.desired = Language.fromLocale(Linguist.getDeviceDefaultLocale());
             LL.d("Got " + translationConfig.strings.size() + ": " + translationConfig.original + "=" + translationConfig.desired);
             return translationConfig;

@@ -50,6 +50,16 @@ public class Linguist {
         return defaultLocale;
     }
 
+    public static Locale getAppLocale() {
+        String deviceLanguageCode = Linguist.getInstance().getDeviceLanguageCode();
+        boolean isSupported = Linguist.getInstance().supportedLanguages.contains(deviceLanguageCode);
+        if(isSupported){
+            return Linguist.getDeviceDefaultLocale();
+        }else{
+            return Linguist.getAppDefaultLocale();
+        }
+    }
+
     public static Locale getDeviceDefaultLocale() {
         return Locale.getDefault();
     }
