@@ -5,14 +5,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 
-public class PreferencesCache implements Cache {
+final class PreferencesCache implements Cache {
 
     private static final String KEY_NEVER_TRANSLATE = "NEVER_TRANSLATE_";
     private static final String KEY_TRANSLATE_ENABLED = "TRANSLATE_ENABLED_";
     private static final String KEY_OPT_OUT = "NEVER_TRANSLATE_";
     private final SharedPreferences preferences;
 
-    public PreferencesCache(Context context) {
+    PreferencesCache(Context context) {
         preferences = context.getSharedPreferences("Linguist", Context.MODE_PRIVATE);
     }
 

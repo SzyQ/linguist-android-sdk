@@ -3,19 +3,20 @@ package mobi.klimaszewski.linguist;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.content.res.Resources;
+import android.support.annotation.NonNull;
 
-public class LinguistContextWrapper extends ContextWrapper {
+final class LinguistContextWrapper extends ContextWrapper {
 
     private LinguistResources resources;
     private Linguist linguist;
 
-    public LinguistContextWrapper(Context base, Linguist linguist) {
+    public LinguistContextWrapper(Context base, @NonNull Linguist linguist) {
         super(base);
         this.linguist = linguist;
     }
 
     public static Context wrap(Context context) {
-        return new LinguistContextWrapper(context, Linguist.getInstance());
+        return new LinguistContextWrapper(context, Linguist.get(context));
     }
 
     @Override

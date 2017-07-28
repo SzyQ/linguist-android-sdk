@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import mobi.klimaszewski.services.DiscoveryInterface;
 
 
-public class DiscoveryService extends Service {
+public final class DiscoveryService extends Service {
 
     private final IBinder binder = new DiscoveryInterface.Stub() {
     };
@@ -20,7 +20,4 @@ public class DiscoveryService extends Service {
         return binder;
     }
 
-    public abstract class LocalBinder extends DiscoveryInterface.Stub {
-        public abstract DiscoveryService getService();
-    }
 }

@@ -14,7 +14,7 @@ import java.util.Set;
 
 public class Utils {
 
-    public static List<String> getAppStrings(Context context, List<Integer> resources) {
+    static List<String> getAppStrings(Context context, List<Integer> resources) {
         Set<String> strings = new HashSet<>();
         for (Integer resource : resources) {
             try {
@@ -26,10 +26,10 @@ public class Utils {
         return new ArrayList<>(strings);
     }
 
-    public static List<Integer> getAppStringResources(Context context, List<Class> stringClasses) {
+    static List<Integer> getAppStringResources(Context context, List<Class> stringClasses) {
         List<Integer> resources = new ArrayList<>();
         for (Class stringClass : stringClasses) {
-            Field[] fields = stringClass.getDeclaredFields(); // or Field[] fields = R.string.class.getFields();
+            Field[] fields = stringClass.getDeclaredFields();
             for (Field field : fields) {
                 int resId = context.getResources().getIdentifier(field.getName(), "string", context.getPackageName());
                 if (resId != 0) {
@@ -40,7 +40,7 @@ public class Utils {
         return resources;
     }
 
-    public static void openStore(Context context, String packageName) {
+    static void openStore(Context context, String packageName) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
