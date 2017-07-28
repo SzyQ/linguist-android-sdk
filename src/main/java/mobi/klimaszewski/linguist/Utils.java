@@ -40,7 +40,7 @@ public class Utils {
         return resources;
     }
 
-    static void openStore(Context context, String packageName) {
+    public static void openStore(Context context, String packageName) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
