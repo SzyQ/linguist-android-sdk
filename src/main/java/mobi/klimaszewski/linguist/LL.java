@@ -20,4 +20,8 @@ public class LL {
     public static void d(String s, Exception exception) {
         Log.d(TAG, s, exception);
     }
+
+    public static void w(String s) {
+        Log.w(TAG,s);
+    }
 }

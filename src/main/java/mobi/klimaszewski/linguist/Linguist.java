@@ -5,8 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatCallback;
+import android.support.v7.app.AppCompatDelegate;
+import android.support.v7.app.LinguistAppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.SubMenu;
 import android.view.View;
@@ -19,9 +25,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import static android.app.Activity.RESULT_OK;
+
 public class Linguist {
-    private static Linguist instance;
-    private static boolean isInitialised;
     private Context context;
     private Cache cache;
     private List<Class> stringClasses;
@@ -30,51 +36,40 @@ public class Linguist {
     private List<String> supportedLanguages;
     private boolean isTranslationChecked;
 
-    public synchronized static Linguist getInstance() {
-        if (instance == null) {
-            instance = new Linguist();
+    @Nullable
+    public static Linguist get(@NonNull Context context) {
+        Linguist linguist = null;
+        if (isInitialised(context)) {
+            linguist = ((Translatable) context.getApplicationContext()).getLinguist();
         }
-        return instance;
+        if (linguist == null) {
+            LL.w("Application needs to extend Translatable interface and provide Linguist instance.");
+            return null;
+        }
+        return linguist;
     }
 
-    public static Locale getAppDefaultLocale() {
-        Locale[] availableLocales = Locale.getAvailableLocales();
-        Locale defaultLocale = null;
-        String defaultLanguageCode = Linguist.getInstance().getDefaultLanguageCode();
-        for (Locale locale : availableLocales) {
-            if (locale.getLanguage().equals(defaultLanguageCode)) {
-                defaultLocale = locale;
-                break;
-            }
-        }
-        return defaultLocale;
+    public static Context wrap(Context base) {
+        return isInitialised(base) ? LinguistContextWrapper.wrap(base) : base;
     }
 
-    public static Locale getDeviceDefaultLocale() {
-        return Locale.getDefault();
+    public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
+        return isInitialised(activity) ? LinguistMenuInflater.wrap(activity, menuInflater) : menuInflater;
     }
+
+    @Nullable
+    public static AppCompatDelegate wrap(AppCompatActivity activity, AppCompatCallback callback) {
+        return isInitialised(activity) ? LinguistAppCompatDelegate.wrap(activity, callback) : null;
+    }
+
+    private static boolean isInitialised(Context context) {
+        Context applicationContext = context.getApplicationContext();
+        return applicationContext instanceof Translatable && ((Translatable) applicationContext).getLinguist() != null;
+    }
+
 
     public void refresh() {
         isTranslationChecked = false;
-    }
-
-    List<String> fetch() {
-        List<Integer> supportedResources = getResourcesIds();
-        return Utils.getAppStrings(context, supportedResources);
-    }
-
-    @NonNull
-    private List<Integer> getResourcesIds() {
-        List<Integer> supportedResources = Utils.getAppStringResources(context, stringClasses);
-        List<Integer> excludedResources = Utils.getAppStringResources(context, excludedClasses);
-        Iterator<Integer> iterator = supportedResources.iterator();
-        while (iterator.hasNext()) {
-            Integer resourceId = iterator.next();
-            if (excludedResources.contains(resourceId)) {
-                iterator.remove();
-            }
-        }
-        return supportedResources;
     }
 
     public String translate(String string) {
@@ -145,9 +140,6 @@ public class Linguist {
     }
 
     public void onResume(Activity activity) {
-        if (!isInitialised()) {
-            return;
-        }
         if (isTranslationChecked) {
             return;
         }
@@ -166,15 +158,54 @@ public class Linguist {
         activity.startActivityForResult(intent, LinguistOverlayActivity.REQUEST_CODE);
     }
 
-    void setNeverTranslate(boolean isEnabled) {
-        cache.setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
+    Locale getAppDefaultLocale() {
+        Locale[] availableLocales = Locale.getAvailableLocales();
+        Locale defaultLocale = null;
+        String defaultLanguageCode = getDefaultLanguageCode();
+        for (Locale locale : availableLocales) {
+            if (locale.getLanguage().equals(defaultLanguageCode)) {
+                defaultLocale = locale;
+                break;
+            }
+        }
+        return defaultLocale;
     }
 
-    private boolean isInitialised() {
-        if (!isInitialised) {
-            LL.v("Not initialised here!");
+    Locale getAppLocale() {
+        String deviceLanguageCode = getDeviceLanguageCode();
+        boolean isSupported = supportedLanguages.contains(deviceLanguageCode);
+        if (isSupported) {
+            return getDeviceDefaultLocale();
+        } else {
+            return getAppDefaultLocale();
         }
-        return isInitialised;
+    }
+
+    Locale getDeviceDefaultLocale() {
+        return Locale.getDefault();
+    }
+
+    List<String> fetch() {
+        List<Integer> supportedResources = getResourcesIds();
+        return Utils.getAppStrings(context, supportedResources);
+    }
+
+    @NonNull
+    private List<Integer> getResourcesIds() {
+        List<Integer> supportedResources = Utils.getAppStringResources(context, stringClasses);
+        List<Integer> excludedResources = Utils.getAppStringResources(context, excludedClasses);
+        Iterator<Integer> iterator = supportedResources.iterator();
+        while (iterator.hasNext()) {
+            Integer resourceId = iterator.next();
+            if (excludedResources.contains(resourceId)) {
+                iterator.remove();
+            }
+        }
+        return supportedResources;
+    }
+
+    void setNeverTranslate(boolean isEnabled) {
+        cache.setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
     }
 
     void applyTranslation(Map<String, String> translation) {
@@ -193,11 +224,19 @@ public class Linguist {
         return defaultLanguage;
     }
 
+    public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == LinguistOverlayActivity.REQUEST_CODE) {
+            if (resultCode == RESULT_OK) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static class Builder {
         private Context context;
         private String defaultLanguage;
         private List<String> supportedLanguages;
-        private TranslationsFactory factory;
         private Cache cache;
         private List<Class> supportedStrings;
         private List<Class> excludedStrings;
@@ -221,17 +260,17 @@ public class Linguist {
         }
 
         public Linguist build() {
-            getInstance().context = context;
+            Linguist linguist = new Linguist();
+            linguist.context = context;
             if (cache == null) {
                 cache = new PreferencesCache(context);
             }
-            getInstance().cache = cache;
-            getInstance().stringClasses = supportedStrings;
-            getInstance().excludedClasses = excludedStrings;
-            getInstance().defaultLanguage = defaultLanguage;
-            getInstance().supportedLanguages = supportedLanguages;
-            isInitialised = true;
-            return getInstance();
+            linguist.cache = cache;
+            linguist.stringClasses = supportedStrings;
+            linguist.excludedClasses = excludedStrings;
+            linguist.defaultLanguage = defaultLanguage;
+            linguist.supportedLanguages = supportedLanguages;
+            return linguist;
         }
     }
 }

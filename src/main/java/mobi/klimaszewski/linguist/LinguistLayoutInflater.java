@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-public class LinguistLayoutInflater extends LayoutInflater {
+class LinguistLayoutInflater extends LayoutInflater {
 
     private static final String[] sClassPrefixList = {
             "android.widget.",
@@ -18,7 +18,7 @@ public class LinguistLayoutInflater extends LayoutInflater {
 
     public LinguistLayoutInflater(LayoutInflater layoutInflater, Context context) {
         super(layoutInflater, context);
-        this.viewTranslator = Linguist.getInstance();
+        this.viewTranslator = Linguist.get(context);
     }
 
     @Override

@@ -7,20 +7,19 @@ import android.support.annotation.MenuRes;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-public class LinguistMenuInflater extends MenuInflater {
-
-    public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
-        return new LinguistMenuInflater(activity,menuInflater);
-    }
+class LinguistMenuInflater extends MenuInflater {
 
     private final Linguist linguist;
-
     private MenuInflater inflater;
 
-    public LinguistMenuInflater(Context context, MenuInflater inflater) {
+    private LinguistMenuInflater(Context context, MenuInflater inflater) {
         super(context);
         this.inflater = inflater;
-        linguist = Linguist.getInstance();
+        linguist = Linguist.get(context);
+    }
+
+    public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
+        return new LinguistMenuInflater(activity, menuInflater);
     }
 
     @Override

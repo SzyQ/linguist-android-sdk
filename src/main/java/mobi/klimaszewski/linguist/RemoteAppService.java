@@ -11,7 +11,7 @@ import java.util.Map;
 import mobi.klimaszewski.services.TranslationConfig;
 import mobi.klimaszewski.services.TranslationInterface;
 
-public class RemoteAppService extends Service {
+public final class RemoteAppService extends Service {
 
     private final IBinder binder = new TranslationInterface.Stub() {
 
@@ -20,9 +20,12 @@ public class RemoteAppService extends Service {
             LL.d("Retrieving config");
             TranslationConfig translationConfig = new TranslationConfig();
             translationConfig.packageName = getPackageName();
-            translationConfig.strings = Linguist.getInstance().fetch();
-            translationConfig.original = Language.fromLocale(Linguist.getAppDefaultLocale());
-            translationConfig.desired = Language.fromLocale(Linguist.getDeviceDefaultLocale());
+            Linguist linguist = Linguist.get(getApplicationContext());
+            if (linguist != null) {
+                translationConfig.strings = linguist.fetch();
+                translationConfig.original = Language.fromLocale(linguist.getAppLocale());
+                translationConfig.desired = Language.fromLocale(linguist.getDeviceDefaultLocale());
+            }
             LL.d("Got " + translationConfig.strings.size() + ": " + translationConfig.original + "=" + translationConfig.desired);
             return translationConfig;
         }
@@ -30,7 +33,10 @@ public class RemoteAppService extends Service {
         @Override
         public void onTranslationCompleted(Map translation) throws RemoteException {
             LL.d("Applying translation");
-            Linguist.getInstance().applyTranslation(translation);
+            Linguist linguist = Linguist.get(getApplicationContext());
+            if (linguist != null) {
+                linguist.applyTranslation(translation);
+            }
         }
     };
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
-import android.support.v7.app.LinguistAppCompatDelegate;
 import android.view.MenuInflater;
 
 public class LinguistActivity extends AppCompatActivity {
@@ -14,16 +13,16 @@ public class LinguistActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(LinguistContextWrapper.wrap(base));
+        super.attachBaseContext(Linguist.wrap(base));
     }
 
-    /**
-     * @return The {@link AppCompatDelegate} being used by this Activity.
-     */
     @NonNull
     public AppCompatDelegate getDelegate() {
         if (mDelegate == null) {
-            mDelegate = LinguistAppCompatDelegate.wrap(this, this);
+            mDelegate = Linguist.wrap(this, this);
+        }
+        if (mDelegate == null) {
+            mDelegate = super.getDelegate();
         }
         return mDelegate;
     }
@@ -31,23 +30,27 @@ public class LinguistActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Linguist.getInstance().onResume(this);
+        Linguist linguist = Linguist.get(this);
+        if (linguist != null) {
+            linguist.onResume(this);
+        }
     }
 
     @NonNull
     @Override
     public MenuInflater getMenuInflater() {
-        return LinguistMenuInflater.wrap(this, super.getMenuInflater());
+        return Linguist.wrap(this, super.getMenuInflater());
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == LinguistOverlayActivity.REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                finish();
-                startActivity(new Intent(this, this.getClass()));
-            }
+        Linguist linguist = Linguist.get(this);
+        if (linguist != null && linguist.onActivityResult(requestCode, resultCode, data)) {
+            finish();
+            startActivity(getIntent());
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
-        super.onActivityResult(requestCode, resultCode, data);
+
     }
 }

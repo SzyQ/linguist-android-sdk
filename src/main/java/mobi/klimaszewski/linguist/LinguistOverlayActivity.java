@@ -9,9 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class LinguistOverlayActivity extends AppCompatActivity {
+public final class LinguistOverlayActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 3001;
     private static final int REQUEST_CODE_TRANSLATE = 3002;
@@ -32,17 +31,15 @@ public class LinguistOverlayActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 setResult(RESULT_OK);
                 finish();
-            } else {
-                setResult(RESULT_CANCELED);
-                finish();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void setupMessage() {
-        TextView message = (TextView) findViewById(R.id.message);
-        String defaultLanguage = Linguist.getAppDefaultLocale().getDisplayLanguage();
+        TextView message = findViewById(R.id.message);
+        final Linguist linguist = Linguist.get(LinguistOverlayActivity.this);
+        String defaultLanguage = linguist.getAppDefaultLocale().getDisplayLanguage();
         message.setText(getString(R.string.translate_message, defaultLanguage));
     }
 
@@ -58,13 +55,14 @@ public class LinguistOverlayActivity extends AppCompatActivity {
     }
 
     private void setupNeverTranslateButton() {
-        TextView neverTranslate = (TextView) findViewById(R.id.never_translate);
-        String deviceLanguage = Linguist.getAppDefaultLocale().getDisplayLanguage();
+        TextView neverTranslate = findViewById(R.id.never_translate);
+        final Linguist linguist = Linguist.get(LinguistOverlayActivity.this);
+        String deviceLanguage = linguist.getAppDefaultLocale().getDisplayLanguage();
         neverTranslate.setText(getString(R.string.never_translate, deviceLanguage));
         neverTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Linguist.getInstance().setNeverTranslate(true);
+                linguist.setNeverTranslate(true);
                 setResult(RESULT_OK);
                 finish();
             }
@@ -79,6 +77,7 @@ public class LinguistOverlayActivity extends AppCompatActivity {
                 Intent intent = new Intent();
                 String packageName = "mobi.klimaszewski.linguist.services";
                 intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.MainActivity"));
+                intent.putExtra("KEY_PACKAGE",getPackageName());
                 try {
                     startActivityForResult(intent, REQUEST_CODE_TRANSLATE);
                 } catch (ActivityNotFoundException e) {

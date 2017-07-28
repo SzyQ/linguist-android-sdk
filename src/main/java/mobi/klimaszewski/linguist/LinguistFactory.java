@@ -6,7 +6,9 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-public class LinguistFactory implements LayoutInflater.Factory2 {
+import mobi.klimaszewski.linguist.Linguist;
+
+public final class LinguistFactory implements LayoutInflater.Factory2 {
 
     private LayoutInflater.Factory2 factory;
     private Linguist linguist;

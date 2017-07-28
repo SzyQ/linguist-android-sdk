@@ -2,7 +2,6 @@ package android.support.v7.app;
 
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.util.Log;
@@ -17,19 +16,15 @@ public class LinguistAppCompatDelegate extends LinguistDelegateWrapper {
     private AppCompatDelegateImplV9 delegate;
     private Context context;
     private Linguist linguist;
-    public LinguistAppCompatDelegate(AppCompatDelegate delegate, Context context) {
+    private LinguistAppCompatDelegate(AppCompatDelegate delegate, Context context) {
         super(delegate);
         this.delegate = (AppCompatDelegateImplV9) delegate;
         this.context = context;
-        this.linguist = Linguist.getInstance();
+        this.linguist = Linguist.get(context);
     }
 
     public static AppCompatDelegate wrap(Activity activity, AppCompatCallback callback) {
         return new LinguistAppCompatDelegate(AppCompatDelegate.create(activity, callback), activity);
-    }
-
-    public static AppCompatDelegate wrap(Dialog dialog, AppCompatCallback callback) {
-        return new LinguistAppCompatDelegate(AppCompatDelegate.create(dialog, callback), dialog.getContext());
     }
 
     @Override
