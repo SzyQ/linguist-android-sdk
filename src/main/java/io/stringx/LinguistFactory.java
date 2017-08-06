@@ -1,12 +1,10 @@
-package mobi.klimaszewski.linguist;
+package io.stringx;
 
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-
-import mobi.klimaszewski.linguist.Linguist;
 
 public final class LinguistFactory implements LayoutInflater.Factory2 {
 

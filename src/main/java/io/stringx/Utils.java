@@ -1,4 +1,4 @@
-package mobi.klimaszewski.linguist;
+package io.stringx;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;

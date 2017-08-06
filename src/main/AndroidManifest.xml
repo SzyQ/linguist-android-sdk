@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="mobi.klimaszewski.linguist">
+    package="io.stringx.app">
 
     <uses-permission android:name="linguist.services.DISCOVERY" />
 
     <application>
         <activity
-            android:name=".LinguistOverlayActivity"
+            android:name="io.stringx.LinguistOverlayActivity"
             android:theme="@style/Transparent" />
         <service
-            android:name="mobi.klimaszewski.linguist.DiscoveryService"
+            android:name="io.stringx.DiscoveryService"
             android:exported="true"
             android:permission="linguist.services.DISCOVERY">
         </service>
 
         <service
-            android:name=".RemoteAppService"
+            android:name="io.stringx.RemoteAppService"
             android:exported="true"
             android:permission="linguist.services.TRANSLATION" />
     </application>

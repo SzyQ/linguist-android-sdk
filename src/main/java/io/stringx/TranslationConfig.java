@@ -1,11 +1,9 @@
-package mobi.klimaszewski.services;
+package io.stringx;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 import java.util.List;
-
-import mobi.klimaszewski.linguist.Language;
 
 public class TranslationConfig implements Parcelable {
     public static final Creator<TranslationConfig> CREATOR = new Creator<TranslationConfig>() {

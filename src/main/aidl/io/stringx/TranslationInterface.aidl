@@ -1,8 +1,8 @@
-package mobi.klimaszewski.services;
+package io.stringx;
 
 import java.util.List;
 import java.util.Map;
-import mobi.klimaszewski.services.TranslationConfig;
+import io.stringx.TranslationConfig;
 
 interface TranslationInterface {
 

@@ -7,8 +7,8 @@ import android.support.v4.view.LayoutInflaterCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 
-import mobi.klimaszewski.linguist.Linguist;
-import mobi.klimaszewski.linguist.LinguistFactory;
+import io.stringx.Linguist;
+import io.stringx.LinguistFactory;
 
 public class LinguistAppCompatDelegate extends LinguistDelegateWrapper {
 

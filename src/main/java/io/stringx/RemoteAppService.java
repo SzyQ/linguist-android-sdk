@@ -1,4 +1,4 @@
-package mobi.klimaszewski.linguist;
+package io.stringx;
 
 import android.app.Service;
 import android.content.Intent;
@@ -8,8 +8,7 @@ import android.support.annotation.Nullable;
 
 import java.util.Map;
 
-import mobi.klimaszewski.services.TranslationConfig;
-import mobi.klimaszewski.services.TranslationInterface;
+import io.stringx.TranslationInterface;
 
 public final class RemoteAppService extends Service {
 

@@ -1,4 +1,4 @@
-package mobi.klimaszewski.linguist;
+package io.stringx;
 
 
 import android.content.ActivityNotFoundException;
@@ -9,6 +9,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+
+import io.stringx.app.R;
 
 public final class LinguistOverlayActivity extends AppCompatActivity {
 
@@ -75,8 +77,8 @@ public final class LinguistOverlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                String packageName = "mobi.klimaszewski.linguist.services";
-                intent.setComponent(new ComponentName(packageName, "mobi.klimaszewski.services.MainActivity"));
+                String packageName = "io.stringx";
+                intent.setComponent(new ComponentName(packageName, "io.stringx.MainActivity"));
                 intent.putExtra("KEY_PACKAGE",getPackageName());
                 try {
                     startActivityForResult(intent, REQUEST_CODE_TRANSLATE);

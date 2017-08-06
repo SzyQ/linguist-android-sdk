@@ -1,4 +1,4 @@
-package mobi.klimaszewski.linguist;
+package io.stringx;
 
 
 import android.app.Service;
@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import mobi.klimaszewski.services.DiscoveryInterface;
+import io.stringx.DiscoveryInterface;
 
 
 public final class DiscoveryService extends Service {

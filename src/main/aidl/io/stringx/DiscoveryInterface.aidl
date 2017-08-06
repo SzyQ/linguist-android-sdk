@@ -1,4 +1,4 @@
-package mobi.klimaszewski.services;
+package io.stringx;
 
 import java.util.List;
 
