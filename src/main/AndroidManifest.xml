@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.stringx.app">
 
-    <uses-permission android:name="linguist.services.DISCOVERY" />
+    <uses-permission android:name="io.stringX.DISCOVERY" />
 
     <application>
         <activity
@@ -11,12 +11,12 @@
         <service
             android:name="io.stringx.DiscoveryService"
             android:exported="true"
-            android:permission="linguist.services.DISCOVERY">
+            android:permission="io.stringX.DISCOVERY">
         </service>
 
         <service
             android:name="io.stringx.RemoteAppService"
             android:exported="true"
-            android:permission="linguist.services.TRANSLATION" />
+            android:permission="io.stringX.TRANSLATION" />
     </application>
 </manifest>
