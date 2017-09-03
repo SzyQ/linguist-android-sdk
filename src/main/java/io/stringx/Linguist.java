@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -185,18 +187,18 @@ public class Linguist {
         return Locale.getDefault();
     }
 
-    List<String> fetch() {
-        List<Integer> supportedResources = getResourcesIds();
-        return Utils.getAppStrings(context, supportedResources);
+    List<StringResource> fetch(Locale locale) {
+        List<Pair<Integer,String>> supportedResources = getResourcesIds();
+        return Utils.getAppStrings(context, supportedResources, locale);
     }
 
     @NonNull
-    private List<Integer> getResourcesIds() {
-        List<Integer> supportedResources = Utils.getAppStringResources(context, stringClasses);
-        List<Integer> excludedResources = Utils.getAppStringResources(context, excludedClasses);
-        Iterator<Integer> iterator = supportedResources.iterator();
+    private List<Pair<Integer,String>> getResourcesIds() {
+        List<Pair<Integer,String>> supportedResources = Utils.getAppStringResources(context, stringClasses);
+        List<Pair<Integer,String>> excludedResources = Utils.getAppStringResources(context, excludedClasses);
+        Iterator<Pair<Integer,String>> iterator = supportedResources.iterator();
         while (iterator.hasNext()) {
-            Integer resourceId = iterator.next();
+            Pair<Integer,String> resourceId = iterator.next();
             if (excludedResources.contains(resourceId)) {
                 iterator.remove();
             }

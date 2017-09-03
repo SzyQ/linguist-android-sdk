@@ -15,7 +15,7 @@
         </service>
 
         <service
-            android:name="io.stringx.RemoteAppService"
+            android:name="io.stringx.ClientService"
             android:exported="true"
             android:permission="io.stringX.TRANSLATION" />
     </application>

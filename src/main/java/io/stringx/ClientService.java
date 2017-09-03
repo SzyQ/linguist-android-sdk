@@ -6,26 +6,26 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
+import java.util.Locale;
 import java.util.Map;
 
-import io.stringx.TranslationInterface;
-
-public final class RemoteAppService extends Service {
+public final class ClientService extends Service {
 
     private final IBinder binder = new TranslationInterface.Stub() {
 
         @Override
         public TranslationConfig getConfig() throws RemoteException {
             LL.d("Retrieving config");
-            TranslationConfig translationConfig = new TranslationConfig();
-            translationConfig.packageName = getPackageName();
             Linguist linguist = Linguist.get(getApplicationContext());
+            TranslationConfig translationConfig = new TranslationConfig();
             if (linguist != null) {
-                translationConfig.strings = linguist.fetch();
-                translationConfig.original = Language.fromLocale(linguist.getAppLocale());
-                translationConfig.desired = Language.fromLocale(linguist.getDeviceDefaultLocale());
+                Locale locale = linguist.getAppDefaultLocale();
+                translationConfig.packageName = getPackageName();
+                translationConfig.resources = linguist.fetch(locale);
+                translationConfig.defaultLanguage = Language.fromCode(locale.getLanguage());
+                translationConfig.desiredLanguage = Language.fromCode(linguist.getDeviceDefaultLocale().getLanguage());
+                LL.d("Got " + translationConfig.resources.size() + ": " + translationConfig.defaultLanguage);
             }
-            LL.d("Got " + translationConfig.strings.size() + ": " + translationConfig.original + "=" + translationConfig.desired);
             return translationConfig;
         }
 
@@ -39,7 +39,6 @@ public final class RemoteAppService extends Service {
         }
     };
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return binder;

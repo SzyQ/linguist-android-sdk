@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import java.util.List;
 
 public class TranslationConfig implements Parcelable {
+
     public static final Creator<TranslationConfig> CREATOR = new Creator<TranslationConfig>() {
         @Override
         public TranslationConfig createFromParcel(Parcel in) {
@@ -17,28 +18,20 @@ public class TranslationConfig implements Parcelable {
             return new TranslationConfig[size];
         }
     };
-    public List<String> strings;
-    public Language original;
-    public Language desired;
     public String packageName;
+    public Language defaultLanguage;
+    public Language desiredLanguage;
+    public List<StringResource> resources;
+
+    protected TranslationConfig(Parcel in) {
+        packageName = in.readString();
+        resources = in.createTypedArrayList(StringResource.CREATOR);
+        defaultLanguage = Language.fromCode(in.readString());
+        desiredLanguage = Language.fromCode(in.readString());
+    }
 
     public TranslationConfig() {
 
-    }
-
-    protected TranslationConfig(Parcel in) {
-        strings = in.createStringArrayList();
-        packageName = in.readString();
-        original = Language.fromCode(in.readString());
-        desired = Language.fromCode(in.readString());
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeStringList(strings);
-        dest.writeString(packageName);
-        dest.writeString(original.getCode());
-        dest.writeString(desired.getCode());
     }
 
     @Override
@@ -47,7 +40,16 @@ public class TranslationConfig implements Parcelable {
     }
 
     @Override
-    public String toString() {
-        return packageName + ": " + original + "->" + desired;
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(packageName);
+        dest.writeTypedList(resources);
+        dest.writeString(defaultLanguage.getCode());
+        dest.writeString(desiredLanguage.getCode());
     }
+
+    @Override
+    public String toString() {
+        return packageName + "-" + defaultLanguage;
+    }
+
 }
