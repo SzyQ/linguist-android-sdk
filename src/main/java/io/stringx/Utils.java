@@ -44,13 +44,17 @@ public class Utils {
                 Resources localizedResources = getLocalizedResources(context, sideLocale);
                 for (Pair<Integer, String> resourceId : resources) {
                     try {
-                        localizedResources.getString(resourceId.first);
-                        //TODO check if it throws always, when resource is not found
-                        sideStrings.add(resourceId.first);
+                        String string = localizedResources.getString(resourceId.first);
+                        if(mainStrings.contains(string)){//TODO sometimes in both languages translation is the same...
+                            sideStrings.add(resourceId.first);
+                        }
                     }catch (Resources.NotFoundException ignored){
                     }
                 }
-                callback.onLanguageReceived(language.getCode(),toIntArray(sideStrings));
+                String code = language.getCode();
+                int[] stringIds = toIntArray(sideStrings);
+                LL.v("Sending ids for "+code);
+                callback.onLanguageReceived(code, stringIds);
             }
         }else{
             //TODO Implement for earlier apis
