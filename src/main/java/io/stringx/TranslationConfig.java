@@ -24,10 +24,7 @@ public class TranslationConfig implements Parcelable {
     public List<StringResource> resources;
 
     protected TranslationConfig(Parcel in) {
-        packageName = in.readString();
-        resources = in.createTypedArrayList(StringResource.CREATOR);
-        defaultLanguage = Language.fromCode(in.readString());
-        desiredLanguage = Language.fromCode(in.readString());
+        readFromParcel(in);
     }
 
     public TranslationConfig() {
@@ -37,6 +34,13 @@ public class TranslationConfig implements Parcelable {
     @Override
     public int describeContents() {
         return 0;
+    }
+
+    public void readFromParcel(Parcel in) {
+        packageName = in.readString();
+        resources = in.createTypedArrayList(StringResource.CREATOR);
+        defaultLanguage = Language.fromCode(in.readString());
+        desiredLanguage = Language.fromCode(in.readString());
     }
 
     @Override
