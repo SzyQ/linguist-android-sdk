@@ -187,9 +187,9 @@ public class Linguist {
         return Locale.getDefault();
     }
 
-    List<StringResource> fetch(Locale locale) {
+    void fetch(TranslationConfig config) {
         List<Pair<Integer,String>> supportedResources = getResourcesIds();
-        return Utils.getAppStrings(context, supportedResources, locale);
+        Utils.getAppStrings(context, supportedResources, config);
     }
 
     @NonNull

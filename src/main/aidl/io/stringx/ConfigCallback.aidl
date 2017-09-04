@@ -6,5 +6,5 @@ import io.stringx.TranslationConfig;
 import io.stringx.StringResource;
 
 interface ConfigCallback {
-    void onConfigCreated(out TranslationConfig confiog);
+    void onConfigCreated(inout TranslationConfig confiog);
 }

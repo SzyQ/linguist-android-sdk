@@ -18,27 +18,32 @@ import java.util.Locale;
 
 public class Utils {
 
-    static List<StringResource> getAppStrings(Context context, List<Pair<Integer, String>> resources, Locale locale) {
+    static List<StringResource> getAppStrings(Context context, List<Pair<Integer, String>> resources, TranslationConfig config) {
         List<StringResource> result = new ArrayList<>();
-        List<StringResource> mainStrings = new ArrayList<>();
+        List<String> mainStrings = new ArrayList<>();
+        List<String> mainStringNames = new ArrayList<>();
+        List<Integer> mainStringIds = new ArrayList<>();
         for (Pair<Integer, String> resource : resources) {
             try {
                 String string = context.getResources().getString(resource.first);
-                StringResource stringResource = new StringResource();
-                stringResource.string = string;
-                stringResource.fieldName = resource.second;
-                stringResource.resourceId = resource.first;
-                stringResource.language = Language.fromCode(locale.getLanguage());
-                mainStrings.add(stringResource);
+                mainStrings.add(string);
+                mainStringNames.add(resource.second);
+                mainStringIds.add(resource.first);
             } catch (Resources.NotFoundException ignore) {
             }
         }
-        result.addAll(mainStrings);
+        int[] ids = new int[mainStringIds.size()];
+        for (int i = 0; i < mainStringIds.size(); i++) {
+            ids[i] = mainStringIds.get(i);
+        }
+        config.defaultStringIds = ids;
+        config.defaultStringNames = mainStringNames;
+        config.defaultStrings = mainStrings;
         if (Build.VERSION.SDK_INT >= 17) {
             for (Language language : Language.values()) {
                 Locale sideLocale = new Locale(language.getCode());
                 ArrayList<StringResource> sideStrings = new ArrayList<>();
-                if (locale.equals(sideLocale)) {
+                if (config.defaultLanguage == language) {
                     continue;
                 }
 
@@ -46,13 +51,10 @@ public class Utils {
                 for (Pair<Integer, String> resourceId : resources) {
                     StringResource resource = new StringResource();
                     resource.resourceId = resourceId.first;
-                    resource.fieldName = resourceId.second;
                     try {
-                        resource.string = localizedResources.getString(resourceId.first);
-                        //if the same as in main strings, then it's not translated
-                        if (mainStrings.contains(resource)) {//TODO that may not be required
-                            sideStrings.add(resource);
-                        }
+                        localizedResources.getString(resourceId.first);
+                        //TODO check if it throws always, when resource is not found
+                        sideStrings.add(resource);
                     }catch (Resources.NotFoundException ignored){
 
                     }

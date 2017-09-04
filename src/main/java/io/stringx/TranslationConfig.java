@@ -22,13 +22,16 @@ public class TranslationConfig implements Parcelable {
     public Language defaultLanguage;
     public Language desiredLanguage;
     public List<StringResource> resources;
-
-    protected TranslationConfig(Parcel in) {
-        readFromParcel(in);
-    }
+    public List<String> defaultStrings;
+    public List<String> defaultStringNames;
+    public int[] defaultStringIds;
 
     public TranslationConfig() {
 
+    }
+
+    protected TranslationConfig(Parcel in) {
+        readFromParcel(in);
     }
 
     @Override
@@ -36,19 +39,25 @@ public class TranslationConfig implements Parcelable {
         return 0;
     }
 
-    public void readFromParcel(Parcel in) {
-        packageName = in.readString();
-        resources = in.createTypedArrayList(StringResource.CREATOR);
-        defaultLanguage = Language.fromCode(in.readString());
-        desiredLanguage = Language.fromCode(in.readString());
-    }
-
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(packageName);
+        dest.writeStringList(defaultStrings);
+        dest.writeStringList(defaultStringNames);
+        dest.writeIntArray(defaultStringIds);
         dest.writeTypedList(resources);
         dest.writeString(defaultLanguage.getCode());
         dest.writeString(desiredLanguage.getCode());
+    }
+
+    public void readFromParcel(Parcel in) {
+        packageName = in.readString();
+        defaultStrings = in.createStringArrayList();
+        defaultStringNames = in.createStringArrayList();
+        defaultStringIds = in.createIntArray();
+        resources = in.createTypedArrayList(StringResource.CREATOR);
+        defaultLanguage = Language.fromCode(in.readString());
+        desiredLanguage = Language.fromCode(in.readString());
     }
 
     @Override

@@ -15,14 +15,11 @@ public class StringResource implements Parcelable {
             return new StringResource[size];
         }
     };
-    public String string;
-    public String fieldName;
+
     public int resourceId;
     public Language language;
 
     protected StringResource(Parcel in) {
-        string = in.readString();
-        fieldName = in.readString();
         resourceId = in.readInt();
         language = Language.fromCode(in.readString());
     }
@@ -33,8 +30,6 @@ public class StringResource implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(string);
-        dest.writeString(fieldName);
         dest.writeInt(resourceId);
         dest.writeString(language.getCode());
     }
@@ -44,21 +39,4 @@ public class StringResource implements Parcelable {
         return 0;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        StringResource that = (StringResource) o;
-
-        if (resourceId != that.resourceId) return false;
-        return string.equals(that.string);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = string.hashCode();
-        result = 31 * result + resourceId;
-        return result;
-    }
 }

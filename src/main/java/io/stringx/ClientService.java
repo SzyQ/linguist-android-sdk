@@ -24,9 +24,9 @@ public final class ClientService extends Service {
                     if (linguist != null) {
                         Locale locale = linguist.getAppDefaultLocale();
                         translationConfig.packageName = getPackageName();
-                        translationConfig.resources = linguist.fetch(locale);
                         translationConfig.defaultLanguage = Language.fromCode(locale.getLanguage());
                         translationConfig.desiredLanguage = Language.fromCode(linguist.getDeviceDefaultLocale().getLanguage());
+                        linguist.fetch(translationConfig);
                         LL.d("Got " + translationConfig.resources.size() + ": " + translationConfig.defaultLanguage);
                     }
                     try {
