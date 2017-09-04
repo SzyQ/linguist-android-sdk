@@ -1,10 +1,20 @@
 package io.stringx;
 
 import java.util.List;
-import java.util.Map;
-import io.stringx.TranslationConfig;
-import io.stringx.StringResource;
 
+//There is 1MB limit for Parcel, so the data needs to be sent in chunks from client
 interface ConfigCallback {
-    void onConfigCreated(inout TranslationConfig confiog);
+    void onStarted();
+
+    void onBasicInfoReceived(String packageName, String defaultLanguageCode, String desiredLanguageCode);
+
+    void onDefaultStringsReceived(inout List<String> defaultStrings);
+
+    void onDefaultStringNamesReceived(inout List<String> defaultStringNames);
+
+    void onDefaultStringIdsReceived(inout int[] defaultStringIds);
+
+    void onLanguageReceived(String languageCode, inout int[] stringIds);
+
+    void onFinished();
 }

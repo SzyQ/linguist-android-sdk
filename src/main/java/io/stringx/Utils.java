@@ -8,6 +8,7 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
+import android.os.RemoteException;
 import android.support.annotation.NonNull;
 import android.support.v4.util.Pair;
 
@@ -18,8 +19,7 @@ import java.util.Locale;
 
 public class Utils {
 
-    static List<StringResource> getAppStrings(Context context, List<Pair<Integer, String>> resources, TranslationConfig config) {
-        List<StringResource> result = new ArrayList<>();
+    static void getAppStrings(Context context, List<Pair<Integer, String>> resources, ConfigCallback callback) throws RemoteException {
         List<String> mainStrings = new ArrayList<>();
         List<String> mainStringNames = new ArrayList<>();
         List<Integer> mainStringIds = new ArrayList<>();
@@ -32,39 +32,37 @@ public class Utils {
             } catch (Resources.NotFoundException ignore) {
             }
         }
-        int[] ids = new int[mainStringIds.size()];
-        for (int i = 0; i < mainStringIds.size(); i++) {
-            ids[i] = mainStringIds.get(i);
-        }
-        config.defaultStringIds = ids;
-        config.defaultStringNames = mainStringNames;
-        config.defaultStrings = mainStrings;
+        callback.onDefaultStringIdsReceived(toIntArray(mainStringIds));
+        callback.onDefaultStringNamesReceived(mainStringNames);
+        callback.onDefaultStringsReceived(mainStrings);
+
         if (Build.VERSION.SDK_INT >= 17) {
             for (Language language : Language.values()) {
                 Locale sideLocale = new Locale(language.getCode());
-                ArrayList<StringResource> sideStrings = new ArrayList<>();
-                if (config.defaultLanguage == language) {
-                    continue;
-                }
+                ArrayList<Integer> sideStrings = new ArrayList<>();
 
                 Resources localizedResources = getLocalizedResources(context, sideLocale);
                 for (Pair<Integer, String> resourceId : resources) {
-                    StringResource resource = new StringResource();
-                    resource.resourceId = resourceId.first;
                     try {
                         localizedResources.getString(resourceId.first);
                         //TODO check if it throws always, when resource is not found
-                        sideStrings.add(resource);
+                        sideStrings.add(resourceId.first);
                     }catch (Resources.NotFoundException ignored){
-
                     }
                 }
-                result.addAll(sideStrings);
+                callback.onLanguageReceived(language.getCode(),toIntArray(sideStrings));
             }
         }else{
             //TODO Implement for earlier apis
         }
-        return result;
+    }
+
+    private static int[] toIntArray(List<Integer> mainStringIds) {
+        int[] ids = new int[mainStringIds.size()];
+        for (int i = 0; i < mainStringIds.size(); i++) {
+            ids[i] = mainStringIds.get(i);
+        }
+        return ids;
     }
 
     @NonNull

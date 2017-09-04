@@ -2,6 +2,7 @@ package io.stringx;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteException;
 
@@ -12,31 +13,30 @@ public final class ClientService extends Service {
 
     private final IBinder binder = new TranslationInterface.Stub() {
 
-
         @Override
         public void getConfig(final ConfigCallback callback) throws RemoteException {
-            new Thread(new Runnable() {
+            new AsyncTask<ConfigCallback, Integer, Void>() {
                 @Override
-                public void run() {
-                    LL.d("Retrieving config");
-                    Linguist linguist = Linguist.get(getApplicationContext());
-                    TranslationConfig translationConfig = new TranslationConfig();
-                    if (linguist != null) {
-                        Locale locale = linguist.getAppDefaultLocale();
-                        translationConfig.packageName = getPackageName();
-                        translationConfig.defaultLanguage = Language.fromCode(locale.getLanguage());
-                        translationConfig.desiredLanguage = Language.fromCode(linguist.getDeviceDefaultLocale().getLanguage());
-                        linguist.fetch(translationConfig);
-                        LL.d("Got " + translationConfig.resources.size() + ": " + translationConfig.defaultLanguage);
-                    }
+                protected Void doInBackground(ConfigCallback... configCallbacks) {
                     try {
-                        callback.onConfigCreated(translationConfig);
+                        LL.d("Retrieving config");
+                        callback.onStarted();
+                        Linguist linguist = Linguist.get(getApplicationContext());
+                        if (linguist != null) {
+                            Locale locale = linguist.getAppDefaultLocale();
+                            callback.onBasicInfoReceived(getPackageName(),locale.getLanguage(),linguist.getDeviceDefaultLocale().getLanguage());
+                            linguist.fetch(callback);
+                            callback.onFinished();
+                            LL.d("Config sent");
+                        }else{
+                            callback.onFinished();
+                        }
                     } catch (RemoteException e) {
                         LL.e("Failed to get config", e);
                     }
+                    return null;
                 }
-            }).start();
-
+            }.execute(callback);
         }
 
         @Override

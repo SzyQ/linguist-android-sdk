@@ -3,6 +3,7 @@ package io.stringx;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.RemoteException;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -187,9 +188,9 @@ public class Linguist {
         return Locale.getDefault();
     }
 
-    void fetch(TranslationConfig config) {
+    void fetch(ConfigCallback callback) throws RemoteException {
         List<Pair<Integer,String>> supportedResources = getResourcesIds();
-        Utils.getAppStrings(context, supportedResources, config);
+        Utils.getAppStrings(context, supportedResources, callback);
     }
 
     @NonNull
