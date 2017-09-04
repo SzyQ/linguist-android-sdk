@@ -47,14 +47,20 @@ public class Utils {
                     StringResource resource = new StringResource();
                     resource.resourceId = resourceId.first;
                     resource.fieldName = resourceId.second;
-                    resource.string = localizedResources.getString(resourceId.first);
-                    //if the same as in main strings, then it's not translated
-                    if (mainStrings.contains(resource)) {
-                        sideStrings.add(resource);
+                    try {
+                        resource.string = localizedResources.getString(resourceId.first);
+                        //if the same as in main strings, then it's not translated
+                        if (mainStrings.contains(resource)) {//TODO that may not be required
+                            sideStrings.add(resource);
+                        }
+                    }catch (Resources.NotFoundException ignored){
+
                     }
                 }
                 result.addAll(sideStrings);
             }
+        }else{
+            //TODO Implement for earlier apis
         }
         return result;
     }
