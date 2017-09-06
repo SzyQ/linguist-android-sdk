@@ -135,8 +135,4 @@ public enum Language {
         return code;
     }
 
-    @Override
-    public String toString() {
-        return name() + "(" + code + ")";
-    }
 }
