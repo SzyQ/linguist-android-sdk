@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -24,7 +26,13 @@ public final class ClientService extends Service {
                         Linguist linguist = Linguist.get(getApplicationContext());
                         if (linguist != null) {
                             Locale locale = linguist.getAppDefaultLocale();
-                            callback.onBasicInfoReceived(getPackageName(),locale.getLanguage(),linguist.getDeviceDefaultLocale().getLanguage());
+                            List<Language> supportedLanguages = linguist.getSupportedLanguages();
+                            ArrayList<String> supportedLanguageCodes = new ArrayList<>();
+                            for (Language language : supportedLanguages) {
+                                supportedLanguageCodes.add(language.getCode());
+                            }
+
+                            callback.onBasicInfoReceived(getPackageName(),locale.getLanguage(),linguist.getDeviceDefaultLocale().getLanguage(),supportedLanguageCodes);
                             linguist.fetch(callback);
                             callback.onFinished();
                             LL.d("Config sent");

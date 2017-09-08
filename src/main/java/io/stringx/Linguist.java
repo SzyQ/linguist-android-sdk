@@ -22,7 +22,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -35,8 +35,8 @@ public class Linguist {
     private Cache cache;
     private List<Class> stringClasses;
     private List<Class> excludedClasses;
-    private String defaultLanguage;
-    private List<String> supportedLanguages;
+    private Language defaultLanguage;
+    private List<Language> supportedLanguages;
     private boolean isTranslationChecked;
 
     @Nullable
@@ -146,14 +146,14 @@ public class Linguist {
         if (isTranslationChecked) {
             return;
         }
-        String countryCode = Locale.getDefault().getLanguage();
-        if (cache.isTranslationEnabled(countryCode)) {
+        Language deviceLanguage = getDeviceLanguage();
+        if (cache.isTranslationEnabled(deviceLanguage.getCode())) {
             return;
         }
-        if (supportedLanguages.contains(countryCode)) {
+        if (supportedLanguages.contains(deviceLanguage)) {
             return;
         }
-        if (cache.isNeverTranslateEnabled(countryCode)) {
+        if (cache.isNeverTranslateEnabled(deviceLanguage.getCode())) {
             return;
         }
         isTranslationChecked = true;
@@ -164,9 +164,9 @@ public class Linguist {
     Locale getAppDefaultLocale() {
         Locale[] availableLocales = Locale.getAvailableLocales();
         Locale defaultLocale = null;
-        String defaultLanguageCode = getDefaultLanguageCode();
+        Language defaultLanguage = getDefaultLanguage();
         for (Locale locale : availableLocales) {
-            if (locale.getLanguage().equals(defaultLanguageCode)) {
+            if (locale.getLanguage().equals(defaultLanguage.getCode())) {
                 defaultLocale = locale;
                 break;
             }
@@ -174,9 +174,13 @@ public class Linguist {
         return defaultLocale;
     }
 
+    List<Language> getSupportedLanguages() {
+        return supportedLanguages;
+    }
+
     Locale getAppLocale() {
-        String deviceLanguageCode = getDeviceLanguageCode();
-        boolean isSupported = supportedLanguages.contains(deviceLanguageCode);
+        Language deviceLanguage = getDeviceLanguage();
+        boolean isSupported = supportedLanguages.contains(deviceLanguage);
         if (isSupported) {
             return getDeviceDefaultLocale();
         } else {
@@ -189,17 +193,17 @@ public class Linguist {
     }
 
     void fetch(ConfigCallback callback) throws RemoteException {
-        List<Pair<Integer,String>> supportedResources = getResourcesIds();
+        List<Pair<Integer, String>> supportedResources = getResourcesIds();
         Utils.getAppStrings(context, supportedResources, callback);
     }
 
     @NonNull
-    private List<Pair<Integer,String>> getResourcesIds() {
-        List<Pair<Integer,String>> supportedResources = Utils.getAppStringResources(context, stringClasses);
-        List<Pair<Integer,String>> excludedResources = Utils.getAppStringResources(context, excludedClasses);
-        Iterator<Pair<Integer,String>> iterator = supportedResources.iterator();
+    private List<Pair<Integer, String>> getResourcesIds() {
+        List<Pair<Integer, String>> supportedResources = Utils.getAppStringResources(context, stringClasses);
+        List<Pair<Integer, String>> excludedResources = Utils.getAppStringResources(context, excludedClasses);
+        Iterator<Pair<Integer, String>> iterator = supportedResources.iterator();
         while (iterator.hasNext()) {
-            Pair<Integer,String> resourceId = iterator.next();
+            Pair<Integer, String> resourceId = iterator.next();
             if (excludedResources.contains(resourceId)) {
                 iterator.remove();
             }
@@ -216,14 +220,14 @@ public class Linguist {
             String translated = translation.get(text);
             cache.put(text, translated);
         }
-        cache.setTranslationEnabled(getDeviceLanguageCode(), true);
+        cache.setTranslationEnabled(getDeviceLanguage().getCode(), true);
     }
 
-    private String getDeviceLanguageCode() {
-        return Locale.getDefault().getLanguage();
+    private Language getDeviceLanguage() {
+        return Language.fromLocale(Locale.getDefault());
     }
 
-    private String getDefaultLanguageCode() {
+    private Language getDefaultLanguage() {
         return defaultLanguage;
     }
 
@@ -238,13 +242,13 @@ public class Linguist {
 
     public static class Builder {
         private Context context;
-        private String defaultLanguage;
-        private List<String> supportedLanguages;
+        private Language defaultLanguage;
+        private Language[] supportedLanguages;
         private Cache cache;
         private List<Class> supportedStrings;
         private List<Class> excludedStrings;
 
-        public Builder(Context context, String defaultLanguage, List<String> supportedLanguages) {
+        public Builder(Context context, Language defaultLanguage, Language... supportedLanguages) {
             this.context = context;
             this.defaultLanguage = defaultLanguage;
             this.supportedLanguages = supportedLanguages;
@@ -272,7 +276,7 @@ public class Linguist {
             linguist.stringClasses = supportedStrings;
             linguist.excludedClasses = excludedStrings;
             linguist.defaultLanguage = defaultLanguage;
-            linguist.supportedLanguages = supportedLanguages;
+            linguist.supportedLanguages = Arrays.asList(supportedLanguages);
             return linguist;
         }
     }
