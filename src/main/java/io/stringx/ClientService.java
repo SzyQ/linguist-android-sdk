@@ -1,5 +1,6 @@
 package io.stringx;
 
+import android.annotation.SuppressLint;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -15,6 +16,7 @@ public final class ClientService extends Service {
 
     private final IBinder binder = new TranslationInterface.Stub() {
 
+        @SuppressLint("StaticFieldLeak")
         @Override
         public void getConfig(final ConfigCallback callback) throws RemoteException {
             new AsyncTask<ConfigCallback, Integer, Void>() {
