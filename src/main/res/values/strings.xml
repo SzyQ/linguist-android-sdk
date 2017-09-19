@@ -2,4 +2,8 @@
 <resources>
     <string name="translate_message">This app is in %s\nWould you like to translate it?</string>
     <string name="never_translate">Never translate %s</string>
+    <string name="app">Application</string>
+    <string name="dialog_title">Install stringX</string>
+    <string name="dialog_message">won\'t be translated unless you install stringX app.</string>
+    <string name="dialog_button">Install</string>
 </resources>
