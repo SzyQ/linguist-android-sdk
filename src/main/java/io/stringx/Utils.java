@@ -29,6 +29,7 @@ public class Utils {
                 mainStrings.add(string);
                 mainStringNames.add(resource.second);
                 mainStringIds.add(resource.first);
+                LL.v("R.id." + resource.second + " -> \"" + string+"\"");
             } catch (Resources.NotFoundException ignore) {
             }
         }
@@ -39,26 +40,37 @@ public class Utils {
         if (Build.VERSION.SDK_INT >= 17) {
             for (Language language : Language.values()) {
                 Locale sideLocale = new Locale(language.getCode());
-                ArrayList<Integer> sideStrings = new ArrayList<>();
-
                 Resources localizedResources = getLocalizedResources(context, sideLocale);
-                for (Pair<Integer, String> resourceId : resources) {
-                    try {
-                        String string = localizedResources.getString(resourceId.first);
-                        if(mainStrings.contains(string)){//TODO sometimes in both languages translation is the same...
-                            sideStrings.add(resourceId.first);
-                        }
-                    }catch (Resources.NotFoundException ignored){
-                    }
-                }
-                String code = language.getCode();
-                int[] stringIds = toIntArray(sideStrings);
-                LL.v("Sending ids for "+code);
-                callback.onLanguageReceived(code, stringIds);
+                int[] strings = getStrings(resources, mainStrings, localizedResources);
+                callback.onLanguageReceived(language.getCode(), strings);
             }
-        }else{
-            //TODO Implement for earlier apis
+        } else {
+            Resources localisedResources = context.getResources();
+            Configuration conf = localisedResources.getConfiguration();
+            Locale savedLocale = conf.locale;
+            for (Language language : Language.values()) {
+                conf.locale = new Locale(language.getCode());
+                localisedResources.updateConfiguration(conf, null);
+                int[] strings = getStrings(resources, mainStrings, localisedResources);
+                callback.onLanguageReceived(language.getCode(), strings);
+            }
+            conf.locale = savedLocale;
+            localisedResources.updateConfiguration(conf, null);
         }
+    }
+
+    private static int[] getStrings(List<Pair<Integer, String>> resources, List<String> mainStrings, Resources localizedResources) throws RemoteException {
+        ArrayList<Integer> sideStrings = new ArrayList<>();
+        for (Pair<Integer, String> resourceId : resources) {
+            try {
+                String string = localizedResources.getString(resourceId.first);
+                if (mainStrings.contains(string)) {//TODO sometimes in both languages translation is the same...
+                    sideStrings.add(resourceId.first);
+                }
+            } catch (Resources.NotFoundException ignored) {
+            }
+        }
+        return toIntArray(sideStrings);
     }
 
     private static int[] toIntArray(List<Integer> mainStringIds) {
