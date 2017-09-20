@@ -120,6 +120,7 @@ public class Options {
             if (mode == null) {
                 mode = Mode.User;
             }
+            options.setMode(mode);
             options.setCache(cache);
             options.setStringClasses(supportedStrings);
             options.setExcludedClasses(excludedStrings);
