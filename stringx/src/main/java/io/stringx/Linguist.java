@@ -21,8 +21,6 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -31,13 +29,14 @@ import java.util.Map;
 import static android.app.Activity.RESULT_OK;
 
 public class Linguist {
-    private Context context;
-    private Cache cache;
-    private List<Class> stringClasses;
-    private List<Class> excludedClasses;
-    private Language defaultLanguage;
-    private List<Language> supportedLanguages;
+    Context context;
+    private Options options;
     private boolean isTranslationChecked;
+
+    public Linguist(Context context, Options options) {
+        this.context = context;
+        this.options = options;
+    }
 
     @Nullable
     public static Linguist get(@NonNull Context context) {
@@ -70,13 +69,12 @@ public class Linguist {
         return applicationContext instanceof Translatable && ((Translatable) applicationContext).getLinguist() != null;
     }
 
-
     public void refresh() {
         isTranslationChecked = false;
     }
 
     public String translate(String string) {
-        String cachedText = cache.get(string);
+        String cachedText = options.getCache().get(string);
         return cachedText == null ? string : cachedText;
     }
 
@@ -147,13 +145,13 @@ public class Linguist {
             return;
         }
         Language deviceLanguage = getDeviceLanguage();
-        if (cache.isTranslationEnabled(deviceLanguage.getCode())) {
+        if (options.getCache().isTranslationEnabled(deviceLanguage.getCode())) {
             return;
         }
-        if (supportedLanguages.contains(deviceLanguage)) {
+        if (options.getSupportedLanguages().contains(deviceLanguage)) {
             return;
         }
-        if (cache.isNeverTranslateEnabled(deviceLanguage.getCode())) {
+        if (options.getCache().isNeverTranslateEnabled(deviceLanguage.getCode())) {
             return;
         }
         isTranslationChecked = true;
@@ -174,13 +172,9 @@ public class Linguist {
         return defaultLocale;
     }
 
-    List<Language> getSupportedLanguages() {
-        return supportedLanguages;
-    }
-
     Locale getAppLocale() {
         Language deviceLanguage = getDeviceLanguage();
-        boolean isSupported = supportedLanguages.contains(deviceLanguage);
+        boolean isSupported = options.getSupportedLanguages().contains(deviceLanguage);
         if (isSupported) {
             return getDeviceDefaultLocale();
         } else {
@@ -199,8 +193,8 @@ public class Linguist {
 
     @NonNull
     private List<Pair<Integer, String>> getResourcesIds() {
-        List<Pair<Integer, String>> supportedResources = Utils.getAppStringResources(context, stringClasses);
-        List<Pair<Integer, String>> excludedResources = Utils.getAppStringResources(context, excludedClasses);
+        List<Pair<Integer, String>> supportedResources = Utils.getAppStringResources(context, options.getStringClasses());
+        List<Pair<Integer, String>> excludedResources = Utils.getAppStringResources(context, options.getExcludedClasses());
         Iterator<Pair<Integer, String>> iterator = supportedResources.iterator();
         while (iterator.hasNext()) {
             Pair<Integer, String> resourceId = iterator.next();
@@ -212,15 +206,15 @@ public class Linguist {
     }
 
     void setNeverTranslate(boolean isEnabled) {
-        cache.setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
+        options.getCache().setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
     }
 
     void applyTranslation(Map<String, String> translation) {
         for (String text : translation.keySet()) {
             String translated = translation.get(text);
-            cache.put(text, translated);
+            options.getCache().put(text, translated);
         }
-        cache.setTranslationEnabled(getDeviceLanguage().getCode(), true);
+        options.getCache().setTranslationEnabled(getDeviceLanguage().getCode(), true);
     }
 
     private Language getDeviceLanguage() {
@@ -228,7 +222,7 @@ public class Linguist {
     }
 
     private Language getDefaultLanguage() {
-        return defaultLanguage;
+        return options.getDefaultLanguage();
     }
 
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -240,44 +234,11 @@ public class Linguist {
         return false;
     }
 
-    public static class Builder {
-        private Context context;
-        private Language defaultLanguage;
-        private Language[] supportedLanguages;
-        private Cache cache;
-        private List<Class> supportedStrings;
-        private List<Class> excludedStrings;
+    public List<Language> getSupportedLanguages() {
+        return options.getSupportedLanguages();
+    }
 
-        public Builder(Context context, Language defaultLanguage, Language... supportedLanguages) {
-            this.context = context;
-            this.defaultLanguage = defaultLanguage;
-            this.supportedLanguages = supportedLanguages;
-            supportedStrings = new ArrayList<>();
-            excludedStrings = new ArrayList<>();
-        }
-
-        public Builder addStrings(Class clazz) {
-            supportedStrings.add(clazz);
-            return this;
-        }
-
-        public Builder excludeStrings(Class clazz) {
-            excludedStrings.add(clazz);
-            return this;
-        }
-
-        public Linguist build() {
-            Linguist linguist = new Linguist();
-            linguist.context = context;
-            if (cache == null) {
-                cache = new PreferencesCache(context);
-            }
-            linguist.cache = cache;
-            linguist.stringClasses = supportedStrings;
-            linguist.excludedClasses = excludedStrings;
-            linguist.defaultLanguage = defaultLanguage;
-            linguist.supportedLanguages = Arrays.asList(supportedLanguages);
-            return linguist;
-        }
+    public Options getOptions() {
+        return options;
     }
 }

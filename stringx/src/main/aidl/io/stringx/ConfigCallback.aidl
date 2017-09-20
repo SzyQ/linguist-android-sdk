@@ -6,7 +6,7 @@ import java.util.List;
 interface ConfigCallback {
     void onStarted();
 
-    void onBasicInfoReceived(String packageName, String defaultLanguageCode, String desiredLanguageCode,inout List<String> supportedLanguages);
+    void onBasicInfoReceived(String packageName, String mode, String defaultLanguageCode, String desiredLanguageCode,inout List<String> supportedLanguages);
 
     void onDefaultStringsReceived(inout List<String> defaultStrings);
 

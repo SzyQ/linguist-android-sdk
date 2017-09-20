@@ -34,11 +34,11 @@ public final class ClientService extends Service {
                                 supportedLanguageCodes.add(language.getCode());
                             }
 
-                            callback.onBasicInfoReceived(getPackageName(),locale.getLanguage(),linguist.getDeviceDefaultLocale().getLanguage(),supportedLanguageCodes);
+                            callback.onBasicInfoReceived(getPackageName(), linguist.getOptions().getMode().name(), locale.getLanguage(), linguist.getDeviceDefaultLocale().getLanguage(), supportedLanguageCodes);
                             linguist.fetch(callback);
                             callback.onFinished();
                             LL.d("Config sent");
-                        }else{
+                        } else {
                             callback.onFinished();
                         }
                     } catch (RemoteException e) {

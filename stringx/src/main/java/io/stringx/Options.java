@@ -1,0 +1,134 @@
+package io.stringx;
+
+
+import android.content.Context;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class Options {
+    private Cache cache;
+    private List<Class> stringClasses;
+    private List<Class> excludedClasses;
+    private Language defaultLanguage;
+    private List<Language> supportedLanguages;
+    private Mode mode;
+
+    private Options() {
+
+    }
+
+    public List<Class> getStringClasses() {
+        return stringClasses;
+    }
+
+    private void setStringClasses(List<Class> stringClasses) {
+        this.stringClasses = stringClasses;
+    }
+
+    public List<Class> getExcludedClasses() {
+        return excludedClasses;
+    }
+
+    private void setExcludedClasses(List<Class> excludedClasses) {
+        this.excludedClasses = excludedClasses;
+    }
+
+    public Language getDefaultLanguage() {
+        return defaultLanguage;
+    }
+
+    private void setDefaultLanguage(Language defaultLanguage) {
+        this.defaultLanguage = defaultLanguage;
+    }
+
+    public List<Language> getSupportedLanguages() {
+        return supportedLanguages;
+    }
+
+    private void setSupportedLanguages(List<Language> supportedLanguages) {
+        this.supportedLanguages = supportedLanguages;
+    }
+
+    public Cache getCache() {
+        return cache;
+    }
+
+    private void setCache(Cache cache) {
+        this.cache = cache;
+    }
+
+    public Mode getMode() {
+        return mode;
+    }
+
+    private void setMode(Mode mode) {
+        this.mode = mode;
+    }
+
+    public enum Mode {
+        User, Developer
+    }
+
+    public static class Builder {
+        private Context context;
+        private Language defaultLanguage;
+        private Language[] supportedLanguages;
+        private Cache cache;
+        private List<Class> supportedStrings;
+        private List<Class> excludedStrings;
+        private Mode mode;
+
+        public Builder(Context context, Language defaultLanguage) {
+            this.context = context;
+            this.defaultLanguage = defaultLanguage;
+            supportedStrings = new ArrayList<>();
+            excludedStrings = new ArrayList<>();
+        }
+
+        public Builder setCache(Cache cache) {
+            this.cache = cache;
+            return this;
+        }
+
+        public Builder setMode(Mode mode) {
+            this.mode = mode;
+            return this;
+        }
+
+        public Builder setSupportedLanguages(Language... supportedLanguages) {
+            this.supportedLanguages = supportedLanguages;
+            return this;
+        }
+
+        public Builder addStrings(Class clazz) {
+            supportedStrings.add(clazz);
+            return this;
+        }
+
+        public Builder excludeStrings(Class clazz) {
+            excludedStrings.add(clazz);
+            return this;
+        }
+
+        public Options build() {
+            Options options = new Options();
+            if (cache == null) {
+                cache = new PreferencesCache(context);
+            }
+            if (mode == null) {
+                mode = Mode.User;
+            }
+            options.setCache(cache);
+            options.setStringClasses(supportedStrings);
+            options.setExcludedClasses(excludedStrings);
+            options.setDefaultLanguage(defaultLanguage);
+            if (supportedLanguages == null) {
+                supportedLanguages = new Language[0];
+            }
+            options.setSupportedLanguages(Arrays.asList(supportedLanguages));
+            return options;
+        }
+    }
+}
