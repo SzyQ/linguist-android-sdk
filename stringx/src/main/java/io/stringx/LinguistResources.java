@@ -35,14 +35,14 @@ final class LinguistResources extends Resources {
     @NonNull
     @Override
     public String getString(int id, Object... formatArgs) throws NotFoundException {
-        return linguist.translate(resources.getString(id, formatArgs));
+        return String.format(linguist.translate(resources.getString(id)), formatArgs);
     }
 
     @NonNull
     @Override
     public String getQuantityString(int id, int quantity, Object... formatArgs)
             throws NotFoundException {
-        return linguist.translate(resources.getQuantityString(id, quantity, formatArgs));
+        return String.format(linguist.translate(resources.getQuantityString(id, quantity)),formatArgs);
     }
 
     @NonNull
