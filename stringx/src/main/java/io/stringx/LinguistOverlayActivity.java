@@ -54,7 +54,7 @@ public final class LinguistOverlayActivity extends AppCompatActivity {
         TextView message = findViewById(R.id.message);
         final Linguist linguist = Linguist.get(LinguistOverlayActivity.this);
         String defaultLanguage = linguist.getAppDefaultLocale().getDisplayLanguage();
-        message.setText(getString(R.string.translate_message, defaultLanguage));
+        message.setText(getString(R.string.sX_translate_message, defaultLanguage));
     }
 
     private void setupCloseButton() {
@@ -72,7 +72,7 @@ public final class LinguistOverlayActivity extends AppCompatActivity {
         TextView neverTranslate = findViewById(R.id.never_translate);
         final Linguist linguist = Linguist.get(LinguistOverlayActivity.this);
         String deviceLanguage = linguist.getAppDefaultLocale().getDisplayLanguage();
-        neverTranslate.setText(getString(R.string.never_translate, deviceLanguage));
+        neverTranslate.setText(getString(R.string.sX_never_translate, deviceLanguage));
         neverTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -98,12 +98,12 @@ public final class LinguistOverlayActivity extends AppCompatActivity {
                     try {
                         label = getPackageManager().getPackageInfo(getPackageName(), 0).applicationInfo.loadLabel(getPackageManager());
                     } catch (PackageManager.NameNotFoundException e1) {
-                        label = getString(R.string.app);
+                        label = getString(R.string.sX_app);
                     }
                     new AlertDialog.Builder(LinguistOverlayActivity.this)
-                            .setTitle(R.string.dialog_title)
-                            .setMessage(label + " " + getString(R.string.dialog_message))
-                            .setPositiveButton(R.string.dialog_button, new DialogInterface.OnClickListener() {
+                            .setTitle(R.string.sX_dialog_title)
+                            .setMessage(label + " " + getString(R.string.sX_dialog_message))
+                            .setPositiveButton(R.string.sX_dialog_button, new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
                                     registerPackageChangedReceiver();

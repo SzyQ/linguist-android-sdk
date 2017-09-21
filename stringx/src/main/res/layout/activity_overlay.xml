@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@+id/close"
             android:layout_marginBottom="@dimen/margin"
-            android:text="@string/translate_message"
+            android:text="@string/sX_translate_message"
             android:textColor="@color/very_dark"
             android:textSize="18sp" />
 
@@ -42,7 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/never_translate"
+                android:text="@string/sX_never_translate"
                 android:textColor="@color/blue"
                 android:textSize="16sp" />
 

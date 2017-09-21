@@ -29,7 +29,7 @@ import java.util.Map;
 import static android.app.Activity.RESULT_OK;
 
 public class Linguist {
-    Context context;
+    private Context context;
     private Options options;
     private boolean isTranslationChecked;
 
@@ -52,21 +52,30 @@ public class Linguist {
     }
 
     public static Context wrap(Context base) {
-        return isInitialised(base) ? LinguistContextWrapper.wrap(base) : base;
+        return isInitialised(base) && !get(base).isOptOut() ? LinguistContextWrapper.wrap(base) : base;
     }
 
     public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
-        return isInitialised(activity) ? LinguistMenuInflater.wrap(activity, menuInflater) : menuInflater;
+        return isInitialised(activity) && !get(activity).isOptOut() ? LinguistMenuInflater.wrap(activity, menuInflater) : menuInflater;
     }
 
     @Nullable
     public static AppCompatDelegate wrap(AppCompatActivity activity, AppCompatCallback callback) {
-        return isInitialised(activity) ? LinguistAppCompatDelegate.wrap(activity, callback) : null;
+        return isInitialised(activity) && !get(activity).isOptOut() ? LinguistAppCompatDelegate.wrap(activity, callback) : null;
     }
 
     private static boolean isInitialised(Context context) {
         Context applicationContext = context.getApplicationContext();
-        return applicationContext instanceof Translatable && ((Translatable) applicationContext).getLinguist() != null;
+        return applicationContext instanceof Translatable &&
+                ((Translatable) applicationContext).getLinguist() != null;
+    }
+
+    public boolean isOptOut() {
+        return options.getCache().isOptOut();
+    }
+
+    public void setOptOut(boolean isOptOut) {
+        options.getCache().setOptOut(isOptOut);
     }
 
     public void refresh() {
@@ -79,6 +88,9 @@ public class Linguist {
     }
 
     public View translate(View view) {
+        if(isOptOut()){
+            return view;
+        }
         if (view != null) {
             if ((view instanceof Toolbar)) {
                 Toolbar toolbar = (Toolbar) view;
@@ -109,6 +121,9 @@ public class Linguist {
     }
 
     public void translate(Menu menu) {
+        if(isOptOut()){
+            return;
+        }
         for (int i = 0; i < menu.size(); i++) {
             MenuItem item = menu.getItem(i);
             item.setTitle(translate(item.getTitle()));
@@ -121,10 +136,16 @@ public class Linguist {
     }
 
     public CharSequence translate(CharSequence text) {
+        if(isOptOut()){
+            return text;
+        }
         return text != null ? new StringBuffer(translate(text.toString())) : null;
     }
 
     public CharSequence[] translate(CharSequence[] textArray) {
+        if(isOptOut()){
+            return textArray;
+        }
         CharSequence[] charSequences = new CharSequence[textArray.length];
         for (int i = 0; i < textArray.length; i++) {
             charSequences[i] = translate(textArray[i]);
@@ -133,6 +154,9 @@ public class Linguist {
     }
 
     public String[] translate(String[] textArray) {
+        if(isOptOut()){
+            return textArray;
+        }
         String[] charSequences = new String[textArray.length];
         for (int i = 0; i < textArray.length; i++) {
             charSequences[i] = translate(textArray[i]);
