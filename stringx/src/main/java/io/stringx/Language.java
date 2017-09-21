@@ -80,7 +80,7 @@ public enum Language {
     Persian("fa"),
     Polish("pl"),
     Portuguese("pt"),
-    Punjabi("ma"),
+    //FIXME Google Translate API has some problems with this one Punjabi("ma"),
     Romanian("ro"),
     Russian("ru"),
     Samoan("sm"),
