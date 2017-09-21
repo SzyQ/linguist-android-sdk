@@ -8,17 +8,13 @@ public interface Cache {
     @Nullable
     String get(String text);
 
-    boolean isNeverTranslateEnabled(String countryCode);
-
-    void setNeverTranslateEnabled(String countryCode, boolean isEnabled);
+    boolean isOptOut();
 
     void setOptOut(boolean isOptedOut);
 
-    boolean isOptOut();
+    boolean isEnabled(Language language);
 
-    void setTranslationEnabled(String countryCode, boolean isEnabled);
-
-    boolean isTranslationEnabled(String languageCode);
+    void setEnabled(Language language, boolean isEnabled);
 
     void put(String text, String translated);
 }

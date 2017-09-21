@@ -95,13 +95,13 @@ public class Stringx implements Translator {
             return;
         }
         Language deviceLanguage = getDeviceLanguage();
-        if (options.getCache().isTranslationEnabled(deviceLanguage.getCode())) {
+        if (options.getCache().isEnabled(deviceLanguage)) {
+            return;
+        }
+        if (options.getCache().isOptOut()) {
             return;
         }
         if (options.getSupportedLanguages().contains(deviceLanguage)) {
-            return;
-        }
-        if (options.getCache().isNeverTranslateEnabled(deviceLanguage.getCode())) {
             return;
         }
         isTranslationChecked = true;
@@ -120,16 +120,6 @@ public class Stringx implements Translator {
             }
         }
         return defaultLocale;
-    }
-
-    Locale getAppLocale() {
-        Language deviceLanguage = getDeviceLanguage();
-        boolean isSupported = options.getSupportedLanguages().contains(deviceLanguage);
-        if (isSupported) {
-            return getDeviceDefaultLocale();
-        } else {
-            return getAppDefaultLocale();
-        }
     }
 
     Locale getDeviceDefaultLocale() {
@@ -155,19 +145,14 @@ public class Stringx implements Translator {
         return supportedResources;
     }
 
-    void setNeverTranslate(boolean isEnabled) {
-        options.getCache().setNeverTranslateEnabled(Locale.getDefault().getCountry(), isEnabled);
-    }
-
     void applyTranslation(Map<String, String> translation) {
         for (String text : translation.keySet()) {
             String translated = translation.get(text);
             options.getCache().put(text, translated);
         }
-        options.getCache().setTranslationEnabled(getDeviceLanguage().getCode(), true);
     }
 
-    private Language getDeviceLanguage() {
+    public Language getDeviceLanguage() {
         return Language.fromLocale(Locale.getDefault());
     }
 

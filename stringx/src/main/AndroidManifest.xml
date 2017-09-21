@@ -8,11 +8,14 @@
         <activity
             android:name="io.stringx.StringxOverlayActivity"
             android:theme="@style/Transparent" />
+        <activity
+            android:name="io.stringx.StringXProxyActivity"
+            android:theme="@style/Transparent" />
+
         <service
             android:name="io.stringx.DiscoveryService"
             android:exported="true"
-            android:permission="io.stringX.DISCOVERY">
-        </service>
+            android:permission="io.stringX.DISCOVERY" />
 
         <service
             android:name="io.stringx.ClientService"

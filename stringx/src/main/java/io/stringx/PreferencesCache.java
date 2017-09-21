@@ -7,39 +7,18 @@ import android.support.annotation.Nullable;
 
 final class PreferencesCache implements Cache {
 
-    private static final String KEY_NEVER_TRANSLATE = "NEVER_TRANSLATE_";
-    private static final String KEY_TRANSLATE_ENABLED = "TRANSLATE_ENABLED_";
-    private static final String KEY_OPT_OUT = "NEVER_TRANSLATE_";
+    private static final String KEY_OPT_OUT = "KEY_OPT_OUT";
+    private static final String KEY_ENABLED = "KEY_ENABLED_";
     private final SharedPreferences preferences;
 
     PreferencesCache(Context context) {
         preferences = context.getSharedPreferences("Stringx", Context.MODE_PRIVATE);
     }
 
-    private static String getNeverTranslateKey(String languageCode) {
-        return KEY_NEVER_TRANSLATE + languageCode;
-    }
-
-    private static String getTranslationEnabledKey(String languageCode) {
-        return KEY_TRANSLATE_ENABLED + languageCode;
-    }
-
     @Nullable
     @Override
     public String get(String text) {
         return preferences.getString(text, null);
-    }
-
-    @Override
-    public boolean isNeverTranslateEnabled(String countryCode) {
-        return preferences.getBoolean(getNeverTranslateKey(countryCode), false);
-    }
-
-    @Override
-    public void setNeverTranslateEnabled(String countryCode, boolean isEnabled) {
-        preferences.edit()
-                .putBoolean(getNeverTranslateKey(countryCode), isEnabled)
-                .apply();
     }
 
     @Override
@@ -55,15 +34,16 @@ final class PreferencesCache implements Cache {
     }
 
     @Override
-    public void setTranslationEnabled(String countryCode, boolean isEnabled) {
-        preferences.edit()
-                .putBoolean(getTranslationEnabledKey(countryCode), isEnabled)
-                .apply();
+    public boolean isEnabled(Language language) {
+        return preferences.getBoolean(KEY_ENABLED + language.getCode(), false);
     }
 
     @Override
-    public boolean isTranslationEnabled(String languageCode) {
-        return preferences.getBoolean(getTranslationEnabledKey(languageCode), false);
+    public void setEnabled(Language language, boolean isEnabled) {
+        preferences
+                .edit()
+                .putBoolean(KEY_ENABLED + language.getCode(), isEnabled)
+                .apply();
     }
 
     @Override
