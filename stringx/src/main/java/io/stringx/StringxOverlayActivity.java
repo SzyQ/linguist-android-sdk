@@ -17,9 +17,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import io.stringx.app.R;
+import io.stringx.R;
 
-public final class LinguistOverlayActivity extends AppCompatActivity {
+public final class StringxOverlayActivity extends AppCompatActivity {
 
     public static final int REQUEST_CODE = 3001;
     public static final String PACKAGE_NAME = "io.stringx";
@@ -52,8 +52,8 @@ public final class LinguistOverlayActivity extends AppCompatActivity {
 
     private void setupMessage() {
         TextView message = findViewById(R.id.message);
-        final Linguist linguist = Linguist.get(LinguistOverlayActivity.this);
-        String defaultLanguage = linguist.getAppDefaultLocale().getDisplayLanguage();
+        final Stringx stringx = Stringx.get(StringxOverlayActivity.this);
+        String defaultLanguage = stringx.getAppDefaultLocale().getDisplayLanguage();
         message.setText(getString(R.string.sX_translate_message, defaultLanguage));
     }
 
@@ -70,13 +70,13 @@ public final class LinguistOverlayActivity extends AppCompatActivity {
 
     private void setupNeverTranslateButton() {
         TextView neverTranslate = findViewById(R.id.never_translate);
-        final Linguist linguist = Linguist.get(LinguistOverlayActivity.this);
-        String deviceLanguage = linguist.getAppDefaultLocale().getDisplayLanguage();
+        final Stringx stringx = Stringx.get(StringxOverlayActivity.this);
+        String deviceLanguage = stringx.getAppDefaultLocale().getDisplayLanguage();
         neverTranslate.setText(getString(R.string.sX_never_translate, deviceLanguage));
         neverTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                linguist.setNeverTranslate(true);
+                stringx.setNeverTranslate(true);
                 setResult(RESULT_OK);
                 finish();
             }
@@ -100,7 +100,7 @@ public final class LinguistOverlayActivity extends AppCompatActivity {
                     } catch (PackageManager.NameNotFoundException e1) {
                         label = getString(R.string.sX_app);
                     }
-                    new AlertDialog.Builder(LinguistOverlayActivity.this)
+                    new AlertDialog.Builder(StringxOverlayActivity.this)
                             .setTitle(R.string.sX_dialog_title)
                             .setMessage(label + " " + getString(R.string.sX_dialog_message))
                             .setPositiveButton(R.string.sX_dialog_button, new DialogInterface.OnClickListener() {

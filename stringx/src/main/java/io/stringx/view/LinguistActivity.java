@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatDelegate;
 import android.view.MenuInflater;
 
-import io.stringx.Linguist;
+import io.stringx.Stringx;
 
 public class LinguistActivity extends AppCompatActivity {
 
@@ -15,13 +15,13 @@ public class LinguistActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context base) {
-        super.attachBaseContext(Linguist.wrap(base));
+        super.attachBaseContext(Stringx.wrap(base));
     }
 
     @NonNull
     public AppCompatDelegate getDelegate() {
         if (mDelegate == null) {
-            mDelegate = Linguist.wrap(this, this);
+            mDelegate = Stringx.wrap(this, this);
         }
         if (mDelegate == null) {
             mDelegate = super.getDelegate();
@@ -32,22 +32,22 @@ public class LinguistActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        Linguist linguist = Linguist.get(this);
-        if (linguist != null) {
-            linguist.onResume(this);
+        Stringx stringx = Stringx.get(this);
+        if (stringx != null) {
+            stringx.onResume(this);
         }
     }
 
     @NonNull
     @Override
     public MenuInflater getMenuInflater() {
-        return Linguist.wrap(this, super.getMenuInflater());
+        return Stringx.wrap(this, super.getMenuInflater());
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Linguist linguist = Linguist.get(this);
-        if (linguist != null && linguist.onActivityResult(requestCode, resultCode, data)) {
+        Stringx stringx = Stringx.get(this);
+        if (stringx != null && stringx.onActivityResult(requestCode, resultCode, data)) {
             finish();
             startActivity(getIntent());
         } else {

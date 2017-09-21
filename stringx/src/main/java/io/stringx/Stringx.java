@@ -12,51 +12,51 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.app.LinguistAppCompatDelegate;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.SubMenu;
 import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import io.stringx.translate.AndroidTranslator;
+import io.stringx.translate.Translator;
+
 import static android.app.Activity.RESULT_OK;
 
-public class Linguist {
+public class Stringx implements Translator {
     private Context context;
     private Options options;
     private boolean isTranslationChecked;
+    private Translator translator;
 
-    public Linguist(Context context, Options options) {
+    public Stringx(Context context, Options options) {
         this.context = context;
         this.options = options;
+        this.translator = new AndroidTranslator(options.getCache());
     }
 
     @Nullable
-    public static Linguist get(@NonNull Context context) {
-        Linguist linguist = null;
+    public static Stringx get(@NonNull Context context) {
+        Stringx stringx = null;
         if (isInitialised(context)) {
-            linguist = ((Translatable) context.getApplicationContext()).getLinguist();
+            stringx = ((Translatable) context.getApplicationContext()).getStringx();
         }
-        if (linguist == null) {
-            LL.w("Application needs to extend Translatable interface and provide Linguist instance.");
+        if (stringx == null) {
+            LL.w("Application needs to extend Translatable interface and provide Stringx instance.");
             return null;
         }
-        return linguist;
+        return stringx;
     }
 
     public static Context wrap(Context base) {
-        return isInitialised(base) && !get(base).isOptOut() ? LinguistContextWrapper.wrap(base) : base;
+        return isInitialised(base) && !get(base).isOptOut() ? StringxContextWrapper.wrap(base) : base;
     }
 
     public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
-        return isInitialised(activity) && !get(activity).isOptOut() ? LinguistMenuInflater.wrap(activity, menuInflater) : menuInflater;
+        return isInitialised(activity) && !get(activity).isOptOut() ? StringxMenuInflater.wrap(activity, menuInflater) : menuInflater;
     }
 
     @Nullable
@@ -67,7 +67,7 @@ public class Linguist {
     private static boolean isInitialised(Context context) {
         Context applicationContext = context.getApplicationContext();
         return applicationContext instanceof Translatable &&
-                ((Translatable) applicationContext).getLinguist() != null;
+                ((Translatable) applicationContext).getStringx() != null;
     }
 
     public boolean isOptOut() {
@@ -82,86 +82,12 @@ public class Linguist {
         isTranslationChecked = false;
     }
 
-    public String translate(String string) {
-        String cachedText = options.getCache().get(string);
-        return cachedText == null ? string : cachedText;
+    public Translator getTranslator() {
+        return translator;
     }
 
-    public View translate(View view) {
-        if(isOptOut()){
-            return view;
-        }
-        if (view != null) {
-            if ((view instanceof Toolbar)) {
-                Toolbar toolbar = (Toolbar) view;
-                toolbar.setTitle(translate(toolbar.getTitle().toString()));
-                return view;
-            } else if ((view instanceof EditText)) {
-                EditText toolbar = (EditText) view;
-                CharSequence hint = toolbar.getHint();
-                if (hint != null) {
-                    toolbar.setHint(translate(hint.toString()));
-                }
-                return view;
-            } else if (view instanceof TextView) {
-                ((TextView) view).setText(translate(((TextView) view).getText().toString()));
-            } else {
-                LL.v("Unsupported view: " + view.getClass().getName());
-            }
-        }
-        return view;
-    }
-
-    public Preference translate(Preference preference) {
-        if (preference != null) {
-            preference.setTitle(translate(preference.getTitle()));
-            preference.setSummary(translate(preference.getSummary()));
-        }
-        return preference;
-    }
-
-    public void translate(Menu menu) {
-        if(isOptOut()){
-            return;
-        }
-        for (int i = 0; i < menu.size(); i++) {
-            MenuItem item = menu.getItem(i);
-            item.setTitle(translate(item.getTitle()));
-            item.setTitleCondensed(translate(item.getTitleCondensed()));
-            SubMenu subMenu = item.getSubMenu();
-            if (subMenu != null) {
-                translate(subMenu);
-            }
-        }
-    }
-
-    public CharSequence translate(CharSequence text) {
-        if(isOptOut()){
-            return text;
-        }
-        return text != null ? new StringBuffer(translate(text.toString())) : null;
-    }
-
-    public CharSequence[] translate(CharSequence[] textArray) {
-        if(isOptOut()){
-            return textArray;
-        }
-        CharSequence[] charSequences = new CharSequence[textArray.length];
-        for (int i = 0; i < textArray.length; i++) {
-            charSequences[i] = translate(textArray[i]);
-        }
-        return charSequences;
-    }
-
-    public String[] translate(String[] textArray) {
-        if(isOptOut()){
-            return textArray;
-        }
-        String[] charSequences = new String[textArray.length];
-        for (int i = 0; i < textArray.length; i++) {
-            charSequences[i] = translate(textArray[i]);
-        }
-        return charSequences;
+    public void setTranslator(Translator translator) {
+        this.translator = translator;
     }
 
     public void onResume(Activity activity) {
@@ -179,8 +105,8 @@ public class Linguist {
             return;
         }
         isTranslationChecked = true;
-        Intent intent = new Intent(activity, LinguistOverlayActivity.class);
-        activity.startActivityForResult(intent, LinguistOverlayActivity.REQUEST_CODE);
+        Intent intent = new Intent(activity, StringxOverlayActivity.class);
+        activity.startActivityForResult(intent, StringxOverlayActivity.REQUEST_CODE);
     }
 
     Locale getAppDefaultLocale() {
@@ -250,7 +176,7 @@ public class Linguist {
     }
 
     public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == LinguistOverlayActivity.REQUEST_CODE) {
+        if (requestCode == StringxOverlayActivity.REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 return true;
             }
@@ -264,5 +190,40 @@ public class Linguist {
 
     public Options getOptions() {
         return options;
+    }
+
+    @Override
+    public String translate(String string) {
+        return translator.translate(string);
+    }
+
+    @Override
+    public View translate(View view) {
+        return translator.translate(view);
+    }
+
+    @Override
+    public Preference translate(Preference preference) {
+        return translator.translate(preference);
+    }
+
+    @Override
+    public void translate(Menu menu) {
+        translator.translate(menu);
+    }
+
+    @Override
+    public CharSequence translate(CharSequence text) {
+        return translator.translate(text);
+    }
+
+    @Override
+    public CharSequence[] translate(CharSequence[] textArray) {
+        return translator.translate(textArray);
+    }
+
+    @Override
+    public String[] translate(String[] textArray) {
+        return translator.translate(textArray);
     }
 }

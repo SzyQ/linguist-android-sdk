@@ -25,17 +25,17 @@ public final class ClientService extends Service {
                     try {
                         LL.d("Retrieving config");
                         callback.onStarted();
-                        Linguist linguist = Linguist.get(getApplicationContext());
-                        if (linguist != null) {
-                            Locale locale = linguist.getAppDefaultLocale();
-                            List<Language> supportedLanguages = linguist.getSupportedLanguages();
+                        Stringx stringx = Stringx.get(getApplicationContext());
+                        if (stringx != null) {
+                            Locale locale = stringx.getAppDefaultLocale();
+                            List<Language> supportedLanguages = stringx.getSupportedLanguages();
                             ArrayList<String> supportedLanguageCodes = new ArrayList<>();
                             for (Language language : supportedLanguages) {
                                 supportedLanguageCodes.add(language.getCode());
                             }
 
-                            callback.onBasicInfoReceived(getPackageName(), linguist.getOptions().getMode().name(), locale.getLanguage(), linguist.getDeviceDefaultLocale().getLanguage(), supportedLanguageCodes);
-                            linguist.fetch(callback);
+                            callback.onBasicInfoReceived(getPackageName(), stringx.getOptions().getMode().name(), locale.getLanguage(), stringx.getDeviceDefaultLocale().getLanguage(), supportedLanguageCodes);
+                            stringx.fetch(callback);
                             callback.onFinished();
                             LL.d("Config sent");
                         } else {
@@ -52,9 +52,9 @@ public final class ClientService extends Service {
         @Override
         public void onTranslationCompleted(Map translation) throws RemoteException {
             LL.d("Applying translation");
-            Linguist linguist = Linguist.get(getApplicationContext());
-            if (linguist != null) {
-                linguist.applyTranslation(translation);
+            Stringx stringx = Stringx.get(getApplicationContext());
+            if (stringx != null) {
+                stringx.applyTranslation(translation);
             }
         }
     };

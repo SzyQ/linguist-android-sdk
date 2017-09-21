@@ -13,7 +13,7 @@ final class PreferencesCache implements Cache {
     private final SharedPreferences preferences;
 
     PreferencesCache(Context context) {
-        preferences = context.getSharedPreferences("Linguist", Context.MODE_PRIVATE);
+        preferences = context.getSharedPreferences("Stringx", Context.MODE_PRIVATE);
     }
 
     private static String getNeverTranslateKey(String languageCode) {

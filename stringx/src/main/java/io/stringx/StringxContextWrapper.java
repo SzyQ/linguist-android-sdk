@@ -5,24 +5,24 @@ import android.content.ContextWrapper;
 import android.content.res.Resources;
 import android.support.annotation.NonNull;
 
-final class LinguistContextWrapper extends ContextWrapper {
+final class StringxContextWrapper extends ContextWrapper {
 
-    private LinguistResources resources;
-    private Linguist linguist;
+    private StringxResources resources;
+    private Stringx stringx;
 
-    public LinguistContextWrapper(Context base, @NonNull Linguist linguist) {
+    public StringxContextWrapper(Context base, @NonNull Stringx stringx) {
         super(base);
-        this.linguist = linguist;
+        this.stringx = stringx;
     }
 
     public static Context wrap(Context context) {
-        return new LinguistContextWrapper(context, Linguist.get(context));
+        return new StringxContextWrapper(context, Stringx.get(context));
     }
 
     @Override
     public Resources getResources() {
         if (resources == null) {
-            resources = new LinguistResources(super.getResources(), linguist);
+            resources = new StringxResources(super.getResources(), stringx);
         }
         return resources;
     }
@@ -31,7 +31,7 @@ final class LinguistContextWrapper extends ContextWrapper {
 //    public Object getSystemService(String name) {
 //        if (LAYOUT_INFLATER_SERVICE.equals(name)) {
 //            if (inflater == null) {
-//                inflater = new LinguistLayoutInflater((LayoutInflater) super.getSystemService(name), getBaseContext(), viewTranslator).cloneInContext(this);
+//                inflater = new StringxLayoutInflater((LayoutInflater) super.getSystemService(name), getBaseContext(), viewTranslator).cloneInContext(this);
 //            }
 //            return inflater;
 //        }

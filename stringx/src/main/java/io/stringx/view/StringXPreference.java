@@ -4,8 +4,8 @@ import android.content.Context;
 import android.preference.Preference;
 import android.util.AttributeSet;
 
-import io.stringx.Linguist;
-import io.stringx.app.R;
+import io.stringx.Stringx;
+import io.stringx.R;
 
 public class StringXPreference extends android.preference.CheckBoxPreference {
 
@@ -18,11 +18,11 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
         setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
-                Linguist linguist = Linguist.get(getContext());
-                if (linguist != null) {
+                Stringx stringx = Stringx.get(getContext());
+                if (stringx != null) {
                     Boolean isOptedIn = (Boolean) o;
                     setValue(isOptedIn);
-                    linguist.setOptOut(!isOptedIn);
+                    stringx.setOptOut(!isOptedIn);
                 }
                 return true;
             }

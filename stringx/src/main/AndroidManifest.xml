@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.stringx.app">
+    package="io.stringx">
 
     <uses-permission android:name="io.stringX.DISCOVERY" />
 
     <application>
         <activity
-            android:name="io.stringx.LinguistOverlayActivity"
+            android:name="io.stringx.StringxOverlayActivity"
             android:theme="@style/Transparent" />
         <service
             android:name="io.stringx.DiscoveryService"
