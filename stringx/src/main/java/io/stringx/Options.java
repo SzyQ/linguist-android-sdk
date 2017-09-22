@@ -11,6 +11,7 @@ public class Options {
     private Cache cache;
     private List<Class> stringClasses;
     private List<Class> excludedClasses;
+    private List<Integer> excludedStringIds;
     private Language defaultLanguage;
     private List<Language> supportedLanguages;
     private Mode mode;
@@ -67,6 +68,14 @@ public class Options {
         this.mode = mode;
     }
 
+    public List<Integer> getExcludedStringIds() {
+        return excludedStringIds;
+    }
+
+    private void setExcludedStringIds(List<Integer> excludedStringIds) {
+        this.excludedStringIds = excludedStringIds;
+    }
+
     public enum Mode {
         User, Developer
     }
@@ -78,6 +87,7 @@ public class Options {
         private Cache cache;
         private List<Class> supportedStrings;
         private List<Class> excludedStrings;
+        private int[] excludedStringIds;
         private Mode mode;
 
         public Builder(Context context, Language defaultLanguage) {
@@ -120,6 +130,15 @@ public class Options {
             if (mode == null) {
                 mode = Mode.User;
             }
+            if (excludedStringIds == null) {
+                excludedStringIds = new int[0];
+            }
+            ArrayList<Integer> ids = new ArrayList<>();
+            for (int stringId : excludedStringIds) {
+                ids.add(stringId);
+            }
+
+            options.setExcludedStringIds(ids);
             options.setMode(mode);
             options.setCache(cache);
             options.setStringClasses(supportedStrings);
@@ -130,6 +149,11 @@ public class Options {
             }
             options.setSupportedLanguages(Arrays.asList(supportedLanguages));
             return options;
+        }
+
+        public Builder excludeString(int... stringId) {
+            excludedStringIds = stringId;
+            return this;
         }
     }
 }

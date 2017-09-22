@@ -140,6 +140,8 @@ public class Stringx implements Translator {
             Pair<Integer, String> resourceId = iterator.next();
             if (excludedResources.contains(resourceId)) {
                 iterator.remove();
+            } else if (options.getExcludedStringIds().contains(resourceId.first)) {
+                iterator.remove();
             }
         }
         return supportedResources;
