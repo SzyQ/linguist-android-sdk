@@ -6,7 +6,7 @@ import android.preference.Preference;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 
-import io.stringx.R;
+import io.stringx.client.R;
 import io.stringx.RestartBroadcast;
 import io.stringx.StringXProxyActivity;
 import io.stringx.Stringx;

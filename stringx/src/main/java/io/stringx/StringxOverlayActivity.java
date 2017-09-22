@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
+import io.stringx.client.R;
+
 public final class StringxOverlayActivity extends StringXActivityBase {
 
     @Override

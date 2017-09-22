@@ -13,6 +13,8 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import io.stringx.client.R;
+
 class StringXActivityBase extends AppCompatActivity {
 
 
