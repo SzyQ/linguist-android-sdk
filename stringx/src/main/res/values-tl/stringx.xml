@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Application</string>
+    <string name="sX_dialog_button">I-install</string>
+    <string name="sX_dialog_message">ay hindi isasalin kung hindi mo i-install ang stringX app.</string>
+    <string name="sX_dialog_title">I-install ang stringX</string>
+    <string name="sX_never_translate">Huwag isalin ang %s</string>
+    <string name="sX_preference_summary">Lumipat ang awtomatikong pagsasalin sa appplication</string>
+    <string name="sX_preference_title">Awtomatikong pagsasalin</string>
+    <string name="sX_translate_message">Ang app na ito ay nasa %s. Gusto mo bang isalin ito?</string>
+</resources>

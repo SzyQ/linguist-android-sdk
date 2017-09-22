@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">hakemus</string>
+    <string name="sX_dialog_button">Asentaa</string>
+    <string name="sX_dialog_message">ei käännetä ellet asenna stringX-sovellusta.</string>
+    <string name="sX_dialog_title">Asenna stringX</string>
+    <string name="sX_never_translate">Älä koskaan käännä %s</string>
+    <string name="sX_preference_summary">Vaihtaa automaattisesti käännöksen</string>
+    <string name="sX_preference_title">Automaattinen käännös</string>
+    <string name="sX_translate_message">Tämä sovellus on %s. Haluatko kääntää sen?</string>
+</resources>

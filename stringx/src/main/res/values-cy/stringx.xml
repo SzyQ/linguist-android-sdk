@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Cais</string>
+    <string name="sX_dialog_button">Gosodwch</string>
+    <string name="sX_dialog_message">yn cael ei gyfieithu oni bai eich bod yn gosod app stringX.</string>
+    <string name="sX_dialog_title">Gosodwch stringX</string>
+    <string name="sX_never_translate">Peidiwch byth â chyfieithu %s</string>
+    <string name="sX_preference_summary">Tynnwch gyfieithiad awtomatig yn y atodiad</string>
+    <string name="sX_preference_title">Cyfieithu awtomatig</string>
+    <string name="sX_translate_message">Mae&#39;r app yma yn %s. Hoffech chi ei gyfieithu?</string>
+</resources>

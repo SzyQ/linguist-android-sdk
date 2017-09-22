@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">ใบสมัคร</string>
+    <string name="sX_dialog_button">ติดตั้ง</string>
+    <string name="sX_dialog_message">จะไม่ถูกแปลจนกว่าคุณจะติดตั้งแอ็ตทริบิวต์ xxx</string>
+    <string name="sX_dialog_title">ติดตั้ง stringX</string>
+    <string name="sX_never_translate">ไม่ต้องแปล %s</string>
+    <string name="sX_preference_summary">สลับการแปลอัตโนมัติใน appplication</string>
+    <string name="sX_preference_title">การแปลอัตโนมัติ</string>
+    <string name="sX_translate_message">แอปนี้อยู่ใน %s คุณต้องการแปลหรือไม่?</string>
+</resources>

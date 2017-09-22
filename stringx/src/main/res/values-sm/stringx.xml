@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Talosaga</string>
+    <string name="sX_dialog_button">Faʻamau</string>
+    <string name="sX_dialog_message">o le a le faaliliuina sei vagana ua e faʻaaogaina le stringX app.</string>
+    <string name="sX_dialog_title">Faʻamau i le stringX</string>
+    <string name="sX_never_translate">Aua nei faaliliu *********</string>
+    <string name="sX_preference_summary">Faʻasaʻo le faaliliu i le otometi i le talosaga</string>
+    <string name="sX_preference_title">Faʻaliliuga aunoa</string>
+    <string name="sX_translate_message">O lenei app o loʻo iai i %s. E te manaʻo e faaliliu?</string>
+</resources>

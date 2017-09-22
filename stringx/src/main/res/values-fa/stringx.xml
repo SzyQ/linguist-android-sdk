@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">کاربرد</string>
+    <string name="sX_dialog_button">نصب</string>
+    <string name="sX_dialog_message">ترجمه نمی شود مگر اینکه برنامه stringX را نصب کنید.</string>
+    <string name="sX_dialog_title">نصب stringX</string>
+    <string name="sX_never_translate">هرگز ترجمه نمی کنی %s</string>
+    <string name="sX_preference_summary">ترجمه خودکار در برنامه را تغییر میدهد</string>
+    <string name="sX_preference_title">ترجمه خودکار</string>
+    <string name="sX_translate_message">این برنامه در %s است. آیا تمایل به ترجمه آن دارید؟</string>
+</resources>

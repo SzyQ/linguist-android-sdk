@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">應用</string>
+    <string name="sX_dialog_button">安裝</string>
+    <string name="sX_dialog_message">將不會被翻譯，除非你安裝stringX應用程序。</string>
+    <string name="sX_dialog_title">安裝stringX</string>
+    <string name="sX_never_translate">永遠不要翻譯%s</string>
+    <string name="sX_preference_summary">在應用程序中切換自動翻譯</string>
+    <string name="sX_preference_title">自動翻譯</string>
+    <string name="sX_translate_message">這個程序是在%s。您願意來翻譯嗎？</string>
+</resources>

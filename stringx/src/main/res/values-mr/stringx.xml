@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">अनुप्रयोग</string>
+    <string name="sX_dialog_button">स्थापित करा</string>
+    <string name="sX_dialog_message">आपण stringX अॅप स्थापित करेपर्यंत अनुवादित केले जाणार नाही</string>
+    <string name="sX_dialog_title">StringX स्थापित करा</string>
+    <string name="sX_never_translate">कधीही अनुवाद करु नका %s</string>
+    <string name="sX_preference_summary">अनुप्रयोगात स्वयंचलित अनुवाद टॉगल करते</string>
+    <string name="sX_preference_title">स्वयंचलित अनुवाद</string>
+    <string name="sX_translate_message">हा अॅप %s मधून आहे. आपण याचे भाषांतर करू इच्छिता?</string>
+</resources>

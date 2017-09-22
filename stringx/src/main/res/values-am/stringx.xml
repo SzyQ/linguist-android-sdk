@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">ትግበራ</string>
+    <string name="sX_dialog_button">ይጫኑ</string>
+    <string name="sX_dialog_message">የ stringX ትግበራ እስካልሰቀሉ ድረስ አይተረጎሙም.</string>
+    <string name="sX_dialog_title">StringX ን ይጫኑ</string>
+    <string name="sX_never_translate">በጭራሽ አትተርጉም %s</string>
+    <string name="sX_preference_summary">በመገልበያው ውስጥ የራስ-ሰር ትርጉም ይቀይራል</string>
+    <string name="sX_preference_title">ራስ-ሰር ትርጉም</string>
+    <string name="sX_translate_message">ይህ መተግበሪያ በ %s ውስጥ ነው. መተርጎም ይፈልጋሉ?</string>
+</resources>

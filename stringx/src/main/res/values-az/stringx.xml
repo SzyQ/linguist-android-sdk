@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Ərizə</string>
+    <string name="sX_dialog_button">Yüklemek</string>
+    <string name="sX_dialog_message">stringX tətbiqini quraşdırmadığınız müddətcə tərcümə edilməyəcəkdir.</string>
+    <string name="sX_dialog_title">StringX yükləyin</string>
+    <string name="sX_never_translate">Heç vaxt tərcümə etmə. %s</string>
+    <string name="sX_preference_summary">Tətbiqdə avtomatik tərcüməni keçir</string>
+    <string name="sX_preference_title">Avtomatik tərcümə</string>
+    <string name="sX_translate_message">Bu app %s-dir. Bunu tərcümə etmək istəyirsiniz?</string>
+</resources>

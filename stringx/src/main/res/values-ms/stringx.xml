@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Permohonan</string>
+    <string name="sX_dialog_button">Pasang</string>
+    <string name="sX_dialog_message">tidak akan diterjemahkan melainkan anda memasang aplikasi stringX.</string>
+    <string name="sX_dialog_title">Pasang stringX</string>
+    <string name="sX_never_translate">Jangan terjemahkan %s</string>
+    <string name="sX_preference_summary">Togol terjemahan automatik dalam aplikasi</string>
+    <string name="sX_preference_title">Terjemahan automatik</string>
+    <string name="sX_translate_message">Aplikasi ini berada dalam %s. Adakah anda ingin menterjemahkannya?</string>
+</resources>

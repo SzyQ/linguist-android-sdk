@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Aikace-aikacen</string>
+    <string name="sX_dialog_button">Shigar</string>
+    <string name="sX_dialog_message">ba za a iya fassara ba sai dai idan ka shigar da aikace-aikacen stringX.</string>
+    <string name="sX_dialog_title">Shigar stringX</string>
+    <string name="sX_never_translate">Kada a fassara %s</string>
+    <string name="sX_preference_summary">Tana fassarar fassarar atomatik a cikin rubutun</string>
+    <string name="sX_preference_title">Fassarar atomatik</string>
+    <string name="sX_translate_message">Wannan app yana cikin %s. Kuna so ku fassara shi?</string>
+</resources>

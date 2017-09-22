@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">יישום</string>
+    <string name="sX_dialog_button">להתקין</string>
+    <string name="sX_dialog_message">לא יתורגם אלא אם תתקין את היישום stringX.</string>
+    <string name="sX_dialog_title">התקן את stringX</string>
+    <string name="sX_never_translate">לעולם אל תתרגם %s</string>
+    <string name="sX_preference_summary">מחליף תרגום אוטומטי ביישום</string>
+    <string name="sX_preference_title">תרגום אוטומטי</string>
+    <string name="sX_translate_message">יישום זה הוא %s. האם אתה רוצה לתרגם את זה?</string>
+</resources>

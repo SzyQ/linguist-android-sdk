@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Kushanda</string>
+    <string name="sX_dialog_button">Isa</string>
+    <string name="sX_dialog_message">hazvizoshanduri kunze kwekuti iwe uise stringX app.</string>
+    <string name="sX_dialog_title">Isai chainX</string>
+    <string name="sX_never_translate">Usamboshandura %s</string>
+    <string name="sX_preference_summary">Inoshandura shanduro yekutsvaga muchibvumirano</string>
+    <string name="sX_preference_title">Automatic translation</string>
+    <string name="sX_translate_message">Iri purogiramu iri %s. Unoda here kuishandura?</string>
+</resources>

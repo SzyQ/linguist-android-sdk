@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Taotlus</string>
+    <string name="sX_dialog_button">Installi</string>
+    <string name="sX_dialog_message">ei tõlgita, kui te ei installeri stringX-i rakendust.</string>
+    <string name="sX_dialog_title">Paigaldage stringX</string>
+    <string name="sX_never_translate">Ärge kunagi tõlkige %s</string>
+    <string name="sX_preference_summary">Lülitab sisse automaatne tõlge rakenduses</string>
+    <string name="sX_preference_title">Automaatne tõlge</string>
+    <string name="sX_translate_message">See rakendus on %s. Kas soovite tõlkida?</string>
+</resources>

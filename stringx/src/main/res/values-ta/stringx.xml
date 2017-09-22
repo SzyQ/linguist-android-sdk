@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">விண்ணப்ப</string>
+    <string name="sX_dialog_button">நிறுவ</string>
+    <string name="sX_dialog_message">நீங்கள் stringX பயன்பாட்டை நிறுவும் வரை மொழிபெயர்க்க முடியாது.</string>
+    <string name="sX_dialog_title">StringX ஐ நிறுவுக</string>
+    <string name="sX_never_translate">மொழிபெயர்க்க வேண்டாம் %s</string>
+    <string name="sX_preference_summary">விண்ணப்பத்தில் தானியங்கு மொழிபெயர்ப்பை மாற்றுகிறது</string>
+    <string name="sX_preference_title">தானியங்கு மொழிபெயர்ப்பு</string>
+    <string name="sX_translate_message">இந்த பயன்பாட்டில் %s உள்ளது. அதை மொழிபெயர்க்க விரும்புகிறீர்களா?</string>
+</resources>

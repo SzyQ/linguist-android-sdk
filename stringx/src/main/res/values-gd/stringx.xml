@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Iarrtas</string>
+    <string name="sX_dialog_button">Stàlaich</string>
+    <string name="sX_dialog_message">cha bhith eadar-theangachadh mura stàlaich thu app stringX.</string>
+    <string name="sX_dialog_title">Stàlaich stringX</string>
+    <string name="sX_never_translate">Na eadar-theangachadh a-riamh %s</string>
+    <string name="sX_preference_summary">Toggles eadar-theangachadh gu fèin-obrachail anns an athchuinge</string>
+    <string name="sX_preference_title">Eadar-theangachadh gu h-obann</string>
+    <string name="sX_translate_message">Tha an aplacaid seo ann an %s. Am bu toil leat an eadar-theangachadh?</string>
+</resources>

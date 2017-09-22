@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="sX_app">Қолданба</string>
+    <string name="sX_dialog_button">Орнату</string>
+    <string name="sX_dialog_message">stringX қолданбасы орнатылмайынша аударылмайды.</string>
+    <string name="sX_dialog_title">StringX орнатыңыз</string>
+    <string name="sX_never_translate">%s ешқашан аудармаңыз</string>
+    <string name="sX_preference_summary">Өтініште автоматты аударманы ауыстырады</string>
+    <string name="sX_preference_title">Автоматты аударма</string>
+    <string name="sX_translate_message">Бұл қолданба %s. Оны аударғыңыз келе ме?</string>
+</resources>
