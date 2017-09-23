@@ -110,20 +110,7 @@ public class Stringx implements Translator {
     }
 
     Locale getAppDefaultLocale() {
-        Locale[] availableLocales = Locale.getAvailableLocales();
-        Locale defaultLocale = null;
-        Language defaultLanguage = getDefaultLanguage();
-        for (Locale locale : availableLocales) {
-            if (locale.getLanguage().equals(defaultLanguage.getCode())) {
-                defaultLocale = locale;
-                break;
-            }
-        }
-        return defaultLocale;
-    }
-
-    Locale getDeviceDefaultLocale() {
-        return Locale.getDefault();
+        return new Locale(options.getDefaultLanguage().getCode());
     }
 
     void fetch(ConfigCallback callback) throws RemoteException {

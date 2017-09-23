@@ -27,14 +27,19 @@ public final class ClientService extends Service {
                         callback.onStarted();
                         Stringx stringx = Stringx.get(getApplicationContext());
                         if (stringx != null) {
-                            Locale locale = stringx.getAppDefaultLocale();
                             List<Language> supportedLanguages = stringx.getSupportedLanguages();
-                            ArrayList<String> supportedLanguageCodes = new ArrayList<>();
+                            List<String> supportedLanguageCodes = new ArrayList<>();
                             for (Language language : supportedLanguages) {
                                 supportedLanguageCodes.add(language.getCode());
                             }
 
-                            callback.onBasicInfoReceived(getPackageName(), stringx.getOptions().getMode().name(), locale.getLanguage(), stringx.getDeviceDefaultLocale().getLanguage(), supportedLanguageCodes);
+                            Options options = stringx.getOptions();
+                            callback.onBasicInfoReceived(
+                                    getPackageName(),
+                                    options.getMode().name(),
+                                    options.getDefaultLanguage().getCode(),
+                                    stringx.getDeviceLanguage().getCode(),
+                                    supportedLanguageCodes);
                             stringx.fetch(callback);
                             callback.onFinished();
                             LL.d("Config sent");
