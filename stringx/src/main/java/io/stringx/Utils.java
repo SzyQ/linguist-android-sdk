@@ -19,19 +19,25 @@ import java.util.Locale;
 
 public class Utils {
 
-    static void getAppStrings(Context context, List<Pair<Integer, String>> resources, ConfigCallback callback) throws RemoteException {
+    static void getAppStrings(Stringx stringx, Context context, List<Pair<Integer, String>> resources, ConfigCallback callback) throws RemoteException {
         List<String> mainStrings = new ArrayList<>();
         List<String> mainStringNames = new ArrayList<>();
         List<Integer> mainStringIds = new ArrayList<>();
-        for (Pair<Integer, String> resource : resources) {
-            try {
-                String string = context.getResources().getString(resource.first);
-                mainStrings.add(string);
-                mainStringNames.add(resource.second);
-                mainStringIds.add(resource.first);
-                LL.v("R.id." + resource.second + " -> \"" + string+"\"");
-            } catch (Resources.NotFoundException ignore) {
-            }
+        Resources defaultResources;
+
+        Locale appDefaultLocale = stringx.getAppDefaultLocale();
+        if (Build.VERSION.SDK_INT >= 17) {
+            defaultResources = getLocalizedResources(context, appDefaultLocale);
+            fetchDefaultStrings(resources, mainStrings, mainStringNames, mainStringIds, defaultResources);
+        } else {
+            defaultResources = context.getResources();
+            Configuration conf = defaultResources.getConfiguration();
+            Locale savedLocale = conf.locale;
+            conf.locale = appDefaultLocale;
+            defaultResources.updateConfiguration(conf, null);
+            fetchDefaultStrings(resources, mainStrings, mainStringNames, mainStringIds, defaultResources);
+            conf.locale = savedLocale;
+            defaultResources.updateConfiguration(conf, null);
         }
         callback.onDefaultStringIdsReceived(toIntArray(mainStringIds));
         callback.onDefaultStringNamesReceived(mainStringNames);
@@ -56,6 +62,19 @@ public class Utils {
             }
             conf.locale = savedLocale;
             localisedResources.updateConfiguration(conf, null);
+        }
+    }
+
+    private static void fetchDefaultStrings(List<Pair<Integer, String>> resources, List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds, Resources defaultResources) {
+        for (Pair<Integer, String> resource : resources) {
+            try {
+                String string = defaultResources.getString(resource.first);
+                mainStrings.add(string);
+                mainStringNames.add(resource.second);
+                mainStringIds.add(resource.first);
+                LL.v("R.id." + resource.second + " -> \"" + string + "\"");
+            } catch (Resources.NotFoundException ignore) {
+            }
         }
     }
 

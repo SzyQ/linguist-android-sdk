@@ -128,7 +128,7 @@ public class Stringx implements Translator {
 
     void fetch(ConfigCallback callback) throws RemoteException {
         List<Pair<Integer, String>> supportedResources = getResourcesIds();
-        Utils.getAppStrings(context, supportedResources, callback);
+        Utils.getAppStrings(this, context, supportedResources, callback);
     }
 
     @NonNull
