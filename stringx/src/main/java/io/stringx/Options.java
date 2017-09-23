@@ -4,7 +4,6 @@ package io.stringx;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Options {
@@ -145,9 +144,20 @@ public class Options {
             options.setExcludedClasses(excludedStrings);
             options.setDefaultLanguage(defaultLanguage);
             if (supportedLanguages == null) {
-                supportedLanguages = new Language[0];
+                supportedLanguages = new Language[]{defaultLanguage};
             }
-            options.setSupportedLanguages(Arrays.asList(supportedLanguages));
+            ArrayList<Language> languages = new ArrayList<>();
+            boolean isDefaultLanguageAdded = false;
+            for (Language supportedLanguage : supportedLanguages) {
+                if (supportedLanguage == defaultLanguage) {
+                    isDefaultLanguageAdded = true;
+                }
+                languages.add(supportedLanguage);
+            }
+            if (!isDefaultLanguageAdded) {
+                languages.add(defaultLanguage);
+            }
+            options.setSupportedLanguages(languages);
             return options;
         }
 
