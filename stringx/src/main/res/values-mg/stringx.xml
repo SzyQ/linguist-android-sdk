@@ -7,7 +7,7 @@
     <string name="sX_dialog_message">Tsy havaozina raha tsy mametraka stringX app ianao.</string>
     <string name="sX_dialog_title">Hampiditra stringX</string>
     <string name="sX_never_translate">Tsy handika na oviana na oviana %s</string>
-    <string name="sX_preference_summary">Mandika ny dikanteny automatique amin&#39;ny appplication</string>
+    <string name="sX_preference_summary">Mandika ny dikanteny automatique amin\'ny appplication</string>
     <string name="sX_preference_title">Automatik translation</string>
-    <string name="sX_translate_message">Ity app ity dia amin&#39;ny %s. Tianao ve ny handika izany?</string>
+    <string name="sX_translate_message">Ity app ity dia amin\'ny %s. Tianao ve ny handika izany?</string>
 </resources>

@@ -5,7 +5,7 @@
     <string name="sX_app">Uygulama</string>
     <string name="sX_dialog_button">kurmak</string>
     <string name="sX_dialog_message">stringX uygulaması yüklemediğiniz sürece tercüme edilmez.</string>
-    <string name="sX_dialog_title">StringX&#39;i yükle</string>
+    <string name="sX_dialog_title">StringX\'i yükle</string>
     <string name="sX_never_translate">Asla çevirme %s</string>
     <string name="sX_preference_summary">Uygulamada otomatik çeviriyi açar</string>
     <string name="sX_preference_title">Çeviri</string>

@@ -7,7 +7,7 @@
     <string name="sX_dialog_message">non verrà tradotto a meno che non si installa applicazione stringX.</string>
     <string name="sX_dialog_title">Installa stringX</string>
     <string name="sX_never_translate">Mai tradurre %s</string>
-    <string name="sX_preference_summary">Attiva la traduzione automatica nell&#39;applicazione</string>
+    <string name="sX_preference_summary">Attiva la traduzione automatica nell\'applicazione</string>
     <string name="sX_preference_title">Traduzione automatica</string>
     <string name="sX_translate_message">Questa applicazione è in %s. Vorresti tradurlo?</string>
 </resources>

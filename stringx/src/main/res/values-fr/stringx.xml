@@ -4,10 +4,10 @@
 <resources>
     <string name="sX_app">Application</string>
     <string name="sX_dialog_button">Installer</string>
-    <string name="sX_dialog_message">ne sera pas traduit à moins d&#39;installer l&#39;application stringX.</string>
+    <string name="sX_dialog_message">ne sera pas traduit à moins d\'installer l\'application stringX.</string>
     <string name="sX_dialog_title">Installer stringX</string>
     <string name="sX_never_translate">Ne jamais traduire %s</string>
-    <string name="sX_preference_summary">Bascule la traduction automatique dans l&#39;application</string>
+    <string name="sX_preference_summary">Bascule la traduction automatique dans l\'application</string>
     <string name="sX_preference_title">Traduction automatique</string>
     <string name="sX_translate_message">Cette application est en %s. Aimerais-tu le traduire?</string>
 </resources>

@@ -9,5 +9,5 @@
     <string name="sX_never_translate">Peidiwch byth â chyfieithu %s</string>
     <string name="sX_preference_summary">Tynnwch gyfieithiad awtomatig yn y atodiad</string>
     <string name="sX_preference_title">Cyfieithu awtomatig</string>
-    <string name="sX_translate_message">Mae&#39;r app yma yn %s. Hoffech chi ei gyfieithu?</string>
+    <string name="sX_translate_message">Mae\'r app yma yn %s. Hoffech chi ei gyfieithu?</string>
 </resources>

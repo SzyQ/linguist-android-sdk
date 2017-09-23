@@ -3,11 +3,11 @@
 
 <resources>
     <string name="sX_app">Dastur</string>
-    <string name="sX_dialog_button">O&#39;rnatish</string>
-    <string name="sX_dialog_message">stringX ilovasini o&#39;rnatmaguningizcha, tarjima qilinmaydi.</string>
-    <string name="sX_dialog_title">StringX-ni o&#39;rnating</string>
+    <string name="sX_dialog_button">O\'rnatish</string>
+    <string name="sX_dialog_message">stringX ilovasini o\'rnatmaguningizcha, tarjima qilinmaydi.</string>
+    <string name="sX_dialog_title">StringX-ni o\'rnating</string>
     <string name="sX_never_translate">Hech qachon tarjima qilinmagan %s</string>
-    <string name="sX_preference_summary">Dasturga avtomatik tarjimani o&#39;zgartiradi</string>
+    <string name="sX_preference_summary">Dasturga avtomatik tarjimani o\'zgartiradi</string>
     <string name="sX_preference_title">Avtomatik tarjima</string>
     <string name="sX_translate_message">Ushbu ilova %s-da. Uni tarjima qilishni xohlaysizmi?</string>
 </resources>
