@@ -19,13 +19,13 @@ import java.util.Locale;
 
 public class Utils {
 
-    static void getAppStrings(Stringx stringx, Context context, List<Pair<Integer, String>> resources, ConfigCallback callback) throws RemoteException {
+    static void getAppStrings(StringX stringX, Context context, List<Pair<Integer, String>> resources, ConfigCallback callback) throws RemoteException {
         List<String> mainStrings = new ArrayList<>();
         List<String> mainStringNames = new ArrayList<>();
         List<Integer> mainStringIds = new ArrayList<>();
         Resources defaultResources;
 
-        Locale appDefaultLocale = stringx.getAppDefaultLocale();
+        Locale appDefaultLocale = stringX.getAppDefaultLocale();
         if (Build.VERSION.SDK_INT >= 17) {
             defaultResources = getLocalizedResources(context, appDefaultLocale);
             fetchDefaultStrings(resources, mainStrings, mainStringNames, mainStringIds, defaultResources);

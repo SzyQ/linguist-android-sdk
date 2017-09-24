@@ -26,11 +26,9 @@ class StringXActivityBase extends AppCompatActivity {
     private BroadcastReceiver receiver;
 
     protected void startStringXService() {
-        final Stringx stringx = Stringx.get(this);
-        Options options = stringx.getOptions();
-        Cache cache = options.getCache();
-        cache.setOptOut(false);
-        cache.setEnabled(stringx.getDeviceLanguage(), true);
+        final StringX stringX = StringX.get(this);
+        stringX.setEnabled(true);
+        stringX.setEnabled(stringX.getDeviceLanguage(), true);
         Intent intent = new Intent();
         intent.setComponent(new ComponentName(PACKAGE_NAME, STRINGX_ACTIVITY));
         intent.putExtra(KEY_PACKAGE, getPackageName());

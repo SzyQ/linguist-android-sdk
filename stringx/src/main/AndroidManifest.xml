@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.stringx.client">
+    package="io.stringX.client">
 
     <uses-permission android:name="io.stringX.DISCOVERY" />
 
     <application>
         <activity
-            android:name="io.stringx.StringxOverlayActivity"
+            android:name="io.stringX.StringxOverlayActivity"
             android:theme="@style/Transparent" />
         <activity
-            android:name="io.stringx.StringXProxyActivity"
+            android:name="io.stringX.StringXProxyActivity"
             android:theme="@style/Transparent" />
 
         <service
-            android:name="io.stringx.DiscoveryService"
+            android:name="io.stringX.DiscoveryService"
             android:exported="true"
             android:permission="io.stringX.DISCOVERY" />
 
         <service
-            android:name="io.stringx.ClientService"
+            android:name="io.stringX.ClientService"
             android:exported="true"
             android:permission="io.stringX.TRANSLATION" />
     </application>

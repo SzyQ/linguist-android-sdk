@@ -1,4 +1,4 @@
-package io.stringx;
+package io.stringX;
 
 import java.util.List;
 

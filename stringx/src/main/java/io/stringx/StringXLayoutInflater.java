@@ -6,7 +6,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-class StringxLayoutInflater extends LayoutInflater {
+class StringXLayoutInflater extends LayoutInflater {
 
     private static final String[] sClassPrefixList = {
             "android.widget.",
@@ -14,16 +14,16 @@ class StringxLayoutInflater extends LayoutInflater {
             "android.app."
     };
 
-    private Stringx viewTranslator;
+    private StringX viewTranslator;
 
-    public StringxLayoutInflater(LayoutInflater layoutInflater, Context context) {
+    public StringXLayoutInflater(LayoutInflater layoutInflater, Context context) {
         super(layoutInflater, context);
-        this.viewTranslator = Stringx.get(context);
+        this.viewTranslator = StringX.get(context);
     }
 
     @Override
     public LayoutInflater cloneInContext(Context newContext) {
-        return new StringxLayoutInflater(this, newContext);
+        return new StringXLayoutInflater(this, newContext);
     }
 
     @Override

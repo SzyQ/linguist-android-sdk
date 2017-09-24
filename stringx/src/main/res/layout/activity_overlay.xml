@@ -53,7 +53,7 @@
                 android:background="@drawable/button"
                 android:minHeight="0dp"
                 android:padding="@dimen/padding"
-                android:text="Translate"
+                android:text="@string/sX_translate"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="20sp" />

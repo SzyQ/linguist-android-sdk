@@ -7,20 +7,20 @@ import android.support.v4.view.LayoutInflaterCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 
-import io.stringx.Stringx;
-import io.stringx.StringxFactory;
+import io.stringx.StringX;
+import io.stringx.StringXFactory;
 
 public class LinguistAppCompatDelegate extends LinguistDelegateWrapper {
 
 
     private AppCompatDelegateImplV9 delegate;
     private Context context;
-    private Stringx stringx;
+    private StringX stringX;
     private LinguistAppCompatDelegate(AppCompatDelegate delegate, Context context) {
         super(delegate);
         this.delegate = (AppCompatDelegateImplV9) delegate;
         this.context = context;
-        this.stringx = Stringx.get(context);
+        this.stringX = StringX.get(context);
     }
 
     public static AppCompatDelegate wrap(Activity activity, AppCompatCallback callback) {
@@ -31,7 +31,7 @@ public class LinguistAppCompatDelegate extends LinguistDelegateWrapper {
     public void installViewFactory() {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         if (layoutInflater.getFactory() == null) {
-            LayoutInflaterCompat.setFactory2(layoutInflater, new StringxFactory(delegate, stringx));
+            LayoutInflaterCompat.setFactory2(layoutInflater, new StringXFactory(delegate, stringX));
         } else {
             if (!(layoutInflater.getFactory2()
                     instanceof AppCompatDelegateImplV9)) {

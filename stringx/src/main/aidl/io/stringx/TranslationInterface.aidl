@@ -1,7 +1,7 @@
-package io.stringx;
+package io.stringX;
 
 import java.util.Map;
-import io.stringx.ConfigCallback;
+import io.stringX.ConfigCallback;
 
 interface TranslationInterface {
 

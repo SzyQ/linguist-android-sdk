@@ -7,24 +7,24 @@ import android.support.annotation.MenuRes;
 import android.view.Menu;
 import android.view.MenuInflater;
 
-class StringxMenuInflater extends MenuInflater {
+class StringXMenuInflater extends MenuInflater {
 
-    private final Stringx stringx;
+    private final StringX stringX;
     private MenuInflater inflater;
 
-    private StringxMenuInflater(Context context, MenuInflater inflater) {
+    private StringXMenuInflater(Context context, MenuInflater inflater) {
         super(context);
         this.inflater = inflater;
-        stringx = Stringx.get(context);
+        stringX = StringX.get(context);
     }
 
     public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
-        return new StringxMenuInflater(activity, menuInflater);
+        return new StringXMenuInflater(activity, menuInflater);
     }
 
     @Override
     public void inflate(@MenuRes int menuRes, Menu menu) {
         inflater.inflate(menuRes, menu);
-        stringx.translate(menu);
+        stringX.translate(menu);
     }
 }

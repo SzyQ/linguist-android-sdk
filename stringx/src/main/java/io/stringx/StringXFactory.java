@@ -6,23 +6,23 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-public final class StringxFactory implements LayoutInflater.Factory2 {
+public final class StringXFactory implements LayoutInflater.Factory2 {
 
     private LayoutInflater.Factory2 factory;
-    private Stringx stringx;
+    private StringX stringX;
 
-    public StringxFactory(LayoutInflater.Factory2 factory, Stringx stringx) {
+    public StringXFactory(LayoutInflater.Factory2 factory, StringX stringX) {
         this.factory = factory;
-        this.stringx = stringx;
+        this.stringX = stringX;
     }
 
     @Override
     public View onCreateView(View parent, String name, Context context, AttributeSet attrs) {
-        return stringx.translate(factory.onCreateView(parent, name, context, attrs));
+        return stringX.translate(factory.onCreateView(parent, name, context, attrs));
     }
 
     @Override
     public View onCreateView(String s, Context context, AttributeSet attributeSet) {
-        return stringx.translate(factory.onCreateView(s, context, attributeSet));
+        return stringX.translate(factory.onCreateView(s, context, attributeSet));
     }
 }

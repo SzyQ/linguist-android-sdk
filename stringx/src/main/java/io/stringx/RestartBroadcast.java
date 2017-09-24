@@ -18,6 +18,8 @@ public class RestartBroadcast extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         activity.finish();
-        activity.startActivity(new Intent(activity, activity.getClass()));
+        Intent newIntent = new Intent(activity, activity.getClass());
+        newIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        activity.startActivity(newIntent);
     }
 }

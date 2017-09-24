@@ -3,6 +3,7 @@ package io.stringx;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.RemoteException;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
@@ -26,64 +27,79 @@ import io.stringx.translate.Translator;
 
 import static android.app.Activity.RESULT_OK;
 
-public class Stringx implements Translator {
+public class StringX implements Translator {
+    static final String PREFERENCE_NAME = "StringX";
+    static final String KEY_ENABLED = "KEY_ENABLED";
+    private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
+    private static SharedPreferences preferences;
     private Context context;
     private Options options;
     private boolean isTranslationChecked;
     private Translator translator;
 
-    public Stringx(Context context, Options options) {
+    public StringX(Context context, Options options) {
         this.context = context;
         this.options = options;
-        this.translator = new AndroidTranslator(options.getCache());
+        this.translator = new AndroidTranslator(this, options.getCache());
     }
 
     @Nullable
-    public static Stringx get(@NonNull Context context) {
-        Stringx stringx = null;
+    public static StringX get(@NonNull Context context) {
+        StringX stringX = null;
         if (isInitialised(context)) {
-            stringx = ((Translatable) context.getApplicationContext()).getStringx();
+            stringX = ((Translatable) context.getApplicationContext()).getStringX();
         }
-        if (stringx == null) {
-            LL.w("Application needs to extend Translatable interface and provide Stringx instance.");
+        if (stringX == null) {
+            LL.w("Application needs to extend Translatable interface and provide StringX instance.");
             return null;
         }
-        return stringx;
+        preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        return stringX;
     }
 
     public static Context wrap(Context base) {
-        return isInitialised(base) && !get(base).isOptOut() ? StringxContextWrapper.wrap(base) : base;
+        return isInitialised(base) && get(base).isEnabled() ? StringXContextWrapper.wrap(base) : base;
     }
 
     public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
-        return isInitialised(activity) && !get(activity).isOptOut() ? StringxMenuInflater.wrap(activity, menuInflater) : menuInflater;
+        return isInitialised(activity) && get(activity).isEnabled() ? StringXMenuInflater.wrap(activity, menuInflater) : menuInflater;
     }
 
     @Nullable
     public static AppCompatDelegate wrap(AppCompatActivity activity, AppCompatCallback callback) {
-        return isInitialised(activity) && !get(activity).isOptOut() ? LinguistAppCompatDelegate.wrap(activity, callback) : null;
+        return isInitialised(activity) && get(activity).isEnabled() ? LinguistAppCompatDelegate.wrap(activity, callback) : null;
     }
 
     private static boolean isInitialised(Context context) {
         Context applicationContext = context.getApplicationContext();
         return applicationContext instanceof Translatable &&
-                ((Translatable) applicationContext).getStringx() != null;
+                ((Translatable) applicationContext).getStringX() != null;
     }
 
-    public boolean isOptOut() {
-        return options.getCache().isOptOut();
+    public boolean isEnabled() {
+        return preferences.getBoolean(KEY_ENABLED, false);
     }
 
-    public void setOptOut(boolean isOptOut) {
-        options.getCache().setOptOut(isOptOut);
+
+    public void setEnabled(boolean isEnabled) {
+        preferences.edit()
+                .putBoolean(KEY_ENABLED, isEnabled)
+                .apply();
+    }
+
+    public boolean isEnabled(Language language) {
+        return preferences.getBoolean(KEY_LANGUAGE_ENABLED + language.getCode(), false);
+    }
+
+    public void setEnabled(Language language, boolean isEnabled) {
+        preferences
+                .edit()
+                .putBoolean(KEY_LANGUAGE_ENABLED + language.getCode(), isEnabled)
+                .apply();
     }
 
     public void refresh() {
         isTranslationChecked = false;
-    }
-
-    public Translator getTranslator() {
-        return translator;
     }
 
     public void setTranslator(Translator translator) {
@@ -95,10 +111,10 @@ public class Stringx implements Translator {
             return;
         }
         Language deviceLanguage = getDeviceLanguage();
-        if (options.getCache().isEnabled(deviceLanguage)) {
+        if (isEnabled(deviceLanguage)) {
             return;
         }
-        if (options.getCache().isOptOut()) {
+        if (isEnabled()) {
             return;
         }
         if (options.getSupportedLanguages().contains(deviceLanguage)) {

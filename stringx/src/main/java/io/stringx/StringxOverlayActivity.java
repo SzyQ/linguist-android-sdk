@@ -22,8 +22,8 @@ public final class StringxOverlayActivity extends StringXActivityBase {
 
     private void setupMessage() {
         TextView message = findViewById(R.id.message);
-        final Stringx stringx = Stringx.get(StringxOverlayActivity.this);
-        String defaultLanguage = stringx.getAppDefaultLocale().getDisplayLanguage();
+        final StringX stringX = StringX.get(StringxOverlayActivity.this);
+        String defaultLanguage = stringX.getAppDefaultLocale().getDisplayLanguage();
         message.setText(getString(R.string.sX_translate_message, defaultLanguage));
     }
 
@@ -40,13 +40,13 @@ public final class StringxOverlayActivity extends StringXActivityBase {
 
     private void setupNeverTranslateButton() {
         TextView neverTranslate = findViewById(R.id.never_translate);
-        final Stringx stringx = Stringx.get(StringxOverlayActivity.this);
-        String deviceLanguage = stringx.getAppDefaultLocale().getDisplayLanguage();
+        final StringX stringX = StringX.get(StringxOverlayActivity.this);
+        String deviceLanguage = stringX.getAppDefaultLocale().getDisplayLanguage();
         neverTranslate.setText(getString(R.string.sX_never_translate, deviceLanguage));
         neverTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                stringx.setOptOut(true);
+                stringX.setEnabled(false);
                 setResult(RESULT_OK);
                 finish();
             }

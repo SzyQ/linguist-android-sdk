@@ -9,7 +9,6 @@ import android.os.RemoteException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public final class ClientService extends Service {
@@ -25,22 +24,22 @@ public final class ClientService extends Service {
                     try {
                         LL.d("Retrieving config");
                         callback.onStarted();
-                        Stringx stringx = Stringx.get(getApplicationContext());
-                        if (stringx != null) {
-                            List<Language> supportedLanguages = stringx.getSupportedLanguages();
+                        StringX stringX = StringX.get(getApplicationContext());
+                        if (stringX != null) {
+                            List<Language> supportedLanguages = stringX.getSupportedLanguages();
                             List<String> supportedLanguageCodes = new ArrayList<>();
                             for (Language language : supportedLanguages) {
                                 supportedLanguageCodes.add(language.getCode());
                             }
 
-                            Options options = stringx.getOptions();
+                            Options options = stringX.getOptions();
                             callback.onBasicInfoReceived(
                                     getPackageName(),
                                     options.getMode().name(),
                                     options.getDefaultLanguage().getCode(),
-                                    stringx.getDeviceLanguage().getCode(),
+                                    stringX.getDeviceLanguage().getCode(),
                                     supportedLanguageCodes);
-                            stringx.fetch(callback);
+                            stringX.fetch(callback);
                             callback.onFinished();
                             LL.d("Config sent");
                         } else {
@@ -57,9 +56,9 @@ public final class ClientService extends Service {
         @Override
         public void onTranslationCompleted(Map translation) throws RemoteException {
             LL.d("Applying translation");
-            Stringx stringx = Stringx.get(getApplicationContext());
-            if (stringx != null) {
-                stringx.applyTranslation(translation);
+            StringX stringX = StringX.get(getApplicationContext());
+            if (stringX != null) {
+                stringX.applyTranslation(translation);
             }
         }
     };

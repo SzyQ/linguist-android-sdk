@@ -3,7 +3,7 @@ package io.stringx;
 import android.util.Log;
 
 public class LL {
-    public static final String TAG = "Stringx";
+    public static final String TAG = "StringX";
 
     public static void d(String string) {
         Log.d(TAG, string);
