@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
+import io.stringx.ConfigCallback;
 import io.stringx.translate.AndroidTranslator;
 import io.stringx.translate.Translator;
 

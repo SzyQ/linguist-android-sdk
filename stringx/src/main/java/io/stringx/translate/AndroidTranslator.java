@@ -15,21 +15,21 @@ import io.stringx.StringX;
 
 public class AndroidTranslator implements Translator {
 
-    private StringX cache;
-    private Cache cache2;
+    private StringX stringX;
+    private Cache cache;
 
-    public AndroidTranslator(StringX cache, Cache cache2) {
+    public AndroidTranslator(StringX stringX, Cache cache) {
+        this.stringX = stringX;
         this.cache = cache;
-        this.cache2 = cache2;
     }
 
     public String translate(String string) {
-        String cachedText = cache2.get(string);
+        String cachedText = cache.get(string);
         return cachedText == null ? string : cachedText;
     }
 
     public View translate(View view) {
-        if (cache.isEnabled()) {
+        if (!stringX.isEnabled()) {
             return view;
         }
         if (view != null) {
@@ -62,7 +62,7 @@ public class AndroidTranslator implements Translator {
     }
 
     public void translate(Menu menu) {
-        if (cache.isEnabled()) {
+        if (!stringX.isEnabled()) {
             return;
         }
         for (int i = 0; i < menu.size(); i++) {
@@ -77,14 +77,14 @@ public class AndroidTranslator implements Translator {
     }
 
     public CharSequence translate(CharSequence text) {
-        if (cache.isEnabled()) {
+        if (!stringX.isEnabled()) {
             return text;
         }
         return text != null ? new StringBuffer(translate(text.toString())) : null;
     }
 
     public CharSequence[] translate(CharSequence[] textArray) {
-        if (cache.isEnabled()) {
+        if (!stringX.isEnabled()) {
             return textArray;
         }
         CharSequence[] charSequences = new CharSequence[textArray.length];
@@ -95,7 +95,7 @@ public class AndroidTranslator implements Translator {
     }
 
     public String[] translate(String[] textArray) {
-        if (cache.isEnabled()) {
+        if (!stringX.isEnabled()) {
             return textArray;
         }
         String[] charSequences = new String[textArray.length];

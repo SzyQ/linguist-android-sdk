@@ -1,4 +1,4 @@
-package io.stringX;
+package io.stringx;
 
 import java.util.Map;
 import io.stringX.ConfigCallback;
