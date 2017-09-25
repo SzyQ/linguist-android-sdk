@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Options {
-    private Cache cache;
     private List<Class> stringClasses;
     private List<Class> excludedClasses;
     private List<Integer> excludedStringIds;
@@ -49,14 +48,6 @@ public class Options {
 
     private void setSupportedLanguages(List<Language> supportedLanguages) {
         this.supportedLanguages = supportedLanguages;
-    }
-
-    public Cache getCache() {
-        return cache;
-    }
-
-    private void setCache(Cache cache) {
-        this.cache = cache;
     }
 
     public Mode getMode() {
@@ -124,7 +115,7 @@ public class Options {
         public Options build() {
             Options options = new Options();
             if (cache == null) {
-                cache = new PreferencesCache(context);
+                cache = new PreferencesCache(context, StringX.getDeviceLanguage());
             }
             if (mode == null) {
                 mode = Mode.User;
@@ -139,7 +130,6 @@ public class Options {
 
             options.setExcludedStringIds(ids);
             options.setMode(mode);
-            options.setCache(cache);
             options.setStringClasses(supportedStrings);
             options.setExcludedClasses(excludedStrings);
             options.setDefaultLanguage(defaultLanguage);

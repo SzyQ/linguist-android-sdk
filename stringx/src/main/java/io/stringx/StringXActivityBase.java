@@ -60,6 +60,7 @@ class StringXActivityBase extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 setResult(RESULT_OK);
                 finish();
+                StringX.get(this).invalidate();
                 LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(RestartBroadcast.ACTION));
             }
         }

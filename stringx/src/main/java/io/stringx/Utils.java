@@ -25,7 +25,7 @@ public class Utils {
         List<Integer> mainStringIds = new ArrayList<>();
         Resources defaultResources;
 
-        Locale appDefaultLocale = stringX.getAppDefaultLocale();
+        Locale appDefaultLocale = stringX.getDefaultLocale();
         if (Build.VERSION.SDK_INT >= 17) {
             defaultResources = getLocalizedResources(context, appDefaultLocale);
             fetchDefaultStrings(resources, mainStrings, mainStringNames, mainStringIds, defaultResources);

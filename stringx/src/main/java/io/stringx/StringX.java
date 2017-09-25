@@ -22,26 +22,33 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import io.stringx.ConfigCallback;
 import io.stringx.translate.AndroidTranslator;
 import io.stringx.translate.Translator;
 
 import static android.app.Activity.RESULT_OK;
 
-public class StringX implements Translator {
+public class StringX implements Translator, StringXLanguageReceiver.OnLanguageChanged {
     static final String PREFERENCE_NAME = "StringX";
     static final String KEY_ENABLED = "KEY_ENABLED";
     private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
-    private static SharedPreferences preferences;
+    private final SharedPreferences preferences;
+    private final StringXLanguageReceiver languageReceiver;
+    private final Cache cache;
     private Context context;
     private Options options;
     private boolean isTranslationChecked;
     private Translator translator;
+    private Boolean isValidConfig;
 
     public StringX(Context context, Options options) {
         this.context = context;
         this.options = options;
-        this.translator = new AndroidTranslator(this, options.getCache());
+        languageReceiver = new StringXLanguageReceiver(context);
+        cache = new PreferencesCache(context, getDeviceLanguage());
+        translator = new AndroidTranslator(this, this.cache);
+        languageReceiver.addListener((StringXLanguageReceiver.OnLanguageChanged) cache);
+        languageReceiver.addListener(this);
+        preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
     }
 
     @Nullable
@@ -54,21 +61,20 @@ public class StringX implements Translator {
             LL.w("Application needs to extend Translatable interface and provide StringX instance.");
             return null;
         }
-        preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         return stringX;
     }
 
     public static Context wrap(Context base) {
-        return isInitialised(base) && get(base).isEnabled() ? StringXContextWrapper.wrap(base) : base;
+        return isTranslationAllowed(base) ? StringXContextWrapper.wrap(base) : base;
     }
 
     public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
-        return isInitialised(activity) && get(activity).isEnabled() ? StringXMenuInflater.wrap(activity, menuInflater) : menuInflater;
+        return isTranslationAllowed(activity) ? StringXMenuInflater.wrap(activity, menuInflater) : menuInflater;
     }
 
     @Nullable
     public static AppCompatDelegate wrap(AppCompatActivity activity, AppCompatCallback callback) {
-        return isInitialised(activity) && get(activity).isEnabled() ? LinguistAppCompatDelegate.wrap(activity, callback) : null;
+        return isTranslationAllowed(activity) ? LinguistAppCompatDelegate.wrap(activity, callback) : null;
     }
 
     private static boolean isInitialised(Context context) {
@@ -77,10 +83,24 @@ public class StringX implements Translator {
                 ((Translatable) applicationContext).getStringX() != null;
     }
 
+    private static boolean isTranslationAllowed(Context context) {
+        return isInitialised(context) && get(context).isValidConfig();
+    }
+
+    public static Language getDeviceLanguage() {
+        return Language.fromLocale(Locale.getDefault());
+    }
+
+    public boolean isValidConfig() {
+        if (isValidConfig == null) {
+            isValidConfig = isEnabled() && isEnabled(getDeviceLanguage());
+        }
+        return isValidConfig;
+    }
+
     public boolean isEnabled() {
         return preferences.getBoolean(KEY_ENABLED, false);
     }
-
 
     public void setEnabled(boolean isEnabled) {
         preferences.edit()
@@ -126,7 +146,7 @@ public class StringX implements Translator {
         activity.startActivityForResult(intent, StringxOverlayActivity.REQUEST_CODE);
     }
 
-    Locale getAppDefaultLocale() {
+    Locale getDefaultLocale() {
         return new Locale(options.getDefaultLanguage().getCode());
     }
 
@@ -154,12 +174,8 @@ public class StringX implements Translator {
     void applyTranslation(Map<String, String> translation) {
         for (String text : translation.keySet()) {
             String translated = translation.get(text);
-            options.getCache().put(text, translated);
+            cache.put(text, translated);
         }
-    }
-
-    public Language getDeviceLanguage() {
-        return Language.fromLocale(Locale.getDefault());
     }
 
     private Language getDefaultLanguage() {
@@ -216,5 +232,14 @@ public class StringX implements Translator {
     @Override
     public String[] translate(String[] textArray) {
         return translator.translate(textArray);
+    }
+
+    @Override
+    public void onLanguageChanged(Language language) {
+        invalidate();
+    }
+
+    public void invalidate() {
+        isValidConfig = null;
     }
 }

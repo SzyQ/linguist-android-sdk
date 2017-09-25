@@ -11,7 +11,9 @@ import android.widget.TextView;
 
 import io.stringx.Cache;
 import io.stringx.LL;
+import io.stringx.Language;
 import io.stringx.StringX;
+import io.stringx.StringXLanguageReceiver;
 
 public class AndroidTranslator implements Translator {
 
@@ -29,7 +31,7 @@ public class AndroidTranslator implements Translator {
     }
 
     public View translate(View view) {
-        if (!stringX.isEnabled()) {
+        if (!stringX.isValidConfig()) {
             return view;
         }
         if (view != null) {
@@ -62,7 +64,7 @@ public class AndroidTranslator implements Translator {
     }
 
     public void translate(Menu menu) {
-        if (!stringX.isEnabled()) {
+        if (!stringX.isValidConfig()) {
             return;
         }
         for (int i = 0; i < menu.size(); i++) {
@@ -77,14 +79,14 @@ public class AndroidTranslator implements Translator {
     }
 
     public CharSequence translate(CharSequence text) {
-        if (!stringX.isEnabled()) {
+        if (!stringX.isValidConfig()) {
             return text;
         }
         return text != null ? new StringBuffer(translate(text.toString())) : null;
     }
 
     public CharSequence[] translate(CharSequence[] textArray) {
-        if (!stringX.isEnabled()) {
+        if (!stringX.isValidConfig()) {
             return textArray;
         }
         CharSequence[] charSequences = new CharSequence[textArray.length];
@@ -95,7 +97,7 @@ public class AndroidTranslator implements Translator {
     }
 
     public String[] translate(String[] textArray) {
-        if (!stringX.isEnabled()) {
+        if (!stringX.isValidConfig()) {
             return textArray;
         }
         String[] charSequences = new String[textArray.length];
@@ -104,4 +106,5 @@ public class AndroidTranslator implements Translator {
         }
         return charSequences;
     }
+
 }
