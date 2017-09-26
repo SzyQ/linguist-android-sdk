@@ -4,8 +4,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.RemoteException;
 import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
@@ -13,6 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.app.LinguistAppCompatDelegate;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -39,6 +43,8 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     private boolean isTranslationChecked;
     private Translator translator;
     private Boolean isValidConfig;
+    @Nullable
+    private Locale locale;
 
     public StringX(Context context, Options options) {
         this.context = context;
@@ -65,7 +71,23 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     }
 
     public static Context wrap(Context base) {
-        return isTranslationAllowed(base) ? StringXContextWrapper.wrap(base) : base;
+        StringX stringX = StringX.get(base);
+        if (stringX == null) {
+            return base;
+        }
+        if (stringX.isForcingLocale()) {
+            Locale mockedLocale = stringX.locale;
+            Resources res = base.getResources();
+            DisplayMetrics displayMetrics = res.getDisplayMetrics();
+            Locale.setDefault(mockedLocale);
+            Configuration config = new Configuration(res.getConfiguration());
+            config.locale = mockedLocale;
+            res.updateConfiguration(config, displayMetrics);
+            return base;
+        } else if (stringX.isValidConfig()) {
+            return StringXContextWrapper.wrap(base);
+        }
+        return base;
     }
 
     public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
@@ -89,6 +111,14 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     public static Language getDeviceLanguage() {
         return Language.fromLocale(Locale.getDefault());
+    }
+
+    public void forceLocale(@Nullable Locale locale) {
+        this.locale = locale;
+    }
+
+    private boolean isForcingLocale() {
+        return locale != null;
     }
 
     public boolean isValidConfig() {
