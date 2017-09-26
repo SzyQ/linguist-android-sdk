@@ -1,7 +1,6 @@
 package io.stringx.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -66,17 +65,5 @@ public class StringXActivity extends AppCompatActivity {
     @Override
     public MenuInflater getMenuInflater() {
         return StringX.wrap(this, super.getMenuInflater());
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        StringX stringX = StringX.get(this);
-        if (stringX != null && stringX.onActivityResult(requestCode, resultCode, data)) {
-//            finish();
-//            startActivity(getIntent());
-        } else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-
     }
 }

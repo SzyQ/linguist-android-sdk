@@ -28,6 +28,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
                 if (stringX != null) {
                     Boolean isOptedIn = (Boolean) o;
                     setValue(isOptedIn);
+                    stringX.invalidate();
                     stringX.setEnabled(isOptedIn);
                     if (isOptedIn) {
                         StringXProxyActivity.start(getContext());
