@@ -75,6 +75,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         if (stringX == null) {
             return base;
         }
+        //FIXME that wraps only app context, not activity!
         if (stringX.isForcingLocale()) {
             Locale mockedLocale = stringX.locale;
             Resources res = base.getResources();
