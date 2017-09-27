@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="sX_translate_message">This app is in %s. Would you like to translate it?</string>
+    <string name="sX_translate_message">This app is in: %s. Would you like to translate it?</string>
     <string name="sX_never_translate">Never translate %s</string>
     <string name="sX_app">Application</string>
     <string name="sX_dialog_title">Install %s</string>

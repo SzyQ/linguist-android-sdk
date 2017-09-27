@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">ဘာသာပြန်</string>
     <string name="sX_app">လြှောကျလှာ</string>
     <string name="sX_dialog_button">Install</string>
-    <string name="sX_never_translate">%s ဘာသာပြန်ဆိုဘယ်တော့မှမ</string>
-    <string name="sX_dialog_message">သငျသညျ %s app ကို install မဟုတ်လျှင်ဘာသာပြန်ထားသောမည်မဟုတ်ပါ။</string>
-    <string name="sX_dialog_title">%s Install</string>
+    <string name="sX_dialog_message">သငျသညျ%s app ကို install မဟုတ်လျှင်ဘာသာပြန်ထားသောမည်မဟုတ်ပါ။</string>
+    <string name="sX_dialog_title">Install %s</string>
+    <string name="sX_never_translate">ဘာသာပြန်ဆိုဘယ်တော့မှမ%s</string>
     <string name="sX_preference_summary">လျှောက်လွှာအတွက် Toggle အလိုအလျောက်ဘာသာပြန်ချက်</string>
     <string name="sX_preference_title">အလိုအလျောက်ဘာသာပြန်</string>
-    <string name="sX_translate_message">ဒီ app %s ၌တည်ရှိ၏။ သင်ကဘာသာပြန်ဆိုဖို့လိုပါသလား</string>
+    <string name="sX_translate">ဘာသာပြန်</string>
+    <string name="sX_translate_message">ဒီ app %s၌တည်ရှိ၏။ သင်ကဘာသာပြန်ဆိုဖို့လိုပါသလား</string>
 </resources>

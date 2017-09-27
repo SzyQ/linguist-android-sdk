@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">ಭಾಷಾಂತರಿಸಲು</string>
     <string name="sX_app">ಅಪ್ಲಿಕೇಶನ್</string>
     <string name="sX_dialog_button">ಸ್ಥಾಪಿಸಿ</string>
-    <string name="sX_never_translate">ಎಂದಿಗೂ ಭಾಷಾಂತರಿಸಬೇಡಿ %s</string>
-    <string name="sX_dialog_message">ನೀವು ಸ್ಥಾಪಿಸದ ಹೊರತು ಭಾಷಾಂತರಗೊಳ್ಳುವುದಿಲ್ಲ %s ಅಪ್ಲಿಕೇಶನ್.</string>
+    <string name="sX_dialog_message">ನೀವು %s ಅಪ್ಲಿಕೇಶನ್ ಅನ್ನು ಸ್ಥಾಪಿಸದ ಹೊರತು ಅನುವಾದಿಸುವುದಿಲ್ಲ.</string>
     <string name="sX_dialog_title">ಸ್ಥಾಪಿಸಿ %s</string>
+    <string name="sX_never_translate">ಎಂದಿಗೂ ಭಾಷಾಂತರಿಸಬೇಡಿ %s</string>
     <string name="sX_preference_summary">ಅಪ್ಲಿಕೇಶನ್ನಲ್ಲಿ ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದವನ್ನು ಟಾಗಲ್ ಮಾಡುತ್ತದೆ</string>
     <string name="sX_preference_title">ಸ್ವಯಂಚಾಲಿತ ಅನುವಾದ</string>
+    <string name="sX_translate">ಭಾಷಾಂತರಿಸಲು</string>
     <string name="sX_translate_message">ಈ ಅಪ್ಲಿಕೇಶನ್ %s ನಲ್ಲಿದೆ. ಅದನ್ನು ಭಾಷಾಂತರಿಸಲು ನೀವು ಬಯಸುವಿರಾ?</string>
 </resources>

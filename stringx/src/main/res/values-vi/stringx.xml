@@ -2,7 +2,6 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Dịch</string>
     <string name="sX_app">Ứng dụng</string>
     <string name="sX_dialog_button">cài đặt, dựng lên</string>
     <string name="sX_dialog_message">sẽ không được dịch trừ khi bạn cài đặt ứng dụng %s.</string>
@@ -10,5 +9,6 @@
     <string name="sX_never_translate">Không bao giờ dịch %s</string>
     <string name="sX_preference_summary">Chuyển đổi bản dịch tự động trong ứng dụng</string>
     <string name="sX_preference_title">Dịch tự động</string>
-    <string name="sX_translate_message">Ứng dụng này nằm ở %s. Bạn có muốn dịch nó?</string>
+    <string name="sX_translate">Dịch</string>
+    <string name="sX_translate_message">Ứng dụng này nằm trong %s. Bạn có muốn dịch nó?</string>
 </resources>

@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Μεταφράζω</string>
     <string name="sX_app">Εφαρμογή</string>
     <string name="sX_dialog_button">Εγκαθιστώ</string>
-    <string name="sX_never_translate">Ποτέ μην μεταφράζετε %s</string>
-    <string name="sX_dialog_message">δεν θα μεταφραστεί αν δεν εγκαταστήσετε την εφαρμογή %s.</string>
+    <string name="sX_dialog_message">δεν θα μεταφραστεί αν δεν εγκαταστήσετε την εφαρμογή.</string>
     <string name="sX_dialog_title">Εγκατάσταση %s</string>
+    <string name="sX_never_translate">Ποτέ μην μεταφράζετε %s</string>
     <string name="sX_preference_summary">Εναλλαγή της αυτόματης μετάφρασης στην εφαρμογή</string>
     <string name="sX_preference_title">Αυτόματη μετάφραση</string>
-    <string name="sX_translate_message">Αυτή η εφαρμογή βρίσκεται στη διεύθυνση %s. Θα ήθελες να το μεταφράσεις?</string>
+    <string name="sX_translate">Μεταφράζω</string>
+    <string name="sX_translate_message">Αυτή η εφαρμογή βρίσκεται σε %s. Θα ήθελες να το μεταφράσεις?</string>
 </resources>

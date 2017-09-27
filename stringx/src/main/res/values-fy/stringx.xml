@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Oersette</string>
     <string name="sX_app">Oanfraach</string>
     <string name="sX_dialog_button">Ynstallearje</string>
-    <string name="sX_never_translate">Nea oersette %s</string>
-    <string name="sX_dialog_message">sil net oersette wurde as jo ynstekke %s app.</string>
+    <string name="sX_dialog_message">sil net oerset wurde as jo de %s app ynstallearje.</string>
     <string name="sX_dialog_title">Ynstallearje %s</string>
+    <string name="sX_never_translate">Nije oersetting %s</string>
     <string name="sX_preference_summary">Ferfang automatyske oersetting yn 'e applikaasje</string>
     <string name="sX_preference_title">Automatyske oersetting</string>
+    <string name="sX_translate">Oersette</string>
     <string name="sX_translate_message">Dizze app is yn %s. Wolle jo it oersetten?</string>
 </resources>

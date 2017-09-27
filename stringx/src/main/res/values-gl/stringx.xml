@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Traducir</string>
     <string name="sX_app">Solicitude</string>
     <string name="sX_dialog_button">Instalar</string>
-    <string name="sX_never_translate">Non traducir nunca %s</string>
-    <string name="sX_dialog_message">Non se traducirá a menos que instale a aplicación %s.</string>
+    <string name="sX_dialog_message">non se traducirá a menos que instale %s app.</string>
     <string name="sX_dialog_title">Instala %s</string>
+    <string name="sX_never_translate">Nunca traducir %s</string>
     <string name="sX_preference_summary">Activa a tradución automática na aplicación</string>
     <string name="sX_preference_title">Tradución automática</string>
+    <string name="sX_translate">Traducir</string>
     <string name="sX_translate_message">Esta aplicación está en %s. Queres traducir?</string>
 </resources>

@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Kääntää</string>
     <string name="sX_app">hakemus</string>
     <string name="sX_dialog_button">Asentaa</string>
-    <string name="sX_never_translate">Älä koskaan käännä %s</string>
-    <string name="sX_dialog_message">ei käännetä ellet asenna %s app.</string>
+    <string name="sX_dialog_message">ei käännetä, ellei asenneta %s app.</string>
     <string name="sX_dialog_title">Asentaa %s</string>
+    <string name="sX_never_translate">Älä koskaan käänny %s</string>
     <string name="sX_preference_summary">Vaihtaa automaattisen käännöksen sovelluksessa</string>
     <string name="sX_preference_title">Automaattinen käännös</string>
+    <string name="sX_translate">Kääntää</string>
     <string name="sX_translate_message">Tämä sovellus on %s. Haluatko kääntää sen?</string>
 </resources>

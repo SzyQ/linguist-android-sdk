@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">भाषांतर करा</string>
     <string name="sX_app">अनुप्रयोग</string>
     <string name="sX_dialog_button">स्थापित करा</string>
-    <string name="sX_never_translate">कधीही अनुवाद करु नका %s</string>
-    <string name="sX_dialog_message">आपण %s अनुप्रयोग स्थापित करेपर्यंत भाषांतरित केले जाणार नाही</string>
-    <string name="sX_dialog_title">स्थापित करा %s</string>
+    <string name="sX_dialog_message">आपण %s अॅप स्थापित करेपर्यंत अनुवादित केले जाणार नाही</string>
+    <string name="sX_dialog_title">%s स्थापित करा</string>
+    <string name="sX_never_translate">कधीही अनुवाद करू नका</string>
     <string name="sX_preference_summary">अनुप्रयोगामध्ये स्वयंचलित अनुवाद टॉगल करते</string>
     <string name="sX_preference_title">स्वयंचलित अनुवाद</string>
-    <string name="sX_translate_message">हा अॅप %s मधून आहे. आपण याचे भाषांतर करू इच्छिता?</string>
+    <string name="sX_translate">भाषांतर करा</string>
+    <string name="sX_translate_message">हा अॅप %s मध्ये आहे. आपण याचे भाषांतर करू इच्छिता?</string>
 </resources>

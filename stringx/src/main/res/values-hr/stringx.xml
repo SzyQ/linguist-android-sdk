@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Prevoditi</string>
     <string name="sX_app">primjena</string>
     <string name="sX_dialog_button">Instaliranje</string>
-    <string name="sX_never_translate">Nikad ne prevedi %s</string>
-    <string name="sX_dialog_message">neće se prevoditi ako ne instalirate %s app.</string>
+    <string name="sX_dialog_message">neće se prevoditi ako ne instalirate aplikaciju %s.</string>
     <string name="sX_dialog_title">Instaliranje %s</string>
+    <string name="sX_never_translate">Nikad ne prevedi %s</string>
     <string name="sX_preference_summary">Uključuje automatsko prevođenje u aplikaciji</string>
     <string name="sX_preference_title">Automatski prijevod</string>
-    <string name="sX_translate_message">Aplikacija je u %s. Želite li prevesti?</string>
+    <string name="sX_translate">Prevoditi</string>
+    <string name="sX_translate_message">Ova je aplikacija u %s. Želite li prevesti?</string>
 </resources>

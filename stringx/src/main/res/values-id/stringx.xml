@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Menterjemahkan</string>
     <string name="sX_app">Aplikasi</string>
     <string name="sX_dialog_button">Memasang</string>
-    <string name="sX_never_translate">Jangan pernah menerjemahkan %s</string>
-    <string name="sX_dialog_message">tidak akan diterjemahkan kecuali Anda menginstal aplikasi %s.</string>
+    <string name="sX_dialog_message">tidak akan diterjemahkan kecuali Anda menginstal aplikasi.</string>
     <string name="sX_dialog_title">Pasang %s</string>
+    <string name="sX_never_translate">Tidak pernah terjemahkan %s</string>
     <string name="sX_preference_summary">Toggles otomatis terjemahan dalam aplikasi</string>
     <string name="sX_preference_title">Terjemahan otomatis</string>
+    <string name="sX_translate">Menterjemahkan</string>
     <string name="sX_translate_message">Aplikasi ini ada di %s. Apakah Anda ingin menerjemahkannya?</string>
 </resources>

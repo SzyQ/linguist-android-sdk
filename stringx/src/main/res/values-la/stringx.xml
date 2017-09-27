@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">transferendum</string>
     <string name="sX_app">application</string>
     <string name="sX_dialog_button">install</string>
-    <string name="sX_never_translate">Numquam interpretari %s</string>
     <string name="sX_dialog_message">nec interpretari nisi install %s app.</string>
-    <string name="sX_dialog_title">%s install</string>
+    <string name="sX_dialog_title">install %s</string>
+    <string name="sX_never_translate">Numquam interpretari %s</string>
     <string name="sX_preference_summary">Toggles automatic translatione per applicationem</string>
     <string name="sX_preference_title">automatica</string>
+    <string name="sX_translate">transferendum</string>
     <string name="sX_translate_message">Hoc app est %s. Sic ut interpretari velis?</string>
 </resources>

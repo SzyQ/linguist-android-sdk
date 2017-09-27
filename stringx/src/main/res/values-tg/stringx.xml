@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Тарҷума</string>
     <string name="sX_app">Ариза</string>
     <string name="sX_dialog_button">Зеркашӣ кунед</string>
-    <string name="sX_dialog_message">агар шумо насб карда бошед, тарҷума намешавад.</string>
-    <string name="sX_dialog_title">Ҷойгир кардан ********</string>
-    <string name="sX_never_translate">Ҳеҷ гоҳ тарҷума нашавад</string>
+    <string name="sX_dialog_message">агар шумо намоиши барномаи %s насб накунед, тарҷума намешавад.</string>
+    <string name="sX_dialog_title">Насбкунӣ %s</string>
+    <string name="sX_never_translate">Ҳеҷ гоҳ тарҷума %s</string>
     <string name="sX_preference_summary">Тиҷорати автоматӣ дар ариза</string>
     <string name="sX_preference_title">Тарҷумаи автоматӣ</string>
-    <string name="sX_translate_message">Ин барнома дар сайти ******** Оё мехоҳед, ки онро тарҷума кунед?</string>
+    <string name="sX_translate">Тарҷума</string>
+    <string name="sX_translate_message">Ин барнома дар %s аст. Оё мехоҳед, ки онро тарҷума кунед?</string>
 </resources>

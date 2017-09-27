@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">איבערזעצן</string>
     <string name="sX_app">אַפּפּליקאַטיאָן</string>
     <string name="sX_dialog_button">ינסטאַלירן</string>
-    <string name="sX_dialog_message">וועט נישט זיין איבערגעזעצט סייַדן איר ינסטאַלירן %s אַפּ.</string>
+    <string name="sX_dialog_message">וועט נישט זיין איבערגעזעצט אויב איר ינסטאַלירן %s אַפּ.</string>
     <string name="sX_dialog_title">ינסטאַלירן %s</string>
     <string name="sX_never_translate">קיינמאָל איבערזעצן %s</string>
     <string name="sX_preference_summary">טאָגגלעס אָטאַמאַטיק איבערזעצונג אין די אַפּלאַקיישאַן</string>
     <string name="sX_preference_title">אָטאַמאַטיק איבערזעצונג</string>
+    <string name="sX_translate">איבערזעצן</string>
     <string name="sX_translate_message">דעם אַפּ איז אין %s. וואָלט איר ווי צו איבערזעצן עס?</string>
 </resources>

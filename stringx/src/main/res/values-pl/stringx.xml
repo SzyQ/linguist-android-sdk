@@ -10,5 +10,5 @@
     <string name="sX_dialog_title">Zainstaluj %s</string>
     <string name="sX_preference_summary">Przełącza automatyczne tłumaczenie w aplikacji</string>
     <string name="sX_preference_title">Automatyczne tłumaczenie</string>
-    <string name="sX_translate_message">Ta aplikacja jest w %s. Czy chciałbyś ją przetłumaczyć?</string>
+    <string name="sX_translate_message">Język tej aplikacji to: %s. Czy chciałbyś ją przetłumaczyć?</string>
 </resources>

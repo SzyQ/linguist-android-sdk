@@ -2,13 +2,13 @@
 <!--Generated using www.stringx.io-->
 
 <resources>
-    <string name="sX_translate">Traduceți</string>
     <string name="sX_app">cerere</string>
     <string name="sX_dialog_button">Instalare</string>
-    <string name="sX_never_translate">Nu traduceți niciodată %s</string>
-    <string name="sX_dialog_message">nu va fi tradus decât dacă instalați aplicația %s.</string>
+    <string name="sX_dialog_message">nu va fi tradus decât dacă instalați aplicația.</string>
     <string name="sX_dialog_title">Instalare %s</string>
+    <string name="sX_never_translate">Nu traduceți niciodată %s</string>
     <string name="sX_preference_summary">Comută traducerea automată în aplicație</string>
     <string name="sX_preference_title">Traducere automată</string>
+    <string name="sX_translate">Traduceți</string>
     <string name="sX_translate_message">Această aplicație este în %s. Ți-ar plăcea să traduci?</string>
 </resources>
