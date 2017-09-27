@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">которуу</string>
     <string name="sX_app">арыз</string>
     <string name="sX_dialog_button">орнотуу</string>
-    <string name="sX_dialog_message">Сиз stringX колдонмону орнотуу каралбаса которулган жок.</string>
-    <string name="sX_dialog_title">орнотуу stringX</string>
     <string name="sX_never_translate">которуу качан %s</string>
-    <string name="sX_preference_summary">appplication менен автоматтык котормо күйгүзөт</string>
+    <string name="sX_dialog_message">Сиз %s колдонмону орнотуу каралбаса которулган жок.</string>
+    <string name="sX_dialog_title">орнотуу %s</string>
+    <string name="sX_preference_summary">өтүнмөдө автоматтык котормосун күйгүзөт</string>
     <string name="sX_preference_title">автоматтык котормо</string>
     <string name="sX_translate_message">Бул колдонмо %s турат. Аны которууга келеби?</string>
 </resources>

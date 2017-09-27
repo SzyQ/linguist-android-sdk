@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Translate</string>
     <string name="sX_app">Aplikasi</string>
     <string name="sX_dialog_button">Masang</string>
-    <string name="sX_dialog_message">ora bakal diterjemahake yen sampeyan nginstal senan app.</string>
-    <string name="sX_dialog_title">Instal stringX</string>
     <string name="sX_never_translate">Aja gunakake %s</string>
+    <string name="sX_dialog_message">ora bakal diterjemahake yen sampeyan nginstal app %s.</string>
+    <string name="sX_dialog_title">Masang %s</string>
     <string name="sX_preference_summary">Gulung otomatis terjemahan ing aplikasi</string>
     <string name="sX_preference_title">Terjemahan otomatis</string>
     <string name="sX_translate_message">App iki ing %s. Apa sampeyan pengin nerjemahake?</string>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Ukuguqulela</string>
     <string name="sX_app">Isicelo</string>
     <string name="sX_dialog_button">Faka</string>
-    <string name="sX_dialog_message">ayiyi kuguqulwa ngaphandle kokuba ufake i-stringX app.</string>
-    <string name="sX_dialog_title">Faka ifowuniX</string>
+    <string name="sX_dialog_message">ayiyi kuguqulwa ngaphandle kokuba ufake ifowuni %s.</string>
+    <string name="sX_dialog_title">Faka %s</string>
     <string name="sX_never_translate">Ungaze uguqule %s</string>
-    <string name="sX_preference_summary">Iguqulela inguqulelo ngokuzenzekelayo kwi-application</string>
+    <string name="sX_preference_summary">Ukuguqula ukuguqulela ngokuzenzekelayo kwisicelo</string>
     <string name="sX_preference_title">Ukuguqulela ngokuzenzekelayo</string>
     <string name="sX_translate_message">Le app in %s. Ungathanda ukuyiguqulela?</string>
 </resources>

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">ترجمہ کریں</string>
     <string name="sX_app">درخواست</string>
     <string name="sX_dialog_button">انسٹال کریں</string>
-    <string name="sX_dialog_message">جب تک آپ stringX اپلی کیشن انسٹال نہیں کرتے، ترجمہ نہیں کیا جائے گا.</string>
-    <string name="sX_dialog_title">stringX انسٹال کریں</string>
+    <string name="sX_dialog_message">جب تک آپ %s ایپ انسٹال نہیں کرتے تو ترجمہ نہیں کیا جائے گا.</string>
+    <string name="sX_dialog_title">%s انسٹال کریں</string>
     <string name="sX_never_translate">کبھی نہیں %s ترجمہ کریں</string>
-    <string name="sX_preference_summary">ضمنی طور پر خود کار طریقے سے ترجمہ ٹوگل</string>
+    <string name="sX_preference_summary">ایپلی کیشن میں خود کار طریقے سے ترجمہ ٹگل کرتا ہے</string>
     <string name="sX_preference_title">خودکار ترجمہ</string>
     <string name="sX_translate_message">یہ ایپ %s میں ہے. کیا آپ اس کا ترجمہ کرنا چاہیں گے؟</string>
 </resources>

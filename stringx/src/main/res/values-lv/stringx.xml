@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Tulkot</string>
     <string name="sX_app">Pieteikums</string>
     <string name="sX_dialog_button">Uzstādīt</string>
-    <string name="sX_dialog_message">nebūs tulkots, ja neesat instalējis stringX lietotni.</string>
-    <string name="sX_dialog_title">Instalējiet virkniX</string>
     <string name="sX_never_translate">Nekad tulkot %s</string>
+    <string name="sX_dialog_message">nebūs tulkots, ja vien jūs instalēsiet %s app.</string>
+    <string name="sX_dialog_title">Uzstādīt %s</string>
     <string name="sX_preference_summary">Pārslēdz automātisko tulkošanu lietojumprogrammā</string>
     <string name="sX_preference_title">Automātiska tulkošana</string>
     <string name="sX_translate_message">Šī lietotne ir %s. Vai vēlaties to tulkot?</string>

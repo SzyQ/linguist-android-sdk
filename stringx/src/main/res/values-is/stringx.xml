@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Þýða</string>
     <string name="sX_app">Umsókn</string>
     <string name="sX_dialog_button">Setja upp</string>
-    <string name="sX_dialog_message">mun ekki þýða nema þú setjir stringX app.</string>
-    <string name="sX_dialog_title">Setja upp strengX</string>
     <string name="sX_never_translate">Aldrei þýða %s</string>
-    <string name="sX_preference_summary">Breytir sjálfvirkri þýðingu í umsókninni</string>
+    <string name="sX_dialog_message">mun ekki þýða nema þú setur upp %s app.</string>
+    <string name="sX_dialog_title">Setja upp %s</string>
+    <string name="sX_preference_summary">Breytir sjálfvirkri þýðingu í forritinu</string>
     <string name="sX_preference_title">Sjálfvirk þýðing</string>
     <string name="sX_translate_message">Þessi app er í %s. Viltu þýða það?</string>
 </resources>

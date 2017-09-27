@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Traduir</string>
     <string name="sX_app">Aplicació</string>
     <string name="sX_dialog_button">Instal·lar</string>
-    <string name="sX_dialog_message">no es traduirà a menys que instal·leu l\'aplicació stringX.</string>
-    <string name="sX_dialog_title">Instal·leu stringX</string>
     <string name="sX_never_translate">Mai traduïu %s</string>
-    <string name="sX_preference_summary">Canvia la traducció automàtica a l\'aplicació</string>
+    <string name="sX_dialog_message">no es traduirà a menys que instal·leu l'aplicació %s.</string>
+    <string name="sX_dialog_title">Instal·lar %s</string>
+    <string name="sX_preference_summary">Canvia la traducció automàtica a l'aplicació</string>
     <string name="sX_preference_title">Traducció automàtica</string>
     <string name="sX_translate_message">Aquesta aplicació es troba a %s. Voleu traduir-lo?</string>
 </resources>

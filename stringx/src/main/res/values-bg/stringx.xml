@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">превеждам</string>
     <string name="sX_app">Приложение</string>
     <string name="sX_dialog_button">инсталирам</string>
-    <string name="sX_dialog_message">няма да бъде преведена, освен ако не инсталирате приложението stringX.</string>
-    <string name="sX_dialog_title">Инсталирайте stringX</string>
     <string name="sX_never_translate">Никога не превеждайте %s</string>
+    <string name="sX_dialog_message">няма да бъде преведена, освен ако не инсталирате %s приложение.</string>
+    <string name="sX_dialog_title">Инсталиране на %s</string>
     <string name="sX_preference_summary">Превключва автоматичния превод в приложението</string>
     <string name="sX_preference_title">Автоматичен превод</string>
     <string name="sX_translate_message">Това приложение е в %s. Искате ли да го преведете?</string>

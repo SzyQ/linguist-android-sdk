@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">បកប្រែ</string>
     <string name="sX_app">កម្មវិធី</string>
     <string name="sX_dialog_button">ដំឡើង</string>
-    <string name="sX_dialog_message">នឹងមិនត្រូវបានបកប្រែទេលុះត្រាតែអ្នកដំឡើងកម្មវិធី stringX ។</string>
-    <string name="sX_dialog_title">ដំឡើង stringX</string>
     <string name="sX_never_translate">កុំបកប្រែ %s</string>
+    <string name="sX_dialog_message">នឹងមិនត្រូវបានបកប្រែទេលុះត្រាតែអ្នកដំឡើង %s កម្មវិធី។</string>
+    <string name="sX_dialog_title">ដំឡើង %s</string>
     <string name="sX_preference_summary">បិទបើកការបកប្រែដោយស្វ័យប្រវត្តិនៅក្នុងកម្មវិធី</string>
     <string name="sX_preference_title">បកប្រែដោយស្វ័យប្រវត្តិ</string>
     <string name="sX_translate_message">កម្មវិធីនេះគឺនៅក្នុង %s ។ តើអ្នកចង់បកប្រែវាទេ?</string>

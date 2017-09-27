@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Unuhi</string>
     <string name="sX_app">Ka hoʻohana</string>
     <string name="sX_dialog_button">E hoʻouka</string>
-    <string name="sX_dialog_message">ʻAʻole ia e unuhiʻia keʻoleʻoe e kau ana i ka aho stringX.</string>
-    <string name="sX_dialog_title">E hoʻonoho i stringX</string>
     <string name="sX_never_translate">ʻAʻole e hoʻololi i ka inoa %s</string>
-    <string name="sX_preference_summary">Hoʻouka i ka unuhi maʻamau i ka noi</string>
+    <string name="sX_dialog_message">ʻAʻole ia e unuhiʻia keʻoleʻoe e hoʻokau i ka helu %s.</string>
+    <string name="sX_dialog_title">Hoʻohui %s</string>
+    <string name="sX_preference_summary">E hoʻouka i ka unuhi maʻamau i loko o ka noi</string>
     <string name="sX_preference_title">ʻO ka unuhi maʻamau</string>
     <string name="sX_translate_message">Aia kēia polokalamu ma %s. Makemakeʻoe e unuhi i ia?</string>
 </resources>

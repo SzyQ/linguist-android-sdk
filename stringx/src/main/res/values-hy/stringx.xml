@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Թարգմանություն</string>
     <string name="sX_app">Դիմում</string>
     <string name="sX_dialog_button">Տեղադրեք</string>
-    <string name="sX_dialog_message">չի թարգմանվի, եթե չեք տեղադրել stringX հավելված:</string>
-    <string name="sX_dialog_title">Տեղադրեք stringX</string>
     <string name="sX_never_translate">Երբեք թարգմանել %s</string>
-    <string name="sX_preference_summary">Փոխում է ավտոմատ թարգմանությունը թարգմանության մեջ</string>
+    <string name="sX_dialog_message">չի թարգմանվի, եթե դուք չեք տեղադրել %s ծրագիրը:</string>
+    <string name="sX_dialog_title">Տեղադրեք %s</string>
+    <string name="sX_preference_summary">Դիմումում ավտոմատ կերպով թարգմանում է</string>
     <string name="sX_preference_title">Ավտոմատ թարգմանությունը</string>
     <string name="sX_translate_message">Այս ծրագիրը գտնվում է %s- ում: Ցանկանում եք թարգմանել այն:</string>
 </resources>

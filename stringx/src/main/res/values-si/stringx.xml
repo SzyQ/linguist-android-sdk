@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">පරිවර්තනය කරන්න</string>
     <string name="sX_app">අයදුම්පත</string>
     <string name="sX_dialog_button">ස්ථාපනය කරන්න</string>
-    <string name="sX_dialog_message">ඔබට stringX යෙදුම ස්ථාපනය නොකරන්නේ නම් එය පරිවර්තනය නොකෙරේ.</string>
-    <string name="sX_dialog_title">StringX ස්ථාපනය කරන්න</string>
     <string name="sX_never_translate">පරිවර්ථනය කරන්න %s</string>
-    <string name="sX_preference_summary">අයදුම්පත්රයේ ස්වයංක්රිය පරිවර්තනය පරිවර්තනය කරයි</string>
+    <string name="sX_dialog_message">ඔබ ස්ථාපනය කරන ලද %s යෙදුම නොසලකා හැරෙනු ඇත.</string>
+    <string name="sX_dialog_title">%s ස්ථාපනය කරන්න</string>
+    <string name="sX_preference_summary">යෙදුමේ ස්වයංක්රිය භාෂාවට පරිවර්තනය කිරීම</string>
     <string name="sX_preference_title">ස්වයංක්රීය පරිවර්තනය</string>
     <string name="sX_translate_message">මෙම යෙදුම %s හි ඇත. ඔබ එය පරිවර්තනය කිරීමට කැමතිද?</string>
 </resources>

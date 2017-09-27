@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">अनुवाद गर्नुहोस्</string>
     <string name="sX_app">अनुप्रयोग</string>
     <string name="sX_dialog_button">स्थापना गर्नुहोस्</string>
-    <string name="sX_dialog_message">अनुवाद नभएसम्म stringX अनुप्रयोग स्थापना नगरे सम्म।</string>
-    <string name="sX_dialog_title">StringX स्थापना गर्नुहोस्</string>
     <string name="sX_never_translate">अनुवाद नगर्नुहोस् %s</string>
-    <string name="sX_preference_summary">अनुप्रयोगमा स्वचालित अनुवाद टगल गर्छ</string>
+    <string name="sX_dialog_message">तपाईले %s अनुप्रयोग स्थापना नगरेसम्म अनुवाद हुने छैन।</string>
+    <string name="sX_dialog_title">%s स्थापना गर्नुहोस्</string>
+    <string name="sX_preference_summary">अनुप्रयोगमा स्वचालित अनुवाद टगल गर्दछ</string>
     <string name="sX_preference_title">स्वचालित अनुवाद</string>
     <string name="sX_translate_message">यो एप %s मा छ। के तपाइँ यसलाई अनुवाद गर्न चाहानुहुन्छ?</string>
 </resources>

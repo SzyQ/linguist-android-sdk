@@ -122,21 +122,27 @@ public enum Language {
 
     public static Language fromCode(String code) throws IllegalArgumentException {
         for (Language languages : values()) {
-            if (code.startsWith(languages.getCode())) {
+            if (code.equals(languages.getCode())) {
                 return languages;
             }
         }
-        throw new IllegalArgumentException("Unsupported language: "+code);
+        throw new IllegalArgumentException("Unsupported language: " + code);
     }
 
     public static Language fromLocale(Locale locale) {
         String language = locale.getLanguage();
         String country = locale.getCountry();
-        String code = language;
-        if(!TextUtils.isEmpty(country)){
-            code += "-"+country;
+        if (language.equals("zh") && !TextUtils.isEmpty(country)) {
+            switch (country) {
+                case "TW":
+                    return Chinese_Traditional;
+                case "CN":
+                    return Chinese_Simplified;
+                default:
+                    throw new IllegalArgumentException("Unsupported language");
+            }
         }
-        return fromCode(code);
+        return fromCode(language);
     }
 
     public String getCode() {

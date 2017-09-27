@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">ژباړه</string>
     <string name="sX_app">کاریال</string>
     <string name="sX_dialog_button">لګول</string>
-    <string name="sX_dialog_message">تاسو به ژباړه نشئ تر هغه چې تاسو د stringX ایپ لګول نه وي.</string>
-    <string name="sX_dialog_title">stringX لګول</string>
     <string name="sX_never_translate">هیڅکله ژباړه %s</string>
-    <string name="sX_preference_summary">په ضمیمه کې اتوماتیک ژباړې ټګوي</string>
+    <string name="sX_dialog_message">تاسو به ژباړه نشئ تر هغه چې تاسو %s ایپ نصب کړئ.</string>
+    <string name="sX_dialog_title">%s لګول</string>
+    <string name="sX_preference_summary">په کاریال کې اتوماتیک ژباړې ټګوي</string>
     <string name="sX_preference_title">اتوماتیک ژباړه</string>
     <string name="sX_translate_message">دا ایپ په %s کې دی. ایا تاسو غواړئ چې ژباړئ؟</string>
 </resources>

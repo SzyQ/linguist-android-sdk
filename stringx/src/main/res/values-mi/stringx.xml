@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Whakamāori</string>
     <string name="sX_app">Whakamahinga</string>
     <string name="sX_dialog_button">Tāuta</string>
-    <string name="sX_dialog_message">ka kore e nekehia ki te kore e whakauruhia e koe te taupānga stringX.</string>
-    <string name="sX_dialog_title">Tāutahia te ahoX</string>
     <string name="sX_never_translate">Kaua rawa e whakawhiti %s</string>
-    <string name="sX_preference_summary">Ka hurihia te whakamaori aunoa i roto i te tono</string>
+    <string name="sX_dialog_message">e kore e nekehia ki te kore e whakauru koe i te taupānga %s.</string>
+    <string name="sX_dialog_title">Tāutahia %s</string>
+    <string name="sX_preference_summary">Ka tohua te whakamaori aunoa i roto i te tono</string>
     <string name="sX_preference_title">Whakawhiti aunoa</string>
     <string name="sX_translate_message">Kei roto tenei taupānga i %s. E hiahia ana koe ki te whakawhiti i te reira?</string>
 </resources>

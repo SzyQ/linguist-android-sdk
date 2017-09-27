@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Ṣe itumọ</string>
     <string name="sX_app">Ohun elo</string>
     <string name="sX_dialog_button">Fi sori ẹrọ</string>
-    <string name="sX_dialog_message">kii ṣe itumọ ayafi ti o ba fi sori ẹrọ app stringX.</string>
-    <string name="sX_dialog_title">Fi stringX sori ẹrọ</string>
+    <string name="sX_dialog_message">kii ṣe itumọ ayafi ti o ba fi sori ẹrọ %s app.</string>
+    <string name="sX_dialog_title">Fi sori ẹrọ %s</string>
     <string name="sX_never_translate">Maṣe ṣe itumọ %s</string>
-    <string name="sX_preference_summary">Lati ṣe atunṣe translation laifọwọyi ni apẹrẹ</string>
+    <string name="sX_preference_summary">Yọọ atunṣe laifọwọyi ni ohun elo</string>
     <string name="sX_preference_title">Itọsọna laifọwọyi</string>
     <string name="sX_translate_message">Ifilọlẹ yii jẹ ni %s. Ṣe o fẹ lati ṣe itumọ rẹ?</string>
 </resources>

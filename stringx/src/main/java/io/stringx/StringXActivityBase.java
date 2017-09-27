@@ -42,8 +42,8 @@ class StringXActivityBase extends AppCompatActivity {
                 label = getString(R.string.sX_app);
             }
             new AlertDialog.Builder(this)
-                    .setTitle(R.string.sX_dialog_title)
-                    .setMessage(label + " " + getString(R.string.sX_dialog_message))
+                    .setTitle(getString(R.string.sX_dialog_title,"StringX"))
+                    .setMessage(label + " " + getString(R.string.sX_dialog_message,"StringX"))
                     .setPositiveButton(R.string.sX_dialog_button, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {

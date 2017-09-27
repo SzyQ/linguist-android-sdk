@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Translate</string>
     <string name="sX_app">Aplikasyon</string>
     <string name="sX_dialog_button">Enstale</string>
-    <string name="sX_dialog_message">pa pral tradui sof si ou enstale stringX app.</string>
-    <string name="sX_dialog_title">Enstale stringX</string>
     <string name="sX_never_translate">Pa janm tradui %s</string>
+    <string name="sX_dialog_message">pa pral tradui sof si ou enstale %s app.</string>
+    <string name="sX_dialog_title">Enstale %s</string>
     <string name="sX_preference_summary">Kovèti otomatik tradiksyon nan aplikasyon an</string>
     <string name="sX_preference_title">Otomatik tradiksyon</string>
     <string name="sX_translate_message">App sa a se nan %s. Èske ou ta renmen tradwi li?</string>

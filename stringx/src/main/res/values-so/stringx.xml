@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Turjum</string>
     <string name="sX_app">Codsiga</string>
     <string name="sX_dialog_button">Ku rakib</string>
-    <string name="sX_dialog_message">laguma turjumi doono ilaa aad adigu rakibto app.</string>
-    <string name="sX_dialog_title">Ku rakib xayeysiis</string>
     <string name="sX_never_translate">Marna ha u turjunin</string>
-    <string name="sX_preference_summary">Tijaabinta tarjumadda toos ah ee codsiyada</string>
+    <string name="sX_dialog_message">laguma turjumayo haddii aadan rakibin adigu.</string>
+    <string name="sX_dialog_title">Ku dheji *****</string>
+    <string name="sX_preference_summary">Goobta turjubaanka ah ee tooska ah ayaa lagu dalbadaa</string>
     <string name="sX_preference_title">Tarjumaad gawaarida</string>
     <string name="sX_translate_message">App Tani waa ee ******* Ma jeclaan lahayd inaad turjumto?</string>
 </resources>

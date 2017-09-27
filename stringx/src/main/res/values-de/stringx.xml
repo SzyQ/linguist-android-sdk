@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Übersetzen</string>
     <string name="sX_app">Anwendung</string>
     <string name="sX_dialog_button">Installieren</string>
-    <string name="sX_dialog_message">wird nicht übersetzt, es sei denn, Sie installieren stringX app.</string>
-    <string name="sX_dialog_title">Installiere stringX</string>
     <string name="sX_never_translate">Nie übersetzen %s</string>
-    <string name="sX_preference_summary">Schaltet die automatische Übersetzung in der Appplication um</string>
+    <string name="sX_dialog_message">wird nicht übersetzt werden, es sei denn, Sie installieren %s app.</string>
+    <string name="sX_dialog_title">Installieren %s</string>
+    <string name="sX_preference_summary">Schaltet die automatische Übersetzung in die Anwendung um</string>
     <string name="sX_preference_title">Automatische Übersetzung</string>
     <string name="sX_translate_message">Diese App ist in %s. Möchtest du es übersetzen?</string>
 </resources>

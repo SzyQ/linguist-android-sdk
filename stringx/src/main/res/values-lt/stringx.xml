@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">Versti</string>
     <string name="sX_app">Paraiška</string>
     <string name="sX_dialog_button">Diegti</string>
-    <string name="sX_dialog_message">nebus išverstas, nebent įdiegsite stringX programą.</string>
-    <string name="sX_dialog_title">Įdiekite stringX</string>
     <string name="sX_never_translate">Niekada išversti %s</string>
-    <string name="sX_preference_summary">Perjungia automatinį vertimą į aplikaciją</string>
+    <string name="sX_dialog_message">nebus išverstas, nebent įdiegsite %s app.</string>
+    <string name="sX_dialog_title">Diegti %s</string>
+    <string name="sX_preference_summary">Įjungia automatinį vertimą programoje</string>
     <string name="sX_preference_title">Automatinis vertimas</string>
     <string name="sX_translate_message">Ši programa yra %s. Ar norėtumėte jį išversti?</string>
 </resources>

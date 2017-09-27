@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">თარგმნა</string>
     <string name="sX_app">განაცხადი</string>
     <string name="sX_dialog_button">დაინსტალირება</string>
-    <string name="sX_dialog_message">არ იქნება თარგმნილი stringX app- ის ინსტალაციის გარეშე.</string>
-    <string name="sX_dialog_title">დააინსტალირეთ stringX</string>
     <string name="sX_never_translate">არასოდეს თარგმნა %s</string>
-    <string name="sX_preference_summary">აპლიკაციაში ავტომატური თარგმანის შესაცვლელად</string>
+    <string name="sX_dialog_message">არ იქნება თარგმნილი, თუ არ დააჭერთ %s აპლიკაციას.</string>
+    <string name="sX_dialog_title">დაინსტალირება %s</string>
+    <string name="sX_preference_summary">აპლიკაციაში ავტომატური თარგმანის გადართვა</string>
     <string name="sX_preference_title">ავტომატური თარგმანი</string>
     <string name="sX_translate_message">ეს აპლიკაცია არის %s. გსურთ მისი თარგმნა?</string>
 </resources>

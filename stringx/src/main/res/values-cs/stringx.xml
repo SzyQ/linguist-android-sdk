@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Generated using www.stringX.io-->
+<!--Generated using www.stringx.io-->
 
 <resources>
+    <string name="sX_translate">přeložit</string>
     <string name="sX_app">aplikace</string>
     <string name="sX_dialog_button">Nainstalujte</string>
-    <string name="sX_dialog_message">nebudou přeloženy, dokud nenainstalujete aplikaci stringX.</string>
-    <string name="sX_dialog_title">Nainstalujte řetězecX</string>
     <string name="sX_never_translate">Nikdy překládat %s</string>
+    <string name="sX_dialog_message">nebudou přeloženy, dokud neinstalujete aplikaci %s.</string>
+    <string name="sX_dialog_title">Nainstalujte %s</string>
     <string name="sX_preference_summary">Přepne automatický překlad do aplikace</string>
     <string name="sX_preference_title">Automatický překlad</string>
     <string name="sX_translate_message">Tato aplikace je v %s. Chtěl bys to přeložit?</string>
