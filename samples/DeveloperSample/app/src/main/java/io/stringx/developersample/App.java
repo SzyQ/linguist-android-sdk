@@ -4,12 +4,12 @@ import android.app.Application;
 
 import io.stringx.Language;
 import io.stringx.Options;
-import io.stringx.Stringx;
+import io.stringx.StringX;
 import io.stringx.Translatable;
 
 public class App extends Application implements Translatable {
 
-    private Stringx linguist;
+    private StringX linguist;
 
     @Override
     public void onCreate() {
@@ -21,11 +21,11 @@ public class App extends Application implements Translatable {
                 .excludeStrings(android.support.v4.R.string.class)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
-        linguist = new Stringx(this, options);
+        linguist = new StringX(this, options);
     }
 
     @Override
-    public Stringx getStringx() {
+    public StringX getStringX() {
         return linguist;
     }
 }
