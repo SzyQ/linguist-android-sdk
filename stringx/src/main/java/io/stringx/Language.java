@@ -1,5 +1,7 @@
 package io.stringx;
 
+import android.text.TextUtils;
+
 import java.util.Locale;
 
 /**
@@ -120,15 +122,21 @@ public enum Language {
 
     public static Language fromCode(String code) throws IllegalArgumentException {
         for (Language languages : values()) {
-            if (languages.getCode().equalsIgnoreCase(code)) {
+            if (code.startsWith(languages.getCode())) {
                 return languages;
             }
         }
-        throw new IllegalArgumentException("Unsupported language");
+        throw new IllegalArgumentException("Unsupported language: "+code);
     }
 
     public static Language fromLocale(Locale locale) {
-        return fromCode(locale.getLanguage());
+        String language = locale.getLanguage();
+        String country = locale.getCountry();
+        String code = language;
+        if(!TextUtils.isEmpty(country)){
+            code += "-"+country;
+        }
+        return fromCode(code);
     }
 
     public String getCode() {

@@ -3,6 +3,7 @@ package io.stringx;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.Preference;
+import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 

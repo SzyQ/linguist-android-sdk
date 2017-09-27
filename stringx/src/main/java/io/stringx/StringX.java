@@ -1,6 +1,7 @@
 package io.stringx;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +9,6 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.RemoteException;
 import android.preference.Preference;
-import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.util.Pair;
@@ -36,8 +36,8 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     static final String KEY_ENABLED = "KEY_ENABLED";
     private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
     private final SharedPreferences preferences;
-    private final StringXLanguageReceiver languageReceiver;
     private final Cache cache;
+    private Locale defaultLocale;
     private Context context;
     private Options options;
     private boolean isTranslationChecked;
@@ -46,15 +46,16 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     @Nullable
     private Locale locale;
 
-    public StringX(Context context, Options options) {
-        this.context = context;
+    public StringX(Application application, Options options) {
+        this.context = application.getApplicationContext();
         this.options = options;
-        languageReceiver = new StringXLanguageReceiver(context);
+        StringXLanguageReceiver languageReceiver = new StringXLanguageReceiver(context);
         cache = new PreferencesCache(context, getDeviceLanguage());
         translator = new AndroidTranslator(this, this.cache);
         languageReceiver.addListener((StringXLanguageReceiver.OnLanguageChanged) cache);
         languageReceiver.addListener(this);
         preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        defaultLocale = Locale.getDefault();
     }
 
     @Nullable
@@ -71,24 +72,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     }
 
     public static Context wrap(Context base) {
-        StringX stringX = StringX.get(base);
-        if (stringX == null) {
-            return base;
-        }
-        //FIXME that wraps only app context, not activity!
-        if (stringX.isForcingLocale()) {
-            Locale mockedLocale = stringX.locale;
-            Resources res = base.getResources();
-            DisplayMetrics displayMetrics = res.getDisplayMetrics();
-            Locale.setDefault(mockedLocale);
-            Configuration config = new Configuration(res.getConfiguration());
-            config.locale = mockedLocale;
-            res.updateConfiguration(config, displayMetrics);
-            return base;
-        } else if (stringX.isValidConfig()) {
-            return StringXContextWrapper.wrap(base);
-        }
-        return base;
+        return isTranslationAllowed(base) ? StringXContextWrapper.wrap(base) : base;
     }
 
     public static MenuInflater wrap(Activity activity, MenuInflater menuInflater) {
@@ -107,19 +91,29 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     }
 
     private static boolean isTranslationAllowed(Context context) {
-        return isInitialised(context) && get(context).isValidConfig();
+        StringX stringX = get(context);
+        return stringX != null && stringX.isValidConfig() && !stringX.isForcingLocale();
     }
 
     public static Language getDeviceLanguage() {
         return Language.fromLocale(Locale.getDefault());
     }
 
-    public void forceLocale(@Nullable Locale locale) {
+    public void forceLocale(Application application, @Nullable Locale locale) {
+        Resources res = application.getApplicationContext().getResources();
+        DisplayMetrics displayMetrics = res.getDisplayMetrics();
+        if(locale == null){
+            locale = defaultLocale;
+        }
+        Locale.setDefault(locale);
+        Configuration config = new Configuration(res.getConfiguration());
+        config.locale = locale;
+        res.updateConfiguration(config, displayMetrics);
         this.locale = locale;
     }
 
     private boolean isForcingLocale() {
-        return locale != null;
+        return locale != null && !locale.equals(defaultLocale);
     }
 
     public boolean isValidConfig() {
@@ -232,41 +226,63 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public String translate(String string) {
+        if(!isValidConfig() || isForcingLocale()){
+            return string;
+        }
         return translator.translate(string);
     }
 
     @Override
     public View translate(View view) {
+        if(!isValidConfig() || isForcingLocale()){
+            return view;
+        }
         return translator.translate(view);
     }
 
     @Override
     public Preference translate(Preference preference) {
+        if(!isValidConfig() || isForcingLocale()){
+            return preference;
+        }
         return translator.translate(preference);
     }
 
     @Override
     public void translate(Menu menu) {
+        if(!isValidConfig() || isForcingLocale()){
+            return;
+        }
         translator.translate(menu);
     }
 
     @Override
     public CharSequence translate(CharSequence text) {
+        if(!isValidConfig() || isForcingLocale()){
+            return text;
+        }
         return translator.translate(text);
     }
 
     @Override
     public CharSequence[] translate(CharSequence[] textArray) {
+        if(!isValidConfig() || isForcingLocale()){
+            return textArray;
+        }
         return translator.translate(textArray);
     }
 
     @Override
     public String[] translate(String[] textArray) {
+        if(!isValidConfig() || isForcingLocale()){
+            return textArray;
+        }
         return translator.translate(textArray);
     }
 
     @Override
     public void onLanguageChanged(Language language) {
+        defaultLocale = new Locale(language.getCode());
         invalidate();
     }
 
