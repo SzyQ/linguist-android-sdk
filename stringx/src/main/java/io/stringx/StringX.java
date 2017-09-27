@@ -289,4 +289,8 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     public void invalidate() {
         isValidConfig = null;
     }
+
+    public Language getDefaultDeviceLanguage() {
+        return Language.fromLocale(defaultLocale);
+    }
 }

@@ -45,6 +45,9 @@ public class Utils {
 
         if (Build.VERSION.SDK_INT >= 17) {
             for (Language language : Language.values()) {
+                if(stringX.getOptions().getMode() == Options.Mode.User && stringX.getDefaultDeviceLanguage() != language){
+                    continue;
+                }
                 Locale sideLocale = new Locale(language.getCode());
                 Resources localizedResources = getLocalizedResources(context, sideLocale);
                 int[] strings = getStrings(resources, mainStrings, localizedResources);
@@ -55,6 +58,9 @@ public class Utils {
             Configuration conf = localisedResources.getConfiguration();
             Locale savedLocale = conf.locale;
             for (Language language : Language.values()) {
+                if(stringX.getOptions().getMode() == Options.Mode.User && stringX.getDefaultDeviceLanguage() != language){
+                    continue;
+                }
                 conf.locale = new Locale(language.getCode());
                 localisedResources.updateConfiguration(conf, null);
                 int[] strings = getStrings(resources, mainStrings, localisedResources);
