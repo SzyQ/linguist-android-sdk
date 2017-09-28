@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Aikace-aikacen</string>
     <string name="sX_dialog_button">Shigar</string>
-    <string name="sX_dialog_message">ba za a fassara ba sai dai idan ka shigar da %s app.</string>
+    <string name="sX_dialog_message">ba za a juya shi ba sai dai idan ka shigar da aikace-aikacen %s.</string>
     <string name="sX_dialog_title">Shigar %s</string>
     <string name="sX_never_translate">Kada a fassara %s</string>
     <string name="sX_preference_summary">Tana fassarar fassarar atomatik a cikin aikace-aikacen</string>
     <string name="sX_preference_title">Fassarar atomatik</string>
     <string name="sX_translate">Fassara</string>
-    <string name="sX_translate_message">Wannan app yana cikin %s. Kuna so ku fassara shi?</string>
+    <string name="sX_translate_message">Wannan app yana cikin: %s. Kuna son fassara shi?</string>
 </resources>

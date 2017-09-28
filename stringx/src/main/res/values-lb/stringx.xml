@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Applikatioun</string>
     <string name="sX_dialog_button">Installéieren</string>
-    <string name="sX_dialog_message">Dir musst net iwwersat sinn, ausser Dir install %s App.</string>
-    <string name="sX_dialog_title">Install %s</string>
-    <string name="sX_never_translate">Nach nie iwwersetze %s</string>
+    <string name="sX_dialog_message">Dir musst net iwwersat sinn, ausser Dir wärt %s App installéieren.</string>
+    <string name="sX_dialog_title">Installéieren %s</string>
+    <string name="sX_never_translate">Ni Iwwersetzung %s</string>
     <string name="sX_preference_summary">Eng automatësch Iwwersetzung vun der Applikatioun</string>
     <string name="sX_preference_title">Automatesch Iwwersetzung</string>
     <string name="sX_translate">Iwwersetzung</string>
-    <string name="sX_translate_message">Dës Säit ass a %s. Wëllt Dir iwwersetze wëllt?</string>
+    <string name="sX_translate_message">Dës App ass op: %s. Wëllt Dir iwwersetze wëllt?</string>
 </resources>

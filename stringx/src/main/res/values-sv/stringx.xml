@@ -10,5 +10,5 @@
     <string name="sX_preference_summary">Växlar automatisk översättning i applikationen</string>
     <string name="sX_preference_title">Automatisk översättning</string>
     <string name="sX_translate">Översätt</string>
-    <string name="sX_translate_message">Den här appen finns i %s. Skulle du vilja översätta det?</string>
+    <string name="sX_translate_message">Den här appen finns på: %s. Vill du översätta den?</string>
 </resources>

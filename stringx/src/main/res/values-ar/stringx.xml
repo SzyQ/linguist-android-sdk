@@ -5,10 +5,10 @@
     <string name="sX_app">الوضعية</string>
     <string name="sX_dialog_button">التثبت</string>
     <string name="sX_dialog_message">لن تترجم إلا إذا قمت بتثبيت %s التطبيق.</string>
-    <string name="sX_dialog_title">التثبت %s</string>
-    <string name="sX_never_translate">أبدا ترجمة %s</string>
+    <string name="sX_dialog_title">قم بتثبيت %s</string>
+    <string name="sX_never_translate">لا تترجم %s مطلقا</string>
     <string name="sX_preference_summary">تبديل الترجمة الآلية في التطبيق</string>
     <string name="sX_preference_title">الترجمة الآلية</string>
     <string name="sX_translate">ترجمه</string>
-    <string name="sX_translate_message">هذا التطبيق هو في %s. هل ترغب في ترجمته؟</string>
+    <string name="sX_translate_message">هذا التطبيق هو في: %s. هل ترغب في ترجمته؟</string>
 </resources>

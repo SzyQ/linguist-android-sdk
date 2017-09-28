@@ -5,10 +5,10 @@
     <string name="sX_app">Toepassing</string>
     <string name="sX_dialog_button">Installeren</string>
     <string name="sX_dialog_message">Wordt niet vertaald, tenzij u %s app installeert.</string>
-    <string name="sX_dialog_title">Install %s</string>
+    <string name="sX_dialog_title">Installeer %s</string>
     <string name="sX_never_translate">Vertaal nooit %s</string>
     <string name="sX_preference_summary">Schakelt automatische vertaling in de toepassing in</string>
     <string name="sX_preference_title">Automatische vertaling</string>
     <string name="sX_translate">Vertalen</string>
-    <string name="sX_translate_message">Deze app is in %s. Zou je het willen vertalen?</string>
+    <string name="sX_translate_message">Deze app is in: %s. Wilt u het vertalen?</string>
 </resources>

@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Застосування</string>
     <string name="sX_dialog_button">Встановити</string>
-    <string name="sX_dialog_message">не буде перекладено, якщо ви не встановите програму.</string>
-    <string name="sX_dialog_title">Встановити %s</string>
-    <string name="sX_never_translate">Ніколи не перекладати %s</string>
+    <string name="sX_dialog_message">не буде перекладено, якщо ви не встановите програму %s.</string>
+    <string name="sX_dialog_title">Встановіть %s</string>
+    <string name="sX_never_translate">Ніколи не перекладіть %s</string>
     <string name="sX_preference_summary">Вмикає автоматичний переклад у програмі</string>
     <string name="sX_preference_title">Автоматичний переклад</string>
     <string name="sX_translate">Перекласти</string>
-    <string name="sX_translate_message">Це додаток в %s. Ви хотіли б перекласти його?</string>
+    <string name="sX_translate_message">Це додаток в: %s. Ви хотіли б перекласти його?</string>
 </resources>

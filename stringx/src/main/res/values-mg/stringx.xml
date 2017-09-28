@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Application</string>
     <string name="sX_dialog_button">hametraka</string>
-    <string name="sX_dialog_message">Tsy ho adika raha tsy mampiasa ny app app.</string>
-    <string name="sX_dialog_title">Hampiasa %s</string>
-    <string name="sX_never_translate">Tsy handika ny dikany %s</string>
+    <string name="sX_dialog_message">Tsy ho adika raha tsy apetraka %s app.</string>
+    <string name="sX_dialog_title">Install %s</string>
+    <string name="sX_never_translate">Tsy handika na oviana na oviana %s</string>
     <string name="sX_preference_summary">Mandika ny dikanteny automatique amin'ny fampiharana</string>
     <string name="sX_preference_title">Automatik translation</string>
     <string name="sX_translate">translate</string>
-    <string name="sX_translate_message">Ity fampihatra ity dia ao amin'ny %s. Tianao ve ny handika izany?</string>
+    <string name="sX_translate_message">Ity fampiharana ity dia ao amin'ny: %s. Tianao ve ny handika izany?</string>
 </resources>

@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Paggamit</string>
     <string name="sX_dialog_button">Pag-instalar</string>
-    <string name="sX_dialog_message">dili mahubad kon wala nimo i-install ang %s app.</string>
+    <string name="sX_dialog_message">dili mahubad gawas kung mag-install ka og %s nga app.</string>
     <string name="sX_dialog_title">Pag-instalar %s</string>
-    <string name="sX_never_translate">Ayaw gayud hubita %s</string>
+    <string name="sX_never_translate">Ayaw gayud paghubad %s</string>
     <string name="sX_preference_summary">Magpalabay sa awtomatik nga paghubad sa aplikasyon</string>
     <string name="sX_preference_title">Automatic nga paghubad</string>
     <string name="sX_translate">Paghubad</string>
-    <string name="sX_translate_message">Kini nga app anaa sa %s. Buot ka ba nga hubaron kini?</string>
+    <string name="sX_translate_message">Kini nga app anaa sa: %s. Gusto ka ba nga hubaron kini?</string>
 </resources>

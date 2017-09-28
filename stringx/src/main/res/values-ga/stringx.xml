@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Iarratas</string>
     <string name="sX_dialog_button">Suiteáil</string>
-    <string name="sX_dialog_message">ní aistrítear é ach amháin má shuiteáil tú %s app.</string>
+    <string name="sX_dialog_message">Ní dhéanfar aistriú mura bhfuil tú ag feidhmiú %s.</string>
     <string name="sX_dialog_title">Suiteáil %s</string>
-    <string name="sX_never_translate">Ná aistrigh %s</string>
+    <string name="sX_never_translate">Ná aistrigh %s riamh</string>
     <string name="sX_preference_summary">Toggles aistriúchán uathoibríoch san iarratas</string>
     <string name="sX_preference_title">Aistriúchán uathoibríoch</string>
     <string name="sX_translate">Aistrigh</string>
-    <string name="sX_translate_message">Tá an t-iarratas seo %s. Ar mhaith leat é a aistriú?</string>
+    <string name="sX_translate_message">Is é an app seo ná: %s. Ar mhaith leat é a aistriú?</string>
 </resources>

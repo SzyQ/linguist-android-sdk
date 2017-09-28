@@ -5,10 +5,10 @@
     <string name="sX_app">Søknad</string>
     <string name="sX_dialog_button">Installere</string>
     <string name="sX_dialog_message">vil ikke bli oversatt med mindre du installerer %s app.</string>
-    <string name="sX_dialog_title">Installere %s</string>
-    <string name="sX_never_translate">Aldri oversette %s</string>
+    <string name="sX_dialog_title">Installer %s</string>
+    <string name="sX_never_translate">Oversett aldri %s</string>
     <string name="sX_preference_summary">Bytter automatisk oversettelse i applikasjonen</string>
     <string name="sX_preference_title">Automatisk oversettelse</string>
     <string name="sX_translate">Oversette</string>
-    <string name="sX_translate_message">Denne appen er i %s. Vil du oversette det?</string>
+    <string name="sX_translate_message">Denne appen er på: %s. Vil du oversette den?</string>
 </resources>

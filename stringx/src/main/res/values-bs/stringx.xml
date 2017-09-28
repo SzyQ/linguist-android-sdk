@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Aplikacija</string>
     <string name="sX_dialog_button">Instaliraj</string>
-    <string name="sX_dialog_message">neće biti prevedena osim ako ne instalirate %s aplikaciju.</string>
-    <string name="sX_dialog_title">Install %s</string>
-    <string name="sX_never_translate">Never translate %s</string>
+    <string name="sX_dialog_message">neće biti prevedena osim ako instalirate %s aplikaciju.</string>
+    <string name="sX_dialog_title">Instalirajte %s</string>
+    <string name="sX_never_translate">Nikad ne prevedi %s</string>
     <string name="sX_preference_summary">Uključuje automatsko prevođenje u aplikaciju</string>
     <string name="sX_preference_title">Automatski prevod</string>
     <string name="sX_translate">Prevod</string>
-    <string name="sX_translate_message">Ova aplikacija je u %s. Želite li to prevesti?</string>
+    <string name="sX_translate_message">Ova aplikacija je u: %s. Želite li je prevesti?</string>
 </resources>

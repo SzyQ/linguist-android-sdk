@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">יישום</string>
     <string name="sX_dialog_button">להתקין</string>
-    <string name="sX_dialog_message">לא יתורגם אלא אם תתקין את אפליקציית %s.</string>
-    <string name="sX_dialog_title">להתקין %s</string>
-    <string name="sX_never_translate">לעולם אל תתרגם %s</string>
+    <string name="sX_dialog_message">לא יתורגם אלא אם תתקין אפליקציה %s.</string>
+    <string name="sX_dialog_title">התקן את %s</string>
+    <string name="sX_never_translate">לעולם אל תתרגם את %s</string>
     <string name="sX_preference_summary">מחליף תרגום אוטומטי ביישום</string>
     <string name="sX_preference_title">תרגום אוטומטי</string>
     <string name="sX_translate">לתרגם</string>
-    <string name="sX_translate_message">האפליקציה הזו נמצאת ב- %s. האם אתה רוצה לתרגם את זה?</string>
+    <string name="sX_translate_message">יישום זה הוא ב: %s. האם אתה רוצה לתרגם אותו?</string>
 </resources>

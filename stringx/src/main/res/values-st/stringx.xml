@@ -6,9 +6,9 @@
     <string name="sX_dialog_button">Kenya</string>
     <string name="sX_dialog_message">e ke ke ea fetoleloa ntle leha u kenya %s app.</string>
     <string name="sX_dialog_title">Kenya %s</string>
-    <string name="sX_never_translate">Le ka mohla u fetolele %s</string>
+    <string name="sX_never_translate">Le ka mohla u se ke ua fetolela %s</string>
     <string name="sX_preference_summary">E fetolela phetolelo e itekanetseng ho kopo</string>
     <string name="sX_preference_title">Phetolelo ka botlalo</string>
     <string name="sX_translate">Fetolela</string>
-    <string name="sX_translate_message">Kopo ena e ho %s. O ka rata ho e fetolela?</string>
+    <string name="sX_translate_message">Kopo ena e ho: %s. Na u ka rata ho e fetolela?</string>
 </resources>

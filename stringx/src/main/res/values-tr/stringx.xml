@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Uygulama</string>
     <string name="sX_dialog_button">kurmak</string>
-    <string name="sX_dialog_message">%s uygulamasını yüklemediğiniz sürece tercüme edilmez.</string>
-    <string name="sX_dialog_title">Yükleme %s</string>
-    <string name="sX_never_translate">Asla tercüme etmeyin *</string>
+    <string name="sX_dialog_message">%s uygulaması yüklemediğiniz sürece tercüme edilmez.</string>
+    <string name="sX_dialog_title">Yükle %s</string>
+    <string name="sX_never_translate">Asla çevirme %s</string>
     <string name="sX_preference_summary">Uygulamada otomatik çeviriyi açar</string>
     <string name="sX_preference_title">Çeviri</string>
     <string name="sX_translate">Çevirmek</string>
-    <string name="sX_translate_message">Bu uygulama %s içinde. Tercüme etmek ister misiniz?</string>
+    <string name="sX_translate_message">Bu uygulama şurada: %s. Çevirmek ister misiniz?</string>
 </resources>

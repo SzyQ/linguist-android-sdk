@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">дадатак</string>
     <string name="sX_dialog_button">ўсталёўваць</string>
-    <string name="sX_dialog_message">пераводзіцца не будзе, калі вы не ўсталюеце прыкладанне %s.</string>
+    <string name="sX_dialog_message">пераводзіцца не будзе, калі вы не ўсталюеце %s прыкладанне.</string>
     <string name="sX_dialog_title">ўсталяваць %s</string>
     <string name="sX_never_translate">Ніколі не перакладаць %s</string>
     <string name="sX_preference_summary">Ўключае аўтаматычны пераклад у дадатку</string>
     <string name="sX_preference_title">аўтаматычны пераклад</string>
     <string name="sX_translate">перавесці</string>
-    <string name="sX_translate_message">Гэта дадатак знаходзіцца ў %s. Вы хочаце, каб перавесці яго?</string>
+    <string name="sX_translate_message">Гэта дадатак знаходзіцца ў: %s. Вы хочаце перавесці яго?</string>
 </resources>

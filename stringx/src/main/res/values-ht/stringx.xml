@@ -10,5 +10,5 @@
     <string name="sX_preference_summary">Kovèti otomatik tradiksyon nan aplikasyon an</string>
     <string name="sX_preference_title">Otomatik tradiksyon</string>
     <string name="sX_translate">Translate</string>
-    <string name="sX_translate_message">App sa a se nan %s. Èske ou ta renmen tradwi li?</string>
+    <string name="sX_translate_message">App sa a se nan: %s. Ou ta renmen li tradui li?</string>
 </resources>

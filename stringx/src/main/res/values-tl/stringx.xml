@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Application</string>
     <string name="sX_dialog_button">I-install</string>
-    <string name="sX_dialog_message">ay hindi isasalin kung hindi mo i-install ang %s app.</string>
+    <string name="sX_dialog_message">ay hindi isasalin maliban kung mag-install ka ng %s app.</string>
     <string name="sX_dialog_title">I-install ang %s</string>
-    <string name="sX_never_translate">Huwag kailanman isalin ang %s</string>
+    <string name="sX_never_translate">Huwag isalin ang %s</string>
     <string name="sX_preference_summary">Lumipat ang awtomatikong pagsasalin sa application</string>
     <string name="sX_preference_title">Awtomatikong pagsasalin</string>
     <string name="sX_translate">Isalin</string>
-    <string name="sX_translate_message">Ang app na ito ay nasa %s. Gusto mo bang isalin ito?</string>
+    <string name="sX_translate_message">Ang app na ito ay nasa: %s. Nais mo bang i-translate ito?</string>
 </resources>

@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">ትግበራ</string>
     <string name="sX_dialog_button">ይጫኑ</string>
-    <string name="sX_dialog_message">%s መተግበሪያውን እስካልሰረኩ ድረስ አይተረጎሙም.</string>
-    <string name="sX_dialog_title">%s %s ጫን</string>
-    <string name="sX_never_translate">በጭራሽ አትተርጉም %s</string>
+    <string name="sX_dialog_message">የ %s መተግበሪያን ካልጨርሱ በስተቀር አይተረጎሙም.</string>
+    <string name="sX_dialog_title">%s ይጫኑ</string>
+    <string name="sX_never_translate">%s ን በጭራሽ አትተርጉም</string>
     <string name="sX_preference_summary">በመተግበሪያው ውስጥ ራስ-ሰር ትርጉምን ይቀያይራል</string>
     <string name="sX_preference_title">ራስ-ሰር ትርጉም</string>
     <string name="sX_translate">ተርጉም</string>
-    <string name="sX_translate_message">ይህ መተግበሪያ በ %s ውስጥ ነው. መተርጎም ይፈልጋሉ?</string>
+    <string name="sX_translate_message">ይህ መተግበሪያ በሚከተለው ውስጥ ነው %s. መተርጎም ይፈልጋሉ?</string>
 </resources>

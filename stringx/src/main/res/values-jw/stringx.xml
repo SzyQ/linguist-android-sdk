@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Aplikasi</string>
     <string name="sX_dialog_button">Masang</string>
-    <string name="sX_dialog_message">ora bakal diterjemahake yen sampeyan nginstal %s app.</string>
-    <string name="sX_dialog_title">Masang %s</string>
-    <string name="sX_never_translate">Tau translate %s</string>
+    <string name="sX_dialog_message">ora bakal diterjemahake kajaba sampeyan nginstal %s app.</string>
+    <string name="sX_dialog_title">Instal %s</string>
+    <string name="sX_never_translate">Tau nerjemahake %s</string>
     <string name="sX_preference_summary">Gulung otomatis terjemahan ing aplikasi</string>
     <string name="sX_preference_title">Terjemahan otomatis</string>
     <string name="sX_translate">Translate</string>
-    <string name="sX_translate_message">Aplikasi iki ana ing %s. Apa sampeyan pengin nerjemahake?</string>
+    <string name="sX_translate_message">Aplikasi iki ana ing: %s. Punapa panjenengan badhe nerjemahake?</string>
 </resources>

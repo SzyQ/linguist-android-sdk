@@ -6,9 +6,9 @@
     <string name="sX_dialog_button">Installere</string>
     <string name="sX_dialog_message">vil ikke blive oversat, medmindre du installerer %s app.</string>
     <string name="sX_dialog_title">Installer %s</string>
-    <string name="sX_never_translate">Aldrig oversætte %s</string>
+    <string name="sX_never_translate">Oversæt aldrig %s</string>
     <string name="sX_preference_summary">Skifter automatisk oversættelse i applikationen</string>
     <string name="sX_preference_title">Automatisk oversættelse</string>
     <string name="sX_translate">Oversætte</string>
-    <string name="sX_translate_message">Denne app er i %s. Vil du oversætte det?</string>
+    <string name="sX_translate_message">Denne app er på: %s. Vil du oversætte den?</string>
 </resources>

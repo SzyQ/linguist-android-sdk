@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Програм</string>
     <string name="sX_dialog_button">Суулгах</string>
-    <string name="sX_dialog_message">%s програмыг суулгахаас нааш орчуулаагүй болно.</string>
-    <string name="sX_dialog_title">%s суурилуулах</string>
-    <string name="sX_never_translate">%s Орчноо хэзээ ч тайлбарлах</string>
+    <string name="sX_dialog_message">Хэрэв та %s програмыг суулгахаас нааш орчуулаагүй болно.</string>
+    <string name="sX_dialog_title">%s суулгах</string>
+    <string name="sX_never_translate">%s хэзээ ч орчуулахгүй</string>
     <string name="sX_preference_summary">Аппликешн дээр автомат орчуулга хийх</string>
     <string name="sX_preference_title">Автомат орчуулга</string>
     <string name="sX_translate">Translate хийх</string>
-    <string name="sX_translate_message">Энэ апп нь %s -д байна. Та үүнийг орчуулахыг хүсч байна уу?</string>
+    <string name="sX_translate_message">Энэ апп нь: %s. Та үүнийг орчуулахыг хүсч байна уу?</string>
 </resources>

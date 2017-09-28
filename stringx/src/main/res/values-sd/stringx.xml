@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">درخواست</string>
     <string name="sX_dialog_button">انسٽال ڪريو</string>
-    <string name="sX_dialog_message">ترجمي نه ٿيندي جيستائين اي اي ايس نصب ڪريو جيستائين.</string>
-    <string name="sX_dialog_title">%s اي</string>
-    <string name="sX_never_translate">ترجمي نه ڪر %s</string>
+    <string name="sX_dialog_message">جيستائين توهان ٽائيپ %s ايپ تي نصب نه ڪيو ويندو.</string>
+    <string name="sX_dialog_title">%s انسٽال ڪريو</string>
+    <string name="sX_never_translate">ترجمو ڪريو %s</string>
     <string name="sX_preference_summary">ايپليڪيشن ۾ خودڪار ترجمي ٽيلگيز</string>
     <string name="sX_preference_title">خودڪار ترجمو</string>
     <string name="sX_translate">ترجمو ڪريو</string>
-    <string name="sX_translate_message">هي ايپ %s ۾ آهي. ڇا توهان ان جو ترجمو ڪرڻ چاهيندا آهيو؟</string>
+    <string name="sX_translate_message">هي ايپ ان ۾ آهي: %s. ڇا توهان ان جو ترجمو ڪرڻ چاهيندا آهيو؟</string>
 </resources>

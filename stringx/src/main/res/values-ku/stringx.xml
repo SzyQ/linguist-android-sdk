@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Bikaranînî</string>
     <string name="sX_dialog_button">Lêkirin</string>
-    <string name="sX_dialog_message">Heta ku hûn saz bikin %s ê nayê wergerandin.</string>
-    <string name="sX_dialog_title">Sazkirin %s</string>
-    <string name="sX_never_translate">Never translate %s</string>
+    <string name="sX_dialog_message">Heta ku hûn sazkirina %s-ê saz bikin.</string>
+    <string name="sX_dialog_title">%s saz bikin</string>
+    <string name="sX_never_translate">Tu caran %s wergerîn</string>
     <string name="sX_preference_summary">Toggles wergeran di daxwaza serîlêdanê de</string>
     <string name="sX_preference_title">Automatic translation</string>
     <string name="sX_translate">Wergerandin</string>
-    <string name="sX_translate_message">This app is in. Ma hûn dixwazî ​​wê wergerandin?</string>
+    <string name="sX_translate_message">Ev pêdivî ye: %s. Tu dixwazî ​​wê weyê wergerandin?</string>
 </resources>

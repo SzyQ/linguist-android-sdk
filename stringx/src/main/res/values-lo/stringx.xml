@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Application</string>
     <string name="sX_dialog_button">ຕິດຕັ້ງ</string>
-    <string name="sX_dialog_message">ຈະບໍ່ຖືກແປອອກຈົນກວ່າທ່ານຈະຕິດຕັ້ງ%s app.</string>
-    <string name="sX_dialog_title">ຕິດຕັ້ງ</string>
-    <string name="sX_never_translate">Never translate</string>
+    <string name="sX_dialog_message">ຈະບໍ່ຖືກແປອອກຈົນກວ່າທ່ານຈະຕິດຕັ້ງ %s app.</string>
+    <string name="sX_dialog_title">ຕິດຕັ້ງ %s</string>
+    <string name="sX_never_translate">ບໍ່ແປ %s</string>
     <string name="sX_preference_summary">ສະຫຼັບການແປອັດຕະໂນມັດໃນໃບຄໍາຮ້ອງ</string>
     <string name="sX_preference_title">ການແປພາສາອັດຕະໂນມັດ</string>
     <string name="sX_translate">Translate</string>
-    <string name="sX_translate_message">app ນີ້ແມ່ນຢູ່ໃນ%s. ທ່ານຢາກແປພາສານີ້ບໍ?</string>
+    <string name="sX_translate_message">app ນີ້ຢູ່ໃນ: %s. ທ່ານຕ້ອງການແປພາສາ?</string>
 </resources>

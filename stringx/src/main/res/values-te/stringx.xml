@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">అప్లికేషన్</string>
     <string name="sX_dialog_button">ఇన్స్టాల్</string>
-    <string name="sX_dialog_message">మీరు %s అనువర్తనాన్ని ఇన్స్టాల్ చేయకపోతే అనువదించబడరు.</string>
-    <string name="sX_dialog_title">ఇన్స్టాల్ చెయ్యి %s</string>
-    <string name="sX_never_translate">ఎప్పుడూ అనువదించు %s</string>
+    <string name="sX_dialog_message">%s అనువర్తనం ఇన్స్టాల్ చేయకపోతే అనువదించబడదు.</string>
+    <string name="sX_dialog_title">%s ఇన్స్టాల్ చేయండి</string>
+    <string name="sX_never_translate">%s ను ఎప్పుడూ అనువదించవద్దు</string>
     <string name="sX_preference_summary">అప్లికేషన్లో స్వయంచాలక అనువాదం టోగుల్ చేస్తుంది</string>
     <string name="sX_preference_title">స్వయంచాలక అనువాదం</string>
     <string name="sX_translate">అనువదించు</string>
-    <string name="sX_translate_message">ఈ అనువర్తనం %s లో ఉంది. మీరు దీన్ని అనువదించాలనుకుంటున్నారా?</string>
+    <string name="sX_translate_message">ఈ అనువర్తనం దీనిలో ఉంది: %s. మీరు దీన్ని అనువదించాలనుకుంటున్నారా?</string>
 </resources>

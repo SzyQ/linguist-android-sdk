@@ -10,5 +10,5 @@
     <string name="sX_preference_summary">Toggles automatic translatione per applicationem</string>
     <string name="sX_preference_title">automatica</string>
     <string name="sX_translate">transferendum</string>
-    <string name="sX_translate_message">Hoc app est %s. Sic ut interpretari velis?</string>
+    <string name="sX_translate_message">Hoc app est: %s. An illud interpretari velis?</string>
 </resources>

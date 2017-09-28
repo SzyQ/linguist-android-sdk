@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Ka hoʻohana</string>
     <string name="sX_dialog_button">E hoʻouka</string>
-    <string name="sX_dialog_message">ʻAʻole ia e unuhiʻia keʻoleʻoe e hoʻouka i ka'ō.</string>
-    <string name="sX_dialog_title">Hoʻohui %s</string>
-    <string name="sX_never_translate">'Aʻohe unuhi hou</string>
+    <string name="sX_dialog_message">ʻAʻole ia e unuhiʻia keʻoleʻoe e hoʻokomo i ka app %s.</string>
+    <string name="sX_dialog_title">E hoʻouka %s</string>
+    <string name="sX_never_translate">ʻAʻole loa e unuhi i %s</string>
     <string name="sX_preference_summary">E hoʻouka i ka unuhi maʻamau i loko o ka noi</string>
     <string name="sX_preference_title">ʻO ka unuhi maʻamau</string>
     <string name="sX_translate">Unuhi</string>
-    <string name="sX_translate_message">Loaʻa kēia polokalamu ma %s. Makemakeʻoe e unuhi i ia?</string>
+    <string name="sX_translate_message">Aia kēia polokalamu i: %s. E makemake anaʻoe e unuhi i kēia?</string>
 </resources>

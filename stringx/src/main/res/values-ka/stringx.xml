@@ -5,10 +5,10 @@
     <string name="sX_app">განაცხადი</string>
     <string name="sX_dialog_button">დაინსტალირება</string>
     <string name="sX_dialog_message">%s აპლიკაციის ინსტალაციის გარეშე არ იქნება თარგმნილი.</string>
-    <string name="sX_dialog_title">დაინსტალირება %s</string>
+    <string name="sX_dialog_title">დააინსტალირეთ %s</string>
     <string name="sX_never_translate">არასოდეს თარგმნა %s</string>
     <string name="sX_preference_summary">აპლიკაციაში ავტომატური თარგმანის გადართვა</string>
     <string name="sX_preference_title">ავტომატური თარგმანი</string>
     <string name="sX_translate">თარგმნა</string>
-    <string name="sX_translate_message">ეს აპლიკაცია %s გსურთ მისი თარგმნა?</string>
+    <string name="sX_translate_message">ეს აპლიკაციაა: %s. გსურთ თარგმნოთ ეს?</string>
 </resources>

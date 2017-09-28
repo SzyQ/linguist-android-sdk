@@ -10,5 +10,5 @@
     <string name="sX_preference_summary">טאָגגלעס אָטאַמאַטיק איבערזעצונג אין די אַפּלאַקיישאַן</string>
     <string name="sX_preference_title">אָטאַמאַטיק איבערזעצונג</string>
     <string name="sX_translate">איבערזעצן</string>
-    <string name="sX_translate_message">דעם אַפּ איז אין %s. וואָלט איר ווי צו איבערזעצן עס?</string>
+    <string name="sX_translate_message">דעם אַפּ איז אין: %s. וואָלט איר ווי צו איבערזעצן עס?</string>
 </resources>

@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">کاریال</string>
     <string name="sX_dialog_button">لګول</string>
-    <string name="sX_dialog_message">تاسو به ژباړه نشئ تر هغه چې تاسو اپرېل ونه کړئ.</string>
-    <string name="sX_dialog_title">نصب کول</string>
-    <string name="sX_never_translate">هیڅکله ژباړه %s</string>
+    <string name="sX_dialog_message">تر هغه چې تاسو %s اپلیکیشن نصب نه کړئ ژباړه نه شي.</string>
+    <string name="sX_dialog_title">%s لګول</string>
+    <string name="sX_never_translate">هیڅکله ژباړه %s نه وي</string>
     <string name="sX_preference_summary">په کاریال کې اتوماتیک ژباړې ټګوي</string>
     <string name="sX_preference_title">اتوماتیک ژباړه</string>
     <string name="sX_translate">ژباړه</string>
-    <string name="sX_translate_message">دا ایپ دی. ایا تاسو غواړئ چې ژباړئ؟</string>
+    <string name="sX_translate_message">دا اپلیټ دی: %s. ایا تاسو غواړئ چې ژباړئ؟</string>
 </resources>

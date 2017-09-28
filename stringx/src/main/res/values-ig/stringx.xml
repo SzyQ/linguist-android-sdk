@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Ngwa</string>
     <string name="sX_dialog_button">Wụnye</string>
-    <string name="sX_dialog_message">Agaghị asụgharị ma ọ bụrụ na ị wụnye ngwa.</string>
+    <string name="sX_dialog_message">agaghị agagharị ma ọ bụrụ na ị wụnye ngwa ngwa %s.</string>
     <string name="sX_dialog_title">Wụnye %s</string>
-    <string name="sX_never_translate">Etugharila %s</string>
+    <string name="sX_never_translate">Agatụghị asụgharị %s</string>
     <string name="sX_preference_summary">Zoo nsụgharị akpaka na ngwa ahụ</string>
     <string name="sX_preference_title">Ntugharị akpaaka</string>
     <string name="sX_translate">Gbanwee</string>
-    <string name="sX_translate_message">Ngwa a dị na %s. Ị ga-achọ ịsụgharị ya?</string>
+    <string name="sX_translate_message">Ngwa a bụ: %s. Ị ga-achọ ịsụgharị ya?</string>
 </resources>

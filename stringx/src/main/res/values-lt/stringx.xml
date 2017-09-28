@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Paraiška</string>
     <string name="sX_dialog_button">Diegti</string>
-    <string name="sX_dialog_message">nebus išverstas, nebent jūs įdiegsite programą.</string>
-    <string name="sX_dialog_title">Diegti %s</string>
-    <string name="sX_never_translate">Niekada išversti %s</string>
+    <string name="sX_dialog_message">nebus verčiama, nebent įdiegsite programą %s.</string>
+    <string name="sX_dialog_title">Įdiekite %s</string>
+    <string name="sX_never_translate">Niekada neverskite %s</string>
     <string name="sX_preference_summary">Įjungia automatinį vertimą programoje</string>
     <string name="sX_preference_title">Automatinis vertimas</string>
     <string name="sX_translate">Versti</string>
-    <string name="sX_translate_message">Ši programa yra %s. Ar norėtumėte jį išversti?</string>
+    <string name="sX_translate_message">Ši programa yra: %s. Ar norėtumėte ją išversti?</string>
 </resources>

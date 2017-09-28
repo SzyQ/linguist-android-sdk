@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">Iarrtas</string>
     <string name="sX_dialog_button">Stàlaich</string>
-    <string name="sX_dialog_message">cha bhith eadar-theangachadh mura stàlaich thu app %s.</string>
-    <string name="sX_dialog_title">Stàlaich %s</string>
-    <string name="sX_never_translate">Na luchdaich mi idir %s</string>
+    <string name="sX_dialog_message">cha bhith air eadar-theangachadh mura stàlaicheas tu aplacaid %s.</string>
+    <string name="sX_dialog_title">Stàlaibh %s</string>
+    <string name="sX_never_translate">Na eadar-theangaich thu riamh %s</string>
     <string name="sX_preference_summary">Toggles eadar-theangachadh gu fèin-obrachail san tagradh</string>
     <string name="sX_preference_title">Eadar-theangachadh gu h-obann</string>
     <string name="sX_translate">Eadar-theangachadh</string>
-    <string name="sX_translate_message">Tha an aplacaid seo ann %s. Am bu toil leat an eadar-theangachadh?</string>
+    <string name="sX_translate_message">Tha an aplacaid seo ann an: %s. A bheil thu airson eadar-theangachadh?</string>
 </resources>

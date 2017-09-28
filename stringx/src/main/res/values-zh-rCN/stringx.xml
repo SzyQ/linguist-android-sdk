@@ -10,5 +10,5 @@
     <string name="sX_preference_summary">在应用程序中切换自动翻译</string>
     <string name="sX_preference_title">自动翻译</string>
     <string name="sX_translate">翻译</string>
-    <string name="sX_translate_message">这个程序是在%s。您愿意来翻译吗？</string>
+    <string name="sX_translate_message">这个程序在：%s.你想翻译吗？</string>
 </resources>
