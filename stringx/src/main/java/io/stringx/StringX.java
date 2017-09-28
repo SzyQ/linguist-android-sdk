@@ -45,6 +45,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     private Boolean isValidConfig;
     @Nullable
     private Locale locale;
+    private TranslationListener listener;
 
     public StringX(Application application, Options options) {
         this.context = application.getApplicationContext();
@@ -292,5 +293,16 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     public Language getDefaultDeviceLanguage() {
         return Language.fromLocale(defaultLocale);
+    }
+
+    public interface TranslationListener{
+    }
+
+    public TranslationListener getListener() {
+        return listener;
+    }
+
+    public void setListener(TranslationListener listener) {
+        this.listener = listener;
     }
 }
