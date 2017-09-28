@@ -33,6 +33,10 @@ class StringXActivityBase extends AppCompatActivity {
         intent.setComponent(new ComponentName(PACKAGE_NAME, STRINGX_ACTIVITY));
         intent.putExtra(KEY_PACKAGE, getPackageName());
         try {
+            StringX.TranslationListener listener = stringX.getListener();
+            if(listener != null){
+                listener.onTranslationLaunched();
+            }
             startActivityForResult(intent, REQUEST_CODE_TRANSLATE);
         } catch (ActivityNotFoundException e) {
             CharSequence label;
@@ -58,6 +62,10 @@ class StringXActivityBase extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_TRANSLATE) {
             if (resultCode == RESULT_OK) {
+                StringX.TranslationListener listener = StringX.get(StringXActivityBase.this).getListener();
+                if(listener != null){
+                    listener.onApplicationTranslated();
+                }
                 setResult(RESULT_OK);
                 finish();
                 StringX.get(this).invalidate();
@@ -85,6 +93,10 @@ class StringXActivityBase extends AppCompatActivity {
                     stringxIntent.setComponent(new ComponentName(PACKAGE_NAME, STRINGX_ACTIVITY));
                     stringxIntent.putExtra(KEY_PACKAGE, getPackageName());
                     try {
+                        StringX.TranslationListener listener = StringX.get(StringXActivityBase.this).getListener();
+                        if(listener != null){
+                            listener.onTranslationLaunched();
+                        }
                         startActivityForResult(stringxIntent, REQUEST_CODE_TRANSLATE);
                     } catch (Exception ignored) {
                         LL.e("Failed to start stringx!", ignored);

@@ -10,6 +10,8 @@ import io.stringx.client.R;
 
 public final class StringxOverlayActivity extends StringXActivityBase {
 
+    private StringX stringX;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,11 +20,11 @@ public final class StringxOverlayActivity extends StringXActivityBase {
         setupNeverTranslateButton();
         setupCloseButton();
         setupMessage();
+        stringX = StringX.get(StringxOverlayActivity.this);
     }
 
     private void setupMessage() {
         TextView message = findViewById(R.id.message);
-        final StringX stringX = StringX.get(StringxOverlayActivity.this);
         String defaultLanguage = stringX.getDefaultLocale().getDisplayLanguage();
         message.setText(getString(R.string.sX_translate_message, defaultLanguage));
     }
@@ -32,6 +34,10 @@ public final class StringxOverlayActivity extends StringXActivityBase {
         close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StringX.TranslationListener listener = stringX.getListener();
+                if(listener != null){
+                    listener.onTranslationCanceled();
+                }
                 setResult(RESULT_CANCELED);
                 finish();
             }
@@ -46,6 +52,10 @@ public final class StringxOverlayActivity extends StringXActivityBase {
         neverTranslate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StringX.TranslationListener listener = stringX.getListener();
+                if(listener != null){
+                    listener.onTranslationDisabled();
+                }
                 stringX.setEnabled(false);
                 setResult(RESULT_OK);
                 finish();
@@ -58,6 +68,10 @@ public final class StringxOverlayActivity extends StringXActivityBase {
         translate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                StringX.TranslationListener listener = stringX.getListener();
+                if(listener != null){
+                    listener.onTranslationStarted();
+                }
                 startStringXService();
             }
         });

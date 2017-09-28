@@ -296,6 +296,15 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     }
 
     public interface TranslationListener{
+        void onTranslationCanceled();
+
+        void onTranslationDisabled();
+
+        void onTranslationStarted();
+
+        void onTranslationLaunched();
+
+        void onApplicationTranslated();
     }
 
     public TranslationListener getListener() {
