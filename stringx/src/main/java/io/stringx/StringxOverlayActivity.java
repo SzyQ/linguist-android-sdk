@@ -15,12 +15,12 @@ public final class StringxOverlayActivity extends StringXActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        stringX = StringX.get(StringxOverlayActivity.this);
         setContentView(R.layout.activity_overlay);
         setupTranslateButton();
         setupNeverTranslateButton();
         setupCloseButton();
         setupMessage();
-        stringX = StringX.get(StringxOverlayActivity.this);
     }
 
     private void setupMessage() {
