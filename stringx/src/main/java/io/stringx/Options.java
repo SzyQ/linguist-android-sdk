@@ -74,7 +74,6 @@ public class Options {
         private Context context;
         private Language defaultLanguage;
         private Language[] supportedLanguages;
-        private Cache cache;
         private List<Class> supportedStrings;
         private List<Class> excludedStrings;
         private int[] excludedStringIds;
@@ -85,11 +84,6 @@ public class Options {
             this.defaultLanguage = defaultLanguage;
             supportedStrings = new ArrayList<>();
             excludedStrings = new ArrayList<>();
-        }
-
-        public Builder setCache(Cache cache) {
-            this.cache = cache;
-            return this;
         }
 
         public Builder setMode(Mode mode) {
@@ -114,9 +108,6 @@ public class Options {
 
         public Options build() {
             Options options = new Options();
-            if (cache == null) {
-                cache = new PreferencesCache(context, StringX.getDeviceLanguage());
-            }
             if (mode == null) {
                 mode = Mode.User;
             }

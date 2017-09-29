@@ -44,7 +44,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
     }
 
     private boolean isStringXAvailable(StringX stringX) {
-        return stringX != null && !stringX.getOptions().getSupportedLanguages().contains(stringX.getDeviceLanguage());
+        return stringX != null && !stringX.getOptions().getSupportedLanguages().contains(StringX.getDeviceLanguage());
     }
 
     private void setValue(Boolean isOptedIn) {

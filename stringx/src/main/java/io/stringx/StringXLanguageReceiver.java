@@ -31,6 +31,9 @@ public class StringXLanguageReceiver {
 
     private void notifyLocaleChanged() {
         Language language = Language.fromLocale(Locale.getDefault());
+        if(language == null){
+            return;
+        }
         for (OnLanguageChanged listener : listeners) {
             listener.onLanguageChanged(language);
         }

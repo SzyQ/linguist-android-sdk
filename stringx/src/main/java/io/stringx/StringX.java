@@ -51,7 +51,11 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         this.context = application.getApplicationContext();
         this.options = options;
         StringXLanguageReceiver languageReceiver = new StringXLanguageReceiver(context);
-        cache = new PreferencesCache(context, getDeviceLanguage());
+        Language deviceLanguage = StringX.getDeviceLanguage();
+        if(deviceLanguage == null){
+            deviceLanguage = options.getDefaultLanguage();
+        }
+        cache = new PreferencesCache(context, deviceLanguage);
         translator = new AndroidTranslator(this, this.cache);
         languageReceiver.addListener((StringXLanguageReceiver.OnLanguageChanged) cache);
         languageReceiver.addListener(this);
@@ -96,6 +100,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         return stringX != null && stringX.isValidConfig() && !stringX.isForcingLocale();
     }
 
+    @Nullable
     public static Language getDeviceLanguage() {
         return Language.fromLocale(Locale.getDefault());
     }
@@ -135,7 +140,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
     }
 
     public boolean isEnabled(Language language) {
-        return preferences.getBoolean(KEY_LANGUAGE_ENABLED + language.getCode(), false);
+        return language != null && preferences.getBoolean(KEY_LANGUAGE_ENABLED + language.getCode(), false);
     }
 
     public void setEnabled(Language language, boolean isEnabled) {
@@ -291,6 +296,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         isValidConfig = null;
     }
 
+    @Nullable
     public Language getDefaultDeviceLanguage() {
         return Language.fromLocale(defaultLocale);
     }
