@@ -1,6 +1,6 @@
 package io.stringx;
 
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.util.Locale;
@@ -121,18 +121,18 @@ public enum Language {
         this.code = code;
     }
 
-    @Nullable
-    public static Language fromCode(String code) throws IllegalArgumentException {
+    @NonNull
+    public static Language fromCode(String code) throws UnsupportedLanguageException {
         for (Language languages : values()) {
             if (code.equals(languages.getCode())) {
                 return languages;
             }
         }
-        return null;
+        throw new UnsupportedLanguageException(code);
     }
 
-    @Nullable
-    public static Language fromLocale(Locale locale) {
+    @NonNull
+    public static Language fromLocale(Locale locale) throws UnsupportedLanguageException {
         String language = locale.getLanguage();
         String country = locale.getCountry();
         if (language.equals("zh") && !TextUtils.isEmpty(country)) {
@@ -142,7 +142,7 @@ public enum Language {
                 case "CN":
                     return Chinese_Simplified;
                 default:
-                    return null;
+                    throw new UnsupportedLanguageException(locale);
             }
         }
         return fromCode(language);

@@ -25,7 +25,7 @@ class StringXActivityBase extends AppCompatActivity {
     private static final int REQUEST_CODE_TRANSLATE = 3002;
     private BroadcastReceiver receiver;
 
-    protected void startStringXService() {
+    protected void startStringXService() throws UnsupportedLanguageException {
         final StringX stringX = StringX.get(this);
         stringX.setEnabled(true);
         stringX.setEnabled(stringX.getDeviceLanguage(), true);

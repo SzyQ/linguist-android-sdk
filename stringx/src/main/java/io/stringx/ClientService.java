@@ -45,7 +45,7 @@ public final class ClientService extends Service {
                         } else {
                             callback.onFinished();
                         }
-                    } catch (RemoteException e) {
+                    } catch (RemoteException | UnsupportedLanguageException e) {
                         LL.e("Failed to get config", e);
                     }
                     return null;

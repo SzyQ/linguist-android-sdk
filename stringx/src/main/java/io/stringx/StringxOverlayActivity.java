@@ -15,7 +15,6 @@ public final class StringxOverlayActivity extends StringXActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        stringX = StringX.get(StringxOverlayActivity.this);
         setContentView(R.layout.activity_overlay);
         stringX = StringX.get(StringxOverlayActivity.this);
         setupTranslateButton();
@@ -36,7 +35,7 @@ public final class StringxOverlayActivity extends StringXActivityBase {
             @Override
             public void onClick(View v) {
                 StringX.TranslationListener listener = stringX.getListener();
-                if(listener != null){
+                if (listener != null) {
                     listener.onTranslationCanceled();
                 }
                 setResult(RESULT_CANCELED);
@@ -54,7 +53,7 @@ public final class StringxOverlayActivity extends StringXActivityBase {
             @Override
             public void onClick(View v) {
                 StringX.TranslationListener listener = stringX.getListener();
-                if(listener != null){
+                if (listener != null) {
                     listener.onTranslationDisabled();
                 }
                 stringX.setEnabled(false);
@@ -70,10 +69,14 @@ public final class StringxOverlayActivity extends StringXActivityBase {
             @Override
             public void onClick(View v) {
                 StringX.TranslationListener listener = stringX.getListener();
-                if(listener != null){
+                if (listener != null) {
                     listener.onTranslationStarted();
                 }
-                startStringXService();
+                try {
+                    startStringXService();
+                } catch (UnsupportedLanguageException e) {
+                    LL.e("Illegal!", e);
+                }
             }
         });
     }

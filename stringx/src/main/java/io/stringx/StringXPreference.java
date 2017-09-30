@@ -3,7 +3,6 @@ package io.stringx;
 import android.content.Context;
 import android.content.Intent;
 import android.preference.Preference;
-import android.support.v4.app.TaskStackBuilder;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 
@@ -21,7 +20,11 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
         setIcon(R.mipmap.sx_logo);
         setTitle(R.string.sX_preference_title);
         setSummary(R.string.sX_preference_summary);
-        setEnabled(isStringXAvailable(stringX));
+        try {
+            setEnabled(isStringXAvailable(stringX));
+        } catch (UnsupportedLanguageException e) {
+            setEnabled(false);
+        }
         setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
@@ -43,7 +46,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
 
     }
 
-    private boolean isStringXAvailable(StringX stringX) {
+    private boolean isStringXAvailable(StringX stringX) throws UnsupportedLanguageException {
         return stringX != null && !stringX.getOptions().getSupportedLanguages().contains(StringX.getDeviceLanguage());
     }
 

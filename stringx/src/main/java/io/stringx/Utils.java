@@ -19,7 +19,7 @@ import java.util.Locale;
 
 public class Utils {
 
-    static void getAppStrings(StringX stringX, Context context, List<Pair<Integer, String>> resources, ConfigCallback callback) throws RemoteException {
+    static void getAppStrings(StringX stringX, Context context, List<Pair<Integer, String>> resources, ConfigCallback callback) throws RemoteException, UnsupportedLanguageException {
         List<String> mainStrings = new ArrayList<>();
         List<String> mainStringNames = new ArrayList<>();
         List<Integer> mainStringIds = new ArrayList<>();

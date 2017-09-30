@@ -51,9 +51,11 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         this.context = application.getApplicationContext();
         this.options = options;
         StringXLanguageReceiver languageReceiver = new StringXLanguageReceiver(context);
-        Language deviceLanguage = StringX.getDeviceLanguage();
-        if(deviceLanguage == null){
-            deviceLanguage = options.getDefaultLanguage();
+        Language deviceLanguage = null;
+        try {
+            deviceLanguage = StringX.getDeviceLanguage();
+        } catch (UnsupportedLanguageException e) {
+            deviceLanguage = options.getDefaultLanguage();//TODO check if default is unsupported too
         }
         cache = new PreferencesCache(context, deviceLanguage);
         translator = new AndroidTranslator(this, this.cache);
@@ -100,15 +102,14 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         return stringX != null && stringX.isValidConfig() && !stringX.isForcingLocale();
     }
 
-    @Nullable
-    public static Language getDeviceLanguage() {
+    public static Language getDeviceLanguage() throws UnsupportedLanguageException {
         return Language.fromLocale(Locale.getDefault());
     }
 
     public void forceLocale(Application application, @Nullable Locale locale) {
         Resources res = application.getApplicationContext().getResources();
         DisplayMetrics displayMetrics = res.getDisplayMetrics();
-        if(locale == null){
+        if (locale == null) {
             locale = defaultLocale;
         }
         Locale.setDefault(locale);
@@ -124,7 +125,12 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     public boolean isValidConfig() {
         if (isValidConfig == null) {
-            isValidConfig = isEnabled() && isEnabled(getDeviceLanguage());
+            try {
+                isValidConfig = isEnabled() && isEnabled(getDeviceLanguage());
+            } catch (UnsupportedLanguageException e) {
+                LL.e("Invalid config", e);
+                return false;
+            }
         }
         return isValidConfig;
     }
@@ -162,11 +168,16 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         if (isTranslationChecked) {
             return;
         }
-        Language deviceLanguage = getDeviceLanguage();
-        if (isEnabled(deviceLanguage)) {
+        if (isEnabled()) {
             return;
         }
-        if (isEnabled()) {
+        Language deviceLanguage;
+        try {
+            deviceLanguage = getDeviceLanguage();
+        } catch (UnsupportedLanguageException e) {
+            return;
+        }
+        if (isEnabled(deviceLanguage)) {
             return;
         }
         if (options.getSupportedLanguages().contains(deviceLanguage)) {
@@ -181,7 +192,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         return new Locale(options.getDefaultLanguage().getCode());
     }
 
-    void fetch(ConfigCallback callback) throws RemoteException {
+    void fetch(ConfigCallback callback) throws RemoteException, UnsupportedLanguageException {
         List<Pair<Integer, String>> supportedResources = getResourcesIds();
         Utils.getAppStrings(this, context, supportedResources, callback);
     }
@@ -232,7 +243,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public String translate(String string) {
-        if(!isValidConfig() || isForcingLocale()){
+        if (!isValidConfig() || isForcingLocale()) {
             return string;
         }
         return translator.translate(string);
@@ -240,7 +251,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public View translate(View view) {
-        if(!isValidConfig() || isForcingLocale()){
+        if (!isValidConfig() || isForcingLocale()) {
             return view;
         }
         return translator.translate(view);
@@ -248,7 +259,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public Preference translate(Preference preference) {
-        if(!isValidConfig() || isForcingLocale()){
+        if (!isValidConfig() || isForcingLocale()) {
             return preference;
         }
         return translator.translate(preference);
@@ -256,7 +267,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public void translate(Menu menu) {
-        if(!isValidConfig() || isForcingLocale()){
+        if (!isValidConfig() || isForcingLocale()) {
             return;
         }
         translator.translate(menu);
@@ -264,7 +275,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public CharSequence translate(CharSequence text) {
-        if(!isValidConfig() || isForcingLocale()){
+        if (!isValidConfig() || isForcingLocale()) {
             return text;
         }
         return translator.translate(text);
@@ -272,7 +283,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public CharSequence[] translate(CharSequence[] textArray) {
-        if(!isValidConfig() || isForcingLocale()){
+        if (!isValidConfig() || isForcingLocale()) {
             return textArray;
         }
         return translator.translate(textArray);
@@ -280,7 +291,7 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     @Override
     public String[] translate(String[] textArray) {
-        if(!isValidConfig() || isForcingLocale()){
+        if (!isValidConfig() || isForcingLocale()) {
             return textArray;
         }
         return translator.translate(textArray);
@@ -296,12 +307,19 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         isValidConfig = null;
     }
 
-    @Nullable
-    public Language getDefaultDeviceLanguage() {
+    public Language getDefaultDeviceLanguage() throws UnsupportedLanguageException {
         return Language.fromLocale(defaultLocale);
     }
 
-    public interface TranslationListener{
+    public TranslationListener getListener() {
+        return listener;
+    }
+
+    public void setListener(TranslationListener listener) {
+        this.listener = listener;
+    }
+
+    public interface TranslationListener {
         void onTranslationCanceled();
 
         void onTranslationDisabled();
@@ -311,13 +329,5 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         void onTranslationLaunched();
 
         void onApplicationTranslated();
-    }
-
-    public TranslationListener getListener() {
-        return listener;
-    }
-
-    public void setListener(TranslationListener listener) {
-        this.listener = listener;
     }
 }

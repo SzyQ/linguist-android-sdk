@@ -15,7 +15,11 @@ public final class StringXProxyActivity extends StringXActivityBase {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        startStringXService();
+        try {
+            startStringXService();
+        } catch (UnsupportedLanguageException e) {
+            finish();
+        }
     }
 
 }
