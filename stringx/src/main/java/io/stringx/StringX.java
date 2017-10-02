@@ -106,8 +106,11 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         return Language.fromLocale(Locale.getDefault());
     }
 
-    public void forceLocale(Application application, @Nullable Locale locale) {
-        Resources res = application.getApplicationContext().getResources();
+    public void forceLocale(Context context, @Nullable Locale locale) {
+        Resources res = context.getResources();
+        if(res == null){
+            return;
+        }
         DisplayMetrics displayMetrics = res.getDisplayMetrics();
         if (locale == null) {
             locale = defaultLocale;
