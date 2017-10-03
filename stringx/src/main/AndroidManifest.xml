@@ -7,10 +7,10 @@
     <application>
         <activity
             android:name="io.stringx.StringxOverlayActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/sX_Transparent" />
         <activity
             android:name="io.stringx.StringXProxyActivity"
-            android:theme="@style/Transparent" />
+            android:theme="@style/sX_Transparent" />
 
         <service
             android:name="io.stringx.DiscoveryService"
