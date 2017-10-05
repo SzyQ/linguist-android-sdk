@@ -191,32 +191,11 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         activity.startActivityForResult(intent, StringxOverlayActivity.REQUEST_CODE);
     }
 
-    Locale getDefaultLocale() {
+    public Locale getDefaultLocale() {
         return new Locale(options.getDefaultLanguage().getCode());
     }
 
-    void fetch(ConfigCallback callback) throws RemoteException, UnsupportedLanguageException {
-        List<Pair<Integer, String>> supportedResources = getResourcesIds();
-        Utils.getAppStrings(this, context, supportedResources, callback);
-    }
-
-    @NonNull
-    private List<Pair<Integer, String>> getResourcesIds() {
-        List<Pair<Integer, String>> supportedResources = Utils.getAppStringResources(context, options.getStringClasses());
-        List<Pair<Integer, String>> excludedResources = Utils.getAppStringResources(context, options.getExcludedClasses());
-        Iterator<Pair<Integer, String>> iterator = supportedResources.iterator();
-        while (iterator.hasNext()) {
-            Pair<Integer, String> resourceId = iterator.next();
-            if (excludedResources.contains(resourceId)) {
-                iterator.remove();
-            } else if (options.getExcludedStringIds().contains(resourceId.first)) {
-                iterator.remove();
-            }
-        }
-        return supportedResources;
-    }
-
-    void applyTranslation(Map<String, String> translation) {
+    public void applyTranslation(Map<String, String> translation) {
         for (String text : translation.keySet()) {
             String translated = translation.get(text);
             cache.put(text, translated);

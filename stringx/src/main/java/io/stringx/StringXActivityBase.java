@@ -52,9 +52,21 @@ class StringXActivityBase extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             registerPackageChangedReceiver();
-                            Utils.openStore(getApplicationContext(), PACKAGE_NAME);
+                            openStore(PACKAGE_NAME);
                         }
                     }).show();
+        }
+    }
+
+    private void openStore(String packageName) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + packageName));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        } catch (ActivityNotFoundException anfe) {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + packageName));
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
         }
     }
 

@@ -17,4 +17,5 @@ interface ConfigCallback {
     void onLanguageReceived(String languageCode, inout int[] stringIds);
 
     void onFinished();
+
 }
