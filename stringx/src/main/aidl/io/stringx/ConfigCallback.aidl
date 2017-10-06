@@ -4,9 +4,10 @@ import java.util.List;
 
 //There is 1MB limit for Parcel, so the data needs to be sent in chunks from client
 interface ConfigCallback {
+
     void onStarted();
 
-    void onBasicInfoReceived(String packageName, String mode, String defaultLanguageCode, String desiredLanguageCode,inout List<String> supportedLanguages);
+    void onBasicInfoReceived(String infoJson);
 
     void onDefaultStringsReceived(inout List<String> defaultStrings);
 
@@ -17,5 +18,7 @@ interface ConfigCallback {
     void onLanguageReceived(String languageCode, inout int[] stringIds);
 
     void onFinished();
+
+    void onError(int code);
 
 }

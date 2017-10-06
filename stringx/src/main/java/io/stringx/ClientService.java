@@ -6,12 +6,20 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.os.RemoteException;
+import android.util.JsonWriter;
 
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import io.stringx.client.BuildConfig;
+
 public final class ClientService extends Service {
+
+    public static final int ERROR_UNSUPPORTED_LANGUAGE = 0;
+    public static final int ERROR_GENERAL = 0;
 
     private FetchTask task;
     private final IBinder binder = new TranslationInterface.Stub() {
@@ -40,6 +48,31 @@ public final class ClientService extends Service {
         return binder;
     }
 
+    private static String writeClientInfo(Context context, List<String> supportedLanguageCodes, Options options) throws IOException, UnsupportedLanguageException {
+        JsonWriter writer = new JsonWriter(new StringWriter(1024));
+        writer.setIndent("    ");
+        writer.beginObject();
+        {
+            writer.name("packageName").value(context.getPackageName());
+            writer.name("mode").value(options.getMode().name());
+            writer.name("defaultLanguageCode").value(options.getDefaultLanguage().getCode());
+            writer.name("deviceLanguageCode").value(StringX.getDeviceLanguage().getCode());
+            {
+                writer.name("supportedLanguages");
+                writer.beginArray();
+                for (String supportedLanguageCode : supportedLanguageCodes) {
+                    writer.value(supportedLanguageCode);
+                }
+                writer.endArray();
+            }
+            writer.name("version").value(BuildConfig.VERSION_CODE);
+            writer.name("debug").value(BuildConfig.DEBUG);
+        }
+        writer.endObject();
+        writer.close();
+        return writer.toString();
+    }
+
     private static class FetchTask extends AsyncTask<Object, Integer, Void> {
 
         @Override
@@ -47,36 +80,38 @@ public final class ClientService extends Service {
             ConfigCallback callback = (ConfigCallback) configCallbacks[0];
             Context context = (Context) configCallbacks[1];
             try {
-                LL.d("Retrieving config");
-                callback.onStarted();
-                StringX stringX = StringX.get(context);
-                if (stringX != null) {
-                    List<Language> supportedLanguages = stringX.getSupportedLanguages();
-                    List<String> supportedLanguageCodes = new ArrayList<>();
-                    for (Language language : supportedLanguages) {
-                        supportedLanguageCodes.add(language.getCode());
+                try {
+                    LL.d("Retrieving config");
+                    callback.onStarted();
+                    StringX stringX = StringX.get(context);
+                    if (stringX != null) {
+                        List<Language> supportedLanguages = stringX.getSupportedLanguages();
+                        List<String> supportedLanguageCodes = new ArrayList<>();
+                        for (Language language : supportedLanguages) {
+                            supportedLanguageCodes.add(language.getCode());
+                        }
+
+                        Options options = stringX.getOptions();
+                        String infoJson = writeClientInfo(context, supportedLanguageCodes, options);
+                        callback.onBasicInfoReceived(infoJson);
+
+                        List<String> mainStrings = new ArrayList<>();
+                        List<String> mainStringNames = new ArrayList<>();
+                        List<Integer> mainStringIds = new ArrayList<>();
+                        ResourceProvider provider = ResourceProvider.newResourceProvider(context, callback);
+                        provider.fetchDefaultStrings(mainStrings, mainStringNames, mainStringIds);
+                        provider.fetchStringIdentifiers(mainStrings);
+                        callback.onFinished();
+                        LL.d("Config sent");
+                    } else {
+                        callback.onFinished();
                     }
-
-                    Options options = stringX.getOptions();
-                    callback.onBasicInfoReceived(
-                            context.getPackageName(),
-                            options.getMode().name(),
-                            options.getDefaultLanguage().getCode(),
-                            stringX.getDeviceLanguage().getCode(),
-                            supportedLanguageCodes);
-
-                    List<String> mainStrings = new ArrayList<>();
-                    List<String> mainStringNames = new ArrayList<>();
-                    List<Integer> mainStringIds = new ArrayList<>();
-                    ResourceProvider provider = ResourceProvider.newResourceProvider(context, callback);
-                    provider.fetchDefaultStrings(mainStrings, mainStringNames, mainStringIds);
-                    provider.fetchStringIdentifiers(mainStrings);
-                    callback.onFinished();
-                    LL.d("Config sent");
-                } else {
-                    callback.onFinished();
+                } catch (UnsupportedLanguageException e) {
+                    callback.onError(ERROR_UNSUPPORTED_LANGUAGE);
+                } catch (IOException e) {
+                    callback.onError(ERROR_GENERAL);
                 }
-            } catch (RemoteException | UnsupportedLanguageException e) {
+            } catch (RemoteException e) {
                 LL.e("Failed to get config", e);
             }
             return null;

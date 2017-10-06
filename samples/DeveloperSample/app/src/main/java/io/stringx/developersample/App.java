@@ -2,10 +2,12 @@ package io.stringx.developersample;
 
 import android.app.Application;
 
+import io.stringx.LL;
 import io.stringx.Language;
 import io.stringx.Options;
 import io.stringx.StringX;
 import io.stringx.Translatable;
+import io.stringx.UnsupportedLanguageException;
 
 public class App extends Application implements Translatable {
 
@@ -21,7 +23,11 @@ public class App extends Application implements Translatable {
                 .excludeStrings(android.support.v4.R.string.class)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
-        linguist = new StringX(this, options);
+        try {
+            linguist = new StringX(options);
+        } catch (UnsupportedLanguageException e) {
+            LL.w("Unsupported language");
+        }
     }
 
     @Override
