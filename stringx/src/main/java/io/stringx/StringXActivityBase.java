@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
@@ -80,8 +79,9 @@ class StringXActivityBase extends AppCompatActivity {
                 }
                 setResult(RESULT_OK);
                 finish();
-                StringX.get(this).invalidate();
-                LocalBroadcastManager.getInstance(this).sendBroadcast(new Intent(RestartBroadcast.ACTION));
+                StringX stringX = StringX.get(this);
+                stringX.invalidate();
+                stringX.restart();
             }
         }
         super.onActivityResult(requestCode, resultCode, data);

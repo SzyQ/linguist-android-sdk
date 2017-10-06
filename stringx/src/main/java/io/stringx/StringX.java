@@ -1,17 +1,14 @@
 package io.stringx;
 
 import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.RemoteException;
 import android.preference.Preference;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.app.AppCompatCallback;
 import android.support.v7.app.AppCompatDelegate;
@@ -21,7 +18,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -29,37 +25,29 @@ import java.util.Map;
 import io.stringx.translate.AndroidTranslator;
 import io.stringx.translate.Translator;
 
-import static android.app.Activity.RESULT_OK;
-
 public class StringX implements Translator, StringXLanguageReceiver.OnLanguageChanged {
     static final String PREFERENCE_NAME = "StringX";
-    static final String KEY_ENABLED = "KEY_ENABLED";
+    public static final String KEY_ENABLED = "KEY_ENABLED";
     private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
     private final SharedPreferences preferences;
     private final Cache cache;
     private Locale defaultLocale;
-    private Context context;
     private Options options;
     private boolean isTranslationChecked;
-    private Translator translator;
+    private AndroidTranslator translator;
     private Boolean isValidConfig;
     @Nullable
     private Locale locale;
     private TranslationListener listener;
 
-    public StringX(Application application, Options options) {
-        this.context = application.getApplicationContext();
+    public StringX(Options options) throws UnsupportedLanguageException {
+        Context context = options.getContext();
         this.options = options;
         StringXLanguageReceiver languageReceiver = new StringXLanguageReceiver(context);
-        Language deviceLanguage = null;
-        try {
-            deviceLanguage = StringX.getDeviceLanguage();
-        } catch (UnsupportedLanguageException e) {
-            deviceLanguage = options.getDefaultLanguage();//TODO check if default is unsupported too
-        }
+        Language deviceLanguage = StringX.getDeviceLanguage();
         cache = new PreferencesCache(context, deviceLanguage);
-        translator = new AndroidTranslator(this, this.cache);
-        languageReceiver.addListener((StringXLanguageReceiver.OnLanguageChanged) cache);
+        translator = new AndroidTranslator(cache);
+        languageReceiver.addListener(cache);
         languageReceiver.addListener(this);
         preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         defaultLocale = Locale.getDefault();
@@ -104,6 +92,10 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
 
     public static Language getDeviceLanguage() throws UnsupportedLanguageException {
         return Language.fromLocale(Locale.getDefault());
+    }
+
+    public void restart(){
+        options.getRestartStrategy().restart();
     }
 
     public void forceLocale(Context context, @Nullable Locale locale) {
@@ -163,8 +155,8 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
         isTranslationChecked = false;
     }
 
-    public void setTranslator(Translator translator) {
-        this.translator = translator;
+    public void setViewTranslator(AndroidTranslator.ViewTranslator translator) {
+        this.translator.setViewTranslator(translator);
     }
 
     public void onResume(Activity activity) {
@@ -187,6 +179,10 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
             return;
         }
         isTranslationChecked = true;
+        showTranslationHint(activity);
+    }
+
+    public void showTranslationHint(Activity activity) {
         Intent intent = new Intent(activity, StringxOverlayActivity.class);
         activity.startActivityForResult(intent, StringxOverlayActivity.REQUEST_CODE);
     }
@@ -200,19 +196,6 @@ public class StringX implements Translator, StringXLanguageReceiver.OnLanguageCh
             String translated = translation.get(text);
             cache.put(text, translated);
         }
-    }
-
-    private Language getDefaultLanguage() {
-        return options.getDefaultLanguage();
-    }
-
-    public boolean onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == StringxOverlayActivity.REQUEST_CODE) {
-            if (resultCode == RESULT_OK) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public List<Language> getSupportedLanguages() {

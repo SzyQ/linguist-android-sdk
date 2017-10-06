@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.Nullable;
 
-final class PreferencesCache implements Cache, StringXLanguageReceiver.OnLanguageChanged {
+final class PreferencesCache implements Cache {
 
     private SharedPreferences preferences;
     private Context context;

@@ -31,12 +31,6 @@ public final class ClientService extends Service {
             StringX stringX = StringX.get(getApplicationContext());
             if (stringX != null) {
                 stringX.applyTranslation(translation);
-                stringX.setEnabled(true);
-                try {
-                    stringX.setEnabled(stringX.getDefaultDeviceLanguage(), true);
-                } catch (UnsupportedLanguageException e) {
-                    LL.e("Failed to enable translation", e);
-                }
             }
         }
     };

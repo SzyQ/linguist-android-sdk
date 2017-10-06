@@ -2,20 +2,25 @@ package io.stringx;
 
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Options {
+    private final Context context;
     private List<Class> stringClasses;
     private List<Class> excludedClasses;
     private List<Integer> excludedStringIds;
     private Language defaultLanguage;
     private List<Language> supportedLanguages;
     private Mode mode;
+    private RestartStrategy restartStrategy;
 
-    private Options() {
-
+    private Options(Context context, Language defaultLanguage) {
+        this.context = context;
+        this.defaultLanguage = defaultLanguage;
     }
 
     public List<Class> getStringClasses() {
@@ -36,10 +41,6 @@ public class Options {
 
     public Language getDefaultLanguage() {
         return defaultLanguage;
-    }
-
-    private void setDefaultLanguage(Language defaultLanguage) {
-        this.defaultLanguage = defaultLanguage;
     }
 
     public List<Language> getSupportedLanguages() {
@@ -66,6 +67,18 @@ public class Options {
         this.excludedStringIds = excludedStringIds;
     }
 
+    public RestartStrategy getRestartStrategy() {
+        return restartStrategy;
+    }
+
+    void setRestartStrategy(RestartStrategy restartStrategy) {
+        this.restartStrategy = restartStrategy;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
     public enum Mode {
         User, Developer
     }
@@ -78,8 +91,9 @@ public class Options {
         private List<Class> excludedStrings;
         private int[] excludedStringIds;
         private Mode mode;
+        private RestartStrategy restartStrategy;
 
-        public Builder(Context context, Language defaultLanguage) {
+        public Builder(Context context,Language defaultLanguage) {
             this.context = context;
             this.defaultLanguage = defaultLanguage;
             supportedStrings = new ArrayList<>();
@@ -106,8 +120,18 @@ public class Options {
             return this;
         }
 
+        public Builder setRestartStrategy(RestartStrategy restartStrategy) {
+            this.restartStrategy = restartStrategy;
+            return this;
+        }
+
+        public Builder excludeString(int... stringId) {
+            excludedStringIds = stringId;
+            return this;
+        }
+
         public Options build() {
-            Options options = new Options();
+            Options options = new Options(context,defaultLanguage);
             if (mode == null) {
                 mode = Mode.User;
             }
@@ -123,7 +147,6 @@ public class Options {
             options.setMode(mode);
             options.setStringClasses(supportedStrings);
             options.setExcludedClasses(excludedStrings);
-            options.setDefaultLanguage(defaultLanguage);
             if (supportedLanguages == null) {
                 supportedLanguages = new Language[]{defaultLanguage};
             }
@@ -139,12 +162,33 @@ public class Options {
                 languages.add(defaultLanguage);
             }
             options.setSupportedLanguages(languages);
+            if(restartStrategy == null){
+                restartStrategy = new DefaultRestartStrategy(context);
+            }
+            options.setRestartStrategy(restartStrategy);
+
             return options;
         }
+    }
 
-        public Builder excludeString(int... stringId) {
-            excludedStringIds = stringId;
-            return this;
+    public interface RestartStrategy {
+        void restart();
+    }
+
+    private static class DefaultRestartStrategy implements RestartStrategy {
+
+        private Context context;
+
+        public DefaultRestartStrategy(Context context){
+            this.context = context;
+        }
+
+        @Override
+        public void restart() {
+            PackageManager packageManager = context.getPackageManager();
+            Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
         }
     }
 }

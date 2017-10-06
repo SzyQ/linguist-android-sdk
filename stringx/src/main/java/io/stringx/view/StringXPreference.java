@@ -1,11 +1,12 @@
-package io.stringx;
+package io.stringx.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.preference.Preference;
-import android.support.v4.content.LocalBroadcastManager;
 import android.util.AttributeSet;
 
+import io.stringx.StringX;
+import io.stringx.StringXProxyActivity;
+import io.stringx.UnsupportedLanguageException;
 import io.stringx.client.R;
 
 public class StringXPreference extends android.preference.CheckBoxPreference {
@@ -37,7 +38,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
                     if (isOptedIn) {
                         StringXProxyActivity.start(getContext());
                     } else {
-                        LocalBroadcastManager.getInstance(getContext()).sendBroadcast(new Intent(RestartBroadcast.ACTION));
+                        stringX.restart();
                     }
                 }
                 return true;
