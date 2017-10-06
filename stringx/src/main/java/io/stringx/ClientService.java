@@ -49,8 +49,8 @@ public final class ClientService extends Service {
     }
 
     private static String writeClientInfo(Context context, List<String> supportedLanguageCodes, Options options) throws IOException, UnsupportedLanguageException {
-        JsonWriter writer = new JsonWriter(new StringWriter(1024));
-        writer.setIndent("    ");
+        StringWriter out = new StringWriter(1024);
+        JsonWriter writer = new JsonWriter(out);
         writer.beginObject();
         {
             writer.name("packageName").value(context.getPackageName());
@@ -70,7 +70,7 @@ public final class ClientService extends Service {
         }
         writer.endObject();
         writer.close();
-        return writer.toString();
+        return out.toString();
     }
 
     private static class FetchTask extends AsyncTask<Object, Integer, Void> {
