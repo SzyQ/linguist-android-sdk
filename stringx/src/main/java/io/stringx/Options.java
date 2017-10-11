@@ -80,7 +80,7 @@ public class Options {
     }
 
     public enum Mode {
-        User, Developer
+        User, AndroidResources, StringXResources
     }
 
     public static class Builder {

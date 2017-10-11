@@ -17,7 +17,7 @@ public class App extends Application implements Translatable {
     public void onCreate() {
         super.onCreate();
         Options options = new Options.Builder(this, Language.English)
-                .setMode(Options.Mode.Developer)
+                .setMode(Options.Mode.AndroidResources)
                 .addStrings(R.string.class)
                 .excludeString(R.string.app_name)
                 .excludeStrings(android.support.v4.R.string.class)
