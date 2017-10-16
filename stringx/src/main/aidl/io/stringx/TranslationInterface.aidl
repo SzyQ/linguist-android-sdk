@@ -7,5 +7,4 @@ interface TranslationInterface {
 
     void getConfig(ConfigCallback callback);
 
-    void onTranslationCompleted(in Map translation);
 }

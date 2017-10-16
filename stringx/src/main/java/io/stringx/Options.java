@@ -1,12 +1,17 @@
 package io.stringx;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+
+import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class Options {
     private final Context context;
@@ -15,7 +20,7 @@ public class Options {
     private List<Integer> excludedStringIds;
     private Language defaultLanguage;
     private List<Language> supportedLanguages;
-    private Mode mode;
+    private List<Language> autoTranslatedLanguages;
     private RestartStrategy restartStrategy;
 
     private Options(Context context, Language defaultLanguage) {
@@ -51,14 +56,6 @@ public class Options {
         this.supportedLanguages = supportedLanguages;
     }
 
-    public Mode getMode() {
-        return mode;
-    }
-
-    private void setMode(Mode mode) {
-        this.mode = mode;
-    }
-
     public List<Integer> getExcludedStringIds() {
         return excludedStringIds;
     }
@@ -79,18 +76,22 @@ public class Options {
         return context;
     }
 
-    public enum Mode {
-        User, AndroidResources, StringXResources
+    public List<Language> getAutoTranslatedLanguages() {
+        return autoTranslatedLanguages;
+    }
+
+    public void setAutoTranslatedLanguages(List<Language> autoTranslatedLanguages) {
+        this.autoTranslatedLanguages = autoTranslatedLanguages;
     }
 
     public static class Builder {
         private Context context;
         private Language defaultLanguage;
         private Language[] supportedLanguages;
+        private Language[] autoTranslatedLanguages;
         private List<Class> supportedStrings;
         private List<Class> excludedStrings;
         private int[] excludedStringIds;
-        private Mode mode;
         private RestartStrategy restartStrategy;
 
         public Builder(Context context,Language defaultLanguage) {
@@ -100,13 +101,13 @@ public class Options {
             excludedStrings = new ArrayList<>();
         }
 
-        public Builder setMode(Mode mode) {
-            this.mode = mode;
+        public Builder setSupportedLanguages(Language... supportedLanguages) {
+            this.supportedLanguages = supportedLanguages;
             return this;
         }
 
-        public Builder setSupportedLanguages(Language... supportedLanguages) {
-            this.supportedLanguages = supportedLanguages;
+        public Builder setAutoTranslatedLanguages(Language... autoTranslatedLanguages) {
+            this.autoTranslatedLanguages = autoTranslatedLanguages;
             return this;
         }
 
@@ -131,9 +132,9 @@ public class Options {
         }
 
         public Options build() {
-            Options options = new Options(context,defaultLanguage);
-            if (mode == null) {
-                mode = Mode.User;
+            Options options = new Options(context, defaultLanguage);
+            if (autoTranslatedLanguages == null || autoTranslatedLanguages.length == 0) {
+                throw new IllegalArgumentException("Please add automatically translated languages");
             }
             if (excludedStringIds == null) {
                 excludedStringIds = new int[0];
@@ -144,7 +145,6 @@ public class Options {
             }
 
             options.setExcludedStringIds(ids);
-            options.setMode(mode);
             options.setStringClasses(supportedStrings);
             options.setExcludedClasses(excludedStrings);
             if (supportedLanguages == null) {
@@ -162,7 +162,10 @@ public class Options {
                 languages.add(defaultLanguage);
             }
             options.setSupportedLanguages(languages);
-            if(restartStrategy == null){
+            List<Language> autoTranslatedLanguages = Arrays.asList(this.autoTranslatedLanguages);
+            autoTranslatedLanguages.removeAll(languages);
+            options.setAutoTranslatedLanguages(autoTranslatedLanguages);
+            if (restartStrategy == null) {
                 restartStrategy = new DefaultRestartStrategy(context);
             }
             options.setRestartStrategy(restartStrategy);
@@ -183,12 +186,20 @@ public class Options {
             this.context = context;
         }
 
-        @Override
-        public void restart() {
+        public static void triggerRebirth(Context context) {
             PackageManager packageManager = context.getPackageManager();
             Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
-            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK); // In case we are called with non-Activity context.
             context.startActivity(intent);
+            if (context instanceof Activity) {
+                ((Activity) context).finish();
+            }
+            Runtime.getRuntime().exit(0);
+        }
+
+        @Override
+        public void restart() {
+            triggerRebirth(context);
         }
     }
 }

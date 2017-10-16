@@ -126,7 +126,7 @@ public abstract class ResourceProvider {
             Configuration conf = localisedResources.getConfiguration();
             Locale savedLocale = conf.locale;
             for (Language language : Language.values()) {
-                if (stringX.getOptions().getMode() == Options.Mode.User && stringX.getDefaultDeviceLanguage() != language) {
+                if (stringX.getDeviceLanguage() == language) {
                     continue;
                 }
                 conf.locale = new Locale(language.getCode());
@@ -140,7 +140,7 @@ public abstract class ResourceProvider {
 
         @Override
         public void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
-            Locale appDefaultLocale = stringX.getDefaultLocale();
+            Locale appDefaultLocale = stringX.getAppLanguage().toLocale();
             Resources defaultResources = context.getResources();
             Configuration conf = defaultResources.getConfiguration();
             Locale savedLocale = conf.locale;
@@ -160,7 +160,7 @@ public abstract class ResourceProvider {
 
         @Override
         public void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
-            Locale appDefaultLocale = stringX.getDefaultLocale();
+            Locale appDefaultLocale = stringX.getAppLanguage().toLocale();
             Resources defaultResources = getLocalizedResources(appDefaultLocale);
             fetchDefaultStrings(defaultResources, resources, mainStrings, mainStringNames, mainStringIds);
         }
@@ -168,7 +168,8 @@ public abstract class ResourceProvider {
         @Override
         public void fetchStringIdentifiers(List<String> mainStrings) throws RemoteException, UnsupportedLanguageException {
             for (Language language : Language.values()) {
-                if (stringX.getOptions().getMode() == Options.Mode.User && stringX.getDefaultDeviceLanguage() != language) {
+                //TODO Shouldn't be get app default?
+                if (stringX.getAppLanguage() == language) {
                     continue;
                 }
                 Locale sideLocale = new Locale(language.getCode());

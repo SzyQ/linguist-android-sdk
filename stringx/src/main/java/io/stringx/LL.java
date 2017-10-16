@@ -5,7 +5,7 @@ import android.util.Log;
 import io.stringx.client.BuildConfig;
 
 public class LL {
-    public static final String TAG = "StringX";
+    public static final String TAG = "stringX";
 
     public static void d(String string) {
         if (BuildConfig.DEBUG) {

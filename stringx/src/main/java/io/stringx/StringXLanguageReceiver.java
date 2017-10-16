@@ -13,7 +13,7 @@ public class StringXLanguageReceiver {
 
     private Set<OnLanguageChanged> listeners = new HashSet<>();
 
-    public StringXLanguageReceiver(Context context) {
+    private StringXLanguageReceiver(Context context) {
         context.registerReceiver(
                 new BroadcastReceiver() {
                     @Override
@@ -22,6 +22,10 @@ public class StringXLanguageReceiver {
                     }
                 },
                 new IntentFilter(Intent.ACTION_LOCALE_CHANGED));
+    }
+
+    public static StringXLanguageReceiver from(Context context) {
+        return new StringXLanguageReceiver(context);
     }
 
 

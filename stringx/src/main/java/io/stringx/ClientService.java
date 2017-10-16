@@ -32,15 +32,6 @@ public final class ClientService extends Service {
             task = new FetchTask();
             task.execute(callback, getApplicationContext());
         }
-
-        @Override
-        public void onTranslationCompleted(Map translation) throws RemoteException {
-            LL.d("Applying translation");
-            StringX stringX = StringX.get(getApplicationContext());
-            if (stringX != null) {
-                stringX.applyTranslation(translation);
-            }
-        }
     };
 
     @Override
@@ -54,9 +45,8 @@ public final class ClientService extends Service {
         writer.beginObject();
         {
             writer.name("packageName").value(context.getPackageName());
-            writer.name("mode").value(options.getMode().name());
             writer.name("defaultLanguageCode").value(options.getDefaultLanguage().getCode());
-            writer.name("deviceLanguageCode").value(StringX.getDeviceLanguage().getCode());
+            writer.name("deviceLanguageCode").value(StringX.get(context).getDeviceLanguage().getCode());
             {
                 writer.name("supportedLanguages");
                 writer.beginArray();

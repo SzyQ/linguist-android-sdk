@@ -5,54 +5,46 @@ import android.preference.Preference;
 import android.util.AttributeSet;
 
 import io.stringx.StringX;
-import io.stringx.StringXProxyActivity;
 import io.stringx.UnsupportedLanguageException;
 import io.stringx.client.R;
 
 public class StringXPreference extends android.preference.CheckBoxPreference {
 
-    public StringXPreference(Context context, AttributeSet attrs) {
+    public StringXPreference(final Context context, AttributeSet attrs) {
         super(context, attrs);
-        setKey(StringX.KEY_ENABLED);
         final StringX stringX = StringX.get(getContext());
-        if (stringX != null) {
-            setDefaultValue(stringX.isEnabled());
+        try {
+            boolean enabled = stringX.isEnabled();
+            boolean translationAvailable = stringX.isTranslationAvailable();
+            setChecked(enabled);
+            setEnabled(translationAvailable);
+        } catch (UnsupportedLanguageException e) {
+            setEnabled(false);
         }
         setIcon(R.mipmap.sx_logo);
         setTitle(R.string.sX_preference_title);
         setSummary(R.string.sX_preference_summary);
-        try {
-            setEnabled(isStringXAvailable(stringX));
-        } catch (UnsupportedLanguageException e) {
-            setEnabled(false);
-        }
+
         setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
-
-                if (stringX != null) {
-                    Boolean isOptedIn = (Boolean) o;
-                    setValue(isOptedIn);
-                    stringX.invalidate();
+                Boolean isOptedIn = (Boolean) o;
+                try {
                     stringX.setEnabled(isOptedIn);
-                    if (isOptedIn) {
-                        StringXProxyActivity.start(getContext());
-                    } else {
-                        stringX.restart();
-                    }
+                } catch (UnsupportedLanguageException ignored) {
                 }
+                stringX.restart();
                 return true;
             }
         });
 
     }
 
-    private boolean isStringXAvailable(StringX stringX) throws UnsupportedLanguageException {
-        return stringX != null && !stringX.getOptions().getSupportedLanguages().contains(StringX.getDeviceLanguage());
+    @Override
+    protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
+        try {
+            super.onSetInitialValue(StringX.get(getContext()).isEnabled(), defaultValue);
+        } catch (UnsupportedLanguageException ignored) {
+        }
     }
-
-    private void setValue(Boolean isOptedIn) {
-        getEditor().putBoolean(getKey(), isOptedIn).apply();
-    }
-
 }

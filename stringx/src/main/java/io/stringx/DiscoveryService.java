@@ -14,7 +14,6 @@ public final class DiscoveryService extends Service {
     private final IBinder binder = new DiscoveryInterface.Stub() {
     };
 
-    @Nullable
     @Override
     public IBinder onBind(Intent intent) {
         return binder;

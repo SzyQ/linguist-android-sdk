@@ -10,24 +10,6 @@ import io.stringx.StringX;
 
 public class StringXActivity extends AppCompatActivity {
 
-    private AppCompatDelegate mDelegate;
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        super.attachBaseContext(StringX.wrap(base));
-    }
-
-    @NonNull
-    public AppCompatDelegate getDelegate() {
-        if (mDelegate == null) {
-            mDelegate = StringX.wrap(this, this);
-        }
-        if (mDelegate == null) {
-            mDelegate = super.getDelegate();
-        }
-        return mDelegate;
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -35,11 +17,5 @@ public class StringXActivity extends AppCompatActivity {
         if (stringX != null) {
             stringX.onResume(this);
         }
-    }
-
-    @NonNull
-    @Override
-    public MenuInflater getMenuInflater() {
-        return StringX.wrap(this, super.getMenuInflater());
     }
 }
