@@ -148,6 +148,18 @@ public enum Language {
         return fromCode(language);
     }
 
+    @NonNull
+    public Locale toLocale() {
+        switch (this){
+            case Chinese_Simplified:
+                return new Locale("zh","CN");
+            case Chinese_Traditional:
+                return new Locale("zh","TW");
+                default:
+                    return new Locale(getCode());
+        }
+    }
+
     public String getCode() {
         return code;
     }
