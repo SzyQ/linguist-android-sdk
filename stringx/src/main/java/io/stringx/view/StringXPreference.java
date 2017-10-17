@@ -15,7 +15,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
         final StringX stringX = StringX.get(getContext());
         try {
             boolean enabled = stringX.isEnabled();
-            boolean translationAvailable = stringX.isTranslationAvailable();
+            boolean translationAvailable = stringX.isTranslationAvailable() && !stringX.isForcingLocale();
             setChecked(enabled);
             setEnabled(translationAvailable);
         } catch (UnsupportedLanguageException e) {
@@ -43,7 +43,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
     @Override
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
         try {
-            super.onSetInitialValue(StringX.get(getContext()).isEnabled(), defaultValue);
+            super.onSetInitialValue(StringX.get(getContext()).isEnabled(), false);
         } catch (UnsupportedLanguageException ignored) {
         }
     }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Handler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -199,7 +200,12 @@ public class Options {
 
         @Override
         public void restart() {
-            triggerRebirth(context);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    triggerRebirth(context);
+                }
+            },100);
         }
     }
 }

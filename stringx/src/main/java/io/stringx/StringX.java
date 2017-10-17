@@ -24,6 +24,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     @Nullable
     private Locale locale;
     private TranslationListener listener;
+    private boolean isForcingDefaultLocale;
 
     public StringX(Options options) throws UnsupportedLanguageException {
         Context context = options.getContext();
@@ -36,7 +37,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
 
     public void forceDefault(Context context) throws UnsupportedLanguageException {
         if (isTranslationAvailable() && !isEnabled()) {
-            forceLocale(context, getAppLanguage().toLocale());
+            forceLocale(context, getAppLanguage().toLocale(),true);
         }
     }
 
@@ -67,10 +68,11 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         options.getRestartStrategy().restart();
     }
 
-    public void forceLocale(Context context, @Nullable Locale locale) {
+    private void forceLocale(Context context, @Nullable Locale locale, boolean isDefault) {
         if (locale == null) {
             return;
         }
+        isForcingDefaultLocale = isDefault;
         Resources res = context.getResources();
         DisplayMetrics displayMetrics = res.getDisplayMetrics();
         Locale.setDefault(locale);
@@ -79,9 +81,12 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         res.updateConfiguration(config, displayMetrics);
         this.locale = locale;
     }
+    public void forceLocale(Context context, @Nullable Locale locale) {
+        forceLocale(context,locale,false);
+    }
 
-    private boolean isForcingLocale() {
-        return locale != null && !locale.equals(defaultLocale);
+    public boolean isForcingLocale() {
+        return !isForcingDefaultLocale && locale != null && !locale.equals(defaultLocale);
     }
 
     public boolean isEnabled() throws UnsupportedLanguageException {
@@ -92,7 +97,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         preferences
                 .edit()
                 .putBoolean(getPreferenceKey(), isEnabled)
-                .commit();
+                .apply();
     }
 
     public boolean isOptOut() throws UnsupportedLanguageException {
@@ -103,7 +108,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         preferences
                 .edit()
                 .putBoolean(KEY_OPT_OUT, isOptOut)
-                .commit();
+                .apply();
     }
 
     public String getPreferenceKey() throws UnsupportedLanguageException {
