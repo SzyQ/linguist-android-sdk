@@ -67,12 +67,8 @@ public final class StringXOverlayActivity extends AppCompatActivity {
                 if (listener != null) {
                     listener.onTranslationDisabled();
                 }
-                try {
-                    stringX.setEnabled(false);
-                    setResult(RESULT_OK);
-                } catch (UnsupportedLanguageException e) {
-                    setResult(RESULT_CANCELED);
-                }
+                stringX.setOptOut(true);
+                setResult(RESULT_OK);
                 finish();
             }
         });

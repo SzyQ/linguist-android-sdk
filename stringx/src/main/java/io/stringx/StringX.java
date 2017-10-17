@@ -16,6 +16,7 @@ import java.util.Locale;
 public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     private static final String PREFERENCE_NAME = "StringX";
     private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
+    private static final String KEY_OPT_OUT = "KEY_OPTED_OUT";
     private final SharedPreferences preferences;
     private Locale defaultLocale;
     private Options options;
@@ -94,6 +95,17 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
                 .commit();
     }
 
+    public boolean isOptOut() throws UnsupportedLanguageException {
+        return preferences.getBoolean(KEY_OPT_OUT, false);
+    }
+
+    public void setOptOut(boolean isOptOut) {
+        preferences
+                .edit()
+                .putBoolean(KEY_OPT_OUT, isOptOut)
+                .commit();
+    }
+
     public String getPreferenceKey() throws UnsupportedLanguageException {
         return KEY_LANGUAGE_ENABLED + getDeviceLanguage().getCode();
     }
@@ -105,19 +117,14 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     public void onResume(Activity activity) {
         try {
             if (isTranslationChecked ||
-                    !isTranslationAvailable()) {
+                    !isTranslationAvailable() ||
+                    isEnabled() ||
+                    isOptOut()) {
                 isTranslationChecked = true;
                 return;
             }
         } catch (UnsupportedLanguageException e) {
             LL.w("Unsupported device language!");
-            return;
-        }
-        try {
-            if (isEnabled()) {
-                return;
-            }
-        } catch (UnsupportedLanguageException e) {
             return;
         }
         isTranslationChecked = true;
