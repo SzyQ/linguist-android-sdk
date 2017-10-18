@@ -9,6 +9,7 @@ import android.os.Handler;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
@@ -134,9 +135,6 @@ public class Options {
 
         public Options build() {
             Options options = new Options(context, defaultLanguage);
-            if (autoTranslatedLanguages == null || autoTranslatedLanguages.length == 0) {
-                throw new IllegalArgumentException("Please add automatically translated languages");
-            }
             if (excludedStringIds == null) {
                 excludedStringIds = new int[0];
             }
@@ -163,8 +161,13 @@ public class Options {
                 languages.add(defaultLanguage);
             }
             options.setSupportedLanguages(languages);
-            List<Language> autoTranslatedLanguages = Arrays.asList(this.autoTranslatedLanguages);
-            autoTranslatedLanguages.removeAll(languages);
+            List<Language> autoTranslatedLanguages;
+            if(this.autoTranslatedLanguages == null){
+                autoTranslatedLanguages = Collections.emptyList();
+            }else {
+                autoTranslatedLanguages = Arrays.asList(this.autoTranslatedLanguages);
+                autoTranslatedLanguages.removeAll(languages);
+            }
             options.setAutoTranslatedLanguages(autoTranslatedLanguages);
             if (restartStrategy == null) {
                 restartStrategy = new DefaultRestartStrategy(context);
