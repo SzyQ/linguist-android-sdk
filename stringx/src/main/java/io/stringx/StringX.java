@@ -95,6 +95,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         return !isForcingDefaultLocale && locale != null && !locale.equals(defaultLocale);
     }
 
+    //TODO this exception won't be thrown because device is not supported and StringX will not be returned
     public boolean isEnabled() throws UnsupportedLanguageException {
         return preferences.getBoolean(getPreferenceKey(), false);
     }
