@@ -165,7 +165,7 @@ public class Options {
             if(this.autoTranslatedLanguages == null){
                 autoTranslatedLanguages = Collections.emptyList();
             }else {
-                autoTranslatedLanguages = Arrays.asList(this.autoTranslatedLanguages);
+                autoTranslatedLanguages = new ArrayList<>(Arrays.asList(this.autoTranslatedLanguages));
                 autoTranslatedLanguages.removeAll(languages);
             }
             options.setAutoTranslatedLanguages(autoTranslatedLanguages);
