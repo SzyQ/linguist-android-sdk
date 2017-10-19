@@ -72,6 +72,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         if (locale == null) {
             return;
         }
+        LL.d("Forcing "+locale.getDisplayLanguage());
         isForcingDefaultLocale = isDefault;
         Resources res = context.getResources();
         DisplayMetrics displayMetrics = res.getDisplayMetrics();

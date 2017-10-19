@@ -32,6 +32,10 @@ public final class StringXOverlayActivity extends AppCompatActivity {
         } catch (UnsupportedLanguageException ignored) {
             finish();
         }
+        try {
+            stringX.forceDefault(this);
+        } catch (UnsupportedLanguageException ignored) {
+        }
     }
 
     private void setupMessage() {
