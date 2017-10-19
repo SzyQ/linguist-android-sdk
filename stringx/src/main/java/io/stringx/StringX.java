@@ -49,6 +49,11 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         return getOptions().getAutoTranslatedLanguages().contains(getDeviceLanguage());
     }
 
+    /**
+     *
+     * @param context
+     * @return Instance of StringX service or null if it's not initialised or device language is not supported
+     */
     @Nullable
     public static StringX get(@NonNull Context context) {
         StringX stringX = null;
