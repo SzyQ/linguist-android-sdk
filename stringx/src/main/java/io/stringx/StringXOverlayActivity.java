@@ -18,6 +18,10 @@ public final class StringXOverlayActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         stringX = StringX.get(StringXOverlayActivity.this);
+        if(stringX == null){
+            finish();
+            return;
+        }
         try {
             stringX.forceLocale(this, stringX.getDeviceLanguage().toLocale());
         } catch (UnsupportedLanguageException ignored) {
