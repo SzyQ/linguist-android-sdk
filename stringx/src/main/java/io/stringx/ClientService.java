@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import io.stringx.client.BuildConfig;
 
@@ -101,7 +100,7 @@ public final class ClientService extends Service {
                 } catch (IOException e) {
                     callback.onError(ERROR_GENERAL);
                 }
-            } catch (RemoteException e) {
+            } catch (Exception e) {
                 LL.e("Failed to get config", e);
             }
             return null;
