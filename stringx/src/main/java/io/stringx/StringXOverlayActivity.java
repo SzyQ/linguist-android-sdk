@@ -1,15 +1,15 @@
 package io.stringx;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
 import io.stringx.client.R;
 
-public final class StringXOverlayActivity extends AppCompatActivity {
+public final class StringXOverlayActivity extends Activity {
 
     public static int REQUEST_CODE = 7331;
     private StringX stringX;
@@ -18,7 +18,7 @@ public final class StringXOverlayActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         stringX = StringX.get(StringXOverlayActivity.this);
-        if(stringX == null){
+        if (stringX == null) {
             finish();
             return;
         }
@@ -91,12 +91,8 @@ public final class StringXOverlayActivity extends AppCompatActivity {
                 if (listener != null) {
                     listener.onTranslationEnabled();
                 }
-                try {
-                    stringX.setEnabled(true);
-                    stringX.restart();
-                } catch (UnsupportedLanguageException e) {
-                    //TODO
-                }
+                stringX.setEnabled(true);
+                stringX.restart();
                 finish();
             }
         });

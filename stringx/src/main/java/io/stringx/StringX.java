@@ -17,7 +17,8 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     private static final String PREFERENCE_NAME = "StringX";
     private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
     private static final String KEY_OPT_OUT = "KEY_OPTED_OUT";
-    private final SharedPreferences preferences;
+    private boolean isLanguageSupported;
+    private SharedPreferences preferences;
     private Locale defaultLocale;
     private Options options;
     private boolean isTranslationChecked;
@@ -26,39 +27,33 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     private TranslationListener listener;
     private boolean isForcingDefaultLocale;
 
-    public StringX(Options options) throws UnsupportedLanguageException {
+    public StringX(Options options) {
         Context context = options.getContext();
         this.options = options;
-        preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
         defaultLocale = Locale.getDefault();
-        StringXLanguageReceiver.from(context).addListener(this);
-        forceDefault(context);
-    }
-
-    public void forceDefault(Context context) throws UnsupportedLanguageException {
-        if (isTranslationAvailable() && !isEnabled()) {
-            forceLocale(context, getAppLanguage().toLocale(),true);
+        try {
+            forceDefault(context);
+            preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+            StringXLanguageReceiver.from(context).addListener(this);
+            isLanguageSupported = true;
+        } catch (UnsupportedLanguageException e) {
+            SXLog.e("Unsupported locale" + defaultLocale.getDisplayLanguage() + "-" + defaultLocale.getDisplayCountry(), e);
+            if (listener != null) {
+                listener.onLanguageNotSupported(defaultLocale);
+            }
         }
     }
 
-    public boolean isTranslationRequired() throws UnsupportedLanguageException {
-        return !getOptions().getSupportedLanguages().contains(getDeviceLanguage());
-    }
-
-    public boolean isTranslationAvailable() throws UnsupportedLanguageException {
-        return getOptions().getAutoTranslatedLanguages().contains(getDeviceLanguage());
-    }
-
     /**
-     *
      * @param context
      * @return Instance of StringX service or null if it's not initialised or device language is not supported
      */
-    @Nullable
     public static StringX get(@NonNull Context context) {
         StringX stringX = null;
         if (isInitialised(context)) {
             stringX = ((Translatable) context.getApplicationContext()).getStringX();
+        } else {
+            throw new IllegalStateException("StringX is not initialised. Follow instructions here http://www.stringx.io/docs/guides");
         }
         return stringX;
     }
@@ -69,7 +64,21 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
                 ((Translatable) applicationContext).getStringX() != null;
     }
 
-    public void restart(){
+    void forceDefault(Context context) throws UnsupportedLanguageException {
+        if (isTranslationAvailable() && !isEnabled()) {
+            forceLocale(context, getAppLanguage().toLocale(), true);
+        }
+    }
+
+    public boolean isTranslationAvailable() {
+        try {
+            return isLanguageSupported && getOptions().getAutoTranslatedLanguages().contains(getDeviceLanguage());
+        } catch (UnsupportedLanguageException e) {
+            return false;
+        }
+    }
+
+    public void restart() {
         options.getRestartStrategy().restart();
     }
 
@@ -77,7 +86,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         if (locale == null) {
             return;
         }
-        LL.d("Forcing "+locale.getDisplayLanguage());
+        SXLog.d("Forcing " + locale.getDisplayLanguage());
         isForcingDefaultLocale = isDefault;
         Resources res = context.getResources();
         DisplayMetrics displayMetrics = res.getDisplayMetrics();
@@ -87,27 +96,32 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         res.updateConfiguration(config, displayMetrics);
         this.locale = locale;
     }
+
     public void forceLocale(Context context, @Nullable Locale locale) {
-        forceLocale(context,locale,false);
+        forceLocale(context, locale, false);
     }
 
-    public boolean isForcingLocale() {
+    boolean isForcingLocale() {
         return !isForcingDefaultLocale && locale != null && !locale.equals(defaultLocale);
     }
 
     //TODO this exception won't be thrown because device is not supported and StringX will not be returned
-    public boolean isEnabled() throws UnsupportedLanguageException {
+    boolean isEnabled() throws UnsupportedLanguageException {
         return preferences.getBoolean(getPreferenceKey(), false);
     }
 
-    public void setEnabled(boolean isEnabled) throws UnsupportedLanguageException {
-        preferences
-                .edit()
-                .putBoolean(getPreferenceKey(), isEnabled)
-                .apply();
+    public void setEnabled(boolean isEnabled) {
+        try {
+            preferences
+                    .edit()
+                    .putBoolean(getPreferenceKey(), isEnabled)
+                    .apply();
+        } catch (UnsupportedLanguageException e) {
+            SXLog.w("Couldn't toggle translation. Language is not supported!");
+        }
     }
 
-    public boolean isOptOut() throws UnsupportedLanguageException {
+    public boolean isOptOut() {
         return preferences.getBoolean(KEY_OPT_OUT, false);
     }
 
@@ -118,12 +132,8 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
                 .apply();
     }
 
-    public String getPreferenceKey() throws UnsupportedLanguageException {
+    private String getPreferenceKey() throws UnsupportedLanguageException {
         return KEY_LANGUAGE_ENABLED + getDeviceLanguage().getCode();
-    }
-
-    public void refresh() {
-        isTranslationChecked = false;
     }
 
     public void onResume(Activity activity) {
@@ -136,7 +146,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
                 return;
             }
         } catch (UnsupportedLanguageException e) {
-            LL.w("Unsupported device language!");
+            SXLog.w("Unsupported device language!");
             return;
         }
         isTranslationChecked = true;
@@ -148,7 +158,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         activity.startActivityForResult(intent, StringXOverlayActivity.REQUEST_CODE);
     }
 
-    public List<Language> getSupportedLanguages() {
+    List<Language> getSupportedLanguages() {
         return options.getSupportedLanguages();
     }
 
@@ -159,9 +169,10 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     @Override
     public void onLanguageChanged(Language language) {
         defaultLocale = language.toLocale();
+        isTranslationChecked = false;
     }
 
-    public Language getDeviceLanguage() throws UnsupportedLanguageException {
+    Language getDeviceLanguage() throws UnsupportedLanguageException {
         return Language.fromLocale(defaultLocale);
     }
 
@@ -173,7 +184,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         this.listener = listener;
     }
 
-    public Language getAppLanguage() {
+    Language getAppLanguage() {
         return getOptions().getDefaultLanguage();
     }
 
@@ -183,5 +194,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         void onTranslationDisabled();
 
         void onTranslationEnabled();
+
+        void onLanguageNotSupported(Locale defaultLocale);
     }
 }

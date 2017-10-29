@@ -1,11 +1,9 @@
-package io.stringx.view;
+package io.stringx;
 
 import android.content.Context;
 import android.preference.Preference;
 import android.util.AttributeSet;
 
-import io.stringx.StringX;
-import io.stringx.UnsupportedLanguageException;
 import io.stringx.client.R;
 
 public class StringXPreference extends android.preference.CheckBoxPreference {
@@ -13,7 +11,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
     public StringXPreference(final Context context, AttributeSet attrs) {
         super(context, attrs);
         final StringX stringX = StringX.get(getContext());
-        if(stringX == null){
+        if (stringX == null) {
             setChecked(false);
             setEnabled(false);
             return;
@@ -34,10 +32,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
             @Override
             public boolean onPreferenceChange(Preference preference, Object o) {
                 Boolean isOptedIn = (Boolean) o;
-                try {
-                    stringX.setEnabled(isOptedIn);
-                } catch (UnsupportedLanguageException ignored) {
-                }
+                stringX.setEnabled(isOptedIn);
                 stringX.restart();
                 return true;
             }
@@ -49,7 +44,7 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
     protected void onSetInitialValue(boolean restoreValue, Object defaultValue) {
         try {
             StringX stringX = StringX.get(getContext());
-            if(stringX != null){
+            if (stringX != null) {
                 super.onSetInitialValue(stringX.isEnabled(), false);
             }
         } catch (UnsupportedLanguageException ignored) {

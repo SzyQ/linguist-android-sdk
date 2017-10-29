@@ -7,7 +7,7 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.os.RemoteException;
 import android.support.annotation.NonNull;
-import android.support.v4.util.Pair;
+import android.util.Pair;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public abstract class ResourceProvider {
     protected Context context;
     protected ConfigCallback callback;
 
-    public ResourceProvider(Context context, ConfigCallback callback) {
+    ResourceProvider(Context context, ConfigCallback callback) {
         stringX = StringX.get(context);
         if (stringX == null) {
             throw new IllegalArgumentException("stringX is not set up!");
@@ -33,7 +33,7 @@ public abstract class ResourceProvider {
         resources = getResourcesIds();
     }
 
-    public static ResourceProvider newResourceProvider(Context applicationContext, ConfigCallback callback) {
+    static ResourceProvider newResourceProvider(Context applicationContext, ConfigCallback callback) {
         if (Build.VERSION.SDK_INT >= 17) {
             return new ResourceProviderV17(applicationContext, callback);
         } else {
@@ -49,12 +49,12 @@ public abstract class ResourceProvider {
         return ids;
     }
 
-    protected int[] getStrings(List<String> mainStrings, Resources localizedResources) {
+    int[] getStrings(List<String> mainStrings, Resources localizedResources) {
         ArrayList<Integer> sideStrings = new ArrayList<>();
         for (Pair<Integer, String> resourceId : resources) {
             try {
                 String string = localizedResources.getString(resourceId.first);
-                if (mainStrings.contains(string)) {//TODO sometimes in both languages translation is the same...
+                if (mainStrings.contains(string)) {
                     sideStrings.add(resourceId.first);
                 }
             } catch (Resources.NotFoundException ignored) {
@@ -98,14 +98,14 @@ public abstract class ResourceProvider {
 
     public abstract void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException;
 
-    protected void fetchDefaultStrings(Resources androidResources, List<Pair<Integer, String>> resources, List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
+    void fetchDefaultStrings(Resources androidResources, List<Pair<Integer, String>> resources, List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
         for (Pair<Integer, String> resource : resources) {
             try {
                 String string = androidResources.getString(resource.first);
                 mainStrings.add(string);
                 mainStringNames.add(resource.second);
                 mainStringIds.add(resource.first);
-                LL.v("R.id." + resource.second + " -> \"" + string + "\"");
+                SXLog.v("R.id." + resource.second + " -> \"" + string + "\"");
             } catch (Resources.NotFoundException ignore) {
             }
         }
@@ -154,7 +154,7 @@ public abstract class ResourceProvider {
 
     private static class ResourceProviderV17 extends ResourceProvider {
 
-        public ResourceProviderV17(Context context, ConfigCallback callback) {
+        ResourceProviderV17(Context context, ConfigCallback callback) {
             super(context, callback);
         }
 
@@ -168,7 +168,6 @@ public abstract class ResourceProvider {
         @Override
         public void fetchStringIdentifiers(List<String> mainStrings) throws RemoteException, UnsupportedLanguageException {
             for (Language language : Language.values()) {
-                //TODO Shouldn't be get app default?
                 if (stringX.getAppLanguage() == language) {
                     continue;
                 }
@@ -190,4 +189,5 @@ public abstract class ResourceProvider {
             return localizedContext.getResources();
         }
     }
+
 }

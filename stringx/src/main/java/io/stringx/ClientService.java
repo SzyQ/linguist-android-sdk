@@ -70,7 +70,7 @@ public final class ClientService extends Service {
             Context context = (Context) configCallbacks[1];
             try {
                 try {
-                    LL.d("Retrieving config");
+                    SXLog.d("Retrieving config");
                     callback.onStarted();
                     StringX stringX = StringX.get(context);
                     if (stringX != null) {
@@ -91,7 +91,7 @@ public final class ClientService extends Service {
                         provider.fetchDefaultStrings(mainStrings, mainStringNames, mainStringIds);
                         provider.fetchStringIdentifiers(mainStrings);
                         callback.onFinished();
-                        LL.d("Config sent");
+                        SXLog.d("Config sent");
                     } else {
                         callback.onFinished();
                     }
@@ -101,7 +101,7 @@ public final class ClientService extends Service {
                     callback.onError(ERROR_GENERAL);
                 }
             } catch (Exception e) {
-                LL.e("Failed to get config", e);
+                SXLog.e("Failed to get config", e);
             }
             return null;
         }

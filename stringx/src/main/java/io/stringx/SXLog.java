@@ -4,7 +4,7 @@ import android.util.Log;
 
 import io.stringx.client.BuildConfig;
 
-public class LL {
+public class SXLog {
     public static final String TAG = "stringX";
 
     public static void d(String string) {
