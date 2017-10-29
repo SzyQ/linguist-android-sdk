@@ -13,7 +13,7 @@ import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.stringx.client.BuildConfig;
+import io.stringx.sdk.BuildConfig;
 
 public final class ClientService extends Service {
 

@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.TextView;
 
-import io.stringx.client.R;
+import io.stringx.sdk.R;
 
 public final class StringXOverlayActivity extends Activity {
 

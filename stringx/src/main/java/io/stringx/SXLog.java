@@ -2,7 +2,7 @@ package io.stringx;
 
 import android.util.Log;
 
-import io.stringx.client.BuildConfig;
+import io.stringx.sdk.BuildConfig;
 
 public class SXLog {
     public static final String TAG = "stringX";

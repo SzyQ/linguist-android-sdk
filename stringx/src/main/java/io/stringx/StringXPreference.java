@@ -4,7 +4,7 @@ import android.content.Context;
 import android.preference.Preference;
 import android.util.AttributeSet;
 
-import io.stringx.client.R;
+import io.stringx.sdk.R;
 
 public class StringXPreference extends android.preference.CheckBoxPreference {
 
