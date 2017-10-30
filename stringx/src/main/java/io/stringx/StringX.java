@@ -32,10 +32,10 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         this.options = options;
         defaultLocale = Locale.getDefault();
         try {
-            forceDefault(context);
             preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
             StringXLanguageReceiver.from(context).addListener(this);
             isLanguageSupported = true;
+            forceDefault(context);
         } catch (UnsupportedLanguageException e) {
             SXLog.e("Unsupported locale" + defaultLocale.getDisplayLanguage() + "-" + defaultLocale.getDisplayCountry(), e);
             if (listener != null) {
@@ -65,7 +65,9 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     }
 
     void forceDefault(Context context) throws UnsupportedLanguageException {
-        if (isTranslationAvailable() && !isEnabled()) {
+        boolean translationAvailable = isTranslationAvailable();
+        boolean enabled = isEnabled();
+        if (translationAvailable && !enabled) {
             forceLocale(context, getAppLanguage().toLocale(), true);
         }
     }
