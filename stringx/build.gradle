@@ -18,7 +18,7 @@ ext {
     publishedGroupId = 'io.stringx.sdk'
     artifact = 'stringx'
     libraryName = 'StringX-SDK'
-    publishedArtifactId = 'stringx-sdk'
+    publishedArtifactId = 'stringx'
 
     libraryDescription = 'Automatic app Translation for Android'
 
@@ -34,7 +34,7 @@ ext {
     allLicenses = ['Apache-2.0']
     versionMajor = 0
     versionMinor = 1
-    versionHotFix = 1
+    versionHotFix = 2
 
     libraryVersion = buildVersionName()
 }

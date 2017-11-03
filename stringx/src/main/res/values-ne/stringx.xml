@@ -4,9 +4,9 @@
 <resources>
     <string name="sX_app">अनुप्रयोग</string>
     <string name="sX_dialog_button">स्थापना गर्नुहोस्</string>
-    <string name="sX_dialog_message">तपाईले %s अनुप्रयोग स्थापना नगरेसम्म अनुवाद हुने छैन।</string>
+    <string name="sX_dialog_message">अनुवाद नभएसम्म %s एप स्थापना नगरे सम्म।</string>
     <string name="sX_dialog_title">%s स्थापना गर्नुहोस्</string>
-    <string name="sX_never_translate">%s अनुवाद नगर्नुहोस्</string>
+    <string name="sX_never_translate">%s कहिल्यै अनुवाद नगर्नुहोस्</string>
     <string name="sX_preference_summary">अनुप्रयोगमा स्वचालित अनुवाद टगल गर्दछ</string>
     <string name="sX_preference_title">स्वचालित अनुवाद</string>
     <string name="sX_translate">अनुवाद गर्नुहोस्</string>

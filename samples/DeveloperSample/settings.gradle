@@ -1,2 +1,2 @@
-include ':app', ':stringx-sdk'
-project(":stringx-sdk").projectDir = file("../../stringx")
+include ':app', ':stringx'
+project(":stringx").projectDir = file("../../stringx")

@@ -4,11 +4,11 @@
 <resources>
     <string name="sX_app">应用</string>
     <string name="sX_dialog_button">安装</string>
-    <string name="sX_dialog_message">不会被翻译，除非你安装%s应用程序。</string>
+    <string name="sX_dialog_message">将不会被翻译，除非你安装%s的应用程序。</string>
     <string name="sX_dialog_title">安装%s</string>
-    <string name="sX_never_translate">永不翻译%s</string>
+    <string name="sX_never_translate">永远不要翻译%s</string>
     <string name="sX_preference_summary">在应用程序中切换自动翻译</string>
     <string name="sX_preference_title">自动翻译</string>
     <string name="sX_translate">翻译</string>
-    <string name="sX_translate_message">这个程序在：%s.你想翻译吗？</string>
+    <string name="sX_translate_message">这个程序是在：%s.你想翻译吗？</string>
 </resources>

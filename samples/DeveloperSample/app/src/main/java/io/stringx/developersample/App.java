@@ -9,11 +9,11 @@ import io.stringx.Translatable;
 
 public class App extends Application implements Translatable {
 
-    private StringX linguist;
+    private StringX stringX;
 
     @Override
     public StringX getStringX() {
-        return linguist;
+        return stringX;
     }
 
     @Override
@@ -25,6 +25,6 @@ public class App extends Application implements Translatable {
                 .excludeString(R.string.app_name)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
-        linguist = new StringX(options);
+        stringX = new StringX(options);
     }
 }
