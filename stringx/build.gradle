@@ -32,9 +32,9 @@ ext {
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ['Apache-2.0']
-    versionMajor = 0
-    versionMinor = 1
-    versionHotFix = 2
+    versionMajor = 1
+    versionMinor = 0
+    versionHotFix = 0
 
     libraryVersion = buildVersionName()
 }
