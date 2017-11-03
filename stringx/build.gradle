@@ -13,12 +13,12 @@ apply plugin: 'com.android.library'
 
 ext {
     bintrayRepo = 'stringx'
-    bintrayName = 'stringx-android-sdk'
+    bintrayName = 'stringx-sdk'
 
-    publishedGroupId = 'io.stringx'
+    publishedGroupId = 'io.stringx.sdk'
+    artifact = 'stringx'
     libraryName = 'StringX-SDK'
-    artifact = 'stringx-android-sdk'
-    publishedArtifactId = 'stringx-android-sdk'
+    publishedArtifactId = 'stringx-sdk'
 
     libraryDescription = 'Automatic app Translation for Android'
 
@@ -27,14 +27,14 @@ ext {
 
     developerId = 'klimaszewski'
     developerName = 'Szymon Klimaszewski'
-    developerEmail = 'klimaszewski.szymon@gmail.com'
+    developerEmail = 'szymon@klimaszewski.mobi'
 
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ['Apache-2.0']
     versionMajor = 0
     versionMinor = 1
-    versionHotFix = 6
+    versionHotFix = 0
 
     libraryVersion = buildVersionName()
 }

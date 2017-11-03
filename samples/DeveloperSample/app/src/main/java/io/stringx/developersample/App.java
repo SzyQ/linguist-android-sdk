@@ -12,6 +12,11 @@ public class App extends Application implements Translatable {
     private StringX linguist;
 
     @Override
+    public StringX getStringX() {
+        return linguist;
+    }
+
+    @Override
     public void onCreate() {
         super.onCreate();
         Options options = new Options.Builder(this, Language.English)
@@ -21,10 +26,5 @@ public class App extends Application implements Translatable {
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
         linguist = new StringX(options);
-    }
-
-    @Override
-    public StringX getStringX() {
-        return linguist;
     }
 }

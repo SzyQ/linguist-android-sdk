@@ -24,7 +24,6 @@ public class StringXPreference extends android.preference.CheckBoxPreference {
         } catch (UnsupportedLanguageException e) {
             setEnabled(false);
         }
-        setIcon(R.mipmap.sx_logo);
         setTitle(R.string.sX_preference_title);
         setSummary(R.string.sX_preference_summary);
 
