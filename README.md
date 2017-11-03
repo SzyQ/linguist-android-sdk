@@ -1,3 +1,4 @@
+[ ![Download](https://api.bintray.com/packages/klimaszewski/stringx/stringx-sdk/images/download.svg) ](https://bintray.com/klimaszewski/stringx/stringx-sdk/_latestVersion)
 What is stringX
 -------------
 
@@ -6,7 +7,22 @@ This native Android SDK will enable your app to use all of these features.
 
 Getting started
 ---------------
-1. Implement Translatable interface in your custom Application class
+1. Add dependency to your project
+
+project's build.gradle
+```
+allprojects {
+    repositories {
+        maven { url 'https://dl.bintray.com/klimaszewski/stringx' }
+    }
+}
+```
+
+module's build.gradle
+```
+implementation 'io.stringx.sdk:stringx:1.0'
+```
+2. Implement Translatable interface in your custom Application class
 ```java
 public class App extends Application implements Translatable {
 
@@ -18,13 +34,14 @@ public class App extends Application implements Translatable {
     }
 }
 ```
-2. Configure stringX
+3. Configure stringX
 ```java
     @Override
     public void onCreate() {
         super.onCreate();
         Options options = new Options.Builder(this, Language.English)
                 .setSupportedLanguages(Language.Polish)
+                .setAutoTranslatedLanguages(Language.Spanish,Language.German)
                 .addStrings(R.string.class)
                 .excludeString(R.string.app_name)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
