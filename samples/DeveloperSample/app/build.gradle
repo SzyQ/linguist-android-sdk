@@ -20,7 +20,7 @@ android {
 }
 
 dependencies {
-    implementation project(':stringx-android-sdk')
+    implementation project(':stringx-sdk')
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
