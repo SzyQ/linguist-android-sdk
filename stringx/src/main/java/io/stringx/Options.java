@@ -86,6 +86,10 @@ public class Options {
         this.autoTranslatedLanguages = autoTranslatedLanguages;
     }
 
+    public interface RestartStrategy {
+        void restart();
+    }
+
     public static class Builder {
         private Context context;
         private Language defaultLanguage;
@@ -96,7 +100,7 @@ public class Options {
         private int[] excludedStringIds;
         private RestartStrategy restartStrategy;
 
-        public Builder(Context context,Language defaultLanguage) {
+        public Builder(Context context, Language defaultLanguage) {
             this.context = context;
             this.defaultLanguage = defaultLanguage;
             supportedStrings = new ArrayList<>();
@@ -145,6 +149,7 @@ public class Options {
 
             options.setExcludedStringIds(ids);
             options.setStringClasses(supportedStrings);
+            excludedStrings.add(io.stringx.sdk.R.string.class);
             options.setExcludedClasses(excludedStrings);
             if (supportedLanguages == null) {
                 supportedLanguages = new Language[]{defaultLanguage};
@@ -162,9 +167,9 @@ public class Options {
             }
             options.setSupportedLanguages(languages);
             List<Language> autoTranslatedLanguages;
-            if(this.autoTranslatedLanguages == null){
+            if (this.autoTranslatedLanguages == null) {
                 autoTranslatedLanguages = Collections.emptyList();
-            }else {
+            } else {
                 autoTranslatedLanguages = new ArrayList<>(Arrays.asList(this.autoTranslatedLanguages));
                 autoTranslatedLanguages.removeAll(languages);
             }
@@ -178,15 +183,11 @@ public class Options {
         }
     }
 
-    public interface RestartStrategy {
-        void restart();
-    }
-
     private static class DefaultRestartStrategy implements RestartStrategy {
 
         private Context context;
 
-        public DefaultRestartStrategy(Context context){
+        public DefaultRestartStrategy(Context context) {
             this.context = context;
         }
 
@@ -208,7 +209,7 @@ public class Options {
                 public void run() {
                     triggerRebirth(context);
                 }
-            },100);
+            }, 100);
         }
     }
 }

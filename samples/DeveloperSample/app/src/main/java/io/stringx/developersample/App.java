@@ -20,9 +20,9 @@ public class App extends Application implements Translatable {
     public void onCreate() {
         super.onCreate();
         Options options = new Options.Builder(this, Language.English)
+                .setAutoTranslatedLanguages(Language.values())
                 .setSupportedLanguages(Language.Polish)
                 .addStrings(R.string.class)
-                .excludeString(R.string.app_name)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
         stringX = new StringX(options);

@@ -68,7 +68,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         boolean translationAvailable = isTranslationAvailable();
         boolean enabled = isEnabled();
         if (translationAvailable && !enabled) {
-            forceLocale(context, getAppLanguage().toLocale(), true);
+            forceLocale(context, getAppDefaultLanguage().toLocale(), true);
         }
     }
 
@@ -186,7 +186,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         this.listener = listener;
     }
 
-    Language getAppLanguage() {
+    Language getAppDefaultLanguage() {
         return getOptions().getDefaultLanguage();
     }
 

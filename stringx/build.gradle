@@ -33,7 +33,7 @@ ext {
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ['Apache-2.0']
     versionMajor = 1
-    versionMinor = 0
+    versionMinor = 1
     versionHotFix = 0
 
     libraryVersion = buildVersionName()
@@ -44,7 +44,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.0.0"
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 14
         targetSdkVersion 26
         versionCode buildVersionCode()
         versionName buildVersionName()

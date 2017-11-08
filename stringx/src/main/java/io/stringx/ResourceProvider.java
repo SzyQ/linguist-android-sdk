@@ -1,12 +1,11 @@
 package io.stringx;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
-import android.os.RemoteException;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.util.Pair;
 
 import java.lang.reflect.Field;
@@ -15,13 +14,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-public abstract class ResourceProvider {
+class ResourceProvider {
 
     @NonNull
-    protected final StringX stringX;
-    protected final List<Pair<Integer, String>> resources;
-    protected Context context;
-    protected ConfigCallback callback;
+    private final StringX stringX;
+    private final List<Pair<Integer, String>> resources;
+    private Context context;
+    private ConfigCallback callback;
 
     ResourceProvider(Context context, ConfigCallback callback) {
         stringX = StringX.get(context);
@@ -33,14 +32,6 @@ public abstract class ResourceProvider {
         resources = getResourcesIds();
     }
 
-    static ResourceProvider newResourceProvider(Context applicationContext, ConfigCallback callback) {
-        if (Build.VERSION.SDK_INT >= 17) {
-            return new ResourceProviderV17(applicationContext, callback);
-        } else {
-            return new ResourceProviderCompat(applicationContext, callback);
-        }
-    }
-
     private static int[] toIntArray(List<Integer> mainStringIds) {
         int[] ids = new int[mainStringIds.size()];
         for (int i = 0; i < mainStringIds.size(); i++) {
@@ -49,7 +40,7 @@ public abstract class ResourceProvider {
         return ids;
     }
 
-    int[] getStrings(List<String> mainStrings, Resources localizedResources) {
+    private int[] getStrings(List<String> mainStrings, Resources localizedResources) {
         ArrayList<Integer> sideStrings = new ArrayList<>();
         for (Pair<Integer, String> resourceId : resources) {
             try {
@@ -80,6 +71,82 @@ public abstract class ResourceProvider {
         return supportedResources;
     }
 
+    void fetchStringIdentifiers(final List<String> mainStrings) throws Exception {
+        for (final Language language : Language.values()) {
+            if (stringX.getAppDefaultLanguage() == language) {
+                continue;
+            }
+            LocalisedResourceRunnable.get(context, language).run(new TranslationTask() {
+                @Override
+                public void run(Resources androidResources) throws Exception {
+                    int[] strings = getStrings(mainStrings, androidResources);
+                    callback.onLanguageReceived(language.getCode(), strings);
+                }
+            });
+        }
+    }
+
+    void fetchDefaultStrings(final List<String> mainStrings, final List<String> mainStringNames, final List<Integer> mainStringIds) throws Exception {
+        LocalisedResourceRunnable
+                .get(context, stringX.getAppDefaultLanguage())
+                .run(new TranslationTask() {
+                    @Override
+                    public void run(Resources androidResources) throws Exception {
+                        for (Pair<Integer, String> resource : resources) {
+                            try {
+                                String string = androidResources.getString(resource.first);
+                                mainStrings.add(string);
+                                mainStringNames.add(resource.second);
+                                mainStringIds.add(resource.first);
+                                SXLog.v("R.id." + resource.second + " -> \"" + string + "\"");
+                            } catch (Resources.NotFoundException ignore) {
+                            }
+                        }
+                        filterIgnoredStrings(mainStrings, mainStringNames, mainStringIds);
+                        callback.onDefaultStringIdsReceived(toIntArray(mainStringIds));
+                        callback.onDefaultStringNamesReceived(mainStringNames);
+                        callback.onDefaultStringsReceived(mainStrings);
+                    }
+                });
+    }
+
+    /**
+     * Filters resources from non translatable strings by comparing to first supported locale.
+     * Using fact that non translatable string will be the same in both locales
+     */
+    private void filterIgnoredStrings(final List<String> mainStrings, final List<String> mainStringNames, final List<Integer> mainStringIds) throws Exception {
+        List<Language> supportedLanguages = stringX.getSupportedLanguages();
+        Language supportedLanguage = null;
+        Language defaultLanguage = stringX.getAppDefaultLanguage();
+        for (Language language : supportedLanguages) {
+            if (language != defaultLanguage) {
+                supportedLanguage = language;
+                break;
+            }
+        }
+
+        if (supportedLanguage == null) {
+            return;
+        }
+        LocalisedResourceRunnable.get(context, supportedLanguage).run(new TranslationTask() {
+            @Override
+            public void run(Resources defaultResources) {
+                for (Pair<Integer, String> resource : resources) {
+                    try {
+                        String string = defaultResources.getString(resource.first);
+                        int indexOfString = mainStrings.indexOf(string);
+                        if (indexOfString != -1) {
+                            mainStrings.remove(indexOfString);
+                            mainStringNames.remove(indexOfString);
+                            mainStringIds.remove(indexOfString);
+                        }
+                    } catch (Resources.NotFoundException ignore) {
+                    }
+                }
+            }
+        });
+    }
+
     private List<Pair<Integer, String>> getAppStringResources(List<Class> stringClasses) {
         List<Pair<Integer, String>> resources = new ArrayList<>();
         for (Class stringClass : stringClasses) {
@@ -94,99 +161,61 @@ public abstract class ResourceProvider {
         return resources;
     }
 
-    public abstract void fetchStringIdentifiers(List<String> mainStrings) throws UnsupportedLanguageException, RemoteException;
-
-    public abstract void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException;
-
-    void fetchDefaultStrings(Resources androidResources, List<Pair<Integer, String>> resources, List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
-        for (Pair<Integer, String> resource : resources) {
-            try {
-                String string = androidResources.getString(resource.first);
-                mainStrings.add(string);
-                mainStringNames.add(resource.second);
-                mainStringIds.add(resource.first);
-                SXLog.v("R.id." + resource.second + " -> \"" + string + "\"");
-            } catch (Resources.NotFoundException ignore) {
-            }
-        }
-        callback.onDefaultStringIdsReceived(toIntArray(mainStringIds));
-        callback.onDefaultStringNamesReceived(mainStringNames);
-        callback.onDefaultStringsReceived(mainStrings);
+    private interface TranslationTask {
+        void run(Resources resources) throws Exception;
     }
 
-    private static class ResourceProviderCompat extends ResourceProvider {
+    private static class LocalisedResourceRunnable {
 
-        private ResourceProviderCompat(Context context, ConfigCallback callback) {
-            super(context, callback);
+        private final Context context;
+        private final Language language;
+
+        public LocalisedResourceRunnable(Context context, Language language) {
+            this.context = context;
+            this.language = language;
         }
 
-        @Override
-        public void fetchStringIdentifiers(List<String> mainStrings) throws UnsupportedLanguageException, RemoteException {
-            Resources localisedResources = context.getResources();
-            Configuration conf = localisedResources.getConfiguration();
-            Locale savedLocale = conf.locale;
-            for (Language language : Language.values()) {
-                if (stringX.getDeviceLanguage() == language) {
-                    continue;
-                }
-                conf.locale = new Locale(language.getCode());
-                localisedResources.updateConfiguration(conf, null);
-                int[] strings = getStrings(mainStrings, localisedResources);
-                callback.onLanguageReceived(language.getCode(), strings);
+        public static LocalisedResourceRunnable get(Context context, Language language) {
+            if (Build.VERSION.SDK_INT >= 17) {
+                return new LocalisedResourceRunnableV17(context, language);
+            } else {
+                return new LocalisedResourceRunnable(context, language);
             }
-            conf.locale = savedLocale;
-            localisedResources.updateConfiguration(conf, null);
         }
 
-        @Override
-        public void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
-            Locale appDefaultLocale = stringX.getAppLanguage().toLocale();
-            Resources defaultResources = context.getResources();
-            Configuration conf = defaultResources.getConfiguration();
+        public void run(TranslationTask task) throws Exception {
+            Locale locale = language.toLocale();
+            Resources resources = context.getResources();
+            Configuration conf = resources.getConfiguration();
             Locale savedLocale = conf.locale;
-            conf.locale = appDefaultLocale;
-            defaultResources.updateConfiguration(conf, null);
-            fetchDefaultStrings(defaultResources, resources, mainStrings, mainStringNames, mainStringIds);
+            conf.locale = locale;
+            resources.updateConfiguration(conf, null);
+            task.run(resources);
             conf.locale = savedLocale;
-            defaultResources.updateConfiguration(conf, null);
+            resources.updateConfiguration(conf, null);
         }
     }
 
-    private static class ResourceProviderV17 extends ResourceProvider {
+    @RequiresApi(17)
+    private static class LocalisedResourceRunnableV17 extends LocalisedResourceRunnable {
 
-        ResourceProviderV17(Context context, ConfigCallback callback) {
-            super(context, callback);
+        private final Context context;
+        private final Language language;
+
+        public LocalisedResourceRunnableV17(Context context, Language language) {
+            super(context, language);
+            this.context = context;
+            this.language = language;
         }
 
         @Override
-        public void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
-            Locale appDefaultLocale = stringX.getAppLanguage().toLocale();
-            Resources defaultResources = getLocalizedResources(appDefaultLocale);
-            fetchDefaultStrings(defaultResources, resources, mainStrings, mainStringNames, mainStringIds);
-        }
-
-        @Override
-        public void fetchStringIdentifiers(List<String> mainStrings) throws RemoteException, UnsupportedLanguageException {
-            for (Language language : Language.values()) {
-                if (stringX.getAppLanguage() == language) {
-                    continue;
-                }
-                Locale sideLocale = new Locale(language.getCode());
-                Resources localizedResources = getLocalizedResources(sideLocale);
-                int[] strings = getStrings(mainStrings, localizedResources);
-                callback.onLanguageReceived(language.getCode(), strings);
-            }
-
-        }
-
-        @NonNull
-        @TargetApi(17)
-        private Resources getLocalizedResources(Locale desiredLocale) {
+        public void run(TranslationTask task) throws Exception {
             Configuration conf = context.getResources().getConfiguration();
             conf = new Configuration(conf);
-            conf.setLocale(desiredLocale);
+            conf.setLocale(language.toLocale());
             Context localizedContext = context.createConfigurationContext(conf);
-            return localizedContext.getResources();
+            Resources resources = localizedContext.getResources();
+            task.run(resources);
         }
     }
 
