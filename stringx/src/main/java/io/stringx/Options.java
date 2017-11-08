@@ -145,6 +145,7 @@ public class Options {
 
             options.setExcludedStringIds(ids);
             options.setStringClasses(supportedStrings);
+            excludedStrings.add(io.stringx.sdk.R.string.class);
             options.setExcludedClasses(excludedStrings);
             if (supportedLanguages == null) {
                 supportedLanguages = new Language[]{defaultLanguage};

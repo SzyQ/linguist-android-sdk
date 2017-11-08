@@ -109,9 +109,16 @@ public abstract class ResourceProvider {
             } catch (Resources.NotFoundException ignore) {
             }
         }
+        filterIgnoredStrings(mainStrings, mainStringNames, mainStringIds);
         callback.onDefaultStringIdsReceived(toIntArray(mainStringIds));
         callback.onDefaultStringNamesReceived(mainStringNames);
         callback.onDefaultStringsReceived(mainStrings);
+    }
+
+    protected abstract void filterIgnoredStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException;
+
+    private interface TranslationTask {
+        void run(Resources resources) throws RemoteException;
     }
 
     private static class ResourceProviderCompat extends ResourceProvider {
@@ -139,16 +146,50 @@ public abstract class ResourceProvider {
         }
 
         @Override
-        public void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
-            Locale appDefaultLocale = stringX.getAppLanguage().toLocale();
-            Resources defaultResources = context.getResources();
-            Configuration conf = defaultResources.getConfiguration();
+        public void fetchDefaultStrings(final List<String> mainStrings, final List<String> mainStringNames, final List<Integer> mainStringIds) throws RemoteException {
+            run(stringX.getAppDefaultLanguage(), new TranslationTask() {
+                @Override
+                public void run(Resources androidResources) throws RemoteException {
+                    fetchDefaultStrings(androidResources, resources, mainStrings, mainStringNames, mainStringIds);
+                }
+            });
+        }
+
+        @Override
+        public void filterIgnoredStrings(final List<String> mainStrings, final List<String> mainStringNames, final List<Integer> mainStringIds) throws RemoteException {
+            List<Language> supportedLanguages = stringX.getSupportedLanguages();
+            if (supportedLanguages == null || supportedLanguages.isEmpty()) {
+                return;
+            }
+            run(supportedLanguages.get(0), new TranslationTask() {
+                @Override
+                public void run(Resources defaultResources) {
+                    for (Pair<Integer, String> resource : resources) {
+                        try {
+                            String string = defaultResources.getString(resource.first);
+                            int indexOfString = mainStrings.indexOf(string);
+                            if (indexOfString != -1) {
+                                mainStrings.remove(indexOfString);
+                                mainStringNames.remove(indexOfString);
+                                mainStringIds.remove(indexOfString);
+                            }
+                        } catch (Resources.NotFoundException ignore) {
+                        }
+                    }
+                }
+            });
+        }
+
+        private void run(Language language, TranslationTask runnable) throws RemoteException {
+            Locale locale = language.toLocale();
+            Resources resources = context.getResources();
+            Configuration conf = resources.getConfiguration();
             Locale savedLocale = conf.locale;
-            conf.locale = appDefaultLocale;
-            defaultResources.updateConfiguration(conf, null);
-            fetchDefaultStrings(defaultResources, resources, mainStrings, mainStringNames, mainStringIds);
+            conf.locale = locale;
+            resources.updateConfiguration(conf, null);
+            runnable.run(resources);
             conf.locale = savedLocale;
-            defaultResources.updateConfiguration(conf, null);
+            resources.updateConfiguration(conf, null);
         }
     }
 
@@ -160,7 +201,7 @@ public abstract class ResourceProvider {
 
         @Override
         public void fetchDefaultStrings(List<String> mainStrings, List<String> mainStringNames, List<Integer> mainStringIds) throws RemoteException {
-            Locale appDefaultLocale = stringX.getAppLanguage().toLocale();
+            Locale appDefaultLocale = stringX.getAppDefaultLanguage().toLocale();
             Resources defaultResources = getLocalizedResources(appDefaultLocale);
             fetchDefaultStrings(defaultResources, resources, mainStrings, mainStringNames, mainStringIds);
         }
@@ -168,7 +209,7 @@ public abstract class ResourceProvider {
         @Override
         public void fetchStringIdentifiers(List<String> mainStrings) throws RemoteException, UnsupportedLanguageException {
             for (Language language : Language.values()) {
-                if (stringX.getAppLanguage() == language) {
+                if (stringX.getAppDefaultLanguage() == language) {
                     continue;
                 }
                 Locale sideLocale = new Locale(language.getCode());

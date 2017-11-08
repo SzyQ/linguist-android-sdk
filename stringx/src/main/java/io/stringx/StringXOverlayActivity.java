@@ -44,7 +44,7 @@ public final class StringXOverlayActivity extends Activity {
 
     private void setupMessage() {
         TextView message = findViewById(R.id.message);
-        String defaultLanguage = stringX.getAppLanguage().toLocale().getDisplayLanguage();
+        String defaultLanguage = stringX.getAppDefaultLanguage().toLocale().getDisplayLanguage();
         message.setText(getString(R.string.sX_translate_message, defaultLanguage));
     }
 
@@ -66,7 +66,7 @@ public final class StringXOverlayActivity extends Activity {
     private void setupNeverTranslateButton() throws UnsupportedLanguageException {
         TextView neverTranslate = findViewById(R.id.never_translate);
         final StringX stringX = StringX.get(StringXOverlayActivity.this);
-        final String deviceLanguage = stringX.getAppLanguage().toLocale().getDisplayLanguage();
+        final String deviceLanguage = stringX.getAppDefaultLanguage().toLocale().getDisplayLanguage();
         neverTranslate.setText(getString(R.string.sX_never_translate, deviceLanguage));
         neverTranslate.setOnClickListener(new View.OnClickListener() {
             @Override

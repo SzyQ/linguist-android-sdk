@@ -18,7 +18,7 @@ import io.stringx.sdk.BuildConfig;
 public final class ClientService extends Service {
 
     public static final int ERROR_UNSUPPORTED_LANGUAGE = 0;
-    public static final int ERROR_GENERAL = 0;
+    public static final int ERROR_GENERAL = 1;
 
     private FetchTask task;
     private final IBinder binder = new TranslationInterface.Stub() {
