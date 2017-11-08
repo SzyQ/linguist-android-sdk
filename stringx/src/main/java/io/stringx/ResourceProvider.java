@@ -128,7 +128,7 @@ class ResourceProvider {
         if (supportedLanguage == null) {
             return;
         }
-        LocalisedResourceRunnable.get(context, supportedLanguages.get(0)).run(new TranslationTask() {
+        LocalisedResourceRunnable.get(context, supportedLanguage).run(new TranslationTask() {
             @Override
             public void run(Resources defaultResources) {
                 for (Pair<Integer, String> resource : resources) {
