@@ -11,7 +11,7 @@ import io.stringx.sdk.R;
 
 public final class StringXOverlayActivity extends Activity {
 
-    public static int REQUEST_CODE = 7331;
+    public static final int REQUEST_CODE = 7331;
     private StringX stringX;
 
     @Override
@@ -63,7 +63,7 @@ public final class StringXOverlayActivity extends Activity {
         });
     }
 
-    private void setupNeverTranslateButton() throws UnsupportedLanguageException {
+    private void setupNeverTranslateButton() {
         TextView neverTranslate = findViewById(R.id.never_translate);
         final StringX stringX = StringX.get(StringXOverlayActivity.this);
         final String deviceLanguage = stringX.getAppDefaultLanguage().toLocale().getDisplayLanguage();

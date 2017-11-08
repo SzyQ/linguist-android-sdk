@@ -20,7 +20,7 @@ public class Options {
     private List<Class> stringClasses;
     private List<Class> excludedClasses;
     private List<Integer> excludedStringIds;
-    private Language defaultLanguage;
+    private final Language defaultLanguage;
     private List<Language> supportedLanguages;
     private List<Language> autoTranslatedLanguages;
     private RestartStrategy restartStrategy;
@@ -70,7 +70,7 @@ public class Options {
         return restartStrategy;
     }
 
-    void setRestartStrategy(RestartStrategy restartStrategy) {
+    private void setRestartStrategy(RestartStrategy restartStrategy) {
         this.restartStrategy = restartStrategy;
     }
 
@@ -82,7 +82,7 @@ public class Options {
         return autoTranslatedLanguages;
     }
 
-    public void setAutoTranslatedLanguages(List<Language> autoTranslatedLanguages) {
+    private void setAutoTranslatedLanguages(List<Language> autoTranslatedLanguages) {
         this.autoTranslatedLanguages = autoTranslatedLanguages;
     }
 
@@ -91,12 +91,12 @@ public class Options {
     }
 
     public static class Builder {
-        private Context context;
-        private Language defaultLanguage;
+        private final Context context;
+        private final Language defaultLanguage;
         private Language[] supportedLanguages;
         private Language[] autoTranslatedLanguages;
-        private List<Class> supportedStrings;
-        private List<Class> excludedStrings;
+        private final List<Class> supportedStrings;
+        private final List<Class> excludedStrings;
         private int[] excludedStringIds;
         private RestartStrategy restartStrategy;
 
@@ -149,11 +149,11 @@ public class Options {
 
             options.setExcludedStringIds(ids);
             options.setStringClasses(supportedStrings);
-            excludedStrings.add(io.stringx.sdk.R.string.class);
-            options.setExcludedClasses(excludedStrings);
             if (supportedLanguages == null) {
+                excludedStrings.add(io.stringx.sdk.R.string.class);
                 supportedLanguages = new Language[]{defaultLanguage};
             }
+            options.setExcludedClasses(excludedStrings);
             ArrayList<Language> languages = new ArrayList<>();
             boolean isDefaultLanguageAdded = false;
             for (Language supportedLanguage : supportedLanguages) {
@@ -185,7 +185,7 @@ public class Options {
 
     private static class DefaultRestartStrategy implements RestartStrategy {
 
-        private Context context;
+        private final Context context;
 
         public DefaultRestartStrategy(Context context) {
             this.context = context;

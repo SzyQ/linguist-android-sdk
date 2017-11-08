@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class StringXLanguageReceiver {
 
-    private Set<OnLanguageChanged> listeners = new HashSet<>();
+    private final Set<OnLanguageChanged> listeners = new HashSet<>();
 
     private StringXLanguageReceiver(Context context) {
         context.registerReceiver(

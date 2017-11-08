@@ -115,14 +115,14 @@ public enum Language {
     Yoruba("yo"),
     Zulu("zu");
 
-    private String code;
+    private final String code;
 
     Language(String code) {
         this.code = code;
     }
 
     @NonNull
-    public static Language fromCode(String code) throws UnsupportedLanguageException {
+    private static Language fromCode(String code) throws UnsupportedLanguageException {
         for (Language languages : values()) {
             if (code.equals(languages.getCode())) {
                 return languages;

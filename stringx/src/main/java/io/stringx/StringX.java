@@ -17,10 +17,10 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     private static final String PREFERENCE_NAME = "StringX";
     private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
     private static final String KEY_OPT_OUT = "KEY_OPTED_OUT";
+    private final Options options;
     private boolean isLanguageSupported;
     private SharedPreferences preferences;
     private Locale defaultLocale;
-    private Options options;
     private boolean isTranslationChecked;
     @Nullable
     private Locale locale;
@@ -45,17 +45,14 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     }
 
     /**
-     * @param context
      * @return Instance of StringX service or null if it's not initialised or device language is not supported
      */
     public static StringX get(@NonNull Context context) {
-        StringX stringX = null;
         if (isInitialised(context)) {
-            stringX = ((Translatable) context.getApplicationContext()).getStringX();
+            return ((Translatable) context.getApplicationContext()).getStringX();
         } else {
             throw new IllegalStateException("StringX is not initialised. Follow instructions here http://www.stringx.io/docs/guides");
         }
-        return stringX;
     }
 
     private static boolean isInitialised(Context context) {
@@ -123,7 +120,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         }
     }
 
-    public boolean isOptOut() {
+    private boolean isOptOut() {
         return preferences.getBoolean(KEY_OPT_OUT, false);
     }
 
@@ -155,7 +152,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         showTranslationHint(activity);
     }
 
-    public void showTranslationHint(Activity activity) {
+    private void showTranslationHint(Activity activity) {
         Intent intent = new Intent(activity, StringXOverlayActivity.class);
         activity.startActivityForResult(intent, StringXOverlayActivity.REQUEST_CODE);
     }
