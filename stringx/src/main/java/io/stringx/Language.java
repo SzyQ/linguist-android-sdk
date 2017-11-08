@@ -150,13 +150,13 @@ public enum Language {
 
     @NonNull
     public Locale toLocale() {
-        switch (this){
+        switch (this) {
             case Chinese_Simplified:
-                return new Locale("zh","CN");
+                return new Locale("zh", "CN");
             case Chinese_Traditional:
-                return new Locale("zh","TW");
-                default:
-                    return new Locale(getCode());
+                return new Locale("zh", "TW");
+            default:
+                return new Locale(getCode());
         }
     }
 
