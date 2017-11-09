@@ -15,6 +15,10 @@ import java.util.List;
 
 import io.stringx.sdk.BuildConfig;
 
+/**
+ * Entry point to an app from <a href="https://play.google.com/store/apps/details?id=io.stringx">stringX App</a>
+ * Fetches resources and pass over to translating app
+ */
 public final class ClientService extends Service {
 
     private static final int ERROR_UNSUPPORTED_LANGUAGE = 0;

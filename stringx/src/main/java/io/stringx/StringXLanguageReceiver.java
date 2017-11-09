@@ -9,6 +9,10 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
+/**
+ * Receives changes of Locale on device
+ * Used to notify {@link StringX} about new Locale to switch to
+ */
 public class StringXLanguageReceiver {
 
     private final Set<OnLanguageChanged> listeners = new HashSet<>();

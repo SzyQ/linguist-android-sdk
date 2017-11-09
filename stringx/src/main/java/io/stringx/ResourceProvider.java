@@ -14,6 +14,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * Fetches resources from the app and pass to <a href="https://play.google.com/store/apps/details?id=io.stringx">stringX app</a>
+ */
 class ResourceProvider {
 
     @NonNull
