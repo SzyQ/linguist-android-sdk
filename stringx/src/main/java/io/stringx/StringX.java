@@ -59,9 +59,10 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
 
     /**
      * Call this method to receive stringX instance
+     *
      * @return {@link StringX} instance
      * @throws IllegalStateException if stringX is not initialised.
-     * See <a href="https://www.stringx.io/docs/guides">integration guide</a>
+     *                               See <a href="https://www.stringx.io/docs/guides">integration guide</a>
      */
     public static StringX get(@NonNull Context context) {
         if (isInitialised(context)) {
@@ -69,6 +70,12 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         } else {
             throw new IllegalStateException("StringX is not initialised. Follow instructions here https://www.stringx.io/docs/guides");
         }
+    }
+
+    private static boolean isInitialised(Context context) {
+        Context applicationContext = context.getApplicationContext();
+        return applicationContext instanceof Translatable &&
+                ((Translatable) applicationContext).getStringX() != null;
     }
 
     /**
@@ -79,34 +86,6 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
      */
     public void forceLocale(Context context, @Nullable Locale locale) {
         forceLocale(context, locale, false);
-    }
-
-    /**
-     * Enables translation for current {@link Locale}
-     *
-     * @param isEnabled
-     */
-    public void setEnabled(boolean isEnabled) {
-        try {
-            preferences
-                    .edit()
-                    .putBoolean(getPreferenceKey(), isEnabled)
-                    .apply();
-        } catch (UnsupportedLanguageException e) {
-            SXLog.w("Couldn't toggle translation. Language is not supported!");
-        }
-    }
-
-    /**
-     * Turns off stringX translations
-     *
-     * @param isOptOut
-     */
-    public void setOptOut(boolean isOptOut) {
-        preferences
-                .edit()
-                .putBoolean(KEY_OPT_OUT, isOptOut)
-                .apply();
     }
 
     /**
@@ -141,22 +120,19 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         return options;
     }
 
+    /**
+     * Restarts the application to apply the changes made on application context
+     */
+    public void restart() {
+        options.getRestartStrategy().restart();
+    }
+
     boolean isTranslationAvailable() {
         try {
             return isLanguageSupported && getOptions().getAutoTranslatedLanguages().contains(getDeviceLanguage());
         } catch (UnsupportedLanguageException e) {
             return false;
         }
-    }
-
-    void restart() {
-        options.getRestartStrategy().restart();
-    }
-
-    private static boolean isInitialised(Context context) {
-        Context applicationContext = context.getApplicationContext();
-        return applicationContext instanceof Translatable &&
-                ((Translatable) applicationContext).getStringX() != null;
     }
 
     void forceDefault(Context context) throws UnsupportedLanguageException {
@@ -203,8 +179,36 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         return preferences.getBoolean(getPreferenceKey(), false);
     }
 
+    /**
+     * Enables translation for current {@link Locale}
+     *
+     * @param isEnabled
+     */
+    public void setEnabled(boolean isEnabled) {
+        try {
+            preferences
+                    .edit()
+                    .putBoolean(getPreferenceKey(), isEnabled)
+                    .apply();
+        } catch (UnsupportedLanguageException e) {
+            SXLog.w("Couldn't toggle translation. Language is not supported!");
+        }
+    }
+
     private boolean isOptOut() {
         return preferences.getBoolean(KEY_OPT_OUT, false);
+    }
+
+    /**
+     * Turns off stringX translations
+     *
+     * @param isOptOut
+     */
+    public void setOptOut(boolean isOptOut) {
+        preferences
+                .edit()
+                .putBoolean(KEY_OPT_OUT, isOptOut)
+                .apply();
     }
 
     private String getPreferenceKey() throws UnsupportedLanguageException {

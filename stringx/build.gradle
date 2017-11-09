@@ -34,7 +34,7 @@ ext {
     allLicenses = ['Apache-2.0']
     versionMajor = 1
     versionMinor = 1
-    versionHotFix = 0
+    versionHotFix = 1
 
     libraryVersion = buildVersionName()
 }
