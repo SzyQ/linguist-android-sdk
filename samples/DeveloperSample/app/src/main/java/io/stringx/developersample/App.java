@@ -23,7 +23,6 @@ public class App extends Application implements Translatable {
                 .setAutoTranslatedLanguages(Language.values())
                 .setSupportedLanguages(Language.Polish)
                 .addStrings(R.string.class)
-                .excludeString(R.string.hello)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
         stringX = new StringX(options);

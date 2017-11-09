@@ -30,12 +30,8 @@ public final class StringXOverlayActivity extends Activity {
         setContentView(R.layout.activity_overlay);
         setupTranslateButton();
         setupCloseButton();
-        try {
-            setupNeverTranslateButton();
-            setupMessage();
-        } catch (UnsupportedLanguageException ignored) {
-            finish();
-        }
+        setupNeverTranslateButton();
+        setupMessage();
         try {
             stringX.forceDefault(this);
         } catch (UnsupportedLanguageException ignored) {

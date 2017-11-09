@@ -150,9 +150,9 @@ public class Options {
             options.setExcludedStringIds(ids);
             options.setStringClasses(supportedStrings);
             if (supportedLanguages == null) {
-                excludedStrings.add(io.stringx.sdk.R.string.class);
                 supportedLanguages = new Language[]{defaultLanguage};
             }
+            excludedStrings.add(io.stringx.sdk.R.string.class);
             options.setExcludedClasses(excludedStrings);
             ArrayList<Language> languages = new ArrayList<>();
             boolean isDefaultLanguageAdded = false;
