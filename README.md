@@ -1,4 +1,5 @@
 [ ![Download](https://api.bintray.com/packages/klimaszewski/stringx/stringx-sdk/images/download.svg) ](https://bintray.com/klimaszewski/stringx/stringx-sdk/_latestVersion)
+
 What is stringX
 -------------
 
@@ -7,67 +8,28 @@ This native Android SDK will enable your app to use all of these features.
 
 Getting started
 ---------------
-1. Add dependency to your project
-
-project's build.gradle
-```
-allprojects {
-    repositories {
-        maven { url 'https://dl.bintray.com/klimaszewski/stringx' }
-    }
-}
-```
-
-module's build.gradle
-```
-implementation 'io.stringx.sdk:stringx:1.0'
-```
-2. Implement Translatable interface in your custom Application class
-```java
-public class App extends Application implements Translatable {
-
-    private StringX stringX;
-
-    @Override
-    public StringX getStringX() {
-        return stringX;
-    }
-}
-```
-3. Configure stringX
-```java
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        Options options = new Options.Builder(this, Language.English)
-                .setSupportedLanguages(Language.Polish)
-                .setAutoTranslatedLanguages(Language.Spanish,Language.German)
-                .addStrings(R.string.class)
-                .excludeString(R.string.app_name)
-                .excludeStrings(android.support.v7.appcompat.R.string.class)
-                .build();
-        stringx = new StringX(options);
-    }
-```
+Follow simple integration instructions in stringX homepage 
+https://www.stringx.io/docs/guides
 
 Requirements
 ------------
-### Android 16+
+### Android 14+
 
 How to run the demo
 -------------------
-Import the DeveloperSample project in the samples folder into your IDE. Run as a normal Android application on your device or emulator.
-Install and Run the stringX service application: https://play.google.com/store/apps/details?id=io.stringx
-
+1. Import the DeveloperSample project in the samples folder into your IDE. 
+2. Run as a normal Android application on your device or emulator.
+3. Install and Run the stringX service application: https://play.google.com/store/apps/details?id=io.stringx
+4. Play with the app and change your device language to see how stringX will prompt you to trigger automatic translation
 
 Contributing
 ------------
 We would love to see your contributions! Follow these steps:
 
 1. Fork this repository.
-2. Create a branch (`git checkout -b my_awesome_feature`)
+2. Create a branch (`git checkout -b feature/my_awesome_feature`)
 3. Commit your changes (`git commit -m "Awesome feature"`)
-4. Push to the branch (`git push origin my_awesome_feature`)
+4. Push to the branch (`git push origin feature/my_awesome_feature`)
 5. Open a Pull Request.
 
 License
