@@ -6,7 +6,9 @@ import android.text.TextUtils;
 import java.util.Locale;
 
 /**
- * https://cloud.google.com/translate/docs/languages
+ * Language for convenient way of configuring and working on Language
+ * Full list of supported languages are available
+ * <a href="https://cloud.google.com/translate/docs/languages">here</a>
  */
 public enum Language {
 
@@ -115,14 +117,21 @@ public enum Language {
     Yoruba("yo"),
     Zulu("zu");
 
-    private String code;
+    private final String code;
 
     Language(String code) {
         this.code = code;
     }
 
+    /**
+     * Converts language code to {@link Language}
+     *
+     * @param code from which {@link Language} will be created
+     * @return {@link Language}
+     * @throws UnsupportedLanguageException if code is not supported
+     */
     @NonNull
-    public static Language fromCode(String code) throws UnsupportedLanguageException {
+    private static Language fromCode(String code) throws UnsupportedLanguageException {
         for (Language languages : values()) {
             if (code.equals(languages.getCode())) {
                 return languages;
@@ -131,6 +140,13 @@ public enum Language {
         throw new UnsupportedLanguageException(code);
     }
 
+    /**
+     * Converts {@link Locale} to {@link Language}
+     *
+     * @param locale from which {@link Language} will be created
+     * @return {@link Language}
+     * @throws UnsupportedLanguageException if {@link Locale} is not supported
+     */
     @NonNull
     public static Language fromLocale(Locale locale) throws UnsupportedLanguageException {
         String language = locale.getLanguage();
@@ -148,18 +164,26 @@ public enum Language {
         return fromCode(language);
     }
 
+    /**
+     * Converts current supported language to {@link Locale}
+     *
+     * @return {@link Locale} from the given {@link Language}
+     */
     @NonNull
     public Locale toLocale() {
-        switch (this){
+        switch (this) {
             case Chinese_Simplified:
-                return new Locale("zh","CN");
+                return new Locale("zh", "CN");
             case Chinese_Traditional:
-                return new Locale("zh","TW");
-                default:
-                    return new Locale(getCode());
+                return new Locale("zh", "TW");
+            default:
+                return new Locale(getCode());
         }
     }
 
+    /**
+     * @return language code of current {@link Language}
+     */
     public String getCode() {
         return code;
     }

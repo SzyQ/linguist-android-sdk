@@ -18,7 +18,7 @@ ext {
     publishedGroupId = 'io.stringx.sdk'
     artifact = 'stringx'
     libraryName = 'StringX-SDK'
-    publishedArtifactId = 'stringx-sdk'
+    publishedArtifactId = 'stringx'
 
     libraryDescription = 'Automatic app Translation for Android'
 
@@ -32,9 +32,9 @@ ext {
     licenseName = 'The Apache Software License, Version 2.0'
     licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
     allLicenses = ['Apache-2.0']
-    versionMajor = 0
+    versionMajor = 1
     versionMinor = 1
-    versionHotFix = 0
+    versionHotFix = 1
 
     libraryVersion = buildVersionName()
 }
@@ -44,7 +44,7 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.0.0"
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 14
         targetSdkVersion 26
         versionCode buildVersionCode()
         versionName buildVersionName()

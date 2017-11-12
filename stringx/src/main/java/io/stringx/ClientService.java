@@ -15,10 +15,14 @@ import java.util.List;
 
 import io.stringx.sdk.BuildConfig;
 
+/**
+ * Entry point to an app from <a href="https://play.google.com/store/apps/details?id=io.stringx">stringX App</a>
+ * Fetches resources and pass over to translating app
+ */
 public final class ClientService extends Service {
 
-    public static final int ERROR_UNSUPPORTED_LANGUAGE = 0;
-    public static final int ERROR_GENERAL = 0;
+    private static final int ERROR_UNSUPPORTED_LANGUAGE = 0;
+    private static final int ERROR_GENERAL = 1;
 
     private FetchTask task;
     private final IBinder binder = new TranslationInterface.Stub() {
@@ -32,11 +36,6 @@ public final class ClientService extends Service {
             task.execute(callback, getApplicationContext());
         }
     };
-
-    @Override
-    public IBinder onBind(Intent intent) {
-        return binder;
-    }
 
     private static String writeClientInfo(Context context, List<String> supportedLanguageCodes, Options options) throws IOException, UnsupportedLanguageException {
         StringWriter out = new StringWriter(1024);
@@ -60,6 +59,11 @@ public final class ClientService extends Service {
         writer.endObject();
         writer.close();
         return out.toString();
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        return binder;
     }
 
     private static class FetchTask extends AsyncTask<Object, Integer, Void> {
@@ -87,7 +91,7 @@ public final class ClientService extends Service {
                         List<String> mainStrings = new ArrayList<>();
                         List<String> mainStringNames = new ArrayList<>();
                         List<Integer> mainStringIds = new ArrayList<>();
-                        ResourceProvider provider = ResourceProvider.newResourceProvider(context, callback);
+                        ResourceProvider provider = new ResourceProvider(context, callback);
                         provider.fetchDefaultStrings(mainStrings, mainStringNames, mainStringIds);
                         provider.fetchStringIdentifiers(mainStrings);
                         callback.onFinished();

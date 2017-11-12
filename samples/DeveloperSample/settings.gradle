@@ -1,2 +1,2 @@
-include ':app', ':stringx-android-sdk'
-project(":stringx-android-sdk").projectDir = file("../../stringx")
+include ':app', ':stringx'
+project(":stringx").projectDir = file("../../stringx")

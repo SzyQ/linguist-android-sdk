@@ -6,6 +6,9 @@ import android.util.AttributeSet;
 
 import io.stringx.sdk.R;
 
+/**
+ * Stores {@link StringX} settings
+ */
 public class StringXPreference extends android.preference.CheckBoxPreference {
 
     public StringXPreference(final Context context, AttributeSet attrs) {

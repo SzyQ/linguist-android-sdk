@@ -4,8 +4,8 @@ import android.util.Log;
 
 import io.stringx.sdk.BuildConfig;
 
-public class SXLog {
-    public static final String TAG = "stringX";
+class SXLog {
+    private static final String TAG = "stringX";
 
     public static void d(String string) {
         if (BuildConfig.DEBUG) {

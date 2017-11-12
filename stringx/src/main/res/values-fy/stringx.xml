@@ -7,7 +7,7 @@
     <string name="sX_dialog_message">sil net oersette wurde as jo ynstallearje %s app.</string>
     <string name="sX_dialog_title">Ynstallearje %s</string>
     <string name="sX_never_translate">Nea oersetten %s</string>
-    <string name="sX_preference_summary">Ferfang automatyske oersetting yn 'e applikaasje</string>
+    <string name="sX_preference_summary">Ferfang automatyske oersetting yn \'e applikaasje</string>
     <string name="sX_preference_title">Automatyske oersetting</string>
     <string name="sX_translate">Oersette</string>
     <string name="sX_translate_message">Dizze app is yn: %s. Wolle jo it oersetten?</string>
