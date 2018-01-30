@@ -8,6 +8,8 @@ import io.stringx.StringX;
 
 public class MainActivity extends AppCompatActivity {
 
+    private boolean isTranslationHintShown;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        StringX.get(this).onResume(this);
+        StringX stringX = StringX.get(this);
+        if (!isTranslationHintShown) {
+            isTranslationHintShown = stringX.showTranslationHint(this);
+        }
     }
 }

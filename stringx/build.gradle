@@ -42,10 +42,10 @@ ext {
 
 android {
     compileSdkVersion 27
-    buildToolsVersion "27.0.0"
+    buildToolsVersion "27.0.3"
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 26
+        targetSdkVersion 27
         versionCode buildVersionCode()
         versionName buildVersionName()
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -55,7 +55,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:support-annotations:27.0.0'
+    implementation 'com.android.support:support-annotations:27.0.2'
 }
 
 

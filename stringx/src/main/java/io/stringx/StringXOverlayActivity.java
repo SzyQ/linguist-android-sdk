@@ -33,7 +33,7 @@ public final class StringXOverlayActivity extends Activity {
         setupNeverTranslateButton();
         setupMessage();
         try {
-            stringX.forceDefault(this);
+            stringX.forceDefault();
         } catch (UnsupportedLanguageException ignored) {
         }
     }

@@ -25,6 +25,7 @@ public class App extends Application implements Translatable {
                 .addStrings(R.string.class)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
-        stringX = new StringX(options);
+        stringX = StringX.init(options);
     }
+
 }
