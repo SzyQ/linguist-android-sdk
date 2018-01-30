@@ -1,3 +1,4 @@
 <resources>
     <string name="hello">Witaj Świecie!</string>
+    <string name="hello_duplicate">Witaj Świecie!</string>
 </resources>
