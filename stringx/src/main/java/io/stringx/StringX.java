@@ -252,6 +252,9 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged, Compo
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
+        if (!newConfig.locale.equals(defaultLocale)) {
+            this.defaultLocale = Locale.getDefault();
+        }
         try {
             forceDefault();
         } catch (UnsupportedLanguageException ignored) {
