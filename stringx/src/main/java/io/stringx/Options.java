@@ -1,6 +1,5 @@
 package io.stringx;
 
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -20,10 +19,10 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
  */
 public class Options {
     private final Context context;
+    private final Language defaultLanguage;
     private List<Class> stringClasses;
     private List<Class> excludedClasses;
     private List<Integer> excludedStringIds;
-    private final Language defaultLanguage;
     private List<Language> supportedLanguages;
     private List<Language> autoTranslatedLanguages;
     private RestartStrategy restartStrategy;
@@ -101,10 +100,11 @@ public class Options {
     public static class Builder {
         private final Context context;
         private final Language defaultLanguage;
-        private Language[] supportedLanguages;
-        private Language[] autoTranslatedLanguages;
         private final List<Class> supportedStrings;
         private final List<Class> excludedStrings;
+        private Translatable translatable;
+        private Language[] supportedLanguages;
+        private Language[] autoTranslatedLanguages;
         private int[] excludedStringIds;
         private RestartStrategy restartStrategy;
 
@@ -171,6 +171,7 @@ public class Options {
         /**
          * stringX needs to restart the application, when new Language is set.
          * You can change default behavior by injecting your restarting strategy
+         *
          * @param restartStrategy strategy of app restart after configuration change
          */
         public Builder setRestartStrategy(RestartStrategy restartStrategy) {
@@ -183,11 +184,12 @@ public class Options {
          * however if there is only default language supported, then you should exclude strings that
          * should not be automatically translated, like client id's or urls
          * <p>
-         *
+         * <p>
          * eg.
          * R.string.default_web_client_id, R.string.firebase_database_url,
          * R.string.gcm_defaultSenderId, R.string.google_api_key, R.string.google_app_id,
          * R.string.google_crash_reporting_api_key, R.string.google_storage_bucket, R.string.project_id
+         *
          * @param stringId excluded string resources
          */
         public Builder excludeString(int... stringId) {
@@ -252,6 +254,16 @@ public class Options {
             this.context = context;
         }
 
+        @Override
+        public void restart() {
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    triggerRebirth(context);
+                }
+            }, 100);
+        }
+
         public static void triggerRebirth(Context context) {
             PackageManager packageManager = context.getPackageManager();
             Intent intent = packageManager.getLaunchIntentForPackage(context.getPackageName());
@@ -261,16 +273,6 @@ public class Options {
                 ((Activity) context).finish();
             }
             Runtime.getRuntime().exit(0);
-        }
-
-        @Override
-        public void restart() {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    triggerRebirth(context);
-                }
-            }, 100);
         }
     }
 }

@@ -18,7 +18,6 @@ public class App extends Application implements Translatable {
 
     @Override
     public void onCreate() {
-        super.onCreate();
         Options options = new Options.Builder(this, Language.English)
                 .setAutoTranslatedLanguages(Language.values())
                 .setSupportedLanguages(Language.Polish)
@@ -26,5 +25,7 @@ public class App extends Application implements Translatable {
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
         stringX = new StringX(options);
+        super.onCreate();
+
     }
 }

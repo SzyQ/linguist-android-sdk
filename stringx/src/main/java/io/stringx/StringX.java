@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.DisplayMetrics;
@@ -84,8 +85,8 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
      * @param context can be Application Context or Activity, depending on what scope changes should take
      * @param locale  {@link Locale} to force
      */
-    public void forceLocale(Context context, @Nullable Locale locale) {
-        forceLocale(context, locale, false);
+    public Context forceLocale(Context context, @Nullable Locale locale) {
+        return forceLocale(context, locale, false);
     }
 
     /**
@@ -156,19 +157,25 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         this.listener = listener;
     }
 
-    private void forceLocale(Context context, @Nullable Locale locale, boolean isDefault) {
+    private Context forceLocale(Context context, @Nullable Locale locale, boolean isDefault) {
         if (locale == null) {
-            return;
+            return context;
         }
         SXLog.d("Forcing " + locale.getDisplayLanguage());
         isForcingDefaultLocale = isDefault;
         Resources res = context.getResources();
-        DisplayMetrics displayMetrics = res.getDisplayMetrics();
         Locale.setDefault(locale);
         Configuration config = new Configuration(res.getConfiguration());
-        config.locale = locale;
-        res.updateConfiguration(config, displayMetrics);
+        if (Build.VERSION.SDK_INT >= 17) {
+            config.setLocale(locale);
+            context = context.createConfigurationContext(config);
+        } else {
+            config.locale = locale;
+            res.updateConfiguration(config, res.getDisplayMetrics());
+        }
+
         this.locale = locale;
+        return context;
     }
 
     boolean isForcingLocale() {
