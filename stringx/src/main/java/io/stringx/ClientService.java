@@ -44,7 +44,7 @@ public final class ClientService extends Service {
         {
             writer.name("packageName").value(context.getPackageName());
             writer.name("defaultLanguageCode").value(options.getDefaultLanguage().getCode());
-            writer.name("deviceLanguageCode").value(StringX.get(context).getDeviceLanguage().getCode());
+            writer.name("deviceLanguageCode").value(StringX.get(context).getCurrentLanguage().getCode());
             {
                 writer.name("supportedLanguages");
                 writer.beginArray();

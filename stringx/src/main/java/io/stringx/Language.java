@@ -131,7 +131,7 @@ public enum Language {
      * @throws UnsupportedLanguageException if code is not supported
      */
     @NonNull
-    private static Language fromCode(String code) throws UnsupportedLanguageException {
+    public static Language fromCode(String code) throws UnsupportedLanguageException {
         for (Language languages : values()) {
             if (code.equals(languages.getCode())) {
                 return languages;

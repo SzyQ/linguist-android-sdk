@@ -18,6 +18,8 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
+            android:padding="8dp"
             android:src="@drawable/sx_ic_close"
             android:tint="@color/sX_blue" />
 

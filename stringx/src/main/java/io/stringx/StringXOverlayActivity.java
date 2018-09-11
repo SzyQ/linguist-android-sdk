@@ -2,6 +2,7 @@ package io.stringx;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -15,27 +16,23 @@ public final class StringXOverlayActivity extends Activity {
     private StringX stringX;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        stringX = StringX.get(StringXOverlayActivity.this);
+    protected void attachBaseContext(Context newBase) {
+        stringX = StringX.get(newBase);
         if (stringX == null) {
             finish();
             return;
         }
-        try {
-            stringX.forceLocale(this, stringX.getDeviceLanguage().toLocale());
-        } catch (UnsupportedLanguageException ignored) {
-            finish();
-        }
+        super.attachBaseContext(stringX.forceAppDefault(newBase));
+    }
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overlay);
         setupTranslateButton();
         setupCloseButton();
         setupNeverTranslateButton();
         setupMessage();
-        try {
-            stringX.forceDefault(this);
-        } catch (UnsupportedLanguageException ignored) {
-        }
     }
 
     private void setupMessage() {

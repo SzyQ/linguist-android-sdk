@@ -5,17 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import java.util.Locale;
-
 import io.stringx.StringX;
 
 public class MainActivity extends AppCompatActivity {
 
-    /** This needs to be set if language is forced
+    private boolean isTranslationHintShown;
+
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(StringX.get(newBase).forceLocale(newBase, Locale.forLanguageTag("pl")));
-    }*/
+        super.attachBaseContext(StringX.wrap(newBase));
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        StringX.get(this).onResume(this);
+        StringX stringX = StringX.get(this);
+        if (!isTranslationHintShown) {
+            isTranslationHintShown = stringX.showTranslationHint(this);
+        }
     }
 }

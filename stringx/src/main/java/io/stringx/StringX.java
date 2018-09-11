@@ -1,6 +1,7 @@
 package io.stringx;
 
 import android.app.Activity;
+import android.content.ComponentCallbacks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +10,6 @@ import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.DisplayMetrics;
 
 import java.util.List;
 import java.util.Locale;
@@ -22,40 +22,32 @@ import java.util.Locale;
  * <a href="https://play.google.com/store/apps/details?id=io.stringx">stringX App</a>
  * available in Google Play.
  */
-public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
+public class StringX implements StringXLanguageReceiver.OnLanguageChanged, ComponentCallbacks {
     private static final String PREFERENCE_NAME = "StringX";
     private static final String KEY_LANGUAGE_ENABLED = "KEY_ENABLED_";
     private static final String KEY_OPT_OUT = "KEY_OPTED_OUT";
     private final Options options;
-    private boolean isLanguageSupported;
+    private final Locale originalLocale;
     private SharedPreferences preferences;
-    private Locale defaultLocale;
-    private boolean isTranslationChecked;
-    @Nullable
-    private Locale locale;
     private TranslationListener listener;
-    private boolean isForcingDefaultLocale;
+    private Locale forcedLocale;
+
+    private StringX(Options options) {
+        Context context = options.getContext();
+        this.options = options;
+        this.preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
+        StringXLanguageReceiver.from(context).addListener(this);
+        context.registerComponentCallbacks(this);
+        originalLocale = Locale.getDefault();
+    }
 
     /**
      * Constructs single entry point for stringX SDK
      *
      * @param options configuration of the library, see {@link Options}
      */
-    public StringX(Options options) {
-        Context context = options.getContext();
-        this.options = options;
-        defaultLocale = Locale.getDefault();
-        try {
-            preferences = context.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE);
-            StringXLanguageReceiver.from(context).addListener(this);
-            isLanguageSupported = true;
-            forceDefault(context);
-        } catch (UnsupportedLanguageException e) {
-            SXLog.e("Unsupported locale" + defaultLocale.getDisplayLanguage() + "-" + defaultLocale.getDisplayCountry(), e);
-            if (listener != null) {
-                listener.onLanguageNotSupported(defaultLocale);
-            }
-        }
+    public static StringX init(Options options) {
+        return new StringX(options);
     }
 
     /**
@@ -79,37 +71,45 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
                 ((Translatable) applicationContext).getStringX() != null;
     }
 
-    /**
-     * Forces {@link Locale} on the given context
-     *
-     * @param context can be Application Context or Activity, depending on what scope changes should take
-     * @param locale  {@link Locale} to force
-     */
-    public Context forceLocale(Context context, @Nullable Locale locale) {
-        return forceLocale(context, locale, false);
+    public static Context wrap(Context context) {
+        StringX stringX = StringX.get(context);
+        if (stringX.isForcingLocale()) {
+            return stringX.forceLocale(context, stringX.forcedLocale);
+        }
+        try {
+            Language currentLanguage = stringX.getCurrentLanguage();
+            if (stringX.getOptions().getSupportedLanguages().contains(currentLanguage) || stringX.isEnabled()) {
+                return context;
+            } else {
+                return stringX.forceLocale(context, stringX.getAppDefaultLanguage().toLocale());
+            }
+        } catch (UnsupportedLanguageException e) {
+            return context;
+        }
     }
 
     /**
-     * Verifies, whether translation is supported and if user should be prompted
-     * to turn on automatic translation
+     * Verifies if translation hint can be shown to the user.
+     * This is when device language is supported,
+     * translation is not yet enabled
+     * and user didn't opted out from automatic translations
      *
-     * @param activity
+     * @return true if
      */
-    public void onResume(Activity activity) {
+    private boolean isTranslationHintAvailable() {
         try {
-            if (isTranslationChecked ||
-                    !isTranslationAvailable() ||
-                    isEnabled() ||
-                    isOptOut()) {
-                isTranslationChecked = true;
-                return;
-            }
+            return !isForcingLocale() &&
+                    isTranslationAvailable() &&
+                    !isEnabled() &&
+                    !isOptOut();
         } catch (UnsupportedLanguageException e) {
             SXLog.w("Unsupported device language!");
-            return;
+            return false;
         }
-        isTranslationChecked = true;
-        showTranslationHint(activity);
+    }
+
+    public boolean isForcingLocale() {
+        return forcedLocale != null;
     }
 
     /**
@@ -130,18 +130,16 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
 
     boolean isTranslationAvailable() {
         try {
-            return isLanguageSupported && getOptions().getAutoTranslatedLanguages().contains(getDeviceLanguage());
+            Language originalLanguage = Language.fromLocale(originalLocale);
+            List<Language> autoTranslatedLanguages = getOptions().getAutoTranslatedLanguages();
+            return autoTranslatedLanguages.contains(originalLanguage);
         } catch (UnsupportedLanguageException e) {
             return false;
         }
     }
 
-    void forceDefault(Context context) throws UnsupportedLanguageException {
-        boolean translationAvailable = isTranslationAvailable();
-        boolean enabled = isEnabled();
-        if (translationAvailable && !enabled) {
-            forceLocale(context, getAppDefaultLanguage().toLocale(), true);
-        }
+    Context forceAppDefault(Context context) {
+        return forceLocale(context, getAppDefaultLanguage().toLocale());
     }
 
     TranslationListener getListener() {
@@ -157,12 +155,17 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
         this.listener = listener;
     }
 
-    private Context forceLocale(Context context, @Nullable Locale locale, boolean isDefault) {
+    /**
+     * Forces {@link Locale} on the given context
+     *
+     * @param context can be Application Context or Activity, depending on what scope changes should take
+     * @param locale  {@link Locale} to force
+     */
+    Context forceLocale(Context context, @Nullable Locale locale) {
         if (locale == null) {
             return context;
         }
         SXLog.d("Forcing " + locale.getDisplayLanguage());
-        isForcingDefaultLocale = isDefault;
         Resources res = context.getResources();
         Locale.setDefault(locale);
         Configuration config = new Configuration(res.getConfiguration());
@@ -174,12 +177,7 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
             res.updateConfiguration(config, res.getDisplayMetrics());
         }
 
-        this.locale = locale;
         return context;
-    }
-
-    boolean isForcingLocale() {
-        return !isForcingDefaultLocale && locale != null && !locale.equals(defaultLocale);
     }
 
     boolean isEnabled() throws UnsupportedLanguageException {
@@ -219,12 +217,22 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
     }
 
     private String getPreferenceKey() throws UnsupportedLanguageException {
-        return KEY_LANGUAGE_ENABLED + getDeviceLanguage().getCode();
+        return KEY_LANGUAGE_ENABLED + Language.fromLocale(originalLocale).getCode();
     }
 
-    private void showTranslationHint(Activity activity) {
+    /**
+     * Shows translation hint to the user to pick, disable or dismiss automatic translation
+     *
+     * @param activity
+     * @return true if hint has been presented to user, false otherwise
+     */
+    public boolean showTranslationHint(Activity activity) {
+        if (!isTranslationHintAvailable()) {
+            return false;
+        }
         Intent intent = new Intent(activity, StringXOverlayActivity.class);
         activity.startActivityForResult(intent, StringXOverlayActivity.REQUEST_CODE);
+        return true;
     }
 
     List<Language> getSupportedLanguages() {
@@ -233,16 +241,27 @@ public class StringX implements StringXLanguageReceiver.OnLanguageChanged {
 
     @Override
     public void onLanguageChanged(Language language) {
-        defaultLocale = language.toLocale();
-        isTranslationChecked = false;
     }
 
-    Language getDeviceLanguage() throws UnsupportedLanguageException {
-        return Language.fromLocale(defaultLocale);
+    Language getCurrentLanguage() throws UnsupportedLanguageException {
+        return Language.fromLocale(Locale.getDefault());
     }
 
     Language getAppDefaultLanguage() {
         return getOptions().getDefaultLanguage();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+    }
+
+    @Override
+    public void onLowMemory() {
+
+    }
+
+    public void setForcedLocale(Locale forcedLocale) {
+        this.forcedLocale = forcedLocale;
     }
 
     /**
