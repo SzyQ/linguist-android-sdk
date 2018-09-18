@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Aplikacija</string>
+    <string name="ls_dialog_button">Instaliraj</string>
+    <string name="ls_dialog_message">neće biti prevedena osim ako instalirate %s aplikaciju.</string>
+    <string name="ls_dialog_title">Instalirajte %s</string>
+    <string name="ls_never_translate">Nikad ne prevedi %s</string>
+    <string name="ls_preference_summary">Uključuje automatsko prevođenje u aplikaciju</string>
+    <string name="ls_preference_title">Automatski prevod</string>
+    <string name="ls_translate">Prevod</string>
+    <string name="ls_translate_message">Ova aplikacija je u: %s. Želite li je prevesti?</string>
+</resources>

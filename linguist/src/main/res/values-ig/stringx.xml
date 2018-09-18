@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Ngwa</string>
+    <string name="ls_dialog_button">Wụnye</string>
+    <string name="ls_dialog_message">agaghị agagharị ma ọ bụrụ na ị wụnye ngwa ngwa %s.</string>
+    <string name="ls_dialog_title">Wụnye %s</string>
+    <string name="ls_never_translate">Agatụghị asụgharị %s</string>
+    <string name="ls_preference_summary">Zoo nsụgharị akpaka na ngwa ahụ</string>
+    <string name="ls_preference_title">Ntugharị akpaaka</string>
+    <string name="ls_translate">Gbanwee</string>
+    <string name="ls_translate_message">Ngwa a bụ: %s. Ị ga-achọ ịsụgharị ya?</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Kopo</string>
+    <string name="ls_dialog_button">Kenya</string>
+    <string name="ls_dialog_message">e ke ke ea fetoleloa ntle leha u kenya %s app.</string>
+    <string name="ls_dialog_title">Kenya %s</string>
+    <string name="ls_never_translate">Le ka mohla u se ke ua fetolela %s</string>
+    <string name="ls_preference_summary">E fetolela phetolelo e itekanetseng ho kopo</string>
+    <string name="ls_preference_title">Phetolelo ka botlalo</string>
+    <string name="ls_translate">Fetolela</string>
+    <string name="ls_translate_message">Kopo ena e ho: %s. Na u ka rata ho e fetolela?</string>
+</resources>

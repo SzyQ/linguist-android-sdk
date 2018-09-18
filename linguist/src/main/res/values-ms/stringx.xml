@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Permohonan</string>
+    <string name="ls_dialog_button">Pasang</string>
+    <string name="ls_dialog_message">tidak akan diterjemahkan melainkan anda memasang aplikasi %s.</string>
+    <string name="ls_dialog_title">Pasang %s</string>
+    <string name="ls_never_translate">Jangan terjemahkan %s</string>
+    <string name="ls_preference_summary">Togol terjemahan automatik dalam aplikasi</string>
+    <string name="ls_preference_title">Terjemahan automatik</string>
+    <string name="ls_translate">Terjemah</string>
+    <string name="ls_translate_message">Aplikasi ini ada dalam: %s. Adakah anda ingin menterjemahkannya?</string>
+</resources>

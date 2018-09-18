@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Қолданба</string>
+    <string name="ls_dialog_button">Орнату</string>
+    <string name="ls_dialog_message">%s қолданбасын орнатпағанша аударылмайды.</string>
+    <string name="ls_dialog_title">%s орнату</string>
+    <string name="ls_never_translate">%s ешқашан аудармаңыз</string>
+    <string name="ls_preference_summary">Қолданбаға автоматты түрде аударуды ауыстырады</string>
+    <string name="ls_preference_title">Автоматты аударма</string>
+    <string name="ls_translate">Аудару</string>
+    <string name="ls_translate_message">Бұл қолданба орналасқан: %s. Сіз оны аударғыңыз келе ме?</string>
+</resources>

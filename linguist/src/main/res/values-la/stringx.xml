@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">application</string>
+    <string name="ls_dialog_button">install</string>
+    <string name="ls_dialog_message">nec interpretari nisi install %s app.</string>
+    <string name="ls_dialog_title">install %s</string>
+    <string name="ls_never_translate">Numquam interpretari %s</string>
+    <string name="ls_preference_summary">Toggles automatic translatione per applicationem</string>
+    <string name="ls_preference_title">automatica</string>
+    <string name="ls_translate">transferendum</string>
+    <string name="ls_translate_message">Hoc app est: %s. An illud interpretari velis?</string>
+</resources>

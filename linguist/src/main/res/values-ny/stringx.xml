@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Ntchito</string>
+    <string name="ls_dialog_button">Sakani</string>
+    <string name="ls_dialog_message">sichidzasinthidwa pokhapokha mutatsegula app %s.</string>
+    <string name="ls_dialog_title">Sakani %s</string>
+    <string name="ls_never_translate">Musatembenuzire konse %s</string>
+    <string name="ls_preference_summary">Kusintha kumasulira kwodzigwiritsira ntchito</string>
+    <string name="ls_preference_title">Kutembenuza mwachindunji</string>
+    <string name="ls_translate">Samasulira</string>
+    <string name="ls_translate_message">Mapulogalamu awa ali: %s. Kodi mukufuna kutanthauzira?</string>
+</resources>

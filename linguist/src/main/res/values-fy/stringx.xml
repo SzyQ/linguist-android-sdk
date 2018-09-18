@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Oanfraach</string>
+    <string name="ls_dialog_button">Ynstallearje</string>
+    <string name="ls_dialog_message">sil net oersette wurde as jo ynstallearje %s app.</string>
+    <string name="ls_dialog_title">Ynstallearje %s</string>
+    <string name="ls_never_translate">Nea oersetten %s</string>
+    <string name="ls_preference_summary">Ferfang automatyske oersetting yn \'e applikaasje</string>
+    <string name="ls_preference_title">Automatyske oersetting</string>
+    <string name="ls_translate">Oersette</string>
+    <string name="ls_translate_message">Dizze app is yn: %s. Wolle jo it oersetten?</string>
+</resources>

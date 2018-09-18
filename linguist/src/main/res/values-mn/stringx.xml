@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Програм</string>
+    <string name="ls_dialog_button">Суулгах</string>
+    <string name="ls_dialog_message">Хэрэв та %s програмыг суулгахаас нааш орчуулаагүй болно.</string>
+    <string name="ls_dialog_title">%s суулгах</string>
+    <string name="ls_never_translate">%s хэзээ ч орчуулахгүй</string>
+    <string name="ls_preference_summary">Аппликешн дээр автомат орчуулга хийх</string>
+    <string name="ls_preference_title">Автомат орчуулга</string>
+    <string name="ls_translate">Translate хийх</string>
+    <string name="ls_translate_message">Энэ апп нь: %s. Та үүнийг орчуулахыг хүсч байна уу?</string>
+</resources>

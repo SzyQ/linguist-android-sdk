@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Kushanda</string>
+    <string name="ls_dialog_button">Isa</string>
+    <string name="ls_dialog_message">hazvizoshanduri kunze kwekuti iwe uise %s app.</string>
+    <string name="ls_dialog_title">Isa %s</string>
+    <string name="ls_never_translate">Usambofa shandura %s</string>
+    <string name="ls_preference_summary">Inoshandura kushandura kwekutsvaga mune zvekushanda</string>
+    <string name="ls_preference_title">Automatic translation</string>
+    <string name="ls_translate">Shanduro</string>
+    <string name="ls_translate_message">Iri purogiramu iri: %s. Ungada here kuishandura?</string>
+</resources>

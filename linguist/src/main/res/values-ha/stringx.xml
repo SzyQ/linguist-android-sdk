@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Aikace-aikacen</string>
+    <string name="ls_dialog_button">Shigar</string>
+    <string name="ls_dialog_message">ba za a juya shi ba sai dai idan ka shigar da aikace-aikacen %s.</string>
+    <string name="ls_dialog_title">Shigar %s</string>
+    <string name="ls_never_translate">Kada a fassara %s</string>
+    <string name="ls_preference_summary">Tana fassarar fassarar atomatik a cikin aikace-aikacen</string>
+    <string name="ls_preference_title">Fassarar atomatik</string>
+    <string name="ls_translate">Fassara</string>
+    <string name="ls_translate_message">Wannan app yana cikin: %s. Kuna son fassara shi?</string>
+</resources>

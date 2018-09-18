@@ -1,2 +1,2 @@
-include ':app', ':stringx'
-project(":stringx").projectDir = file("../../stringx")
+include ':app', ':linguist'
+project(":linguist").projectDir = file("../../linguist")

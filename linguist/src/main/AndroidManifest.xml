@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="mobi.klimaszewski.linguist">
+
+    <uses-permission android:name="io.linguist.DISCOVERY" />
+
+    <application>
+        <activity
+            android:name="mobi.klimaszewski.linguist.LinguistOverlayActivity"
+            android:theme="@style/ls_Transparent" />
+
+        <service
+            android:name="mobi.klimaszewski.linguist.DiscoveryService"
+            android:exported="true"
+            android:permission="io.linguist.DISCOVERY" />
+
+        <service
+            android:name="mobi.klimaszewski.linguist.ClientService"
+            android:exported="true"
+            android:permission="io.linguist.TRANSLATION" />
+    </application>
+</manifest>

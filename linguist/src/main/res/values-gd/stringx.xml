@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Iarrtas</string>
+    <string name="ls_dialog_button">Stàlaich</string>
+    <string name="ls_dialog_message">cha bhith air eadar-theangachadh mura stàlaicheas tu aplacaid %s.</string>
+    <string name="ls_dialog_title">Stàlaibh %s</string>
+    <string name="ls_never_translate">Na eadar-theangaich thu riamh %s</string>
+    <string name="ls_preference_summary">Toggles eadar-theangachadh gu fèin-obrachail san tagradh</string>
+    <string name="ls_preference_title">Eadar-theangachadh gu h-obann</string>
+    <string name="ls_translate">Eadar-theangachadh</string>
+    <string name="ls_translate_message">Tha an aplacaid seo ann an: %s. A bheil thu airson eadar-theangachadh?</string>
+</resources>

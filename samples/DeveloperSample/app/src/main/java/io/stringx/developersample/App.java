@@ -2,18 +2,18 @@ package io.stringx.developersample;
 
 import android.app.Application;
 
-import io.stringx.Language;
-import io.stringx.Options;
-import io.stringx.StringX;
-import io.stringx.Translatable;
+import mobi.klimaszewski.linguist.Language;
+import mobi.klimaszewski.linguist.Linguist;
+import mobi.klimaszewski.linguist.Options;
+import mobi.klimaszewski.linguist.Translatable;
 
 public class App extends Application implements Translatable {
 
-    private StringX stringX;
+    private Linguist linguist;
 
     @Override
-    public StringX getStringX() {
-        return stringX;
+    public Linguist getLinguist() {
+        return linguist;
     }
 
     @Override
@@ -25,6 +25,6 @@ public class App extends Application implements Translatable {
                 .addStrings(R.string.class)
                 .excludeStrings(android.support.v7.appcompat.R.string.class)
                 .build();
-        stringX = StringX.init(options);
+        linguist = Linguist.init(options);
     }
 }

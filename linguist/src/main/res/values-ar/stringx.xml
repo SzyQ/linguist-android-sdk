@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">الوضعية</string>
+    <string name="ls_dialog_button">التثبت</string>
+    <string name="ls_dialog_message">لن تترجم إلا إذا قمت بتثبيت %s التطبيق.</string>
+    <string name="ls_dialog_title">قم بتثبيت %s</string>
+    <string name="ls_never_translate">لا تترجم %s مطلقا</string>
+    <string name="ls_preference_summary">تبديل الترجمة الآلية في التطبيق</string>
+    <string name="ls_preference_title">الترجمة الآلية</string>
+    <string name="ls_translate">ترجمه</string>
+    <string name="ls_translate_message">هذا التطبيق هو في: %s. هل ترغب في ترجمته؟</string>
+</resources>

@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import io.stringx.StringX;
+import mobi.klimaszewski.linguist.Linguist;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(StringX.wrap(newBase));
+        super.attachBaseContext(Linguist.wrap(newBase));
     }
 
     @Override
@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        StringX stringX = StringX.get(this);
+        Linguist linguist = Linguist.get(this);
         if (!isTranslationHintShown) {
-            isTranslationHintShown = stringX.showTranslationHint(this);
+            isTranslationHintShown = linguist.showTranslationHint(this);
         }
     }
 }

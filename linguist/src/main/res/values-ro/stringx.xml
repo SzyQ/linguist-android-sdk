@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">cerere</string>
+    <string name="ls_dialog_button">Instalare</string>
+    <string name="ls_dialog_message">nu va fi tradus decât dacă instalați %s app.</string>
+    <string name="ls_dialog_title">Instalați %s</string>
+    <string name="ls_never_translate">Nu traduceți niciodată %s</string>
+    <string name="ls_preference_summary">Comută traducerea automată în aplicație</string>
+    <string name="ls_preference_title">Traducere automată</string>
+    <string name="ls_translate">Traduceți</string>
+    <string name="ls_translate_message">Această aplicație este în: %s. Doriți să o traduceți?</string>
+</resources>

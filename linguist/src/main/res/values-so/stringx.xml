@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Codsiga</string>
+    <string name="ls_dialog_button">Ku rakib</string>
+    <string name="ls_dialog_message">laguma turjumayo haddii aadan rakibi %s app.</string>
+    <string name="ls_dialog_title">Ku rakib %s</string>
+    <string name="ls_never_translate">Marna ha tarjumin %s</string>
+    <string name="ls_preference_summary">Goobta turjubaanka ah ee tooska ah ayaa lagu dalbadaa</string>
+    <string name="ls_preference_title">Tarjumaad gawaarida</string>
+    <string name="ls_translate">Turjum</string>
+    <string name="ls_translate_message">Barnaamijkani wuxuu ku jiraa: %s. Ma jeclaan lahayd inaad u turjunto?</string>
+</resources>

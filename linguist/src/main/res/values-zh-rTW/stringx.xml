@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">應用</string>
+    <string name="ls_dialog_button">安裝</string>
+    <string name="ls_dialog_message">將不會被翻譯，除非你安裝%s的應用程序。</string>
+    <string name="ls_dialog_title">安裝%s</string>
+    <string name="ls_never_translate">永遠不要翻譯%s</string>
+    <string name="ls_preference_summary">在應用程序中切換自動翻譯</string>
+    <string name="ls_preference_title">自動翻譯</string>
+    <string name="ls_translate">翻譯</string>
+    <string name="ls_translate_message">這個程序是在：%s.你想翻譯嗎？</string>
+</resources>

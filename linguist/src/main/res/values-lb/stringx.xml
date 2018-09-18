@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Applikatioun</string>
+    <string name="ls_dialog_button">Installéieren</string>
+    <string name="ls_dialog_message">Dir musst net iwwersat sinn, ausser Dir wärt %s App installéieren.</string>
+    <string name="ls_dialog_title">Installéieren %s</string>
+    <string name="ls_never_translate">Ni Iwwersetzung %s</string>
+    <string name="ls_preference_summary">Eng automatësch Iwwersetzung vun der Applikatioun</string>
+    <string name="ls_preference_title">Automatesch Iwwersetzung</string>
+    <string name="ls_translate">Iwwersetzung</string>
+    <string name="ls_translate_message">Dës App ass op: %s. Wëllt Dir iwwersetze wëllt?</string>
+</resources>

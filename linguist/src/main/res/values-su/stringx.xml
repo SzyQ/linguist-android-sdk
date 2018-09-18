@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">aplikasi</string>
+    <string name="ls_dialog_button">masang</string>
+    <string name="ls_dialog_message">moal ditarjamahkeun iwal mun install %s aplikasi.</string>
+    <string name="ls_dialog_title">install %s</string>
+    <string name="ls_never_translate">Pernah narjamahkeun %s</string>
+    <string name="ls_preference_summary">Toggles tarjamah otomatis dina aplikasi</string>
+    <string name="ls_preference_title">tarjamah otomatis</string>
+    <string name="ls_translate">narjamahkeun</string>
+    <string name="ls_translate_message">aplikasi ieu téh di: %s. Rék narjamahkeun eta?</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Applikazzjoni</string>
+    <string name="ls_dialog_button">Installa</string>
+    <string name="ls_dialog_message">mhux ser tiġi tradott sakemm ma tinstalla %s app.</string>
+    <string name="ls_dialog_title">Installa %s</string>
+    <string name="ls_never_translate">Qatt tradotta %s</string>
+    <string name="ls_preference_summary">Toggles it-traduzzjoni awtomatika fl-applikazzjoni</string>
+    <string name="ls_preference_title">Traduzzjoni awtomatika</string>
+    <string name="ls_translate">Ittraduċi</string>
+    <string name="ls_translate_message">Din l-applikazzjoni tinsab fi: %s. Tixtieq tittraduċiha?</string>
+</resources>

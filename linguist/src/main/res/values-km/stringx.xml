@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">កម្មវិធី</string>
+    <string name="ls_dialog_button">ដំឡើង</string>
+    <string name="ls_dialog_message">នឹងមិនត្រូវបានបកប្រែទេលុះត្រាតែអ្នកដំឡើងកម្មវិធី %s ។</string>
+    <string name="ls_dialog_title">ដំឡើង %s</string>
+    <string name="ls_never_translate">កុំបកប្រែ %s</string>
+    <string name="ls_preference_summary">បិទបើកការបកប្រែដោយស្វ័យប្រវត្តិនៅក្នុងកម្មវិធី</string>
+    <string name="ls_preference_title">បកប្រែដោយស្វ័យប្រវត្តិ</string>
+    <string name="ls_translate">បកប្រែ</string>
+    <string name="ls_translate_message">កម្មវិធីនេះមាននៅក្នុង: %s. តើអ្នកចង់បកប្រែវាទេ?</string>
+</resources>

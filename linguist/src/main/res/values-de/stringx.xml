@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Anwendung</string>
+    <string name="ls_dialog_button">Installieren</string>
+    <string name="ls_dialog_message">wird nur übersetzt, wenn Sie die App %s installieren.</string>
+    <string name="ls_dialog_title">Installieren Sie %s</string>
+    <string name="ls_never_translate">Niemals übersetzen %s</string>
+    <string name="ls_preference_summary">Schaltet die automatische Übersetzung in der Anwendung um</string>
+    <string name="ls_preference_title">Automatische Übersetzung</string>
+    <string name="ls_translate">Übersetzen</string>
+    <string name="ls_translate_message">Diese App ist in: %s. Möchten Sie es übersetzen?</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">کاربرد</string>
+    <string name="ls_dialog_button">نصب</string>
+    <string name="ls_dialog_message">ترجمه نمی شود مگر اینکه شما برنامه %s را نصب کنید.</string>
+    <string name="ls_dialog_title">نصب %s</string>
+    <string name="ls_never_translate">هرگز ترجمه %s</string>
+    <string name="ls_preference_summary">ترجمه خودکار در برنامه را تغییر میدهد</string>
+    <string name="ls_preference_title">ترجمه خودکار</string>
+    <string name="ls_translate">ترجمه کردن</string>
+    <string name="ls_translate_message">این برنامه در: %s است. آیا می خواهید آن را ترجمه کنید؟</string>
+</resources>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen>
 
-    <io.stringx.StringXPreference />
+    <mobi.klimaszewski.linguist.LinguistPreference />
 
 </PreferenceScreen>

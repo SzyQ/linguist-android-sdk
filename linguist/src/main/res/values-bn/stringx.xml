@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">আবেদন</string>
+    <string name="ls_dialog_button">ইনস্টল করুন</string>
+    <string name="ls_dialog_message">আপনি %s অ্যাপ্লিকেশন ইনস্টল না করা পর্যন্ত অনুবাদ করা হবে না</string>
+    <string name="ls_dialog_title">%s ইনস্টল করুন</string>
+    <string name="ls_never_translate">%s অনুবাদ করবেন না</string>
+    <string name="ls_preference_summary">অ্যাপ্লিকেশন স্বয়ংক্রিয় অনুবাদ টগল করুন</string>
+    <string name="ls_preference_title">স্বয়ংক্রিয় অনুবাদ</string>
+    <string name="ls_translate">অনুবাদ</string>
+    <string name="ls_translate_message">এই অ্যাপ্লিকেশনটি আছে: %s. আপনি এটি অনুবাদ করতে চান?</string>
+</resources>

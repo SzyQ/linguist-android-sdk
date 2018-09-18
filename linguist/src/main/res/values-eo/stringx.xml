@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">Apliko</string>
+    <string name="ls_dialog_button">Instali</string>
+    <string name="ls_dialog_message">ne estos tradukita krom se vi instali %s-app.</string>
+    <string name="ls_dialog_title">Instali %s</string>
+    <string name="ls_never_translate">Neniam traduku %s</string>
+    <string name="ls_preference_summary">Ŝaltu aŭtomatan tradukon en la apliko</string>
+    <string name="ls_preference_title">Aŭtomata tradukado</string>
+    <string name="ls_translate">Traduku</string>
+    <string name="ls_translate_message">Ĉi tiu programo estas: %s. Ĉu vi volas traduki ĝin?</string>
+</resources>

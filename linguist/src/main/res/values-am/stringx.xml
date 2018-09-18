@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">ትግበራ</string>
+    <string name="ls_dialog_button">ይጫኑ</string>
+    <string name="ls_dialog_message">የ %s መተግበሪያን ካልጨርሱ በስተቀር አይተረጎሙም.</string>
+    <string name="ls_dialog_title">%s ይጫኑ</string>
+    <string name="ls_never_translate">%s ን በጭራሽ አትተርጉም</string>
+    <string name="ls_preference_summary">በመተግበሪያው ውስጥ ራስ-ሰር ትርጉምን ይቀያይራል</string>
+    <string name="ls_preference_title">ራስ-ሰር ትርጉም</string>
+    <string name="ls_translate">ተርጉም</string>
+    <string name="ls_translate_message">ይህ መተግበሪያ በሚከተለው ውስጥ ነው %s. መተርጎም ይፈልጋሉ?</string>
+</resources>

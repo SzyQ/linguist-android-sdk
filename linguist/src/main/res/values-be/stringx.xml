@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using www.stringx.io-->
+
+<resources>
+    <string name="ls_app">дадатак</string>
+    <string name="ls_dialog_button">ўсталёўваць</string>
+    <string name="ls_dialog_message">пераводзіцца не будзе, калі вы не ўсталюеце %s прыкладанне.</string>
+    <string name="ls_dialog_title">ўсталяваць %s</string>
+    <string name="ls_never_translate">Ніколі не перакладаць %s</string>
+    <string name="ls_preference_summary">Ўключае аўтаматычны пераклад у дадатку</string>
+    <string name="ls_preference_title">аўтаматычны пераклад</string>
+    <string name="ls_translate">перавесці</string>
+    <string name="ls_translate_message">Гэта дадатак знаходзіцца ў: %s. Вы хочаце перавесці яго?</string>
+</resources>
