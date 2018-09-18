@@ -16,7 +16,7 @@ import java.util.List;
 import mobi.klimaszewski.linguist.BuildConfig;
 
 /**
- * Entry point to an app from <a href="https://play.google.com/store/apps/details?id=io.stringx">Linguist App</a>
+ * Entry point to an app from <a href="https://play.google.com/store/apps/details?id=mobi.klimaszewski.linguist.services">Linguist App</a>
  * Fetches resources and pass over to translating app
  */
 public final class ClientService extends Service {

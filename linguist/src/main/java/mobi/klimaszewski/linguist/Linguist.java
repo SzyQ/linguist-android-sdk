@@ -55,13 +55,13 @@ public class Linguist implements LinguistLanguageReceiver.OnLanguageChanged, Com
      *
      * @return {@link Linguist} instance
      * @throws IllegalStateException if Linguist is not initialised.
-     *                               See <a href="https://www.stringx.io/docs/guides">integration guide</a>
+     *                               See <a href="https://linguist.klimaszewski.mobi/docs/guides">integration guide</a>
      */
     public static Linguist get(@NonNull Context context) {
         if (isInitialised(context)) {
             return ((Translatable) context.getApplicationContext()).getLinguist();
         } else {
-            throw new IllegalStateException("Linguist is not initialised. Follow instructions here https://www.stringx.io/docs/guides");
+            throw new IllegalStateException("Linguist is not initialised. Follow instructions here https://linguist.klimaszewski.mobi/docs/guides");
         }
     }
 

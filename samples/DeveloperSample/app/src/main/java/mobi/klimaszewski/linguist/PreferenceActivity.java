@@ -1,8 +1,10 @@
-package io.stringx.developersample;
+package mobi.klimaszewski.linguist;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+
+import mobi.klimaszewski.linguist.developersample.R;
 
 public class PreferenceActivity extends AppCompatActivity {
 

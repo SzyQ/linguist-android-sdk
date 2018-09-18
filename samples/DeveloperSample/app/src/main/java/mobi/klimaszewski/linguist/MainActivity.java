@@ -1,11 +1,11 @@
-package io.stringx.developersample;
+package mobi.klimaszewski.linguist;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import mobi.klimaszewski.linguist.Linguist;
+import mobi.klimaszewski.linguist.developersample.R;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package io.stringx.developersample;
+package mobi.klimaszewski.linguist;
 
 import android.app.Application;
 
