@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">අයදුම්පත</string>
+    <string name="ls_dialog_button">ස්ථාපනය කරන්න</string>
+    <string name="ls_dialog_message">ඔබ %s යෙදුම ස්ථාපනය නොකරන්නේ නම් එය පරිවර්තනය නොකෙරේ.</string>
+    <string name="ls_dialog_title">%s ස්ථාපනය කරන්න</string>
+    <string name="ls_never_translate">%s පරිවර්තනය නොකරන්න</string>
+    <string name="ls_preference_summary">යෙදුමේ ස්වයංක්රිය භාෂාවට පරිවර්තනය කිරීම</string>
+    <string name="ls_preference_title">ස්වයංක්රීය පරිවර්තනය</string>
+    <string name="ls_translate">පරිවර්තනය කරන්න</string>
+    <string name="ls_translate_message">මෙම යෙදුම තුළ: %s. ඔබ එය පරිවර්තනය කිරීමට කැමතිද?</string>
+</resources>

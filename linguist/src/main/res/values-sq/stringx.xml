@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Aplikacion</string>
+    <string name="ls_dialog_button">instaloj</string>
+    <string name="ls_dialog_message">nuk do të përkthehet nëse nuk instaloni aplikacionin %s.</string>
+    <string name="ls_dialog_title">Instalo %s</string>
+    <string name="ls_never_translate">Kurrë mos e përktheni %s</string>
+    <string name="ls_preference_summary">Ndryshon përkthimin automatik në aplikacion</string>
+    <string name="ls_preference_title">Përkthimi automatik</string>
+    <string name="ls_translate">Perkthe</string>
+    <string name="ls_translate_message">Ky aplikacion është në: %s. Dëshiron ta përkthesh?</string>
+</resources>

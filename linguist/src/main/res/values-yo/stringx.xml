@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Ohun elo</string>
+    <string name="ls_dialog_button">Fi sori ẹrọ</string>
+    <string name="ls_dialog_message">kii ṣe itumọ ayafi ti o ba fi sori ẹrọ %s app.</string>
+    <string name="ls_dialog_title">Fi sori ẹrọ %s</string>
+    <string name="ls_never_translate">Maṣe ṣe itumọ %s</string>
+    <string name="ls_preference_summary">Yọọ atunṣe laifọwọyi ni ohun elo</string>
+    <string name="ls_preference_title">Itọsọna laifọwọyi</string>
+    <string name="ls_translate">Ṣe itumọ</string>
+    <string name="ls_translate_message">Ẹrọ yii jẹ ninu: %s. Ṣe iwọ yoo fẹ lati ṣe itumọ rẹ?</string>
+</resources>

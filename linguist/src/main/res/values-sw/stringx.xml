@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Maombi</string>
+    <string name="ls_dialog_button">Sakinisha</string>
+    <string name="ls_dialog_message">haitafsiriwa isipokuwa unapoweka programu ya %s.</string>
+    <string name="ls_dialog_title">Sakinisha %s</string>
+    <string name="ls_never_translate">Kamwe kutafsiri %s</string>
+    <string name="ls_preference_summary">Inabadilisha tafsiri ya moja kwa moja katika programu</string>
+    <string name="ls_preference_title">Tafsiri ya moja kwa moja</string>
+    <string name="ls_translate">Tafsiri</string>
+    <string name="ls_translate_message">Programu hii iko: %s. Je! Ungependa kutafsiri?</string>
+</resources>

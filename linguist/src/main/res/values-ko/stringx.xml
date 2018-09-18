@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">신청</string>
+    <string name="ls_dialog_button">설치</string>
+    <string name="ls_dialog_message">%s 앱을 설치하지 않으면 번역되지 않습니다.</string>
+    <string name="ls_dialog_title">%s 설치</string>
+    <string name="ls_never_translate">번역하지 마십시오. %s</string>
+    <string name="ls_preference_summary">응용 프로그램에서 자동 번역을 토글합니다.</string>
+    <string name="ls_preference_title">자동 번역</string>
+    <string name="ls_translate">옮기다</string>
+    <string name="ls_translate_message">이 응용 프로그램은 : %s에 있습니다. 번역 하시겠습니까?</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">کاریال</string>
+    <string name="ls_dialog_button">لګول</string>
+    <string name="ls_dialog_message">تر هغه چې تاسو %s اپلیکیشن نصب نه کړئ ژباړه نه شي.</string>
+    <string name="ls_dialog_title">%s لګول</string>
+    <string name="ls_never_translate">هیڅکله ژباړه %s نه وي</string>
+    <string name="ls_preference_summary">په کاریال کې اتوماتیک ژباړې ټګوي</string>
+    <string name="ls_preference_title">اتوماتیک ژباړه</string>
+    <string name="ls_translate">ژباړه</string>
+    <string name="ls_translate_message">دا اپلیټ دی: %s. ایا تاسو غواړئ چې ژباړئ؟</string>
+</resources>

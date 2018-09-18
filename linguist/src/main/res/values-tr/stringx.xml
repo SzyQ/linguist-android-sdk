@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Uygulama</string>
+    <string name="ls_dialog_button">kurmak</string>
+    <string name="ls_dialog_message">%s uygulaması yüklemediğiniz sürece tercüme edilmez.</string>
+    <string name="ls_dialog_title">Yükle %s</string>
+    <string name="ls_never_translate">Asla çevirme %s</string>
+    <string name="ls_preference_summary">Uygulamada otomatik çeviriyi açar</string>
+    <string name="ls_preference_title">Çeviri</string>
+    <string name="ls_translate">Çevirmek</string>
+    <string name="ls_translate_message">Bu uygulama şurada: %s. Çevirmek ister misiniz?</string>
+</resources>

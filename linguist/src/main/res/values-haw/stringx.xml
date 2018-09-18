@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Ka hoʻohana</string>
+    <string name="ls_dialog_button">E hoʻouka</string>
+    <string name="ls_dialog_message">ʻAʻole ia e unuhiʻia keʻoleʻoe e hoʻokomo i ka app %s.</string>
+    <string name="ls_dialog_title">E hoʻouka %s</string>
+    <string name="ls_never_translate">ʻAʻole loa e unuhi i %s</string>
+    <string name="ls_preference_summary">Hoʻouka i ka unuhi maʻamau i loko o ka noi</string>
+    <string name="ls_preference_title">ʻO ka unuhi maʻamau</string>
+    <string name="ls_translate">Unuhi</string>
+    <string name="ls_translate_message">Aia kēia polokalamu i: %s. E makemake anaʻoe e unuhi i kēia?</string>
+</resources>

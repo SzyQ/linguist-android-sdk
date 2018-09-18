@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">விண்ணப்ப</string>
+    <string name="ls_dialog_button">நிறுவ</string>
+    <string name="ls_dialog_message">%s பயன்பாட்டை நிறுவும் வரை நீங்கள் மொழிபெயர்க்க முடியாது.</string>
+    <string name="ls_dialog_title">%s ஐ நிறுவவும்</string>
+    <string name="ls_never_translate">%s ஐ மொழிபெயர்க்காதே</string>
+    <string name="ls_preference_summary">பயன்பாட்டில் தானியங்கு மொழிபெயர்ப்பை மாற்றுகிறது</string>
+    <string name="ls_preference_title">தானியங்கு மொழிபெயர்ப்பு</string>
+    <string name="ls_translate">மொழிபெயர்</string>
+    <string name="ls_translate_message">இந்த பயன்பாட்டில் உள்ளது: %s. நீங்கள் இதை மொழிபெயர்க்க விரும்புகிறீர்களா?</string>
+</resources>

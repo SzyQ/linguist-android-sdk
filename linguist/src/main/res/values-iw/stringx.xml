@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">יישום</string>
+    <string name="ls_dialog_button">להתקין</string>
+    <string name="ls_dialog_message">לא יתורגם אלא אם תתקין אפליקציה %s.</string>
+    <string name="ls_dialog_title">התקן את %s</string>
+    <string name="ls_never_translate">לעולם אל תתרגם את %s</string>
+    <string name="ls_preference_summary">מחליף תרגום אוטומטי ביישום</string>
+    <string name="ls_preference_title">תרגום אוטומטי</string>
+    <string name="ls_translate">לתרגם</string>
+    <string name="ls_translate_message">יישום זה הוא ב: %s. האם אתה רוצה לתרגם אותו?</string>
+</resources>

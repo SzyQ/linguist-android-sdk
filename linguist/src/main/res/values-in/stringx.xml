@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Aplikasi</string>
+    <string name="ls_dialog_button">Memasang</string>
+    <string name="ls_dialog_message">tidak akan diterjemahkan kecuali Anda menginstal aplikasi %s.</string>
+    <string name="ls_dialog_title">Pasang %s</string>
+    <string name="ls_never_translate">Jangan pernah menerjemahkan %s</string>
+    <string name="ls_preference_summary">Toggles otomatis terjemahan dalam aplikasi</string>
+    <string name="ls_preference_title">Terjemahan otomatis</string>
+    <string name="ls_translate">Menterjemahkan</string>
+    <string name="ls_translate_message">Aplikasi ini ada di: %s. Anda ingin menerjemahkannya?</string>
+</resources>

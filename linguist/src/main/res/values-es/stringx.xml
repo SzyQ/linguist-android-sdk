@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Solicitud</string>
+    <string name="ls_dialog_button">Instalar</string>
+    <string name="ls_dialog_message">no se traducirá a menos que instale la aplicación %s.</string>
+    <string name="ls_dialog_title">Instalar %s</string>
+    <string name="ls_never_translate">Nunca traducir %s</string>
+    <string name="ls_preference_summary">Alterna la traducción automática en la aplicación</string>
+    <string name="ls_preference_title">Traducción automática</string>
+    <string name="ls_translate">Traducir</string>
+    <string name="ls_translate_message">Esta aplicación está en: %s. ¿Te gustaría traducirlo?</string>
+</resources>

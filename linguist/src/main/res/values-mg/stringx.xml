@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Application</string>
+    <string name="ls_dialog_button">hametraka</string>
+    <string name="ls_dialog_message">Tsy ho adika raha tsy apetraka %s app.</string>
+    <string name="ls_dialog_title">Install %s</string>
+    <string name="ls_never_translate">Tsy handika na oviana na oviana %s</string>
+    <string name="ls_preference_summary">Mandika ny dikanteny automatique amin\'ny fampiharana</string>
+    <string name="ls_preference_title">Automatik translation</string>
+    <string name="ls_translate">translate</string>
+    <string name="ls_translate_message">Ity fampiharana ity dia ao amin\'ny: %s. Tianao ve ny handika izany?</string>
+</resources>

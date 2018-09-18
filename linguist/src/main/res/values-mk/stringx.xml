@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Апликација</string>
+    <string name="ls_dialog_button">Инсталирај</string>
+    <string name="ls_dialog_message">нема да бидат преведени освен ако не инсталирате %s апликација.</string>
+    <string name="ls_dialog_title">Инсталирајте %s</string>
+    <string name="ls_never_translate">Никогаш не преведете %s</string>
+    <string name="ls_preference_summary">Вклучи автоматски превод во апликацијата</string>
+    <string name="ls_preference_title">Автоматски превод</string>
+    <string name="ls_translate">Преведи</string>
+    <string name="ls_translate_message">Оваа апликација е во: %s. Дали сакате да ја преведете?</string>
+</resources>

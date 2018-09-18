@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Εφαρμογή</string>
+    <string name="ls_dialog_button">Εγκαθιστώ</string>
+    <string name="ls_dialog_message">δεν θα μεταφραστεί αν δεν εγκαταστήσετε την εφαρμογή %s.</string>
+    <string name="ls_dialog_title">Εγκαταστήστε το %s</string>
+    <string name="ls_never_translate">Μη μεταφράζετε ποτέ %s</string>
+    <string name="ls_preference_summary">Εναλλαγή της αυτόματης μετάφρασης στην εφαρμογή</string>
+    <string name="ls_preference_title">Αυτόματη μετάφραση</string>
+    <string name="ls_translate">Μεταφράζω</string>
+    <string name="ls_translate_message">Αυτή η εφαρμογή βρίσκεται στο: %s. Θα θέλατε να την μεταφράσετε;</string>
+</resources>

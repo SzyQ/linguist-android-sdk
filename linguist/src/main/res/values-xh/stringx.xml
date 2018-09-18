@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Isicelo</string>
+    <string name="ls_dialog_button">Faka</string>
+    <string name="ls_dialog_message">ayiyi kuguqulwa ngaphandle kokuba ufake i-%s insiza.</string>
+    <string name="ls_dialog_title">Faka %s</string>
+    <string name="ls_never_translate">Ungaze uphendule %s</string>
+    <string name="ls_preference_summary">Ukuguqula ukuguqulela ngokuzenzekelayo kwisicelo</string>
+    <string name="ls_preference_title">Ukuguqulela ngokuzenzekelayo</string>
+    <string name="ls_translate">Ukuguqulela</string>
+    <string name="ls_translate_message">Le app iku: %s. Ungathanda ukuyiguqulela?</string>
+</resources>

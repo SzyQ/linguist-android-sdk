@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Դիմում</string>
+    <string name="ls_dialog_button">Տեղադրեք</string>
+    <string name="ls_dialog_message">%s հավելվածը տեղադրելու դեպքում չի թարգմանվի:</string>
+    <string name="ls_dialog_title">Տեղադրեք %s</string>
+    <string name="ls_never_translate">Երբեք թարգմանել %s</string>
+    <string name="ls_preference_summary">Դիմումում ավտոմատ կերպով թարգմանում է</string>
+    <string name="ls_preference_title">Ավտոմատ թարգմանությունը</string>
+    <string name="ls_translate">Թարգմանություն</string>
+    <string name="ls_translate_message">Այս հավելվածը գտնվում է %s. Ցանկանում եք թարգմանել այն:</string>
+</resources>

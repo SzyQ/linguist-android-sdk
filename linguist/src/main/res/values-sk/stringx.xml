@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">prihláška</string>
+    <string name="ls_dialog_button">Inštalovať</string>
+    <string name="ls_dialog_message">nebudú preložené, ak nainštalujete %s app.</string>
+    <string name="ls_dialog_title">Nainštalujte %s</string>
+    <string name="ls_never_translate">Nikdy neprekladajte %s</string>
+    <string name="ls_preference_summary">Prepne automatický preklad do aplikácie</string>
+    <string name="ls_preference_title">Automatický preklad</string>
+    <string name="ls_translate">preložiť</string>
+    <string name="ls_translate_message">Táto aplikácia je v: %s. Chcete ju preložiť?</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">လြှောကျလှာ</string>
+    <string name="ls_dialog_button">Install</string>
+    <string name="ls_dialog_message">သငျသညျ %s app ကို install မဟုတ်လျှင်ဘာသာပြန်ထားသောမည်မဟုတ်ပါ။</string>
+    <string name="ls_dialog_title">%s Install</string>
+    <string name="ls_never_translate">%s ဘာသာပြန်ဆိုဘယ်တော့မှမ</string>
+    <string name="ls_preference_summary">လျှောက်လွှာအတွက် Toggle အလိုအလျောက်ဘာသာပြန်ချက်</string>
+    <string name="ls_preference_title">အလိုအလျောက်ဘာသာပြန်</string>
+    <string name="ls_translate">ဘာသာပြန်</string>
+    <string name="ls_translate_message">ဒီ app ထဲမှာဖြစ်ပါသည်: %s. သင်ကဘာသာပြန်ဆိုဖို့လိုပါသလား</string>
+</resources>

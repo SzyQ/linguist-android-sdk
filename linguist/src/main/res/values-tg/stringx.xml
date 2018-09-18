@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Ариза</string>
+    <string name="ls_dialog_button">Зеркашӣ кунед</string>
+    <string name="ls_dialog_message">агар барномаи шумо %s замимаро насб накунад, тарҷума намешавад.</string>
+    <string name="ls_dialog_title">%s насб кунед</string>
+    <string name="ls_never_translate">Ҳеҷ гоҳ тарҷумаи %s</string>
+    <string name="ls_preference_summary">Тиҷорати автоматӣ дар ариза</string>
+    <string name="ls_preference_title">Тарҷумаи автоматӣ</string>
+    <string name="ls_translate">Тарҷума</string>
+    <string name="ls_translate_message">Ин барнома дар: %s. Оё мехостед, ки онро тарҷума кунед?</string>
+</resources>

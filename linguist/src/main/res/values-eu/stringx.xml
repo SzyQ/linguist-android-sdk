@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Aplikazio</string>
+    <string name="ls_dialog_button">Instalatu</string>
+    <string name="ls_dialog_message">ez da itzuliko %s aplikazioa instalatu ezean.</string>
+    <string name="ls_dialog_title">Instalatu %s</string>
+    <string name="ls_never_translate">Inoiz ez itzuli %s</string>
+    <string name="ls_preference_summary">Aplikazioan itzulpen automatikoa aldatzen du</string>
+    <string name="ls_preference_title">Itzulpen automatikoa</string>
+    <string name="ls_translate">Itzuli</string>
+    <string name="ls_translate_message">Aplikazio hau hemen dago: %s. Nahi duzu itzultzeko?</string>
+</resources>

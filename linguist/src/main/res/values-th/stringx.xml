@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">ใบสมัคร</string>
+    <string name="ls_dialog_button">ติดตั้ง</string>
+    <string name="ls_dialog_message">จะไม่ถูกแปลจนกว่าคุณจะติดตั้งแอป %s</string>
+    <string name="ls_dialog_title">ติดตั้ง %s</string>
+    <string name="ls_never_translate">ไม่ต้องแปล %s</string>
+    <string name="ls_preference_summary">สลับการแปลอัตโนมัติในแอปพลิเคชัน</string>
+    <string name="ls_preference_title">การแปลอัตโนมัติ</string>
+    <string name="ls_translate">แปลความ</string>
+    <string name="ls_translate_message">แอปนี้อยู่ใน: %s คุณต้องการแปลหรือไม่?</string>
+</resources>

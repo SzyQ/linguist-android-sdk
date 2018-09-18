@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">aansoek</string>
+    <string name="ls_dialog_button">Installeer</string>
+    <string name="ls_dialog_message">sal nie vertaal word nie tensy jy %s app installeer.</string>
+    <string name="ls_dialog_title">Installeer %s</string>
+    <string name="ls_never_translate">Moet nooit %s vertaal nie</string>
+    <string name="ls_preference_summary">Skakel outomatiese vertaling in die aansoek</string>
+    <string name="ls_preference_title">Outomatiese vertaling</string>
+    <string name="ls_translate">vertaal</string>
+    <string name="ls_translate_message">Hierdie inligting is in: %s. Wil jy dit vertaal?</string>
+</resources>

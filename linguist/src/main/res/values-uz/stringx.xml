@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Dastur</string>
+    <string name="ls_dialog_button">O\'rnatish</string>
+    <string name="ls_dialog_message">%s ilovasini o\'rnatmaguningizcha, tarjima qilinmaydi.</string>
+    <string name="ls_dialog_title">%s ni o\'rnating</string>
+    <string name="ls_never_translate">Hech qachon tarjima qilinmagan %s</string>
+    <string name="ls_preference_summary">Ilovaga avtomatik tarjimani o\'zgartiradi</string>
+    <string name="ls_preference_title">Avtomatik tarjima</string>
+    <string name="ls_translate">Tarjima qiling</string>
+    <string name="ls_translate_message">Ushbu ilova quyidagilardir: %s. Tarjima qilmoqchimisiz?</string>
+</resources>

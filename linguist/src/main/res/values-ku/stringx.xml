@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Bikaranînî</string>
+    <string name="ls_dialog_button">Lêkirin</string>
+    <string name="ls_dialog_message">Heta ku hûn sazkirina %s-ê saz bikin.</string>
+    <string name="ls_dialog_title">%s saz bikin</string>
+    <string name="ls_never_translate">Tu caran %s wergerîn</string>
+    <string name="ls_preference_summary">Toggles wergeran di daxwaza serîlêdanê de</string>
+    <string name="ls_preference_title">Automatic translation</string>
+    <string name="ls_translate">Wergerandin</string>
+    <string name="ls_translate_message">Ev pêdivî ye: %s. Tu dixwazî ​​wê weyê wergerandin?</string>
+</resources>

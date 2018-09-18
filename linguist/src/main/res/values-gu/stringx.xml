@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">એપ્લિકેશન</string>
+    <string name="ls_dialog_button">ઇન્સ્ટોલ કરો</string>
+    <string name="ls_dialog_message">જ્યાં સુધી તમે %s એપ્લિકેશન ઇન્સ્ટોલ કરશો નહીં ત્યાં સુધી અનુવાદિત કરવામાં આવશે નહીં</string>
+    <string name="ls_dialog_title">%s ઇન્સ્ટોલ કરો</string>
+    <string name="ls_never_translate">ક્યારેય અનુવાદ કરશો નહીં %s</string>
+    <string name="ls_preference_summary">એપ્લિકેશનમાં આપમેળે અનુવાદને બદલે છે</string>
+    <string name="ls_preference_title">આપોઆપ અનુવાદ</string>
+    <string name="ls_translate">ભાષાંતર કરો</string>
+    <string name="ls_translate_message">આ એપ્લિકેશન આમાં છે: %s. શું તમે તેને અનુવાદિત કરવા માંગો છો?</string>
+</resources>

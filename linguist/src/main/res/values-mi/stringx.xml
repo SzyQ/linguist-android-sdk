@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Whakamahinga</string>
+    <string name="ls_dialog_button">Tāuta</string>
+    <string name="ls_dialog_message">e kore e nekehia ki te kore e whakauruhia e koe te taupānga %s.</string>
+    <string name="ls_dialog_title">Tāuta %s</string>
+    <string name="ls_never_translate">Kaua rawa e whakamaori %s</string>
+    <string name="ls_preference_summary">Ka tohua te whakamaori aunoa i roto i te tono</string>
+    <string name="ls_preference_title">Whakawhiti aunoa</string>
+    <string name="ls_translate">Whakamāori</string>
+    <string name="ls_translate_message">Kei roto i tenei taupānga: %s. E hiahia ana koe ki te whakawhiti i te reira?</string>
+</resources>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ls_margin">8dp</dimen>
+    <dimen name="ls_padding">8dp</dimen>
+    <dimen name="ls_corners">4dp</dimen>
+</resources>

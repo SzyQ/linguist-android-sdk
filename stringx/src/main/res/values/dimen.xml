@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="sX_margin">8dp</dimen>
-    <dimen name="sX_padding">8dp</dimen>
-    <dimen name="sX_corners">4dp</dimen>
-</resources>

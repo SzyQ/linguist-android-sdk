@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">אַפּפּליקאַטיאָן</string>
+    <string name="ls_dialog_button">ינסטאַלירן</string>
+    <string name="ls_dialog_message">וועט נישט זיין איבערגעזעצט אויב איר ינסטאַלירן %s אַפּ.</string>
+    <string name="ls_dialog_title">ינסטאַלירן %s</string>
+    <string name="ls_never_translate">קיינמאָל איבערזעצן %s</string>
+    <string name="ls_preference_summary">טאָגגלעס אָטאַמאַטיק איבערזעצונג אין די אַפּלאַקיישאַן</string>
+    <string name="ls_preference_title">אָטאַמאַטיק איבערזעצונג</string>
+    <string name="ls_translate">איבערזעצן</string>
+    <string name="ls_translate_message">דעם אַפּ איז אין: %s. וואָלט איר ווי צו איבערזעצן עס?</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">अनुप्रयोग</string>
+    <string name="ls_dialog_button">स्थापित करा</string>
+    <string name="ls_dialog_message">आपण %s अॅप्स स्थापित केल्याशिवाय अनुवादित होणार नाही</string>
+    <string name="ls_dialog_title">%s स्थापित करा</string>
+    <string name="ls_never_translate">कधीही अनुवाद करु नका %s</string>
+    <string name="ls_preference_summary">अनुप्रयोगामध्ये स्वयंचलित अनुवाद टॉगल करते</string>
+    <string name="ls_preference_title">स्वयंचलित अनुवाद</string>
+    <string name="ls_translate">भाषांतर करा</string>
+    <string name="ls_translate_message">हा अॅप यात आहे: %s आपण याचे भाषांतर करू इच्छिता?</string>
+</resources>

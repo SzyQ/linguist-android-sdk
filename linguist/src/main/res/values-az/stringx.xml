@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Ərizə</string>
+    <string name="ls_dialog_button">Yüklemek</string>
+    <string name="ls_dialog_message">%s tətbiqini yükləmədiyiniz halda tərcümə edilməyəcəkdir.</string>
+    <string name="ls_dialog_title">%s qurun</string>
+    <string name="ls_never_translate">%s tərcümə etməyin</string>
+    <string name="ls_preference_summary">Tətbiqə avtomatik tərcüməni keçir</string>
+    <string name="ls_preference_title">Avtomatik tərcümə</string>
+    <string name="ls_translate">Tərcümə etmək</string>
+    <string name="ls_translate_message">Bu app yerdəyikdir: %s. Bunu tərcümə etmək istəyirsiniz?</string>
+</resources>

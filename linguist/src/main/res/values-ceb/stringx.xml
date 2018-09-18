@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Paggamit</string>
+    <string name="ls_dialog_button">Pag-instalar</string>
+    <string name="ls_dialog_message">dili mahubad gawas kung mag-install ka og %s nga app.</string>
+    <string name="ls_dialog_title">Pag-instalar %s</string>
+    <string name="ls_never_translate">Ayaw gayud paghubad %s</string>
+    <string name="ls_preference_summary">Magpalabay sa awtomatik nga paghubad sa aplikasyon</string>
+    <string name="ls_preference_title">Automatic nga paghubad</string>
+    <string name="ls_translate">Paghubad</string>
+    <string name="ls_translate_message">Kini nga app anaa sa: %s. Gusto ka ba nga hubaron kini?</string>
+</resources>

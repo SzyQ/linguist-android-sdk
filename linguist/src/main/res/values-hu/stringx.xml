@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Alkalmazás</string>
+    <string name="ls_dialog_button">Telepítés</string>
+    <string name="ls_dialog_message">nem fog lefordítani, hacsak nem telepíted a %s alkalmazást.</string>
+    <string name="ls_dialog_title">Telepítse a %s-et</string>
+    <string name="ls_never_translate">Soha ne fordítson %s-et</string>
+    <string name="ls_preference_summary">Automatikus fordítás az alkalmazásban</string>
+    <string name="ls_preference_title">Automatikus fordítás</string>
+    <string name="ls_translate">fordít</string>
+    <string name="ls_translate_message">Ez az alkalmazás itt: %s. Szeretne lefordítani?</string>
+</resources>

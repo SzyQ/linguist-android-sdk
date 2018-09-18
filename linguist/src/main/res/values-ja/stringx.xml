@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">応用</string>
+    <string name="ls_dialog_button">インストール</string>
+    <string name="ls_dialog_message">%sアプリをインストールしない限り翻訳されません。</string>
+    <string name="ls_dialog_title">インストール%s</string>
+    <string name="ls_never_translate">決して翻訳しない%s</string>
+    <string name="ls_preference_summary">アプリケーションの自動翻訳を切り替えます。</string>
+    <string name="ls_preference_title">自動翻訳</string>
+    <string name="ls_translate">翻訳</string>
+    <string name="ls_translate_message">このアプリは%sにあります。翻訳しますか？</string>
+</resources>

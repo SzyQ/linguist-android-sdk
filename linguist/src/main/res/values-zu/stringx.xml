@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Isicelo</string>
+    <string name="ls_dialog_button">Faka</string>
+    <string name="ls_dialog_message">ngeke ihumushe ngaphandle kokuthi ufake uhlelo lokusebenza lwe-%s.</string>
+    <string name="ls_dialog_title">Faka %s</string>
+    <string name="ls_never_translate">Ungalokothi uhumushe %s</string>
+    <string name="ls_preference_summary">Iguqula ukuhumusha okuzenzakalelayo kuhlelo lokusebenza</string>
+    <string name="ls_preference_title">Ukuhumusha okuzenzakalelayo</string>
+    <string name="ls_translate">Humusha</string>
+    <string name="ls_translate_message">Lolu hlelo lokusebenza luyi: %s. Ungathanda ukulihumusha?</string>
+</resources>

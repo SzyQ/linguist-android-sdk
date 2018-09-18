@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--Generated using linguist.klimaszewski.mobi -->
+
+<resources>
+    <string name="ls_app">Application</string>
+    <string name="ls_dialog_button">I-install</string>
+    <string name="ls_dialog_message">ay hindi isasalin maliban kung mag-install ka ng %s app.</string>
+    <string name="ls_dialog_title">I-install ang %s</string>
+    <string name="ls_never_translate">Huwag isalin ang %s</string>
+    <string name="ls_preference_summary">Lumipat ang awtomatikong pagsasalin sa application</string>
+    <string name="ls_preference_title">Awtomatikong pagsasalin</string>
+    <string name="ls_translate">Isalin</string>
+    <string name="ls_translate_message">Ang app na ito ay nasa: %s. Nais mo bang i-translate ito?</string>
+</resources>
