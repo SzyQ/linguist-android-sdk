@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="mobi.klimaszewski.linguist">
 
-    <uses-permission android:name="io.linguist.DISCOVERY" />
+    <uses-permission android:name="mobi.klimaszewski.linguist.DISCOVERY" />
 
     <application>
         <activity
@@ -12,11 +12,11 @@
         <service
             android:name="mobi.klimaszewski.linguist.DiscoveryService"
             android:exported="true"
-            android:permission="io.linguist.DISCOVERY" />
+            android:permission="mobi.klimaszewski.linguist.DISCOVERY" />
 
         <service
             android:name="mobi.klimaszewski.linguist.ClientService"
             android:exported="true"
-            android:permission="io.linguist.TRANSLATION" />
+            android:permission="mobi.klimaszewski.linguist.TRANSLATION" />
     </application>
 </manifest>

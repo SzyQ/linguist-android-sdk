@@ -28,7 +28,7 @@ class ResourceProvider {
     ResourceProvider(Context context, ConfigCallback callback) {
         linguist = Linguist.get(context);
         if (linguist == null) {
-            throw new IllegalArgumentException("linguist is not set up!");
+            throw new IllegalArgumentException("Linguist is not set up!");
         }
         this.context = context;
         this.callback = callback;
